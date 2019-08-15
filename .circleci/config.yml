@@ -129,7 +129,6 @@ workflows:
             - deps
             - test
       - release:
-          context: credentials
           <<: *only_master
           requires:
             - deps
