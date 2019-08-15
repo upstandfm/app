@@ -11,16 +11,12 @@ const UnauthenticatedApp = React.lazy(() => import('../unauthenticated-app'));
 function LoadApp() {
   const { isLoading, authErr, isAuthenticated, login } = useAuth0();
 
-  const handleLogin = async () => {
-    await login();
-  };
-
   if (isLoading) {
     return <SplashScreen />;
   }
 
   if (authErr) {
-    return <LoginFailed errMessage={authErr} handleRetry={handleLogin} />;
+    return <LoginFailed errMessage={authErr} handleRetry={login} />;
   }
 
   return (

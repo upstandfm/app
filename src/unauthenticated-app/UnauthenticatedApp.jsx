@@ -5,10 +5,6 @@ import { useAuth0 } from '../auth0';
 function UnauthenticatedApp() {
   const { login } = useAuth0();
 
-  const handleLogin = async () => {
-    await login();
-  };
-
   return (
     <div>
       <main>
@@ -31,7 +27,7 @@ function UnauthenticatedApp() {
           send an email to <a href="mailto:info@upstand.fm">info@upstand.fm</a>
         </p>
 
-        <button onClick={handleLogin}>login</button>
+        <button onClick={login}>login</button>
 
         <footer>
           <span>&copy; {new Date().getFullYear()} upstand.fm</span>
