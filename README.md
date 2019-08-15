@@ -8,6 +8,7 @@ Upstand web application.
 
 - [Create React App](#create-react-app)
 - [CI/CD](#cicd)
+- [Configuration](#configuration)
 
 ## Create React App
 
@@ -29,6 +30,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+
+_Make sure you have created a [configuration](#configuration) file first._
 
 #### `npm test`
 
@@ -97,3 +100,45 @@ The site ID is configured in CircleCI as an environment variable named `NETLIFY_
 The publish directory contains the files that Netlify must deploy. This is the output after running the `npm run build` command, which creates the directory `/build` by default.
 
 The publish directory is configured in CircleCI as an environment variable named `NETLIFY_PUBLISH_DIR`. It must have the value `build`.
+
+## Configuration
+
+The app is configured via `.env` files:
+
+- `.env.development` is the config required to run the app locally.
+- `.env.production` is the config required to run the app in production.
+
+_Note that these files should **NOT** be commited, **NOR** contain secrets!_
+
+Both files must contain the following environment variables:
+
+| Name                         | Required | Description                                                                                             |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| REACT_APP_AUTH0_DOMAIN       | Yes      | The Auth0 tenant domain name.                                                                           |
+| REACT_APP_AUTH0_CLIENT_ID    | Yes      | The application client ID as configured in Auth0.                                                       |
+| REACT_APP_AUTH0_REDIRECT_URI | Yes      | Set to `http://localhost:3000` for dev. And `https://www.upstand.fm` for prod.                          |
+| REACT_APP_AUTH0_LOGOUT_URL   | Yes      | Should match the `REACT_APP_AUTH0_REDIRECT_URI` value.                                                  |
+| REACT_APP_AUTH0_AUDIENCE     | Yes      | The audience for which the issued token is intended. Set this to `https://api.upstand.fm`.              |
+| REACT_APP_AUTH0_SCOPE        | Yes      | The OAuth scopes that are requested on behalf of the user. And which are "evaluated" by the "audience". |
+
+### Example
+
+```shell
+# Local vars
+APP_DOMAIN=http://localhost:3000
+
+# Exported vars
+REACT_APP_AUTH0_DOMAIN=tenantname.eu.auth0.com
+REACT_APP_AUTH0_CLIENT_ID=1234567890abcdefghijkl
+REACT_APP_AUTH0_REDIRECT_URI=$APP_DOMAIN
+REACT_APP_AUTH0_LOGOUT_URL=$APP_DOMAIN
+REACT_APP_AUTH0_AUDIENCE=https://api.upstand.fm
+REACT_APP_AUTH0_SCOPE='create:standups read:standups'
+```
+
+### Caveats
+
+- You must create custom environment variables beginning with `REACT_APP_`.
+- Any other variables except `NODE_ENV` will be ignored to avoid accidentally
+  exposing a private key on the machine that could have the same name.
+- You have to restart the dev server after changing the `.env.development` file.
