@@ -99,7 +99,7 @@ jobs:
       - run:
           name: Release to prod
           command: |
-            ./node_modules/.bin/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir=build --auth="$NETLIFY_ACCESS_TOKEN"
+            ./node_modules/.bin/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR"--auth="$NETLIFY_ACCESS_TOKEN"
 
 workflows:
   version: 2

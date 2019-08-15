@@ -76,16 +76,24 @@ Code is automatically formatted on commit with Prettier.
 
 ## CI/CD
 
-[CircleCI](https://circleci.com/gh/organizations/upstandfm) is used to to run tests, test builds and deploy the app via [Netlify](https://app.netlify.com). Here CircleCI requires a Netlify access token and site ID to deploy the built files.
+[CircleCI](https://circleci.com/gh/organizations/upstandfm) is used to to run tests, test builds and deploy the app via [Netlify](https://app.netlify.com).
+
+Here CircleCI requires a Netlify access token, site ID and publish directory to deploy the built files. These are configured as [environment variables](https://circleci.com/gh/upstandfm/app/edit#env-vars), and can be used in the `.circleci/config.yml` file.
 
 ### Token
 
 The Netlify access token can be found in the [1Password](https://1password.com/) "upstand.fm" vault under "Netlify access token for CircleCI".
 
-The token is configured in CircleCI as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars), to be used in the `.circleci/config.yml` file.
+The token is configured in CircleCI as an environment variable named `NETLIFY_ACCESS_TOKEN`.
 
 ### Site ID
 
 The Netlify site ID (named "API ID" in the Netlify web app) can be found in the [settings page](https://app.netlify.com/sites/upstand-fm-app/settings/general) under `Settings > General > Site Details > Site Information`.
 
-The site ID is configured in CircleCI as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars), to be used in the `.circleci/config.yml` file.
+The site ID is configured in CircleCI as an environment variable named `NETLIFY_SITE_ID`.
+
+### Publish directory
+
+The publish directory contains the files that Netlify must deploy. This is the output after running the `npm run build` command, which creates the directory `/build` by default.
+
+The publish directory is configured in CircleCI as an environment variable named `NETLIFY_PUBLISH_DIR`. It must have the value `build`.
