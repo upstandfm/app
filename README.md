@@ -108,7 +108,7 @@ The app is configured via `.env` files:
 - `.env.development` is the config required to run the app locally.
 - `.env.production` is the config required to run the app in production.
 
-_Note that these files should **NOT** be commited, **NOR** contain secrets!_
+_Note that these files should **NOT** contain secrets!_
 
 Both files must contain the following environment variables:
 
@@ -120,21 +120,6 @@ Both files must contain the following environment variables:
 | REACT_APP_AUTH0_LOGOUT_URL   | Yes      | Should match the `REACT_APP_AUTH0_REDIRECT_URI` value.                                                  |
 | REACT_APP_AUTH0_AUDIENCE     | Yes      | The audience for which the issued token is intended. Set this to `https://api.upstand.fm`.              |
 | REACT_APP_AUTH0_SCOPE        | Yes      | The OAuth scopes that are requested on behalf of the user. And which are "evaluated" by the "audience". |
-
-### Example
-
-```shell
-# Local vars
-APP_DOMAIN=http://localhost:3000
-
-# Exported vars
-REACT_APP_AUTH0_DOMAIN=tenantname.eu.auth0.com
-REACT_APP_AUTH0_CLIENT_ID=1234567890abcdefghijkl
-REACT_APP_AUTH0_REDIRECT_URI=$APP_DOMAIN
-REACT_APP_AUTH0_LOGOUT_URL=$APP_DOMAIN
-REACT_APP_AUTH0_AUDIENCE=https://api.upstand.fm
-REACT_APP_AUTH0_SCOPE='create:standups read:standups'
-```
 
 ### Caveats
 
