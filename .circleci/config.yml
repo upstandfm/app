@@ -93,10 +93,11 @@ jobs:
       - checkout
       - *restore_cache_by_keys
       - *restore_build_cache_by_keys
+      # This exposes: $DEPLOY_MESSAGE
+      # See: https://discuss.circleci.com/t/using-environment-variables-in-config-yml-not-working/14237
+      - run: echo 'export DEPLOY_MESSAGE="Deployed from CircleCI. See $CIRCLE_BUILD_URL"' >> $BASH_ENV
       - run:
           name: Release to prod
-          environment:
-            DEPLOY_MESSAGE: 'Deployed from CircleCI - ${CIRCLE_BUILD_URL}'
           command: |
             ./node_modules/.bin/netlify deploy --prod --message=$DEPLOY_MESSAGE --site=$NETLIFY_SITE_ID --dir=build --auth=$NETLIFY_ACCESS_TOKEN
 
