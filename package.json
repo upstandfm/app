@@ -7,7 +7,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "netlify deploy --prod --site=621e0425-89e1-4168-9168-0341e0f4da45 --dir=build"
   },
   "repository": {
     "type": "git",
@@ -52,7 +53,9 @@
   },
   "devDependencies": {
     "husky": "^3.0.3",
+    "jest-junit": "^7.0.0",
     "lint-staged": "^9.2.1",
+    "netlify-cli": "^2.12.0",
     "prettier": "^1.18.2"
   }
 }
