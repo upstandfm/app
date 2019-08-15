@@ -1,8 +1,13 @@
 # App
 
+[![CircleCI](https://circleci.com/gh/upstandfm/app.svg?style=svg)](https://circleci.com/gh/upstandfm/app)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/621e0425-89e1-4168-9168-0341e0f4da45/deploy-status)](https://app.netlify.com/sites/upstand-fm-app/deploys)
+
 Upstand web application.
 
 - [Create React App](#create-react-app)
+- [CI/CD](#cicd)
 
 ## Create React App
 
@@ -68,3 +73,19 @@ Code is automatically formatted on commit with Prettier.
 - [npm run build fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 - [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
 - [React documentation](https://reactjs.org/)
+
+## CI/CD
+
+[CircleCI](https://circleci.com/gh/organizations/upstandfm) is used to to run tests, test builds and deploy the app via [Netlify](https://app.netlify.com). Here CircleCI requires a Netlify access token and site ID to deploy the built files.
+
+### Token
+
+The Netlify access token can be found in the [1Password](https://1password.com/) "upstand.fm" vault under "Netlify access token for CircleCI".
+
+The token is configured in the CircleCI "credentials" [context](https://circleci.com/gh/organizations/upstandfm/settings#contexts/e1538fa8-437b-4179-aec6-d54de91c4b7a), which exposes the token value via the `NETLIFY_ACCESS_TOKEN` env var, so it can be used in the `.circleci/config.yml` file.
+
+### Site ID
+
+The Netlify site ID (named "API ID" in the Netlify web app) can be found in the [settings page](https://app.netlify.com/sites/upstand-fm-app/settings/general) under `Settings > General > Site Details > Site Information`.
+
+The site ID is configured in the `package.json` file, in the `scripts.release` command (this command is executed by CircleCI).

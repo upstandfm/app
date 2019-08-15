@@ -1,0 +1,136 @@
+# YAML Anchors
+# These anchors can be aliased to prevent config repetition
+# For more information see: https://medium.com/@kinghuang/docker-compose-anchors-aliases-extensions-a1e4105d70bd
+docker_image: &docker_image
+  docker:
+    - image: circleci/node:12.8.0
+
+# Caching, for more information see: https://circleci.com/docs/2.0/caching/#section=projects
+restore_cache_by_keys: &restore_cache_by_keys
+  restore_cache:
+    keys:
+      - dependencies-cache-{{ checksum "package-lock.json" }}
+
+restore_build_cache_by_keys: &restore_build_cache_by_keys
+  restore_cache:
+    keys:
+      - build-cache-{{ .Revision }}
+
+# Store reports in sub dirs, for more information see: https://circleci.com/docs/2.0/configuration-reference/#store_test_results
+store_test_results_by_path: &store_test_results_by_path
+  store_test_results:
+    path: reports
+
+store_test_artifacts_by_path: &store_test_artifacts_by_path
+  store_artifacts:
+    path: reports
+
+store_build_artifacts_by_path: &store_build_artifacts_by_path
+  store_artifacts:
+    path: build
+
+# Job filters, for more information see: https://circleci.com/docs/2.0/workflows/#branch-level-job-execution
+all_branches_except_master: &all_branches_except_master
+  filters:
+    branches:
+      ignore: master
+
+only_master: &only_master
+  filters:
+    branches:
+      only: master
+
+version: 2
+jobs:
+  deps:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_cache_by_keys
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - save_cache:
+          key: dependencies-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+            - ~/.npm
+
+  test:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_cache_by_keys
+      - run:
+          name: Run tests
+
+          # For more information see: https://circleci.com/docs/2.0/collect-test-data/#jest
+          command: npm test -- --ci --runInBand --coverage --coverageDirectory reports/jest --reporters=jest-junit
+          when: always
+          environment:
+            JEST_JUNIT_OUTPUT: 'reports/jest/test-report-junit.xml'
+      - *store_test_results_by_path
+      - *store_test_artifacts_by_path
+
+  build:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_cache_by_keys
+      - *restore_build_cache_by_keys
+      - run:
+          name: Build app
+          command: npm run build
+      - save_cache:
+          key: build-cache-{{ .Revision }}
+          paths:
+            - ./build
+      - *store_build_artifacts_by_path
+
+  release:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_cache_by_keys
+      - *restore_build_cache_by_keys
+      - run:
+          name: Release to prod
+          command: npm run release -- --auth=$NETLIFY_ACCESS_TOKEN
+
+workflows:
+  version: 2
+
+  test_build_branch:
+    jobs:
+      - deps:
+          <<: *all_branches_except_master
+      - test:
+          <<: *all_branches_except_master
+          requires:
+            - deps
+      - build:
+          <<: *all_branches_except_master
+          requires:
+            - deps
+            - test
+
+  release_master:
+    jobs:
+      - deps:
+          <<: *only_master
+      - test:
+          <<: *only_master
+          requires:
+            - deps
+      - build:
+          <<: *only_master
+          requires:
+            - deps
+            - test
+      - release:
+          context: credentials
+          <<: *only_master
+          requires:
+            - deps
+            - test
+            - build
