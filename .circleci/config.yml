@@ -95,8 +95,10 @@ jobs:
       - *restore_build_cache_by_keys
       - run:
           name: Release to prod
+          environment:
+            DEPLOY_MESSAGE: Deployed from CircleCI - $CIRCLE_BUILD_URL
           command: |
-            ./node_modules/.bin/netlify deploy --prod --message="Deployed from CircleCI" --site=621e0425-89e1-4168-9168-0341e0f4da45 --dir=build --auth=$NETLIFY_ACCESS_TOKEN
+            ./node_modules/.bin/netlify deploy --prod --message=$DEPLOY_MESSAGE --site=621e0425-89e1-4168-9168-0341e0f4da45 --dir=build --auth=$NETLIFY_ACCESS_TOKEN
 
 workflows:
   version: 2
