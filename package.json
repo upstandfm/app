@@ -7,8 +7,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "release": "netlify deploy --prod --site=621e0425-89e1-4168-9168-0341e0f4da45 --dir=build"
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
