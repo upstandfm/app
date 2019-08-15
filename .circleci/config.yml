@@ -95,7 +95,8 @@ jobs:
       - *restore_build_cache_by_keys
       - run:
           name: Release to prod
-          command: npm run release -- --auth=$NETLIFY_ACCESS_TOKEN
+          command: |
+            npm run release -- --auth=$NETLIFY_ACCESS_TOKEN
 
 workflows:
   version: 2
