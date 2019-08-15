@@ -6,18 +6,12 @@ Upstand web application.
 
 ## Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) (CRA).
 
 - [Available scripts](#available-scripts)
 - [Code linting](#code-linting)
 - [Code formatting](#code-formatting)
-- [Code splitting](#code-splitting)
-- [Analyzing the bundle size](#analyzing-the-bundle-size)
-- [Making a Progressive Web App](#making-a-progressive-web-app)
-- [Advanced configuration](#advanced-configuration)
-- [Deployment](#deployment)
-- [npm run build fails to minify](#npm-run-build-fails-to-minify)
-- [Learn more](#learn-more)
+- [Additional resources](#additional-resources)
 
 ### Available scripts
 
@@ -64,32 +58,13 @@ CRA default ESLint settings are used.
 
 Code is automatically formatted on commit with Prettier.
 
-### Code splitting
+### Additional resources
 
-See: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the bundle size
-
-See: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-See: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced configuration
-
-See: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-See: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-See: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### Learn more
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Code splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [Analyzing the bundle size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [Advanced configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [Deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [npm run build fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
+- [React documentation](https://reactjs.org/)
