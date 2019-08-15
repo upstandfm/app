@@ -82,10 +82,10 @@ Code is automatically formatted on commit with Prettier.
 
 The Netlify access token can be found in the [1Password](https://1password.com/) "upstand.fm" vault under "Netlify access token for CircleCI".
 
-The token is configured in the CircleCI "credentials" [context](https://circleci.com/gh/organizations/upstandfm/settings#contexts/e1538fa8-437b-4179-aec6-d54de91c4b7a), which exposes the token value via the `NETLIFY_ACCESS_TOKEN` env var, so it can be used in the `.circleci/config.yml` file.
+The token is configured in CircleCI as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars), to be used in the `.circleci/config.yml` file.
 
 ### Site ID
 
 The Netlify site ID (named "API ID" in the Netlify web app) can be found in the [settings page](https://app.netlify.com/sites/upstand-fm-app/settings/general) under `Settings > General > Site Details > Site Information`.
 
-The site ID is configured in the `package.json` file, in the `scripts.release` command (this command is executed by CircleCI).
+The site ID is configured in CircleCI as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars), to be used in the `.circleci/config.yml` file.
