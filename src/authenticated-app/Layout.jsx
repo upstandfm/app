@@ -16,8 +16,6 @@ export const Container = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
   }
-
-  background-color: lightsalmon;
 `;
 
 export const MenuBar = styled.div`
@@ -29,6 +27,7 @@ export const MenuBar = styled.div`
     'profile';
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
+  grid-gap: 1em;
   align-items: center;
   padding: 2em 0;
 
@@ -57,8 +56,6 @@ export const Brand = styled.section`
 export const Actions = styled.section`
   grid-area: actions;
   margin: 0 auto;
-
-  background-color: lightcyan;
 `;
 
 export const Profile = styled.section`
