@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useAuth0, useUser } from '../auth0';
 
+import Logo from '../components/Logo';
 import Button from '../components/Button';
 import AvatarDropdown from '../components/AvatarDropdown';
 
@@ -15,7 +16,7 @@ function AuthenticatedApp() {
     <Container>
       <MenuBar>
         <Brand>
-          <h3>upstand.fm</h3>
+          <Logo />
         </Brand>
 
         <Actions>
