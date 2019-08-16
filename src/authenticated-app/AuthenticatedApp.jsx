@@ -2,11 +2,13 @@ import React from 'react';
 
 import { useAuth0, useUser } from '../auth0';
 
+import AvatarDropdown from '../components/AvatarDropdown';
+
 import { Container, MenuBar, Brand, Actions, Profile, Main } from './Layout';
 
 function AuthenticatedApp() {
   const { logout } = useAuth0();
-  const { fullName } = useUser();
+  const { avatarUrl, fullName, email } = useUser();
 
   return (
     <Container>
@@ -20,9 +22,12 @@ function AuthenticatedApp() {
         </Actions>
 
         <Profile>
-          <span>{fullName}</span>
-
-          <button onClick={logout}>logout</button>
+          <AvatarDropdown
+            logout={logout}
+            avatarUrl={avatarUrl}
+            fullName={fullName}
+            email={email}
+          />
         </Profile>
       </MenuBar>
 

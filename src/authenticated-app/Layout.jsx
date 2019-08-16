@@ -30,11 +30,13 @@ export const MenuBar = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   align-items: center;
+  padding: 2em 0;
 
   @media (max-width: 1000px) {
     grid-template-areas: 'brand actions profile';
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
+    padding: 1em 0;
   }
 
   @media (max-width: 550px) {
@@ -61,6 +63,7 @@ export const Actions = styled.section`
 
 export const Profile = styled.section`
   grid-area: profile;
+  padding: 0 1em;
 `;
 
 export const Main = styled.main`
