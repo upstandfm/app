@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useAuth0, useUser } from '../auth0';
 
+import Button from '../components/Button';
 import AvatarDropdown from '../components/AvatarDropdown';
 
 import { Container, MenuBar, Brand, Actions, Profile, Main } from './Layout';
@@ -18,7 +19,7 @@ function AuthenticatedApp() {
         </Brand>
 
         <Actions>
-          <span>New</span>
+          <Button>new update</Button>
         </Actions>
 
         <Profile>
