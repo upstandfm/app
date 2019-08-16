@@ -51,6 +51,7 @@ export const MenuBar = styled.div`
 
 export const Brand = styled.section`
   grid-area: brand;
+  padding: 0 1em;
 `;
 
 export const Actions = styled.section`
@@ -66,6 +67,4 @@ export const Profile = styled.section`
 export const Main = styled.main`
   grid-area: main;
   overflow: auto;
-
-  background-color: lightseagreen;
 `;
