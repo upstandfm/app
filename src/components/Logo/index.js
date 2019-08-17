@@ -3,22 +3,37 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import logo from './logo.svg';
-import Img from './Img';
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 0.3em;
-  align-items: center;
-  margin: 0 auto;
+  line-height: 1;
+  text-align: center;
+
+  @media (max-width: 550px) {
+    text-align: left;
+  }
+`;
+
+const Img = styled.img`
+  display: inline-block;
+  margin: 0 0.25em 0 0;
+  padding: 0;
+  line-height: 1;
+  vertical-align: middle;
+  width: ${props => props.width};
+  height: ${props => props.height};
+
+  @media (max-width: 550px) {
+    display: none;
+  }
 `;
 
 const Name = styled.h1`
+  display: inline-block;
   margin: 0;
-  font-size: 26px;
-  font-weight: 300;
-  text-transform: uppercase;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1;
+  vertical-align: middle;
 `;
 
 function Logo({ width, height }) {
@@ -26,7 +41,7 @@ function Logo({ width, height }) {
     <Wrapper>
       <Img src={logo} alt="Logo" width={width} height={height} />
 
-      <Name>upstand.fm</Name>
+      <Name>Upstand FM</Name>
     </Wrapper>
   );
 }
@@ -37,8 +52,8 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-  width: '40px',
-  height: '40px'
+  width: '24px',
+  height: '24px'
 };
 
 export default Logo;
