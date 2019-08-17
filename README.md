@@ -9,6 +9,7 @@ Upstand web application.
 - [Create React App](#create-react-app)
 - [CI/CD](#cicd)
 - [Configuration](#configuration)
+- [Design](#design)
 
 ## Create React App
 
@@ -127,3 +128,32 @@ Both files must contain the following environment variables:
 - Any other variables except `NODE_ENV` will be ignored to avoid accidentally
   exposing a private key on the machine that could have the same name.
 - You have to restart the dev server after changing the `.env.development` file.
+
+### Design
+
+#### Logo
+
+The logo intends to represent a "record" button.
+
+Since my design skills are terrible, drawing a basic SVG circle is the best I can do. 😅
+
+#### Color scheme
+
+The colors are inspired by the [Rainbow Doughnuts](https://www.canva.com/colors/color-palettes/rainbow-doughnuts/) color palette:
+
+- Purple: `#6c0afe`
+- Yellow: `ffc52d`
+- Coral: `#ff6c0a`
+- Lime: `#0afe6c`
+- Red: `#f53a00`
+
+The "color composition" is inspired by the [play.date](https://play.date/) website.
+
+#### Fonts
+
+- Headings: [Nunito Extra-Bold](https://fonts.google.com/specimen/Nunito)
+- Text: [Open Sans Regular](https://fonts.google.com/specimen/Open+Sans)
+
+#### Layout
+
+The app layout is inspired by [Slack's](https://slack.com) sidebar layout.

@@ -20,7 +20,7 @@ function AuthenticatedApp() {
         </Brand>
 
         <Actions>
-          <Button>new update</Button>
+          <Button secondary>new update</Button>
         </Actions>
 
         <Profile>
@@ -33,15 +33,7 @@ function AuthenticatedApp() {
         </Profile>
       </MenuBar>
 
-      <Main>
-        <h1>Welcome</h1>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nisi
-          impedit, sed dignissimos asperiores earum possimus, ducimus quam vel
-          quas ad esse ea fuga suscipit eius similique iusto labore! Qui?
-        </p>
-      </Main>
+      <Main></Main>
     </Container>
   );
 }

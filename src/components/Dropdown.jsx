@@ -49,12 +49,20 @@ export const List = styled.ul`
   padding: 0.5em 0;
   min-width: 240px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid #eaeaea;
+  border: 1px solid ${props => props.theme.accentColor};
   border-radius: 8px;
   background-color: #ffffff;
   opacity: ${props => (props.isOpen ? 1 : 0)};
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
 `;
+
+const _getListItemBackgroundColor = props => {
+  if (props.viewOnly) {
+    return 'inherit';
+  }
+
+  return props.theme.accentColor;
+};
 
 /**
  * List item that can be clicked on:
@@ -70,7 +78,7 @@ export const ListItem = styled.li`
 
   :hover {
     cursor: ${props => (props.viewOnly ? 'inherit' : 'pointer')};
-    background-color: ${props => (props.viewOnly ? 'inherit' : '#eaeaea')};
+    background-color: ${_getListItemBackgroundColor};
   }
 `;
 
@@ -83,5 +91,5 @@ export const Divider = styled.div`
   height: 0;
   margin: 0.25em 0;
   padding: 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid ${props => props.theme.accentColor};
 `;

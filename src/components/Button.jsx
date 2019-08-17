@@ -1,5 +1,38 @@
 import styled from 'styled-components';
 
+const _getBackgroundColor = props => {
+  if (props.secondary) {
+    return props.theme.secondaryColor;
+  }
+
+  if (props.danger) {
+    return props.theme.dangerColor;
+  }
+
+  return props.theme.primaryColor;
+};
+
+const _getColor = props => {
+  if (props.invertTextColor) {
+    return props.theme.invertedTextColor;
+  }
+
+  return props.theme.textColor;
+};
+
+/**
+ * Primary button:
+ *  <Button>create</Button>
+ *
+ * Secondary button:
+ *  <Button secondary>create</Button>
+ *
+ * Danger button:
+ *  <Button danger>delete</Button>
+ *
+ * Invert text color:
+ *  <Button danger invertTextColor>delete</Button>
+ */
 const Button = styled.button`
   width: 100%;
   margin: 0;
@@ -7,14 +40,13 @@ const Button = styled.button`
   border-radius: 50px;
   border: none;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  outline: currentcolor none medium;
+  outline: none;
   box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
   font-size: 18px;
-  font-weight: bold;
   text-transform: uppercase;
-  opacity: 0.95;
-  background-color: lightseagreen;
-  color: #ffffff;
+  background-color: ${_getBackgroundColor};
+  color: ${_getColor};
   transition: all 0.2s ease;
 
   :hover {

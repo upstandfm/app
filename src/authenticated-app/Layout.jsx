@@ -6,8 +6,19 @@ export const Container = styled.div`
   grid-template-areas:
     'menubar main'
     'menubar main';
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 220px 1fr;
   grid-template-rows: 1fr;
+  font-family: 'Open Sans', sans-serif;
+  color: ${props => props.theme.textColor};
+
+  p {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  code {
+    font-family: Fira Code, Source Code Pro, Menlo, Monaco, monospace;
+  }
 
   @media (max-width: 1000px) {
     grid-template-areas:
@@ -29,7 +40,9 @@ export const MenuBar = styled.div`
   grid-template-rows: auto 1fr auto;
   grid-gap: 1em;
   align-items: center;
+  margin: 0;
   padding: 2em 0;
+  background-color: ${props => props.theme.primaryColor};
 
   @media (max-width: 1000px) {
     grid-template-areas: 'brand actions profile';
@@ -45,8 +58,6 @@ export const MenuBar = styled.div`
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr 1fr;
   }
-
-  background-color: lightpink;
 `;
 
 export const Brand = styled.section`
