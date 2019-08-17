@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   grid-template-rows: 1fr;
   grid-gap: 0.3em;
   align-items: center;
-  width: 205px;
   margin: 0 auto;
 `;
 
@@ -38,8 +37,8 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-  width: '32px',
-  height: '32px'
+  width: '40px',
+  height: '40px'
 };
 
 export default Logo;

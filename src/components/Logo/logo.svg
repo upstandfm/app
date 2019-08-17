@@ -1,16 +1,11 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 120 120"
-  fill-rule="evenodd"
-  stroke-linejoin="round"
+  viewBox="0 0 100 100"
 >
   <circle 
     cx="50%"
     cy="50%"
-    r="45px"
-    stroke="#d8d8d8"
-    stroke-width="30px"
+    r="50px"
     fill="#f53a00"
-    fill-rule="nonzero"
   />
 </svg>
