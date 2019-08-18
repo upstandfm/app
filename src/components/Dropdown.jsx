@@ -48,7 +48,7 @@ export const List = styled.ul`
   margin: 0;
   padding: 0.5em 0;
   min-width: 240px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid ${props => props.theme.accentColor};
   border-radius: 8px;
   background-color: #ffffff;
