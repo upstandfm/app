@@ -11,6 +11,14 @@ export const Container = styled.div`
   font-family: 'Open Sans', sans-serif;
   color: ${props => props.theme.textColor};
 
+  a {
+    color: ${props => props.theme.primaryColor};
+
+    :visited {
+      color: ${props => props.theme.primaryColor};
+    }
+  }
+
   p {
     font-size: 20px;
     line-height: 1.6;

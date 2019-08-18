@@ -76,9 +76,7 @@ function AvatarDropdown({ logout, avatarUrl, fullName, email }) {
 
       <List isOpen={isOpen} {...alignOptions}>
         <ListItem viewOnly>
-          <ListItemText>
-            <b>{fullName}</b>
-          </ListItemText>
+          <ListItemText>{fullName}</ListItemText>
 
           <ListItemText>{email}</ListItemText>
         </ListItem>

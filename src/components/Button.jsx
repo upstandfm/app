@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const _getBorder = props => {
   if (props.secondary) {
-    return `2px solid ${props.theme.textColor}`;
+    return `1px solid ${props.theme.accentColor}`;
   }
 
   return 'none';
@@ -54,6 +54,7 @@ const Button = styled.button`
   text-transform: uppercase;
   background-color: ${_getBackgroundColor};
   color: ${_getColor};
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
 
   :hover {

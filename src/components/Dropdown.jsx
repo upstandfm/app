@@ -73,7 +73,7 @@ const _getListItemBackgroundColor = props => {
  */
 export const ListItem = styled.li`
   position: relative;
-  padding: 1em;
+  padding: 0.5em 1em;
   font-weight: ${props => (props.viewOnly ? 'inherit' : 600)};
 
   :hover {
@@ -84,7 +84,12 @@ export const ListItem = styled.li`
 
 export const ListItemText = styled.span`
   display: block;
-  padding: 0.2em;
+  padding: 0.25em;
+`;
+
+export const ListItemLink = styled.a`
+  display: block;
+  text-transform: capitalize;
 `;
 
 export const Divider = styled.div`
