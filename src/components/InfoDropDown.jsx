@@ -14,6 +14,8 @@ import {
   Divider
 } from './Dropdown';
 
+import Copyright from './Copyright';
+
 const SMALL_SCREEN_MEDIA_QUERY = '(max-width: 550px)';
 const MEDIUM_SCREEN_MEDIA_QUERY = '(max-width: 1000px)';
 
@@ -140,7 +142,7 @@ function InfoDropdown() {
 
         <ListItem viewOnly>
           <ListItemText>
-            &copy; {new Date().getFullYear()} Upstand FM
+            <Copyright />
           </ListItemText>
         </ListItem>
       </List>
