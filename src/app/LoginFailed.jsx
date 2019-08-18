@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Button from '../components/Button';
-import Copyright from '../components/Copyright';
+
+import { Page, PageTitle, PageSubTitle, PageSection } from '../components/Page';
 
 import {
   FOOTER_LINKS_BY_COLUMN,
@@ -14,6 +15,8 @@ import {
   FooterColumn,
   FooterLink
 } from '../components/Footer';
+
+import Copyright from '../components/Copyright';
 
 const Container = styled.div`
   height: 100vh;
@@ -58,31 +61,6 @@ const Actions = styled.div`
   @media (max-width: 550px) {
     width: 100%;
   }
-`;
-
-const Page = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-`;
-
-const PageTitle = styled.h1`
-  font-family: 'Nunito', sans-serif;
-  margin: 0;
-  padding: 0.5em 0 0 0;
-`;
-
-const PageSubTitle = styled.h3`
-  font-family: 'Nunito', sans-serif;
-  margin: 0;
-  padding: 0.5em 0 0 0;
-`;
-
-const PageSection = styled.section`
-  margin: 1.5em 0 0 0;
-  padding: 1.5em;
-  border-radius: 26px;
-  background-color: var(--color-white);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 `;
 
 function LoginFailed({ errMessage, handleRetry }) {
