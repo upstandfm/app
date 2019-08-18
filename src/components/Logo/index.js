@@ -34,7 +34,6 @@ const Name = styled.h1`
   font-size: 24px;
   line-height: 1;
   vertical-align: middle;
-  color: ${props => props.theme.brandColor};
 `;
 
 function Logo({ width, height }) {

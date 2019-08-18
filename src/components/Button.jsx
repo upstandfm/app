@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 
+const _getBorder = props => {
+  if (props.secondary) {
+    return `2px solid ${props.theme.textColor}`;
+  }
+
+  return 'none';
+};
+
 const _getBackgroundColor = props => {
   if (props.secondary) {
-    return props.theme.secondaryColor;
+    return 'var(--color-white)';
   }
 
   if (props.danger) {
@@ -36,10 +44,9 @@ const _getColor = props => {
 const Button = styled.button`
   width: 100%;
   margin: 0;
-  padding: 18px;
+  padding: 12px 14px;
+  border: ${_getBorder};
   border-radius: 50px;
-  border: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   outline: none;
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;

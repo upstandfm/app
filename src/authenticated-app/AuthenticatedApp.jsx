@@ -20,7 +20,7 @@ function AuthenticatedApp() {
         </Brand>
 
         <Actions>
-          <Button secondary>new update</Button>
+          <Button invertTextColor>new update</Button>
         </Actions>
 
         <Profile>

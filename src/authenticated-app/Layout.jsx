@@ -42,7 +42,7 @@ export const MenuBar = styled.div`
   align-items: center;
   margin: 0;
   padding: 2em 0;
-  background-color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.primaryBackgroundColor};
 
   @media (max-width: 1000px) {
     grid-template-areas: 'brand actions profile';
