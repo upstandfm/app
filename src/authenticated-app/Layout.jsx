@@ -12,6 +12,7 @@ export const Container = styled.div`
   color: ${props => props.theme.textColor};
 
   a {
+    font-weight: bold;
     color: ${props => props.theme.primaryColor};
 
     :visited {
@@ -22,10 +23,6 @@ export const Container = styled.div`
   p {
     font-size: 20px;
     line-height: 1.6;
-  }
-
-  code {
-    font-family: Fira Code, Source Code Pro, Menlo, Monaco, monospace;
   }
 
   @media (max-width: 1000px) {
@@ -43,7 +40,7 @@ export const MenuBar = styled.div`
   grid-template-areas:
     'profile'
     'menu'
-    'footer';
+    'misc';
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   grid-gap: 1.5em;
@@ -53,7 +50,7 @@ export const MenuBar = styled.div`
   background-color: ${props => props.theme.primaryBackgroundColor};
 
   @media (max-width: 1000px) {
-    grid-template-areas: 'profile menu footer';
+    grid-template-areas: 'profile menu misc';
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
   }
@@ -62,7 +59,7 @@ export const MenuBar = styled.div`
     grid-template-areas:
       'profile'
       'menu'
-      'footer';
+      'misc';
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
   }
@@ -79,8 +76,8 @@ export const Menu = styled.section`
   padding: 0 1em;
 `;
 
-export const Footer = styled.section`
-  grid-area: footer;
+export const Misc = styled.section`
+  grid-area: misc;
   padding: 0 1em;
 `;
 

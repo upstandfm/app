@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import AvatarDropdown from '../components/AvatarDropdown';
 import InfoDropdown from '../components/InfoDropDown';
 
-import { Container, MenuBar, Profile, Menu, Footer, Main } from './Layout';
+import { Container, MenuBar, Profile, Menu, Misc, Main } from './Layout';
 
 function AuthenticatedApp() {
   const { logout } = useAuth0();
@@ -28,9 +28,9 @@ function AuthenticatedApp() {
           <Button invertTextColor>new update</Button>
         </Menu>
 
-        <Footer>
+        <Misc>
           <InfoDropdown />
-        </Footer>
+        </Misc>
       </MenuBar>
 
       <Main></Main>
