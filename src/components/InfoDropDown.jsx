@@ -16,6 +16,8 @@ import {
 
 import Copyright from './Copyright';
 
+import { FOOTER_LINKS_BY_COLUMN } from './Footer';
+
 const SMALL_SCREEN_MEDIA_QUERY = '(max-width: 550px)';
 const MEDIUM_SCREEN_MEDIA_QUERY = '(max-width: 1000px)';
 
@@ -82,6 +84,29 @@ function InfoDropdown() {
   const [isMediumScreen] = useMatchMedia(MEDIUM_SCREEN_MEDIA_QUERY);
   const alignOptions = _getAlignOptions(isSmallScreen, isMediumScreen);
 
+  const renderLinks = () => {
+    const items = [];
+
+    const maxColumns = FOOTER_LINKS_BY_COLUMN.length;
+    for (let i = 0; i < maxColumns; i++) {
+      const maxLinks = FOOTER_LINKS_BY_COLUMN[i].length;
+      for (let j = 0; j < maxLinks; j++) {
+        const link = FOOTER_LINKS_BY_COLUMN[i][j];
+        items.push(
+          <ListItem>
+            <ListItemLink href={link.href} target="_blank">
+              {link.name}
+            </ListItemLink>
+          </ListItem>
+        );
+      }
+
+      items.push(<Divider />);
+    }
+
+    return items;
+  };
+
   return (
     <Dropdown ref={dropdownEl}>
       <Trigger onClick={handleClick}>
@@ -89,56 +114,7 @@ function InfoDropdown() {
       </Trigger>
 
       <List isOpen={isOpen} {...alignOptions}>
-        <ListItem>
-          <ListItemLink href="" target="_blank">
-            what's new?
-          </ListItemLink>
-        </ListItem>
-
-        <ListItem>
-          <ListItemLink href="" target="_blank">
-            help
-          </ListItemLink>
-        </ListItem>
-
-        <ListItem>
-          <ListItemLink href="" target="_blank">
-            terms & privacy
-          </ListItemLink>
-        </ListItem>
-
-        <Divider />
-
-        <ListItem>
-          <ListItemLink
-            href="mailto:hi@upstand.fm?subject=Hi there!"
-            target="_blank"
-          >
-            say hi!
-          </ListItemLink>
-        </ListItem>
-
-        <ListItem>
-          <ListItemLink href="https://danillouz.dev" target="_blank">
-            about
-          </ListItemLink>
-        </ListItem>
-
-        <Divider />
-
-        <ListItem>
-          <ListItemLink href="https://blog.danillouz.dev" target="_blank">
-            blog
-          </ListItemLink>
-        </ListItem>
-
-        <ListItem>
-          <ListItemLink href="https://github.com/upstandfm" target="_blank">
-            GitHub
-          </ListItemLink>
-        </ListItem>
-
-        <Divider />
+        {renderLinks()}
 
         <ListItem viewOnly>
           <ListItemText>

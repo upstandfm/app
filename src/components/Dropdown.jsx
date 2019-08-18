@@ -74,6 +74,7 @@ const _getListItemBackgroundColor = props => {
 export const ListItem = styled.li`
   position: relative;
   padding: 0.5em 1em;
+  font-family: 'Nunito', sans-serif;
   font-weight: ${props => (props.viewOnly ? 'inherit' : 600)};
 
   :hover {
@@ -85,6 +86,7 @@ export const ListItem = styled.li`
 export const ListItemText = styled.span`
   display: block;
   padding: 0.25em;
+  font-family: 'Open Sans', sans-serif;
 `;
 
 export const ListItemLink = styled.a`
