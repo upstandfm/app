@@ -2,11 +2,10 @@ import React from 'react';
 
 import { useAuth0, useUser } from '../auth0';
 
-import Logo from '../components/Logo';
 import Button from '../components/Button';
 import AvatarDropdown from '../components/AvatarDropdown';
 
-import { Container, MenuBar, Brand, Actions, Profile, Main } from './Layout';
+import { Container, MenuBar, Profile, Menu, Footer, Main } from './Layout';
 
 function AuthenticatedApp() {
   const { logout } = useAuth0();
@@ -15,14 +14,6 @@ function AuthenticatedApp() {
   return (
     <Container>
       <MenuBar>
-        <Brand>
-          <Logo />
-        </Brand>
-
-        <Actions>
-          <Button invertTextColor>new update</Button>
-        </Actions>
-
         <Profile>
           <AvatarDropdown
             logout={logout}
@@ -31,6 +22,12 @@ function AuthenticatedApp() {
             email={email}
           />
         </Profile>
+
+        <Menu>
+          <Button invertTextColor>new update</Button>
+        </Menu>
+
+        <Footer></Footer>
       </MenuBar>
 
       <Main></Main>

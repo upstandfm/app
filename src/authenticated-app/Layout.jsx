@@ -33,45 +33,46 @@ export const MenuBar = styled.div`
   grid-area: menubar;
   display: grid;
   grid-template-areas:
-    'brand'
-    'actions'
-    'profile';
+    'profile'
+    'menu'
+    'footer';
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-  grid-gap: 1em;
+  grid-gap: 1.5em;
   align-items: center;
   margin: 0;
-  padding: 2em 0;
+  padding: 1em 0;
   background-color: ${props => props.theme.primaryBackgroundColor};
 
   @media (max-width: 1000px) {
-    grid-template-areas: 'brand actions profile';
+    grid-template-areas: 'profile menu footer';
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
-    padding: 1em 0;
   }
 
   @media (max-width: 550px) {
     grid-template-areas:
-      'brand   profile'
-      'actions actions';
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr 1fr;
+      'profile'
+      'menu'
+      'footer';
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
-`;
-
-export const Brand = styled.section`
-  grid-area: brand;
-  padding: 0 1em;
-`;
-
-export const Actions = styled.section`
-  grid-area: actions;
-  margin: 0 auto;
 `;
 
 export const Profile = styled.section`
   grid-area: profile;
+  padding: 0 1em;
+`;
+
+export const Menu = styled.section`
+  grid-area: menu;
+  margin: 0 auto;
+  padding: 0 1em;
+`;
+
+export const Footer = styled.section`
+  grid-area: footer;
   padding: 0 1em;
 `;
 
