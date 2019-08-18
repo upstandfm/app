@@ -1,11 +1,9 @@
 // The color variables are defined in "/src/global.css"
 const theme = {
-  primaryColor: 'var(--color-purple)',
-  secondaryColor: 'var(--color-yellow)',
-  successColor: 'var(--color-lime)',
+  primaryBackgroundColor: 'var(--color-dirty-white)',
+  primaryColor: 'var(--color-violet)',
   dangerColor: 'var(--color-red)',
   accentColor: 'var(--color-light-grey)',
-  brandColor: 'var(--color-white)',
   textColor: 'var(--color-black)',
   invertedTextColor: 'var(--color-white)'
 };

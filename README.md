@@ -139,19 +139,11 @@ Since my design skills are terrible, drawing a basic SVG circle is the best I ca
 
 #### Color scheme
 
-The colors are inspired by the [Rainbow Doughnuts](https://www.canva.com/colors/color-palettes/rainbow-doughnuts/) color palette:
-
-- Purple: `#6c0afe`
-- Yellow: `ffc52d`
-- Coral: `#ff6c0a`
-- Lime: `#0afe6c`
-- Red: `#f53a00`
-
-The "color composition" is inspired by the [play.date](https://play.date/) website.
+The colors are taken from [this](https://colorhunt.co/palette/136290) color palette.
 
 #### Fonts
 
-- Headings: [Nunito Extra-Bold](https://fonts.google.com/specimen/Nunito)
+- Headings: [Nunito Bold](https://fonts.google.com/specimen/Nunito)
 - Text: [Open Sans Regular](https://fonts.google.com/specimen/Open+Sans)
 
 #### Layout
