@@ -25,7 +25,7 @@ export const Main = styled.main``;
 
 export const Section = styled.section`
   display: grid;
-  height: 75vh;
+  min-height: 72vh;
   margin: 0;
   padding: 1em;
   background-color: ${props =>
@@ -33,6 +33,12 @@ export const Section = styled.section`
 `;
 
 export const Content = styled.div`
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
+`;
+
+export const ContentHeader = styled.h2``;
+
+export const ContentSubHeader = styled.h3`
+  margin: 3em 0 1em 0;
 `;
