@@ -139,7 +139,9 @@ Since my design skills are terrible, drawing a basic SVG circle is the best I ca
 
 #### Color scheme
 
-The colors are taken from [this](https://colorhunt.co/palette/136290) color palette.
+The primary color is "electric purple": `#7907fc` 💜.
+
+Which is inspired by the [play.date](https://play.date/) website (I think looks awesome!).
 
 #### Fonts
 

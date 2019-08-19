@@ -13,7 +13,6 @@ const Splash = styled.div`
 
 const Text = styled.h1`
   text-transform: capitalize;
-  color: ${props => props.theme.primaryColor};
 `;
 
 function SplashScreen() {

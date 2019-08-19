@@ -18,8 +18,8 @@ export const FOOTER_LINKS_BY_COLUMN = [
 
 export const Footer = styled.footer`
   padding: 4em 0;
-  background-color: ${props => props.theme.primaryColor};
   font-family: 'Nunino', sans-serif;
+  background-color: ${props => props.theme.primaryColor};
 `;
 
 export const FooterWrapper = styled.div`
@@ -37,7 +37,7 @@ export const FooterWrapper = styled.div`
 
 export const FooterBrand = styled.div`
   text-align: center;
-  color: var(--color-white);
+  color: rgba(255, 255, 255, 0.6);
 `;
 
 export const FooterColumns = styled.div`

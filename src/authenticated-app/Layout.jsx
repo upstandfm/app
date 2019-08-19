@@ -48,11 +48,14 @@ export const MenuBar = styled.div`
   margin: 0;
   padding: 1em 0;
   background-color: ${props => props.theme.primaryBackgroundColor};
+  border-right: 1px solid ${props => props.theme.accentColor};
 
   @media (max-width: 1000px) {
     grid-template-areas: 'profile menu misc';
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
+    border-right: none;
+    border-bottom: 1px solid ${props => props.theme.accentColor};
   }
 
   @media (max-width: 550px) {
