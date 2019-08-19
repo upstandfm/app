@@ -19,7 +19,7 @@ export const FOOTER_LINKS_BY_COLUMN = [
 export const Footer = styled.footer`
   padding: 6em 0;
   font-family: 'Nunino', sans-serif;
-  font-size: 0.8em;
+  font-size: 0.9em;
   background-color: ${props => props.theme.primaryColor};
 `;
 

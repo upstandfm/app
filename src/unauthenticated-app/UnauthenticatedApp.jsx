@@ -108,7 +108,11 @@ function UnauthenticatedApp() {
             <p>
               I also plan to build the whole thing in the open, all code can be
               found on{' '}
-              <a href="https://github.com/upstandfm" target="_blank">
+              <a
+                href="https://github.com/upstandfm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
               .
@@ -237,12 +241,17 @@ function UnauthenticatedApp() {
             </FooterBrand>
 
             <FooterColumns>
-              {FOOTER_LINKS_BY_COLUMN.map(links => {
+              {FOOTER_LINKS_BY_COLUMN.map((links, i) => {
                 return (
-                  <FooterColumn>
+                  <FooterColumn key={`footer-column-${i}`}>
                     {links.map(link => {
                       return (
-                        <FooterLink href={link.href} target="_blank">
+                        <FooterLink
+                          key={`footer-column-link-${link.name}`}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {link.name}
                         </FooterLink>
                       );

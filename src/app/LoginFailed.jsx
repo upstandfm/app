@@ -21,7 +21,7 @@ import Copyright from '../components/Copyright';
 const Container = styled.div`
   height: 100vh;
   font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
+  font-size: 24px;
 
   a {
     color: ${props => props.theme.primaryColor};
@@ -33,8 +33,11 @@ const Container = styled.div`
   }
 
   p {
-    font-size: 20px;
     line-height: 1.6;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 20px;
   }
 `;
 
@@ -55,11 +58,11 @@ const ErrMessage = styled.pre`
 `;
 
 const Actions = styled.div`
-  width: 40%;
+  width: 200px;
   margin: 1.5em auto;
 
   @media (max-width: 550px) {
-    width: 100%;
+    width: 70%;
   }
 `;
 
@@ -113,12 +116,17 @@ function LoginFailed({ errMessage, handleRetry }) {
           </FooterBrand>
 
           <FooterColumns>
-            {FOOTER_LINKS_BY_COLUMN.map(links => {
+            {FOOTER_LINKS_BY_COLUMN.map((links, i) => {
               return (
-                <FooterColumn>
+                <FooterColumn key={`footer-column-${i}`}>
                   {links.map(link => {
                     return (
-                      <FooterLink href={link.href} target="_blank">
+                      <FooterLink
+                        key={`footer-column-link-${link.name}`}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {link.name}
                       </FooterLink>
                     );

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Dropdown = styled.div`
   position: relative;
+  font-size: 0.8em;
 `;
 
 export const Trigger = styled.button`

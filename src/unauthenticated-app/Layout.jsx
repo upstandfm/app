@@ -19,6 +19,10 @@ export const Container = styled.div`
   p {
     line-height: 1.6;
   }
+
+  @media (max-width: 550px) {
+    font-size: 20px;
+  }
 `;
 
 export const Main = styled.main``;

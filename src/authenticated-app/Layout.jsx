@@ -32,6 +32,10 @@ export const Container = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
   }
+
+  @media (max-width: 550px) {
+    font-size: 20px;
+  }
 `;
 
 export const MenuBar = styled.div`

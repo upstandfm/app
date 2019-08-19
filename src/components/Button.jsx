@@ -44,7 +44,7 @@ const _getColor = props => {
 const Button = styled.button`
   width: 100%;
   margin: 0;
-  padding: 12px 14px;
+  padding: 16px;
   border: ${_getBorder};
   border-radius: 50px;
   outline: none;

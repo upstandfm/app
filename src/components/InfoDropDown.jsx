@@ -92,15 +92,19 @@ function InfoDropdown() {
       for (let j = 0; j < maxLinks; j++) {
         const link = FOOTER_LINKS_BY_COLUMN[i][j];
         items.push(
-          <ListItem>
-            <ListItemLink href={link.href} target="_blank">
+          <ListItem key={`footer-column-link-${link.name}`}>
+            <ListItemLink
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {link.name}
             </ListItemLink>
           </ListItem>
         );
       }
 
-      items.push(<Divider />);
+      items.push(<Divider key={`footer-column-${i}`} />);
     }
 
     return items;
