@@ -92,6 +92,15 @@ export const ListItemText = styled.span`
 export const ListItemLink = styled.a`
   display: block;
   text-transform: capitalize;
+
+  && {
+    color: inherit;
+    text-decoration: none;
+
+    :visited {
+      color: inherit;
+    }
+  }
 `;
 
 export const Divider = styled.div`

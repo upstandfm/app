@@ -62,7 +62,6 @@ const Info = styled.div`
   border: 1px solid ${props => props.theme.accentColor};
   border-radius: 50%;
   background-color: var(--color-white);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Nunito', sans-serif;
   font-size: 20px;
 `;
