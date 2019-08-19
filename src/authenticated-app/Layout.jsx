@@ -9,6 +9,7 @@ export const Container = styled.div`
   grid-template-columns: 220px 1fr;
   grid-template-rows: 1fr;
   font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
   color: ${props => props.theme.textColor};
 
   a {
@@ -21,7 +22,6 @@ export const Container = styled.div`
   }
 
   p {
-    font-size: 20px;
     line-height: 1.6;
   }
 
