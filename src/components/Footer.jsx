@@ -12,7 +12,8 @@ export const FOOTER_LINKS_BY_COLUMN = [
   ],
   [
     { name: 'blog', href: 'https://blog.danillouz.dev' },
-    { name: 'GitHub', href: 'https://github.com/upstandfm' }
+    { name: 'GitHub', href: 'https://github.com/upstandfm' },
+    { name: 'twitter', href: 'https://twitter.com/danillouz' }
   ]
 ];
 
