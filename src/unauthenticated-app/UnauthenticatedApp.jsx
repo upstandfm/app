@@ -24,7 +24,8 @@ const MassiveButton = styled(Button)`
   margin: 1em 0 0 0;
   padding: 1em;
   font-size: 1.2em;
-  background-color: var(--color-green);
+  background-color: var(--color-yellow);
+  border-radius: 10px;
 `;
 
 const Intro = styled.div`
