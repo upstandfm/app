@@ -218,7 +218,7 @@ function UnauthenticatedApp() {
       <Footer>
         <FooterWrapper>
           <FooterBrand>
-            <Logo width="64px" />
+            <Logo width="40px" />
             <Copyright />
           </FooterBrand>
 
