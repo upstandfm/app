@@ -76,6 +76,7 @@ export const ListItem = styled.li`
   position: relative;
   padding: 0.5em 1em;
   font-weight: ${props => (props.viewOnly ? 'inherit' : 'bold')};
+  line-height: 1;
 
   :hover {
     cursor: ${props => (props.viewOnly ? 'inherit' : 'pointer')};
