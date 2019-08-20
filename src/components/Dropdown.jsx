@@ -15,11 +15,9 @@ export const Trigger = styled.button`
   color: inherit;
   font-size: 1em;
   line-height: 1;
-  transition: all 0.2s ease;
 
   :hover {
     cursor: pointer;
-    transform: scale(1.06);
   }
 `;
 
