@@ -36,8 +36,12 @@ export const FooterWrapper = styled.div`
 `;
 
 export const FooterBrand = styled.div`
-  text-align: center;
-  color: var(--color-violet);
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 0.5em;
+  margin: auto;
+  align-items: center;
+  color: var(--color-white);
 `;
 
 export const FooterColumns = styled.div`
@@ -61,14 +65,14 @@ export const FooterLink = styled.a`
   && {
     font-weight: bold;
     text-decoration: none;
-    color: var(--color-white);
+    color: var(--color-green);
 
     :hover {
       text-decoration: underline;
     }
 
     :visited {
-      color: var(--color-white);
+      color: var(--color-green);
     }
   }
 `;

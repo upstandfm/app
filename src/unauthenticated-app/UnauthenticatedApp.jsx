@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { useAuth0 } from '../auth0';
 
-import { LogoWithName } from '../components/Logo';
+import { LogoWithName, Logo } from '../components/Logo';
 import Button from '../components/Button';
 import Copyright from '../components/Copyright';
 
@@ -39,7 +39,7 @@ const MassiveButton = styled(Button)`
   margin: 0;
   padding: 1em;
   font-size: 1.2em;
-  background-color: var(--color-yellow);
+  background-color: var(--color-green);
   border-radius: 10px;
 `;
 
@@ -218,6 +218,7 @@ function UnauthenticatedApp() {
       <Footer>
         <FooterWrapper>
           <FooterBrand>
+            <Logo width="64px" />
             <Copyright />
           </FooterBrand>
 
