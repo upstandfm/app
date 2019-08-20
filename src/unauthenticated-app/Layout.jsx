@@ -8,13 +8,23 @@ export const Container = styled.div`
 
 export const Main = styled.main``;
 
+export const Header = styled.header`
+  padding: 2em;
+  background-color: ${props => props.theme.primaryColor};
+`;
+
 export const Section = styled.section`
   display: grid;
-  min-height: 75vh;
+  min-height: 60vh;
   margin: 0;
   padding: 1em;
   background-color: ${props =>
     props.secondary ? props.primaryBackgroundColor : props.theme.primaryColor};
+`;
+
+export const Center = styled.div`
+  margin: auto;
+  text-align: center;
 `;
 
 export const Content = styled.div`

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { useAuth0 } from '../auth0';
 
+import { LogoWithName } from '../components/Logo';
 import Button from '../components/Button';
 import Copyright from '../components/Copyright';
 
@@ -16,12 +17,26 @@ import {
   FooterLink
 } from '../components/Footer';
 
-import { Container, Main, Section, Content, ContentHeader } from './Layout';
+import {
+  Container,
+  Header,
+  Main,
+  Section,
+  Center,
+  Content,
+  ContentHeader
+} from './Layout';
 
-import { BrandWrapper, Logo, BrandName, BrandDescription } from './Brand';
+const Tagline = styled.h1`
+  margin: 1em 0;
+  padding: 0;
+  font-size: 2.2em;
+  font-weight: normal;
+  color: var(--color-white);
+`;
 
 const MassiveButton = styled(Button)`
-  margin: 1em 0 0 0;
+  margin: 0;
   padding: 1em;
   font-size: 1.2em;
   background-color: var(--color-yellow);
@@ -32,6 +47,7 @@ const Intro = styled.div`
   margin: 2em 0;
   padding: 0 0 0 1em;
   font-size: 1.2em;
+  font-weight: bold;
   color: var(--color-purple);
   border-left: 8px solid var(--color-purple);
 
@@ -45,19 +61,17 @@ function UnauthenticatedApp() {
 
   return (
     <Container>
+      <Header>
+        <LogoWithName />
+      </Header>
+
       <Main>
         <Section>
-          <BrandWrapper>
-            <Logo />
-
-            <BrandName>Upstand FM</BrandName>
-
-            <BrandDescription>
-              Asynchronous standups for remote teams.
-            </BrandDescription>
+          <Center>
+            <Tagline>Async standups for remote teams.</Tagline>
 
             <MassiveButton onClick={login}>get started</MassiveButton>
-          </BrandWrapper>
+          </Center>
         </Section>
 
         <Section secondary>
@@ -88,7 +102,12 @@ function UnauthenticatedApp() {
               .
             </p>
 
-            <ContentHeader>What does "asynchronous" mean?</ContentHeader>
+            <ContentHeader>What does "async" mean?</ContentHeader>
+
+            <p>
+              Async is short for asynchronous. And in this context it refers to
+              "how" we communicate within the team.
+            </p>
 
             <p>
               In contrast, synchronous communication usually refers to a
@@ -194,36 +213,36 @@ function UnauthenticatedApp() {
             </p>
           </Content>
         </Section>
-
-        <Footer>
-          <FooterWrapper>
-            <FooterBrand>
-              <Copyright />
-            </FooterBrand>
-
-            <FooterColumns>
-              {FOOTER_LINKS_BY_COLUMN.map((links, i) => {
-                return (
-                  <FooterColumn key={`footer-column-${i}`}>
-                    {links.map(link => {
-                      return (
-                        <FooterLink
-                          key={`footer-column-link-${link.name}`}
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {link.name}
-                        </FooterLink>
-                      );
-                    })}
-                  </FooterColumn>
-                );
-              })}
-            </FooterColumns>
-          </FooterWrapper>
-        </Footer>
       </Main>
+
+      <Footer>
+        <FooterWrapper>
+          <FooterBrand>
+            <Copyright />
+          </FooterBrand>
+
+          <FooterColumns>
+            {FOOTER_LINKS_BY_COLUMN.map((links, i) => {
+              return (
+                <FooterColumn key={`footer-column-${i}`}>
+                  {links.map(link => {
+                    return (
+                      <FooterLink
+                        key={`footer-column-link-${link.name}`}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.name}
+                      </FooterLink>
+                    );
+                  })}
+                </FooterColumn>
+              );
+            })}
+          </FooterColumns>
+        </FooterWrapper>
+      </Footer>
     </Container>
   );
 }
