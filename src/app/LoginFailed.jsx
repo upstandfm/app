@@ -63,8 +63,12 @@ function LoginFailed({ errMessage, handleRetry }) {
             <p>I have been notified, but please try again:</p>
 
             <Actions>
-              <Button invertTextColor onClick={handleRetry}>
-                login
+              <Button
+                invertTextColor
+                onClick={handleRetry}
+                aria-label="login again"
+              >
+                login again
               </Button>
             </Actions>
 

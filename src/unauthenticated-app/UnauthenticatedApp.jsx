@@ -68,7 +68,11 @@ function UnauthenticatedApp() {
           <Center>
             <Tagline>Async standups for remote teams.</Tagline>
 
-            <MassiveButton invertTextColor onClick={login}>
+            <MassiveButton
+              invertTextColor
+              onClick={login}
+              aria-label="get started"
+            >
               get started
             </MassiveButton>
           </Center>

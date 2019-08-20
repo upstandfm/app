@@ -71,7 +71,7 @@ function AvatarDropdown({ logout, avatarUrl, fullName, email }) {
   return (
     <Dropdown ref={dropdownEl}>
       <Trigger onClick={handleClick}>
-        <Avatar src={avatarUrl} />
+        <Avatar src={avatarUrl} alt="user avatar" />
       </Trigger>
 
       <List isOpen={isOpen} {...alignOptions}>
