@@ -5,6 +5,7 @@ const Container = styled.div`
   display: grid;
   height: 100vh;
   background-color: ${props => props.theme.primaryBackgroundColor};
+  color: ${props => props.theme.primaryForegroundColor};
 `;
 
 const Splash = styled.div`

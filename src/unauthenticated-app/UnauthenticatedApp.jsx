@@ -32,14 +32,13 @@ const Tagline = styled.h1`
   padding: 0;
   font-size: 2.2em;
   font-weight: normal;
-  color: var(--color-white);
 `;
 
 const MassiveButton = styled(Button)`
   margin: 0;
   padding: 1em;
   font-size: 1.2em;
-  background-color: var(--color-green);
+  background-color: ${props => props.theme.primaryColor};
   border-radius: 10px;
 `;
 
@@ -48,7 +47,6 @@ const Intro = styled.div`
   padding: 0 0 0 1em;
   font-size: 1.2em;
   font-weight: bold;
-  color: var(--color-purple);
   border-left: 8px solid var(--color-purple);
 
   @media (max-width: 550px) {
@@ -70,7 +68,9 @@ function UnauthenticatedApp() {
           <Center>
             <Tagline>Async standups for remote teams.</Tagline>
 
-            <MassiveButton onClick={login}>get started</MassiveButton>
+            <MassiveButton invertTextColor onClick={login}>
+              get started
+            </MassiveButton>
           </Center>
         </Section>
 

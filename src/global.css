@@ -2,10 +2,10 @@
   --color-black: #000000;
   --color-light-grey: #eaeaea;
   --color-white: #ffffff;
-  --color-dirty-white: #f3f1f6;
+  --color-dirty-white: #f8f5fd;
   --color-purple: #341952;
   --color-coral: #e96d77;
-  --color-green: #77e96c;
+  --color-green: #5dd571;
   --color-red: #f53a00;
 }
 
@@ -26,7 +26,8 @@ body {
 
 a,
 a:visited {
-  color: var(--color-purple);
+  color: var(--color-green);
+  font-weight: bold;
 }
 
 p {

@@ -19,7 +19,8 @@ export const FOOTER_LINKS_BY_COLUMN = [
 
 export const Footer = styled.footer`
   padding: 6em 0;
-  background-color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.primaryBackgroundColor};
+  color: ${props => props.theme.primaryForegroundColor};
 `;
 
 export const FooterWrapper = styled.div`
@@ -41,7 +42,6 @@ export const FooterBrand = styled.div`
   grid-gap: 0.5em;
   margin: auto;
   align-items: center;
-  color: var(--color-white);
 `;
 
 export const FooterColumns = styled.div`
@@ -65,14 +65,14 @@ export const FooterLink = styled.a`
   && {
     font-weight: bold;
     text-decoration: none;
-    color: var(--color-green);
+    color: ${props => props.theme.primaryForegroundColor};
 
     :hover {
       text-decoration: underline;
     }
 
     :visited {
-      color: var(--color-green);
+      color: ${props => props.theme.primaryForegroundColor};
     }
   }
 `;

@@ -8,7 +8,6 @@ export const Container = styled.div`
     'menubar main';
   grid-template-columns: 220px 1fr;
   grid-template-rows: 1fr;
-  color: ${props => props.theme.textColor};
 
   @media (max-width: 1000px) {
     grid-template-areas:

@@ -20,5 +20,6 @@ export const PageSection = styled.section`
   padding: 1.5em;
   border-radius: 26px;
   background-color: var(--color-white);
+  color: ${props => props.theme.textColor};
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 `;

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
   margin: 0;
   padding: 0;
-  color: ${props => props.theme.textColor};
 `;
 
 export const Main = styled.main``;
 
 export const Header = styled.header`
   padding: 2em;
-  background-color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.primaryBackgroundColor};
+  color: ${props => props.theme.primaryForegroundColor};
 `;
 
 export const Section = styled.section`
@@ -19,7 +19,13 @@ export const Section = styled.section`
   margin: 0;
   padding: 1em;
   background-color: ${props =>
-    props.secondary ? props.primaryBackgroundColor : props.theme.primaryColor};
+    props.secondary
+      ? props.theme.secondaryBackgroundColor
+      : props.theme.primaryBackgroundColor};
+  color: ${props =>
+    props.secondary
+      ? props.theme.secondaryForegroundColor
+      : props.theme.primaryForegroundColor};
 `;
 
 export const Center = styled.div`

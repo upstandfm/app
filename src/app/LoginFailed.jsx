@@ -24,7 +24,8 @@ const Container = styled.div`
 
 const Main = styled.main`
   min-height: 100vh;
-  background-color: ${props => props.theme.primaryBackgroundColor};
+  background-color: ${props => props.theme.secondaryBackgroundColor};
+  color: ${props => props.theme.secondaryForegroundColor};
   margin: 0 auto;
   padding: 1em;
 `;

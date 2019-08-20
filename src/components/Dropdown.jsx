@@ -52,7 +52,7 @@ export const List = styled.ul`
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid ${props => props.theme.accentColor};
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   opacity: ${props => (props.isOpen ? 1 : 0)};
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
 `;
