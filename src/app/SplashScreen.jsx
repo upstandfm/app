@@ -11,8 +11,9 @@ const Splash = styled.div`
   margin: auto;
 `;
 
-const Text = styled.h1`
+const Text = styled.h2`
   text-transform: capitalize;
+  font-weight: normal;
 `;
 
 function SplashScreen() {

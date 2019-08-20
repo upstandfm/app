@@ -16,6 +16,8 @@ const Img = styled.img`
   vertical-align: middle;
   width: 64px;
   height: 64px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
 
   @media (max-width: 550px) {
     width: 40px;
@@ -33,23 +35,22 @@ export const BrandName = styled.h1`
   padding: 0 0.2em;
   line-height: 1;
   vertical-align: middle;
-  font-family: 'Nunito', sans-serif;
-  font-size: 64px;
+  font-size: 2.8em;
   color: var(--color-white);
 
   @media (max-width: 550px) {
-    font-size: 40px;
+    font-size: 2em;
   }
 `;
 
 export const BrandDescription = styled.h2`
   margin: 1em 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 32px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.8em;
+  font-weight: normal;
+  color: var(--color-violet);
 
   @media (max-width: 550px) {
-    font-size: 24px;
+    font-size: 1.4em;
   }
 `;

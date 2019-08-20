@@ -20,25 +20,6 @@ import Copyright from '../components/Copyright';
 
 const Container = styled.div`
   height: 100vh;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 24px;
-
-  a {
-    color: ${props => props.theme.primaryColor};
-    font-weight: bold;
-
-    :visited {
-      color: ${props => props.theme.primaryColor};
-    }
-  }
-
-  p {
-    line-height: 1.6;
-  }
-
-  @media (max-width: 550px) {
-    font-size: 20px;
-  }
 `;
 
 const Main = styled.main`
@@ -58,12 +39,8 @@ const ErrMessage = styled.pre`
 `;
 
 const Actions = styled.div`
-  width: 200px;
-  margin: 1.5em auto;
-
-  @media (max-width: 550px) {
-    width: 70%;
-  }
+  margin: 2em 0;
+  text-align: center;
 `;
 
 function LoginFailed({ errMessage, handleRetry }) {
@@ -74,7 +51,7 @@ function LoginFailed({ errMessage, handleRetry }) {
           <PageTitle>Login failed</PageTitle>
 
           <PageSubTitle>
-            Oops! Something went wrong on my end, when trying to log you in..
+            Something went wrong on my end, when trying to log you in.
           </PageSubTitle>
 
           <PageSection>
@@ -86,7 +63,7 @@ function LoginFailed({ errMessage, handleRetry }) {
 
             <Actions>
               <Button invertTextColor onClick={handleRetry}>
-                login again
+                login
               </Button>
             </Actions>
 

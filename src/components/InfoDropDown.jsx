@@ -62,8 +62,8 @@ const Info = styled.div`
   border: 1px solid ${props => props.theme.accentColor};
   border-radius: 50%;
   background-color: var(--color-white);
-  font-family: 'Nunito', sans-serif;
-  font-size: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
 `;
 
 function InfoDropdown() {

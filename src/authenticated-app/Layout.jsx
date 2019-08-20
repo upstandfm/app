@@ -8,22 +8,7 @@ export const Container = styled.div`
     'menubar main';
   grid-template-columns: 220px 1fr;
   grid-template-rows: 1fr;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 24px;
   color: ${props => props.theme.textColor};
-
-  a {
-    font-weight: bold;
-    color: ${props => props.theme.primaryColor};
-
-    :visited {
-      color: ${props => props.theme.primaryColor};
-    }
-  }
-
-  p {
-    line-height: 1.6;
-  }
 
   @media (max-width: 1000px) {
     grid-template-areas:
@@ -31,10 +16,6 @@ export const Container = styled.div`
       'main    main';
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
-  }
-
-  @media (max-width: 550px) {
-    font-size: 20px;
   }
 `;
 

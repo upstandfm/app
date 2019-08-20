@@ -19,8 +19,6 @@ export const FOOTER_LINKS_BY_COLUMN = [
 
 export const Footer = styled.footer`
   padding: 6em 0;
-  font-family: 'Nunino', sans-serif;
-  font-size: 0.9em;
   background-color: ${props => props.theme.primaryColor};
 `;
 
@@ -39,7 +37,7 @@ export const FooterWrapper = styled.div`
 
 export const FooterBrand = styled.div`
   text-align: center;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-violet);
 `;
 
 export const FooterColumns = styled.div`
@@ -61,7 +59,13 @@ export const FooterLink = styled.a`
   text-transform: capitalize;
 
   && {
+    font-weight: bold;
+    text-decoration: none;
     color: var(--color-white);
+
+    :hover {
+      text-decoration: underline;
+    }
 
     :visited {
       color: var(--color-white);

@@ -16,34 +16,27 @@ import {
   FooterLink
 } from '../components/Footer';
 
-import {
-  Container,
-  Main,
-  Section,
-  Content,
-  ContentHeader,
-  ContentSubHeader
-} from './Layout';
+import { Container, Main, Section, Content, ContentHeader } from './Layout';
 
 import { BrandWrapper, Logo, BrandName, BrandDescription } from './Brand';
 
 const MassiveButton = styled(Button)`
-  width: 300px;
-  margin: 3em 0 0 0;
-  padding: 26px;
-  font-size: 24px;
+  margin: 1em 0 0 0;
+  padding: 1em;
+  font-size: 1.2em;
   background-color: var(--color-green);
-
-  @media (max-width: 550px) {
-    width: 70%;
-    padding: 24px;
-    font-size: 22px;
-  }
 `;
 
-const Intro = styled.p`
-  font-size: 26px;
-  font-weight: bold;
+const Intro = styled.div`
+  margin: 2em 0;
+  padding: 0 0 0 1em;
+  font-size: 1.2em;
+  color: var(--color-purple);
+  border-left: 8px solid var(--color-purple);
+
+  @media (max-width: 550px) {
+    font-size: 1.1em;
+  }
 `;
 
 function UnauthenticatedApp() {
@@ -68,19 +61,19 @@ function UnauthenticatedApp() {
 
         <Section secondary>
           <Content>
-            <ContentHeader>
-              Hi there!{' '}
-              <span role="img" aria-label="waving hand">
-                👋
-              </span>
-            </ContentHeader>
-
             <Intro>
-              I&apos;m building this because I want to explore if there&apos;s a{' '}
-              <b>better way to do standups, when working remotely</b>.
+              <p>
+                Hi there!{' '}
+                <span role="img" aria-label="waving hand">
+                  👋
+                </span>
+                <br />
+                I&apos;m building this because I want to explore if there&apos;s
+                a better way to do standups when working remotely.
+              </p>
             </Intro>
 
-            <ContentSubHeader>Can I already use this?</ContentSubHeader>
+            <ContentHeader>Can I already use this?</ContentHeader>
 
             <p>
               Not yet, but soon, I&apos;d like to get feedback as soon as
@@ -118,7 +111,7 @@ function UnauthenticatedApp() {
               .
             </p>
 
-            <ContentSubHeader>What does asynchronous mean?</ContentSubHeader>
+            <ContentHeader>What does asynchronous mean?</ContentHeader>
 
             <p>
               Synchronous communication usually refers to a "face-to-face"
@@ -139,7 +132,7 @@ function UnauthenticatedApp() {
               to!) be immediate.
             </p>
 
-            <ContentSubHeader>What&apos;s a standup?</ContentSubHeader>
+            <ContentHeader>What&apos;s a standup?</ContentHeader>
 
             <p>
               It&apos;s a common ritual among agile/scrum teams. Usually every
@@ -165,7 +158,7 @@ function UnauthenticatedApp() {
               ).
             </p>
 
-            <ContentSubHeader>Why are standups useful?</ContentSubHeader>
+            <ContentHeader>Why are standups useful?</ContentHeader>
 
             <p>
               When executed correctly, standups make the team aware of what
@@ -184,7 +177,7 @@ function UnauthenticatedApp() {
               Effectively, they contribute to a stimulating work environment.
             </p>
 
-            <ContentSubHeader>What&apos;s the problem then?</ContentSubHeader>
+            <ContentHeader>What&apos;s the problem then?</ContentHeader>
 
             <p>
               Well, a fixed time must be picked for the entire team to be
@@ -228,7 +221,7 @@ function UnauthenticatedApp() {
               updates, whenever they want?
             </p>
 
-            <ContentSubHeader>How?</ContentSubHeader>
+            <ContentHeader>How?</ContentHeader>
 
             <p>Stay tuned for updates!</p>
           </Content>
