@@ -36,10 +36,10 @@ const Tagline = styled.h1`
 
 const MassiveButton = styled(Button)`
   margin: 0;
-  padding: 1em;
+  padding: 1em 1.5em;
   font-size: 1.2em;
-  background-color: ${props => props.theme.primaryColor};
-  border-radius: 10px;
+  background-color: ${props => props.theme.specialColor};
+  border-radius: 12px;
 `;
 
 const Intro = styled.div`
@@ -71,9 +71,9 @@ function UnauthenticatedApp() {
             <MassiveButton
               invertTextColor
               onClick={login}
-              aria-label="get started"
+              aria-label="get started!"
             >
-              get started
+              get started!
             </MassiveButton>
           </Center>
         </Section>

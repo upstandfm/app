@@ -9,6 +9,10 @@ const _getBorder = props => {
 };
 
 const _getBackgroundColor = props => {
+  if (props.special) {
+    return props.theme.specialColor;
+  }
+
   if (props.secondary) {
     return 'var(--color-white)';
   }
@@ -32,6 +36,9 @@ const _getColor = props => {
  * Primary button:
  *  <Button>create</Button>
  *
+ * Special button:
+ *  <Button special>go do it!</Button>
+ *
  * Secondary button:
  *  <Button secondary>create</Button>
  *
@@ -51,7 +58,7 @@ const Button = styled.button`
   box-sizing: border-box;
   font-size: 1em;
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: capitalize;
   background-color: ${_getBackgroundColor};
   color: ${_getColor};
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
