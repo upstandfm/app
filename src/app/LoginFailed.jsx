@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Button from '../components/Button';
-
 import { Page, PageTitle, PageSubTitle, PageSection } from '../components/Page';
+import { Logo } from '../components/Logo';
 
 import {
   FOOTER_LINKS_BY_COLUMN,
@@ -94,6 +94,7 @@ function LoginFailed({ errMessage, handleRetry }) {
       <Footer>
         <FooterWrapper>
           <FooterBrand>
+            <Logo width="40px" />
             <Copyright />
           </FooterBrand>
 

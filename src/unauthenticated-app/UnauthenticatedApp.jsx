@@ -47,7 +47,7 @@ const Intro = styled.div`
   padding: 0 0 0 1em;
   font-size: 1.2em;
   font-weight: bold;
-  border-left: 8px solid var(--color-purple);
+  border-left: 8px solid ${props => props.theme.specialColor};
 
   @media (max-width: 550px) {
     font-size: 1.1em;

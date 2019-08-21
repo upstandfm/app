@@ -42,6 +42,8 @@ export const FooterBrand = styled.div`
   grid-gap: 0.5em;
   margin: auto;
   align-items: center;
+  font-size: 0.8em;
+  color: ${props => props.theme.specialColor};
 `;
 
 export const FooterColumns = styled.div`
