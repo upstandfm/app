@@ -135,7 +135,7 @@ workflows:
   release_master:
     jobs:
       - audit:
-          <<: *all_branches_except_master
+          <<: *only_master
       - deps:
           <<: *only_master
           requires:
