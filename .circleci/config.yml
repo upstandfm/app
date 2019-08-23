@@ -42,6 +42,14 @@ only_master: &only_master
 
 version: 2
 jobs:
+  audit:
+    <<: *docker_image
+    steps:
+      - checkout
+      - run:
+          name: Audit dependencies
+          command: npm audit
+
   deps:
     <<: *docker_image
     steps:
@@ -106,34 +114,47 @@ workflows:
 
   test_build_branch:
     jobs:
+      - audit:
+          <<: *all_branches_except_master
       - deps:
           <<: *all_branches_except_master
+          requires:
+            - audit
       - test:
           <<: *all_branches_except_master
           requires:
+            - audit
             - deps
       - build:
           <<: *all_branches_except_master
           requires:
+            - audit
             - deps
             - test
 
   release_master:
     jobs:
+      - audit:
+          <<: *all_branches_except_master
       - deps:
           <<: *only_master
+          requires:
+            - audit
       - test:
           <<: *only_master
           requires:
+            - audit
             - deps
       - build:
           <<: *only_master
           requires:
+            - audit
             - deps
             - test
       - release:
           <<: *only_master
           requires:
+            - audit
             - deps
             - test
             - build
