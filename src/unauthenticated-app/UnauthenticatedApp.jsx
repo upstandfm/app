@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useAuth0 } from '../auth0';
 
 import { LogoWithName, Logo } from '../components/Logo';
+import Glitch from '../components/Glitch';
 import Button from '../components/Button';
 import Copyright from '../components/Copyright';
 
@@ -30,8 +31,11 @@ import {
 const Tagline = styled.h1`
   margin: 1em 0;
   padding: 0;
-  font-size: 2.2em;
-  font-weight: normal;
+  font-size: 3.1em;
+
+  @media (max-width: 550px) {
+    font-size: 2.6em;
+  }
 `;
 
 const MassiveButton = styled(Button)`
@@ -66,7 +70,10 @@ function UnauthenticatedApp() {
       <Main>
         <Section>
           <Center>
-            <Tagline>Async standups for remote teams.</Tagline>
+            <Tagline>
+              Async <Glitch data-glitch-text="standups">standups</Glitch> for
+              remote teams.
+            </Tagline>
 
             <MassiveButton
               invertTextColor
