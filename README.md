@@ -131,22 +131,18 @@ Both files must contain the following environment variables:
 
 ### Design
 
-#### Logo
+#### Logo & color scheme
 
-The logo intends to represent a "record" button.
-
-Since my design skills are terrible, drawing a basic SVG circle is the best I can do. 😅
-
-#### Color scheme
-
-The primary color is "electric purple": `#7907fc` 💜.
-
-Which is inspired by the [play.date](https://play.date/) website (I think looks awesome!).
+See the [design assets](https://github.com/upstandfm/design-assets) for more info.
 
 #### Fonts
 
-- Headings: [Nunito Bold](https://fonts.google.com/specimen/Nunito)
-- Text: [Open Sans Regular](https://fonts.google.com/specimen/Open+Sans)
+[Fira Sans](https://fonts.google.com/specimen/Fira+Sans) is used:
+
+- Regular (400)
+- Bold (700)
+
+They can be found in `src/fonts`.
 
 #### Layout
 
