@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Button from '../components/Button';
-import { Page, PageTitle, PageSubTitle, PageSection } from '../components/Page';
+
+import {
+  Content,
+  ContentTitle,
+  ContentSubTitle,
+  ContentSection
+} from '../components/Content';
+
 import PageFooter from '../components/PageFooter';
 
 const Container = styled.div`
@@ -36,14 +43,14 @@ function LoginFailed({ errMessage, handleRetry }) {
   return (
     <Container>
       <Main>
-        <Page>
-          <PageTitle>Login failed</PageTitle>
+        <Content>
+          <ContentTitle>Login failed</ContentTitle>
 
-          <PageSubTitle>
+          <ContentSubTitle>
             Something went wrong on my end, when trying to log you in.
-          </PageSubTitle>
+          </ContentSubTitle>
 
-          <PageSection>
+          <ContentSection>
             <p>I encountered this error:</p>
 
             <ErrMessage>{errMessage}</ErrMessage>
@@ -75,8 +82,8 @@ function LoginFailed({ errMessage, handleRetry }) {
               </span>{' '}
               for this inconvenience.
             </p>
-          </PageSection>
-        </Page>
+          </ContentSection>
+        </Content>
       </Main>
 
       <PageFooter />
