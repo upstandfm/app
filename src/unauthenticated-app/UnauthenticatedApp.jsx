@@ -3,20 +3,10 @@ import styled from 'styled-components';
 
 import { useAuth0 } from '../auth0';
 
-import { LogoWithName, Logo } from '../components/Logo';
-import { GlitchOnInterval, GlitchOnHover } from '../components/Glitch';
+import { LogoWithName } from '../components/Logo';
+import { GlitchOnInterval } from '../components/Glitch';
 import Button from '../components/Button';
-import Copyright from '../components/Copyright';
-
-import {
-  FOOTER_LINKS_BY_COLUMN,
-  Footer,
-  FooterWrapper,
-  FooterBrand,
-  FooterColumns,
-  FooterColumn,
-  FooterLink
-} from '../components/Footer';
+import PageFooter from '../components/PageFooter';
 
 import {
   Container,
@@ -229,37 +219,7 @@ function UnauthenticatedApp() {
         </Section>
       </Main>
 
-      <Footer>
-        <FooterWrapper>
-          <FooterBrand>
-            <Logo width="40px" />
-            <Copyright />
-          </FooterBrand>
-
-          <FooterColumns>
-            {FOOTER_LINKS_BY_COLUMN.map((links, i) => {
-              return (
-                <FooterColumn key={`footer-column-${i}`}>
-                  {links.map(link => {
-                    return (
-                      <FooterLink
-                        key={`footer-column-link-${link.name}`}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GlitchOnHover data-glitch-text={link.name}>
-                          {link.name}
-                        </GlitchOnHover>
-                      </FooterLink>
-                    );
-                  })}
-                </FooterColumn>
-              );
-            })}
-          </FooterColumns>
-        </FooterWrapper>
-      </Footer>
+      <PageFooter />
     </Container>
   );
 }

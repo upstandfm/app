@@ -4,20 +4,7 @@ import styled from 'styled-components';
 
 import Button from '../components/Button';
 import { Page, PageTitle, PageSubTitle, PageSection } from '../components/Page';
-import { Logo } from '../components/Logo';
-import { GlitchOnHover } from '../components/Glitch';
-
-import {
-  FOOTER_LINKS_BY_COLUMN,
-  Footer,
-  FooterWrapper,
-  FooterBrand,
-  FooterColumns,
-  FooterColumn,
-  FooterLink
-} from '../components/Footer';
-
-import Copyright from '../components/Copyright';
+import PageFooter from '../components/PageFooter';
 
 const Container = styled.div`
   height: 100vh;
@@ -92,37 +79,7 @@ function LoginFailed({ errMessage, handleRetry }) {
         </Page>
       </Main>
 
-      <Footer>
-        <FooterWrapper>
-          <FooterBrand>
-            <Logo width="40px" />
-            <Copyright />
-          </FooterBrand>
-
-          <FooterColumns>
-            {FOOTER_LINKS_BY_COLUMN.map((links, i) => {
-              return (
-                <FooterColumn key={`footer-column-${i}`}>
-                  {links.map(link => {
-                    return (
-                      <FooterLink
-                        key={`footer-column-link-${link.name}`}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GlitchOnHover data-glitch-text={link.name}>
-                          {link.name}
-                        </GlitchOnHover>
-                      </FooterLink>
-                    );
-                  })}
-                </FooterColumn>
-              );
-            })}
-          </FooterColumns>
-        </FooterWrapper>
-      </Footer>
+      <PageFooter />
     </Container>
   );
 }
