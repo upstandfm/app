@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
-const glitch = keyframes`
+// This animation runs in 1/10th of the time to "simulate" an interval
+const glitchInterval = keyframes`
   0% {
     transform: translate(0);
   }
@@ -25,6 +26,34 @@ const glitch = keyframes`
     transform: translate(0, 0);
   }
 
+  /* Animation is finished here! */
+
+  100% {
+    transform: translate(0, 0);
+  }
+`;
+
+const glitch = keyframes`
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -2px);
+  }
+
   100% {
     transform: translate(0, 0);
   }
@@ -46,20 +75,55 @@ const Glitch = styled.span`
     opacity: 0.7;
     content: attr(data-glitch-text);
   }
+`;
 
+export const GlitchOnInterval = styled(Glitch)`
   &:before {
-    color: #01ffff;
+    color: var(--color-neon-blue);
     z-index: -1;
-    animation: ${glitch} 4s ease-in-out 0s infinite normal both;
-    -webkit-animation: ${glitch} 4s ease-in-out 0s infinite normal both;
+    animation: ${glitchInterval} 3s ease-in-out 0s infinite normal both;
+    -webkit-animation: ${glitchInterval} 3s ease-in-out 0s infinite normal both;
   }
 
   &:after {
-    color: #ff01ff;
+    color: var(--color-neon-pink);
     z-index: -2;
-    animation: ${glitch} 4s ease-in-out 0.1s infinite normal both;
-    -webkit-animation: ${glitch} 4s ease-in-out 0.1s infinite normal both;
+    animation: ${glitchInterval} 3s ease-in-out 0.1s infinite normal both;
+    -webkit-animation: ${glitchInterval} 3s ease-in-out 0.1s infinite normal
+      both;
   }
 `;
 
-export default Glitch;
+export const GlitchOnHover = styled(Glitch)`
+  :hover {
+    &:before {
+      color: var(--color-neon-blue);
+      z-index: -1;
+      animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
+      -webkit-animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
+    }
+
+    &:after {
+      color: var(--color-neon-pink);
+      z-index: -2;
+      animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
+      -webkit-animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
+    }
+  }
+`;
+
+export const GlitchAlways = styled(Glitch)`
+  &:before {
+    color: var(--color-neon-blue);
+    z-index: -1;
+    animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
+    -webkit-animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
+  }
+
+  &:after {
+    color: var(--color-neon-pink);
+    z-index: -2;
+    animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
+    -webkit-animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
+  }
+`;

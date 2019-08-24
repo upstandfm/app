@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useAuth0 } from '../auth0';
 
 import { LogoWithName, Logo } from '../components/Logo';
-import Glitch from '../components/Glitch';
+import { GlitchOnInterval, GlitchOnHover } from '../components/Glitch';
 import Button from '../components/Button';
 import Copyright from '../components/Copyright';
 
@@ -71,8 +71,11 @@ function UnauthenticatedApp() {
         <Section>
           <Center>
             <Tagline>
-              Async <Glitch data-glitch-text="standups">standups</Glitch> for
-              remote teams.
+              Async{' '}
+              <GlitchOnInterval data-glitch-text="standups">
+                standups
+              </GlitchOnInterval>{' '}
+              for remote teams.
             </Tagline>
 
             <MassiveButton
@@ -245,7 +248,9 @@ function UnauthenticatedApp() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {link.name}
+                        <GlitchOnHover data-glitch-text={link.name}>
+                          {link.name}
+                        </GlitchOnHover>
                       </FooterLink>
                     );
                   })}

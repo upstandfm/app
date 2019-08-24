@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import { Page, PageTitle, PageSubTitle, PageSection } from '../components/Page';
 import { Logo } from '../components/Logo';
+import { GlitchOnHover } from '../components/Glitch';
 
 import {
   FOOTER_LINKS_BY_COLUMN,
@@ -110,7 +111,9 @@ function LoginFailed({ errMessage, handleRetry }) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {link.name}
+                        <GlitchOnHover data-glitch-text={link.name}>
+                          {link.name}
+                        </GlitchOnHover>
                       </FooterLink>
                     );
                   })}
