@@ -18,7 +18,7 @@ export const FOOTER_LINKS_BY_COLUMN = [
 ];
 
 export const Footer = styled.footer`
-  padding: 6em 0;
+  padding: 4em 0;
   background-color: ${props => props.theme.primaryBackgroundColor};
   color: ${props => props.theme.primaryForegroundColor};
 `;
