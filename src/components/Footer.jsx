@@ -2,18 +2,18 @@ import styled from 'styled-components';
 
 export const FOOTER_LINKS_BY_COLUMN = [
   [
-    { name: "what's new?", href: '' },
-    { name: 'help', href: '' },
-    { name: 'terms & privacy', href: '' }
+    { name: "What's new?", href: '' },
+    { name: 'Help', href: '' },
+    { name: 'Privacy & terms', href: '' }
   ],
   [
-    { name: 'say hi!', href: 'mailto:hi@upstand.fm?subject=Hi there!' },
-    { name: 'about', href: 'https://danillouz.dev' }
+    { name: 'Say hi!', href: 'mailto:hi@upstand.fm?subject=Hi there!' },
+    { name: 'About', href: 'https://danillouz.dev' }
   ],
   [
-    { name: 'blog', href: 'https://blog.danillouz.dev' },
+    { name: 'Blog', href: 'https://blog.danillouz.dev' },
     { name: 'GitHub', href: 'https://github.com/upstandfm' },
-    { name: 'twitter', href: 'https://twitter.com/danillouz' }
+    { name: 'Twitter', href: 'https://twitter.com/danillouz' }
   ]
 ];
 
@@ -62,7 +62,6 @@ export const FooterColumn = styled.div``;
 export const FooterLink = styled.a`
   display: block;
   padding: 0.5em 0;
-  text-transform: capitalize;
 
   && {
     font-weight: bold;

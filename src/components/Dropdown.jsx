@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Dropdown = styled.div`
   position: relative;
-  font-size: 0.8em;
 `;
 
 export const Trigger = styled.button`
@@ -89,7 +88,6 @@ export const ListItemText = styled.span`
 
 export const ListItemLink = styled.a`
   display: block;
-  text-transform: capitalize;
 
   && {
     color: inherit;
