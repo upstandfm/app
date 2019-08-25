@@ -8,7 +8,8 @@ import {
   FooterBrand,
   FooterColumns,
   FooterColumn,
-  FooterLink
+  FooterLink,
+  FooterMisc
 } from '../components/Footer';
 
 import Copyright from '../components/Copyright';
@@ -19,7 +20,6 @@ function PageFooter() {
       <FooterWrapper>
         <FooterBrand>
           <Logo width="40px" />
-          <Copyright />
         </FooterBrand>
 
         <FooterColumns>
@@ -42,6 +42,10 @@ function PageFooter() {
             );
           })}
         </FooterColumns>
+
+        <FooterMisc>
+          <Copyright />
+        </FooterMisc>
       </FooterWrapper>
     </Footer>
   );

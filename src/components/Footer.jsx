@@ -18,37 +18,30 @@ export const FOOTER_LINKS_BY_COLUMN = [
 ];
 
 export const Footer = styled.footer`
-  padding: 4em 0;
+  padding: 3em 0;
   background-color: ${props => props.theme.primaryBackgroundColor};
   color: ${props => props.theme.primaryForegroundColor};
 `;
 
 export const FooterWrapper = styled.div`
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-gap: 2em;
+  grid-template-columns: 1fr;
   align-items: center;
-  max-width: 1000px;
+  max-width: 850px;
   margin: 0 auto;
-
-  @media (max-width: 780px) {
-    grid-template-columns: 1fr;
-    grid-gap: 3em;
-  }
 `;
 
 export const FooterBrand = styled.div`
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 0.5em;
-  margin: auto;
-  align-items: center;
+  text-align: center;
   color: ${props => props.theme.specialColor};
 `;
 
 export const FooterColumns = styled.div`
   display: grid;
   grid-template-columns: ${() =>
-    `repeat(${FOOTER_LINKS_BY_COLUMN.length}, auto)`};
+    `repeat(${FOOTER_LINKS_BY_COLUMN.length}, 1fr)`};
+  justify-items: center;
 
   @media (max-width: 780px) {
     grid-template-columns: 1fr;
@@ -64,15 +57,21 @@ export const FooterLink = styled.a`
 
   && {
     font-weight: normal;
-    text-decoration: none;
+    text-decoration: underline;
     color: ${props => props.theme.primaryForegroundColor};
 
     :hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
 
     :visited {
       color: ${props => props.theme.primaryForegroundColor};
     }
   }
+`;
+
+export const FooterMisc = styled.div`
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.6;
 `;
