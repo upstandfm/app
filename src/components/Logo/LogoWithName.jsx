@@ -8,11 +8,11 @@ const Img = styled.img`
   display: inline-block;
   margin: 0;
   padding: 0;
-  max-width: ${props => (props.width ? '' : '300px')};
+  max-width: ${props => (props.width ? '' : '180px')};
 `;
 
 /**
- * "LogoWithName" defaults to a maximum width of 300px, but this can be
+ * "LogoWithName" defaults to a maximum width of 180px, but this can be
  * overridden:
  *
  *  <LogoWithName width="512px" />

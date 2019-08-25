@@ -15,7 +15,7 @@ export const Header = styled.header`
 
 export const Section = styled.section`
   display: grid;
-  min-height: 60vh;
+  min-height: 45vh;
   margin: 0;
   padding: 1em;
   background-color: ${props =>

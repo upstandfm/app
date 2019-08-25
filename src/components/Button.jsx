@@ -49,25 +49,25 @@ const _getColor = props => {
  *  <Button danger invertTextColor>delete</Button>
  */
 const Button = styled.button`
-  min-width: 180px;
   margin: 0;
-  padding: 0.8em;
+  padding: 14px;
   border: ${_getBorder};
-  border-radius: 50px;
+  border-radius: 4px;
   outline: none;
   box-sizing: border-box;
-  font-size: 1em;
+  font-size: 15px;
   font-weight: bold;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
   background-color: ${_getBackgroundColor};
   color: ${_getColor};
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-  line-height: 1;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
 
   :hover {
     cursor: pointer;
-    transform: scale(1.04);
+    transform: scale(1.05);
   }
 
   :disabled {

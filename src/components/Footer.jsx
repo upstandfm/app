@@ -42,7 +42,6 @@ export const FooterBrand = styled.div`
   grid-gap: 0.5em;
   margin: auto;
   align-items: center;
-  font-size: 0.8em;
   color: ${props => props.theme.specialColor};
 `;
 
@@ -64,7 +63,7 @@ export const FooterLink = styled.a`
   padding: 0.5em 0;
 
   && {
-    font-weight: bold;
+    font-weight: normal;
     text-decoration: none;
     color: ${props => props.theme.primaryForegroundColor};
 

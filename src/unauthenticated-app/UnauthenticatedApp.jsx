@@ -21,25 +21,21 @@ import {
 const Tagline = styled.h1`
   margin: 1em 0;
   padding: 0;
-  font-size: 3.1em;
+  font-size: 42px;
+  font-weight: normal;
 
   @media (max-width: 550px) {
-    font-size: 2.6em;
+    font-size: 34px;
   }
 `;
 
-const MassiveButton = styled(Button)`
-  margin: 0;
-  padding: 1em 1.5em;
-  font-size: 1.2em;
+const GetStartedButton = styled(Button)`
   background-color: ${props => props.theme.specialColor};
-  border-radius: 12px;
 `;
 
 const Intro = styled.div`
   margin: 2em 0;
   padding: 0 0 0 1em;
-  font-size: 1.2em;
   font-weight: bold;
   border-left: 8px solid ${props => props.theme.specialColor};
 
@@ -65,16 +61,16 @@ function UnauthenticatedApp() {
               <GlitchOnInterval data-glitch-text="standups">
                 standups
               </GlitchOnInterval>{' '}
-              for remote teams.
+              for remote teams
             </Tagline>
 
-            <MassiveButton
+            <GetStartedButton
               invertTextColor
               onClick={login}
-              aria-label="get started!"
+              aria-label="get started"
             >
-              get started!
-            </MassiveButton>
+              get started
+            </GetStartedButton>
           </Center>
         </Section>
 

@@ -7,19 +7,19 @@ const glitchInterval = keyframes`
   }
 
   2% {
-    transform: translate(-3px, 3px);
+    transform: translate(-2px, 2px);
   }
 
   4% {
-    transform: translate(-3px, -3px);
+    transform: translate(-2px, -2px);
   }
 
   6% {
-    transform: translate(3px, 3px);
+    transform: translate(2px, 2px);
   }
 
   8% {
-    transform: translate(3px, -3px);
+    transform: translate(2px, -2px);
   }
 
   10% {

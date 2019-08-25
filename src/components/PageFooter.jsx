@@ -1,6 +1,5 @@
 import React from 'react';
 import { Logo } from '../components/Logo';
-import { GlitchOnHover } from '../components/Glitch';
 
 import {
   FOOTER_LINKS_BY_COLUMN,
@@ -35,9 +34,7 @@ function PageFooter() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <GlitchOnHover data-glitch-text={link.name}>
-                        {link.name}
-                      </GlitchOnHover>
+                      {link.name}
                     </FooterLink>
                   );
                 })}
