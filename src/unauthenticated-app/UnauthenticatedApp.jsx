@@ -29,15 +29,11 @@ const Tagline = styled.h1`
   }
 `;
 
-const GetStartedButton = styled(Button)`
-  background-color: ${props => props.theme.specialColor};
-`;
-
 const Intro = styled.div`
   margin: 2em 0;
   padding: 0 0 0 1em;
   font-weight: bold;
-  border-left: 8px solid ${props => props.theme.specialColor};
+  border-left: 8px solid ${props => props.theme.primaryColor};
 
   @media (max-width: 550px) {
     font-size: 1.1em;
@@ -64,13 +60,9 @@ function UnauthenticatedApp() {
               for remote teams
             </Tagline>
 
-            <GetStartedButton
-              invertTextColor
-              onClick={login}
-              aria-label="get started"
-            >
+            <Button invertTextColor onClick={login} aria-label="get started">
               get started
-            </GetStartedButton>
+            </Button>
           </Center>
         </Section>
 

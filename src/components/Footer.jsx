@@ -34,7 +34,6 @@ export const FooterWrapper = styled.div`
 
 export const FooterBrand = styled.div`
   text-align: center;
-  color: ${props => props.theme.specialColor};
 `;
 
 export const FooterColumns = styled.div`

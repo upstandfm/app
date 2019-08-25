@@ -9,10 +9,6 @@ const _getBorder = props => {
 };
 
 const _getBackgroundColor = props => {
-  if (props.special) {
-    return props.theme.specialColor;
-  }
-
   if (props.secondary) {
     return 'var(--color-white)';
   }
@@ -35,9 +31,6 @@ const _getColor = props => {
 /**
  * Primary button:
  *  <Button>create</Button>
- *
- * Special button:
- *  <Button special>go do it!</Button>
  *
  * Secondary button:
  *  <Button secondary>create</Button>

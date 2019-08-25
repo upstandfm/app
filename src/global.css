@@ -23,7 +23,7 @@
   --color-dirty-white: #f8f5fd;
   --color-purple: #341952;
   --color-coral: #e96d77;
-  --color-green: #47d33a;
+  --color-blue: #438eb5;
   --color-red: #f53a00;
   --color-neon-blue: #01ffff;
   --color-neon-pink: #ff01ff;
@@ -46,7 +46,7 @@ body {
 
 a,
 a:visited {
-  color: var(--color-coral);
+  color: var(--color-blue);
   font-weight: bold;
 }
 

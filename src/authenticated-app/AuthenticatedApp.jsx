@@ -25,7 +25,7 @@ function AuthenticatedApp() {
         </Profile>
 
         <Menu>
-          <Button special invertTextColor aria-label="new update">
+          <Button invertTextColor aria-label="new update">
             new update
           </Button>
         </Menu>
