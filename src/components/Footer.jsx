@@ -1,4 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
+
+import { Logo } from '../components/Logo';
+import Copyright from '../components/Copyright';
 
 export const FOOTER_LINKS_BY_COLUMN = [
   [
@@ -17,13 +21,13 @@ export const FOOTER_LINKS_BY_COLUMN = [
   ]
 ];
 
-export const Footer = styled.footer`
+const Container = styled.footer`
   padding: 3em 0;
   background-color: ${props => props.theme.primaryBackgroundColor};
   color: ${props => props.theme.primaryForegroundColor};
 `;
 
-export const FooterWrapper = styled.div`
+const Wrapper = styled.div`
   display: grid;
   grid-gap: 2em;
   grid-template-columns: 1fr;
@@ -32,11 +36,11 @@ export const FooterWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const FooterBrand = styled.div`
+const Brand = styled.div`
   text-align: center;
 `;
 
-export const FooterColumns = styled.div`
+const Columns = styled.div`
   display: grid;
   grid-template-columns: ${() =>
     `repeat(${FOOTER_LINKS_BY_COLUMN.length}, 1fr)`};
@@ -48,9 +52,9 @@ export const FooterColumns = styled.div`
   }
 `;
 
-export const FooterColumn = styled.div``;
+const Column = styled.div``;
 
-export const FooterLink = styled.a`
+const Link = styled.a`
   display: block;
   padding: 0.5em 0;
 
@@ -69,8 +73,48 @@ export const FooterLink = styled.a`
   }
 `;
 
-export const FooterMisc = styled.div`
+const Misc = styled.div`
   text-align: center;
   font-size: 14px;
   opacity: 0.6;
 `;
+
+function Footer(props) {
+  return (
+    <Container {...props}>
+      <Wrapper>
+        <Brand>
+          <Logo data-cy="logo" width="40px" />
+        </Brand>
+
+        <Columns>
+          {FOOTER_LINKS_BY_COLUMN.map((links, i) => {
+            return (
+              <Column key={`footer-column-${i}`}>
+                {links.map(link => {
+                  return (
+                    <Link
+                      data-cy={link.name}
+                      key={`footer-column-link-${link.name}`}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
+              </Column>
+            );
+          })}
+        </Columns>
+
+        <Misc>
+          <Copyright data-cy="copyright" />
+        </Misc>
+      </Wrapper>
+    </Container>
+  );
+}
+
+export default Footer;
