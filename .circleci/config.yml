@@ -110,8 +110,7 @@ jobs:
       # Verify that Cypress is installed correctly and is executable
       - run:
           name: Verify Cypress installation
-          command: |
-            ./node_modules/.bin/cypress verify
+          command: npx cypress verify
 
       # Cypress requires a local server to be running, to run tests
       - run:
@@ -141,8 +140,7 @@ jobs:
       # Verify that Cypress is installed correctly and is executable
       - run:
           name: Verify Cypress installation
-          command: |
-            ./node_modules/.bin/cypress verify
+          command: npx cypress verify
 
       # Cypress requires a local server to be running, to run tests
       - run:
