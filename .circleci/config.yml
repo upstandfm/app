@@ -149,7 +149,7 @@ jobs:
       - run:
           name: Run end-to-end tests
           command: |
-            $(npm bin)/cypress run --group "All tests" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
+            $(npm bin)/cypress run --record false --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
       - *store_test_artifacts
 
