@@ -49,11 +49,6 @@ store_build_artifacts: &store_build_artifacts
   store_artifacts:
     path: build
 
-store_cy_artifacts: &store_cy_artifacts
-  store_artifacts:
-    - path: cypress/videos
-    - path: cypress/screenshots
-
 # Job filters, for more info see:
 # https://circleci.com/docs/2.0/workflows/#branch-level-job-execution
 all_branches_except_master: &all_branches_except_master
@@ -128,7 +123,10 @@ jobs:
             $(npm bin)/cypress run --group "All tests" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
       - *store_test_artifacts
-      - *store_cy_artifacts
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
   e2e-record:
     <<: *docker_cy_image
@@ -152,7 +150,10 @@ jobs:
             $(npm bin)/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
       - *store_test_artifacts
-      - *store_cy_artifacts
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
   build:
     <<: *docker_image
