@@ -112,6 +112,9 @@ jobs:
       - checkout
       - *restore_deps_cache
       - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
           name: Run unit tests
 
           # For more info see:
@@ -128,6 +131,9 @@ jobs:
     steps:
       - checkout
       - *restore_deps_cache
+      - run:
+          name: Install dependencies
+          command: npm ci
 
       # Verify that Cypress is installed correctly and is executable
       - run:
@@ -159,6 +165,9 @@ jobs:
     steps:
       - checkout
       - *restore_deps_cache
+      - run:
+          name: Install dependencies
+          command: npm ci
 
       # Verify that Cypress is installed correctly and is executable
       - run:
@@ -192,6 +201,9 @@ jobs:
       - *restore_deps_cache
       - *restore_build_cache
       - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
           name: Build app
           command: npm run build
       - save_cache:
@@ -211,6 +223,9 @@ jobs:
       - checkout
       - *restore_deps_cache
       - *restore_build_cache
+      - run:
+          name: Install dependencies
+          command: npm ci
 
       # This exposes: $DEPLOY_MESSAGE
       # See: https://discuss.circleci.com/t/using-environment-variables-in-config-yml-not-working/14237
