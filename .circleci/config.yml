@@ -51,9 +51,8 @@ store_build_artifacts: &store_build_artifacts
 
 store_cy_artifacts: &store_cy_artifacts
   store_artifacts:
-    path: cypress/videos
-  store_artifacts:
-    path: cypress/screenshots
+    - path: cypress/videos
+    - path: cypress/screenshots
 
 # Job filters, for more info see:
 # https://circleci.com/docs/2.0/workflows/#branch-level-job-execution
@@ -117,7 +116,7 @@ jobs:
       - run:
           name: Verify Cypress installation
           command: $(npm bin)/cypress verify
-      
+
       # Cypress requires a local server to be running, to run tests
       - run:
           name: Start dev server
@@ -141,7 +140,7 @@ jobs:
       - run:
           name: Verify Cypress installation
           command: $(npm bin)/cypress verify
-      
+
       # Cypress requires a local server to be running, to run tests
       - run:
           name: Start dev server
