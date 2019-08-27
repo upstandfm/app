@@ -67,7 +67,7 @@ Runs end-to-end tests locally using [Cypress](https://www.cypress.io/).
 Caveats:
 
 - The local dev server must be running (use `npm start`), before the end-to-end tests can run.
-- You have to manually rerun tests when the source code changes (`spec` file changes _do_ rerun tests). It seems like this will be possible to configure in the future, and there's a workaround, as decribed [here](https://github.com/cypress-io/cypress/issues/456).
+- The [watch-and-reload plugin](https://github.com/bahmutov/cypress-watch-and-reload) is used to rerun tests on source code change. But according to [this issue](https://github.com/cypress-io/cypress/issues/456), this functionality will be native in the future. When that's the case, remove the plugin.
 
 ### Code linting
 
