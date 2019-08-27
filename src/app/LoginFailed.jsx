@@ -11,7 +11,7 @@ import {
   ContentSection
 } from '../components/Content';
 
-import PageFooter from '../components/PageFooter';
+import Footer from '../components/Footer';
 
 const Container = styled.div`
   height: 100vh;
@@ -86,7 +86,7 @@ function LoginFailed({ errMessage, handleRetry }) {
         </Content>
       </Main>
 
-      <PageFooter />
+      <Footer data-cy="footer" />
     </Container>
   );
 }

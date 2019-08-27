@@ -21,7 +21,7 @@ function SplashScreen() {
   return (
     <Container>
       <Splash>
-        <Text>loading app..</Text>
+        <Text data-cy="loading">loading app..</Text>
       </Splash>
     </Container>
   );

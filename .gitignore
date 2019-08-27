@@ -59,3 +59,10 @@ typings/
 
 # production assets
 build
+
+# Cypress
+cypress/videos
+cypress/screenshots
+
+# Misc
+.DS_Store

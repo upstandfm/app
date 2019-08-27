@@ -1,9 +1,14 @@
+version: 2.1
+
+orbs:
+  cypress: cypress-io/cypress@1
+
 # YAML Anchors
 # These anchors can be aliased to prevent config repetition
 # For more information see: https://medium.com/@kinghuang/docker-compose-anchors-aliases-extensions-a1e4105d70bd
 docker_image: &docker_image
   docker:
-    - image: circleci/node:12.8.0
+    - image: circleci/node:12.9.0
 
 # Caching, for more information see: https://circleci.com/docs/2.0/caching/#section=projects
 restore_cache_by_keys: &restore_cache_by_keys
@@ -40,7 +45,6 @@ only_master: &only_master
     branches:
       only: master
 
-version: 2
 jobs:
   audit:
     <<: *docker_image
@@ -107,11 +111,9 @@ jobs:
       - run:
           name: Release to prod
           command: |
-            ./node_modules/.bin/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
+            $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
 
 workflows:
-  version: 2
-
   test_build_branch:
     jobs:
       - audit:
@@ -125,12 +127,21 @@ workflows:
           requires:
             - audit
             - deps
+      - cypress/run:
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          group: 'All tests'
+          requires:
+            - audit
+            - deps
+            - test
       - build:
           <<: *all_branches_except_master
           requires:
             - audit
             - deps
             - test
+            - cypress/run
 
   release_master:
     jobs:
@@ -145,16 +156,27 @@ workflows:
           requires:
             - audit
             - deps
+      - cypress/run:
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          group: 'All tests'
+          record: true
+          requires:
+            - audit
+            - deps
+            - test
       - build:
           <<: *only_master
           requires:
             - audit
             - deps
             - test
+            - cypress/run
       - release:
           <<: *only_master
           requires:
             - audit
             - deps
             - test
+            - cypress/run
             - build

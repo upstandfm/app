@@ -6,7 +6,7 @@ import { useAuth0 } from '../auth0';
 import { LogoWithName } from '../components/Logo';
 import { GlitchOnInterval } from '../components/Glitch';
 import Button from '../components/Button';
-import PageFooter from '../components/PageFooter';
+import Footer from '../components/Footer';
 
 import {
   Container,
@@ -46,13 +46,13 @@ function UnauthenticatedApp() {
   return (
     <Container>
       <Header>
-        <LogoWithName />
+        <LogoWithName data-cy="logo-with-name" />
       </Header>
 
       <Main>
         <Section>
           <Center>
-            <Tagline>
+            <Tagline data-cy="tagline">
               Async{' '}
               <GlitchOnInterval data-glitch-text="standups">
                 standups
@@ -60,7 +60,12 @@ function UnauthenticatedApp() {
               for remote teams
             </Tagline>
 
-            <Button invertTextColor onClick={login} aria-label="get started">
+            <Button
+              data-cy="login"
+              invertTextColor
+              onClick={login}
+              aria-label="get started"
+            >
               get started
             </Button>
           </Center>
@@ -207,7 +212,7 @@ function UnauthenticatedApp() {
         </Section>
       </Main>
 
-      <PageFooter />
+      <Footer data-cy="footer" />
     </Container>
   );
 }

@@ -7,6 +7,7 @@
 Upstand web application.
 
 - [Create React App](#create-react-app)
+- [Tests](#tests)
 - [CI/CD](#cicd)
 - [Configuration](#configuration)
 - [Design](#design)
@@ -59,9 +60,18 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+#### `npm run cy`
+
+Runs end-to-end tests locally using [Cypress](https://www.cypress.io/).
+
+Caveats:
+
+- The local dev server must be running (use `npm start`), before the end-to-end tests can run.
+- You have to manually rerun tests when the source code changes (`spec` file changes _do_ rerun tests). It seems like this will be possible to configure in the future, and there's a workaround, as decribed [here](https://github.com/cypress-io/cypress/issues/456).
+
 ### Code linting
 
-CRA default ESLint settings are used.
+CRA default ESLint settings are used, but are extended with a custom `.eslintrc.json` file. For example to add Cypress globals.
 
 ### Code formatting
 
@@ -78,11 +88,29 @@ Code is automatically formatted on commit with Prettier.
 - [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
 - [React documentation](https://reactjs.org/)
 
+## Tests
+
+### End-to-end
+
+[Cypress](https://www.cypress.io) is used to run end-to-end tests, and all test runs for the app can be viewed [here](https://dashboard.cypress.io/#/projects/b58xj4/runs).
+
 ## CI/CD
 
-[CircleCI](https://circleci.com/gh/organizations/upstandfm) is used to to run tests, test builds and deploy the app via [Netlify](https://app.netlify.com).
+[CircleCI](https://circleci.com/gh/organizations/upstandfm) is used to to run unit tests, end-to-end tests, test builds and deploy the app via [Netlify](https://app.netlify.com).
 
-Here CircleCI requires a Netlify access token, site ID and publish directory to deploy the built files. These are configured as [environment variables](https://circleci.com/gh/upstandfm/app/edit#env-vars), and can be used in the `.circleci/config.yml` file.
+### Testing
+
+CircleCI requires a Cypress token to record tests and store screenshots.
+
+The token can be found in the [Cypress dashboard](https://dashboard.cypress.io/#/projects/b58xj4/settings) under "Record Keys".
+
+The token is configured as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars), and is used by the [Cypress CircleCI Orb](https://github.com/cypress-io/circleci-orb), used in the `.circleci/config.yml` file.
+
+The token is configured in CircleCI as an environment variable named `CYPRESS_RECORD_KEY`.
+
+### Netlify
+
+CircleCI requires a Netlify access token, site ID and publish directory to deploy the built files. These are configured as [environment variables](https://circleci.com/gh/upstandfm/app/edit#env-vars), and can be used in the `.circleci/config.yml` file.
 
 ### Token
 

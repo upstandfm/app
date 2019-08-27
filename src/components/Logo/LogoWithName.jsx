@@ -17,8 +17,15 @@ const Img = styled.img`
  *
  *  <LogoWithName width="512px" />
  */
-function LogoWithName({ width }) {
-  return <Img src={logo} alt="logo with name upstand fm" width={width} />;
+function LogoWithName(props) {
+  return (
+    <Img
+      {...props}
+      src={logo}
+      alt="logo with name upstand fm"
+      width={props.width}
+    />
+  );
 }
 
 LogoWithName.propTypes = {
