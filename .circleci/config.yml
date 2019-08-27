@@ -1,40 +1,62 @@
 version: 2.1
 
-orbs:
-  cypress: cypress-io/cypress@1
-
 # YAML Anchors
 # These anchors can be aliased to prevent config repetition
-# For more information see: https://medium.com/@kinghuang/docker-compose-anchors-aliases-extensions-a1e4105d70bd
+# For more info see:
+# https://medium.com/@kinghuang/docker-compose-anchors-aliases-extensions-a1e4105d70bd
+
 docker_image: &docker_image
   docker:
     - image: circleci/node:12.9.0
 
-# Caching, for more information see: https://circleci.com/docs/2.0/caching/#section=projects
-restore_cache_by_keys: &restore_cache_by_keys
+docker_cy_image: &docker_cy_image
+  docker:
+    - image: cypress/base:10
+      environment:
+        # Enables colors in the output
+        TERM: xterm
+
+        # Used to store junit test reports
+        # For more info see:
+        # https://github.com/cypress-io/cypress-example-docker-circle#generate-just-xml-report
+        MOCHA_FILE: reports/cypress/test-report-junit.xml
+
+# Caching, for more info see:
+# https://circleci.com/docs/2.0/caching/#section=projects
+restore_deps_cache: &restore_deps_cache
   restore_cache:
     keys:
       - dependencies-cache-{{ checksum "package-lock.json" }}
 
-restore_build_cache_by_keys: &restore_build_cache_by_keys
+restore_build_cache: &restore_build_cache
   restore_cache:
     keys:
       - build-cache-{{ .Revision }}
 
-# Store reports in sub dirs, for more information see: https://circleci.com/docs/2.0/configuration-reference/#store_test_results
-store_test_results_by_path: &store_test_results_by_path
+# Store reports in sub dirs, for more info see:
+# https://circleci.com/docs/2.0/configuration-reference/#store_test_results
+store_reports: &store_reports
   store_test_results:
     path: reports
 
-store_test_artifacts_by_path: &store_test_artifacts_by_path
+# Store artifacts in sub dirs, for more info see:
+# https://circleci.com/docs/2.0/configuration-reference/#store_artifacts
+store_test_artifacts: &store_test_artifacts
   store_artifacts:
     path: reports
 
-store_build_artifacts_by_path: &store_build_artifacts_by_path
+store_build_artifacts: &store_build_artifacts
   store_artifacts:
     path: build
 
-# Job filters, for more information see: https://circleci.com/docs/2.0/workflows/#branch-level-job-execution
+store_cy_artifacts: &store_cy_artifacts
+  store_artifacts:
+    path: cypress/videos
+  store_artifacts:
+    path: cypress/screenshots
+
+# Job filters, for more info see:
+# https://circleci.com/docs/2.0/workflows/#branch-level-job-execution
 all_branches_except_master: &all_branches_except_master
   filters:
     branches:
@@ -58,7 +80,7 @@ jobs:
     <<: *docker_image
     steps:
       - checkout
-      - *restore_cache_by_keys
+      - *restore_deps_cache
       - run:
           name: Install dependencies
           command: npm ci
@@ -72,24 +94,73 @@ jobs:
     <<: *docker_image
     steps:
       - checkout
-      - *restore_cache_by_keys
+      - *restore_deps_cache
       - run:
-          name: Run tests
+          name: Run unit tests
 
-          # For more information see: https://circleci.com/docs/2.0/collect-test-data/#jest
+          # For more info see:
+          # https://circleci.com/docs/2.0/collect-test-data/#jest
           command: npm test -- --ci --runInBand --coverage --coverageDirectory reports/jest --reporters=jest-junit
           when: always
           environment:
             JEST_JUNIT_OUTPUT: 'reports/jest/test-report-junit.xml'
-      - *store_test_results_by_path
-      - *store_test_artifacts_by_path
+      - *store_reports
+      - *store_test_artifacts
+
+  e2e:
+    <<: *docker_cy_image
+    steps:
+      - checkout
+      - *restore_deps_cache
+
+      # Verify that Cypress is installed correctly and is executable
+      - run:
+          name: Verify Cypress installation
+          command: $(npm bin)/cypress verify
+      
+      # Cypress requires a local server to be running, to run tests
+      - run:
+          name: Start dev server
+          command: npm start
+          background: true
+      - run:
+          name: Run end-to-end tests
+          command: |
+            $(npm bin)/cypress run --group "All tests" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
+      - *store_reports
+      - *store_test_artifacts
+      - *store_cy_artifacts
+
+  e2e-record:
+    <<: *docker_cy_image
+    steps:
+      - checkout
+      - *restore_deps_cache
+
+      # Verify that Cypress is installed correctly and is executable
+      - run:
+          name: Verify Cypress installation
+          command: $(npm bin)/cypress verify
+      
+      # Cypress requires a local server to be running, to run tests
+      - run:
+          name: Start dev server
+          command: npm start
+          background: true
+      - run:
+          name: Run end-to-end tests (record)
+          command: |
+            $(npm bin)/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
+      - *store_reports
+      - *store_test_artifacts
+      - *store_cy_artifacts
 
   build:
     <<: *docker_image
     steps:
       - checkout
-      - *restore_cache_by_keys
-      - *restore_build_cache_by_keys
+      - *restore_deps_cache
+      - *restore_build_cache
       - run:
           name: Build app
           command: npm run build
@@ -97,14 +168,14 @@ jobs:
           key: build-cache-{{ .Revision }}
           paths:
             - ./build
-      - *store_build_artifacts_by_path
+      - *store_build_artifacts
 
   release:
     <<: *docker_image
     steps:
       - checkout
-      - *restore_cache_by_keys
-      - *restore_build_cache_by_keys
+      - *restore_deps_cache
+      - *restore_build_cache
       # This exposes: $DEPLOY_MESSAGE
       # See: https://discuss.circleci.com/t/using-environment-variables-in-config-yml-not-working/14237
       - run: echo 'export DEPLOY_MESSAGE="Deployed from CircleCI. See $CIRCLE_BUILD_URL"' >> $BASH_ENV
@@ -127,10 +198,7 @@ workflows:
           requires:
             - audit
             - deps
-      - cypress/run:
-          start: npm start
-          wait-on: 'http://localhost:3000'
-          group: 'All tests'
+      - e2e:
           requires:
             - audit
             - deps
@@ -141,7 +209,7 @@ workflows:
             - audit
             - deps
             - test
-            - cypress/run
+            - e2e
 
   release_master:
     jobs:
@@ -156,11 +224,7 @@ workflows:
           requires:
             - audit
             - deps
-      - cypress/run:
-          start: npm start
-          wait-on: 'http://localhost:3000'
-          group: 'All tests'
-          record: true
+      - e2e-record:
           requires:
             - audit
             - deps
@@ -171,12 +235,12 @@ workflows:
             - audit
             - deps
             - test
-            - cypress/run
+            - e2e-record
       - release:
           <<: *only_master
           requires:
             - audit
             - deps
             - test
-            - cypress/run
+            - e2e-record
             - build
