@@ -110,7 +110,8 @@ jobs:
       # Verify that Cypress is installed correctly and is executable
       - run:
           name: Verify Cypress installation
-          command: $(npm bin)/cypress verify
+          command: |
+            ./node_modules/.bin/cypress verify
 
       # Cypress requires a local server to be running, to run tests
       - run:
@@ -120,9 +121,12 @@ jobs:
       - run:
           name: Run end-to-end tests
           command: |
-            $(npm bin)/cypress run --group "All tests" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
+            ./node_modules/.bin/cypress run --group "All tests" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
       - *store_test_artifacts
+
+      # CircleCI does not support multiple artifact paths, so they must be
+      # stored as separate steps
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
@@ -137,7 +141,8 @@ jobs:
       # Verify that Cypress is installed correctly and is executable
       - run:
           name: Verify Cypress installation
-          command: $(npm bin)/cypress verify
+          command: |
+            ./node_modules/.bin/cypress verify
 
       # Cypress requires a local server to be running, to run tests
       - run:
@@ -147,9 +152,12 @@ jobs:
       - run:
           name: Run end-to-end tests (record)
           command: |
-            $(npm bin)/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
+            ./node_modules/.bin/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
       - *store_test_artifacts
+
+      # CircleCI does not support multiple artifact paths, so they must be
+      # stored as separate steps
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
@@ -182,7 +190,7 @@ jobs:
       - run:
           name: Release to prod
           command: |
-            $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
+            ./node_modules/.bin/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
 
 workflows:
   test_build_branch:
