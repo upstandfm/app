@@ -236,7 +236,7 @@ jobs:
             $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
 
 workflows:
-  test_build_branch:
+  build_branch:
     jobs:
       - audit:
           <<: *all_branches_except_master

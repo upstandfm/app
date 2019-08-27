@@ -104,7 +104,7 @@ CircleCI requires a Cypress token to record tests and store screenshots.
 
 The token can be found in the [Cypress dashboard](https://dashboard.cypress.io/#/projects/b58xj4/settings) under "Record Keys".
 
-The token is configured as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars), and is used by the [Cypress CircleCI Orb](https://github.com/cypress-io/circleci-orb), used in the `.circleci/config.yml` file.
+The token is configured as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars), and used in the `.circleci/config.yml` file.
 
 The token is configured in CircleCI as an environment variable named `CYPRESS_RECORD_KEY`.
 
