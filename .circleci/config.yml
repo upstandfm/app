@@ -1,5 +1,3 @@
-version: 2.1
-
 # YAML Anchors
 # These anchors can be aliased to prevent config repetition
 # For more info see:
@@ -61,6 +59,7 @@ only_master: &only_master
     branches:
       only: master
 
+version: 2.1
 jobs:
   audit:
     <<: *docker_image
@@ -80,9 +79,12 @@ jobs:
           command: npm ci
       - save_cache:
           key: dependencies-cache-{{ checksum "package-lock.json" }}
+
+          # For more info see:
+          # https://docs.cypress.io/guides/guides/continuous-integration.html#Caching
           paths:
-            - ./node_modules
             - ~/.npm
+            - ~/.cache
 
   test:
     <<: *docker_image
@@ -110,7 +112,8 @@ jobs:
       # Verify that Cypress is installed correctly and is executable
       - run:
           name: Verify Cypress installation
-          command: npm run cy:verify
+          command: |
+            $(npm bin)/cypress verify
 
       # Cypress requires a local server to be running, to run tests
       - run:
@@ -120,7 +123,7 @@ jobs:
       - run:
           name: Run end-to-end tests
           command: |
-            ./node_modules/.bin/cypress run --group "All tests" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
+            $(npm bin)/cypress run --group "All tests" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
       - *store_test_artifacts
 
@@ -140,7 +143,8 @@ jobs:
       # Verify that Cypress is installed correctly and is executable
       - run:
           name: Verify Cypress installation
-          command: npm run cy:verify
+          command: |
+            $(npm bin)/cypress verify
 
       # Cypress requires a local server to be running, to run tests
       - run:
@@ -150,7 +154,7 @@ jobs:
       - run:
           name: Run end-to-end tests (record)
           command: |
-            ./node_modules/.bin/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
+            $(npm bin)/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
       - *store_test_artifacts
 
@@ -182,13 +186,14 @@ jobs:
       - checkout
       - *restore_deps_cache
       - *restore_build_cache
+
       # This exposes: $DEPLOY_MESSAGE
       # See: https://discuss.circleci.com/t/using-environment-variables-in-config-yml-not-working/14237
       - run: echo 'export DEPLOY_MESSAGE="Deployed from CircleCI. See $CIRCLE_BUILD_URL"' >> $BASH_ENV
       - run:
           name: Release to prod
           command: |
-            ./node_modules/.bin/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
+            $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
 
 workflows:
   test_build_branch:
