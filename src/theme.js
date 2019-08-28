@@ -1,18 +1,18 @@
 // The color variables are defined in "/src/global.css"
 const theme = {
-  primaryColor: 'var(--color-blue)',
+  primaryColor: '#438eb5', // blue
 
-  primaryBackgroundColor: 'var(--color-purple)',
-  primaryForegroundColor: 'var(--color-white)',
+  primaryBackgroundColor: '#341952', // purple
+  primaryForegroundColor: '#ffffff', // white
 
-  secondaryBackgroundColor: 'var(--color-dirty-white)',
-  secondaryForegroundColor: 'var(--color-black)',
+  secondaryBackgroundColor: '#f8f5fd', // dirty-white
+  secondaryForegroundColor: '#000000', // black
 
-  dangerColor: 'var(--color-red)',
-  accentColor: 'var(--color-light-grey)',
+  dangerColor: '#f53a00', // red
+  accentColor: '#eaeaea', // light-grey
 
-  textColor: 'var(--color-black)',
-  invertedTextColor: 'var(--color-white)'
+  textColor: '#000000', // black
+  invertedTextColor: '#ffffff' // white
 };
 
 export default theme;

@@ -1,5 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 
+const colorNeonBlue = '#01ffff';
+const colorNeonPink = '#ff01ff';
+
 // This animation runs in 1/10th of the time to "simulate" an interval
 const glitchInterval = keyframes`
   0% {
@@ -79,14 +82,14 @@ const Glitch = styled.span`
 
 export const GlitchOnInterval = styled(Glitch)`
   &:before {
-    color: var(--color-neon-blue);
+    color: ${colorNeonBlue};
     z-index: -1;
     animation: ${glitchInterval} 3s ease-in-out 0s infinite normal both;
     -webkit-animation: ${glitchInterval} 3s ease-in-out 0s infinite normal both;
   }
 
   &:after {
-    color: var(--color-neon-pink);
+    color: ${colorNeonPink};
     z-index: -2;
     animation: ${glitchInterval} 3s ease-in-out 0.1s infinite normal both;
     -webkit-animation: ${glitchInterval} 3s ease-in-out 0.1s infinite normal
@@ -97,14 +100,14 @@ export const GlitchOnInterval = styled(Glitch)`
 export const GlitchOnHover = styled(Glitch)`
   :hover {
     &:before {
-      color: var(--color-neon-blue);
+      color: ${colorNeonBlue};
       z-index: -1;
       animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
       -webkit-animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
     }
 
     &:after {
-      color: var(--color-neon-pink);
+      color: ${colorNeonPink};
       z-index: -2;
       animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
       -webkit-animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
@@ -114,14 +117,14 @@ export const GlitchOnHover = styled(Glitch)`
 
 export const GlitchAlways = styled(Glitch)`
   &:before {
-    color: var(--color-neon-blue);
+    color: ${colorNeonBlue};
     z-index: -1;
     animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
     -webkit-animation: ${glitch} 0.3s ease-in-out 0s infinite normal both;
   }
 
   &:after {
-    color: var(--color-neon-pink);
+    color: ${colorNeonPink};
     z-index: -2;
     animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
     -webkit-animation: ${glitch} 0.3s ease-in-out 0.1s infinite normal both;
