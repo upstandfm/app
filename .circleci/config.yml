@@ -115,7 +115,7 @@ jobs:
           name: Install dependencies
           command: npm ci
       - run:
-          name: Run unit tests
+          name: Run unit/integration tests
 
           # For more info see:
           # https://circleci.com/docs/2.0/collect-test-data/#jest
@@ -147,7 +147,7 @@ jobs:
           command: npm start
           background: true
       - run:
-          name: Run end-to-end tests
+          name: Run integration/end-to-end tests
           command: |
             $(npm bin)/cypress run --record false --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports
@@ -181,7 +181,7 @@ jobs:
           command: npm start
           background: true
       - run:
-          name: Run end-to-end tests (record)
+          name: Run integration/end-to-end tests, and record
           command: |
             $(npm bin)/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
       - *store_reports

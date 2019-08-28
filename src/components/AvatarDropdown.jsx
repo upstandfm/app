@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import useOutsideClicks from '../hooks/use-outside-clicks';
 import useMatchMedia from '../hooks/use-match-media';
@@ -12,8 +13,6 @@ import {
   ListItemText,
   Divider
 } from './Dropdown';
-
-import Avatar from './Avatar';
 
 const SMALL_SCREEN_MEDIA_QUERY = '(max-width: 550px)';
 const MEDIUM_SCREEN_MEDIA_QUERY = '(max-width: 1000px)';
@@ -51,6 +50,15 @@ const _getAlignOptions = (isSmallScreen, isMediumScreen) => {
   };
 };
 
+const Avatar = styled.img`
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  padding: 0;
+  vertical-align: middle;
+`;
+
 function AvatarDropdown({ logout, avatarUrl, fullName, email }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -71,14 +79,14 @@ function AvatarDropdown({ logout, avatarUrl, fullName, email }) {
   return (
     <Dropdown ref={dropdownEl}>
       <Trigger onClick={handleClick}>
-        <Avatar src={avatarUrl} alt="user avatar" />
+        <Avatar data-testid="avatar" src={avatarUrl} alt="user avatar" />
       </Trigger>
 
       <List isOpen={isOpen} {...alignOptions}>
         <ListItem viewOnly>
-          <ListItemText>{fullName}</ListItemText>
+          <ListItemText data-testid="full-name">{fullName}</ListItemText>
 
-          <ListItemText>{email}</ListItemText>
+          <ListItemText data-testid="email">{email}</ListItemText>
         </ListItem>
 
         <Divider />
