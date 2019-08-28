@@ -61,7 +61,7 @@ const Info = styled.div`
   height: 42px;
   border: 1px solid ${props => props.theme.accentColor};
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: #ffffff;
   font-size: 1.2em;
   font-weight: bold;
 `;

@@ -19,7 +19,7 @@ export const ContentSection = styled.section`
   margin: 1.5em 0 0 0;
   padding: 1.5em;
   border-radius: 26px;
-  background-color: var(--color-white);
+  background-color: #ffffff;
   color: ${props => props.theme.textColor};
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 `;

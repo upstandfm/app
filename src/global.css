@@ -16,19 +16,6 @@
     url('./fonts/fira-sans-v10-latin-700.woff2') format('woff2');
 }
 
-:root {
-  --color-black: #000000;
-  --color-light-grey: #eaeaea;
-  --color-white: #ffffff;
-  --color-dirty-white: #f8f5fd;
-  --color-purple: #341952;
-  --color-coral: #e96d77;
-  --color-blue: #438eb5;
-  --color-red: #f53a00;
-  --color-neon-blue: #01ffff;
-  --color-neon-pink: #ff01ff;
-}
-
 *,
 *:before,
 *:after {
@@ -46,7 +33,7 @@ body {
 
 a,
 a:visited {
-  color: var(--color-blue);
+  color: #438eb5;
   font-weight: bold;
 }
 

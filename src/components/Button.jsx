@@ -10,7 +10,7 @@ const _getBorder = props => {
 
 const _getBackgroundColor = props => {
   if (props.secondary) {
-    return 'var(--color-white)';
+    return '#ffffff';
   }
 
   if (props.danger) {
