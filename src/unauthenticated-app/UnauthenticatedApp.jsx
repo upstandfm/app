@@ -212,7 +212,7 @@ function UnauthenticatedApp() {
         </Section>
       </Main>
 
-      <Footer data-cy="footer" />
+      <Footer />
     </Container>
   );
 }

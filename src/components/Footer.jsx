@@ -79,9 +79,9 @@ const Misc = styled.div`
   opacity: 0.6;
 `;
 
-function Footer(props) {
+function Footer() {
   return (
-    <Container {...props}>
+    <Container>
       <Wrapper>
         <Brand>
           <Logo data-cy="logo" width="40px" />

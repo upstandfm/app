@@ -92,7 +92,7 @@ function LoginFailed({ errMessage, handleRetry }) {
         </Content>
       </Main>
 
-      <Footer data-cy="footer" />
+      <Footer />
     </Container>
   );
 }
