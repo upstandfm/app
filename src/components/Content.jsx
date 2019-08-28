@@ -10,7 +10,7 @@ export const ContentTitle = styled.h1`
   padding: 0.5em 0 0 0;
 `;
 
-export const ContentSubTitle = styled.h3`
+export const ContentSubtitle = styled.h3`
   margin: 0;
   padding: 0.5em 0 0 0;
 `;

@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import {
   Content,
   ContentTitle,
-  ContentSubTitle,
+  ContentSubtitle,
   ContentSection
 } from '../components/Content';
 
@@ -44,21 +44,22 @@ function LoginFailed({ errMessage, handleRetry }) {
     <Container>
       <Main>
         <Content>
-          <ContentTitle>Login failed</ContentTitle>
+          <ContentTitle data-cy="title">Login failed</ContentTitle>
 
-          <ContentSubTitle>
-            Something went wrong on my end, when trying to log you in.
-          </ContentSubTitle>
+          <ContentSubtitle data-cy="subtitle">
+            Something went wrong on my end when trying to log you in.
+          </ContentSubtitle>
 
           <ContentSection>
             <p>I encountered this error:</p>
 
-            <ErrMessage>{errMessage}</ErrMessage>
+            <ErrMessage data-cy="err-msg">{errMessage}</ErrMessage>
 
             <p>I have been notified, but please try again:</p>
 
             <Actions>
               <Button
+                data-cy="retry"
                 invertTextColor
                 onClick={handleRetry}
                 aria-label="login again"
@@ -69,7 +70,12 @@ function LoginFailed({ errMessage, handleRetry }) {
 
             <p>
               If retrying didn&apos;t work, please send an email to{' '}
-              <a href="mailto:support@upstand.fm?subject=Login error">
+              <a
+                data-cy="support"
+                href="mailto:support@upstand.fm?subject=Login error"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 support@upstand.fm
               </a>
               . I&apos;ll do my best to help as you as soon as possible.
