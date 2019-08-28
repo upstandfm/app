@@ -5,6 +5,10 @@ describe('Landing page', () => {
     cy.visit('/');
   });
 
+  it('shows splashscreen', () => {
+    cy.get('[data-cy="loading"]').should('have.text', 'loading app..');
+  });
+
   it('shows header logo', () => {
     cy.get('[data-cy="logo-with-name"]').should('exist');
   });
