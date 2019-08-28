@@ -13,10 +13,6 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-require('cypress-watch-and-reload/support');
+import 'cypress-watch-and-reload/support';
 
-// Import commands.js using ES2015 syntax:
-import './commands'; // eslint-disable-line import/first
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+import './commands';
