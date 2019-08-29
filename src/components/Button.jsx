@@ -48,9 +48,9 @@ const Button = styled.button`
   border-radius: 4px;
   outline: none;
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 0.025em;
   background-color: ${_getBackgroundColor};
   color: ${_getColor};

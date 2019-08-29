@@ -1,6 +1,7 @@
 // The color variables are defined in "/src/global.css"
 const theme = {
-  primaryColor: '#438eb5', // blue
+  primaryColor: '#3bce8c', // green
+  brandColor: '#e96d77', // coral
 
   primaryBackgroundColor: '#341952', // purple
   primaryForegroundColor: '#ffffff', // white

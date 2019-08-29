@@ -22,9 +22,10 @@ export const FOOTER_LINKS_BY_COLUMN = [
 ];
 
 const Container = styled.footer`
-  padding: 3em 0;
-  background-color: ${props => props.theme.primaryBackgroundColor};
-  color: ${props => props.theme.primaryForegroundColor};
+  padding: 4em 0;
+  background-color: ${props => props.theme.secondaryBackgroundColor};
+  color: ${props => props.theme.secondaryForegroundColor};
+  border-top: 2px solid ${props => props.theme.accentColor};
 `;
 
 const Wrapper = styled.div`
@@ -57,18 +58,19 @@ const Column = styled.div``;
 const Link = styled.a`
   display: block;
   padding: 0.5em 0;
+  text-decoration: none;
+  opacity: 0.6;
 
   && {
     font-weight: normal;
-    text-decoration: underline;
-    color: ${props => props.theme.primaryForegroundColor};
+    color: ${props => props.theme.secondaryForegroundColor};
 
     :hover {
-      text-decoration: none;
+      opacity: 1;
     }
 
     :visited {
-      color: ${props => props.theme.primaryForegroundColor};
+      color: ${props => props.theme.secondaryForegroundColor};
     }
   }
 `;

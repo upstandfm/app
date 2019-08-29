@@ -20,8 +20,9 @@ describe('Landing page', () => {
     );
   });
 
-  it('shows "get started" button', () => {
+  it('shows "get started" buttons', () => {
     cy.get('[data-cy="login"]').should('have.text', 'get started');
+    cy.get('[data-cy="login-branded"]').should('have.text', 'get started');
   });
 
   it('shows footer with logo, links and copyright', () => {

@@ -7,6 +7,7 @@ import { LogoWithName } from '../components/Logo';
 import { GlitchOnInterval } from '../components/Glitch';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
+import { SubtleWave, CurveRight } from '../components/WaveBorder';
 
 import {
   Container,
@@ -14,6 +15,7 @@ import {
   Main,
   Section,
   Center,
+  CenterText,
   Content,
   ContentHeader
 } from './Layout';
@@ -29,15 +31,9 @@ const Tagline = styled.h1`
   }
 `;
 
-const Intro = styled.div`
-  margin: 2em 0;
-  padding: 0 0 0 1em;
-  font-weight: bold;
-  border-left: 8px solid ${props => props.theme.primaryColor};
-
-  @media (max-width: 550px) {
-    font-size: 1.1em;
-  }
+const ButtonWithBrandColor = styled(Button)`
+  background-color: ${props => props.theme.brandColor};
+  margin: 1em 0;
 `;
 
 function UnauthenticatedApp() {
@@ -50,7 +46,7 @@ function UnauthenticatedApp() {
       </Header>
 
       <Main>
-        <Section>
+        <Section primary>
           <Center>
             <Tagline data-cy="tagline">
               Async{' '}
@@ -72,33 +68,29 @@ function UnauthenticatedApp() {
         </Section>
 
         <Section secondary>
-          <Content>
-            <Intro>
-              <p>
-                Hi there!{' '}
-                <span role="img" aria-label="waving hand">
-                  👋
-                </span>
-                <br />
-                I&apos;m building Upstand FM because I want to explore if
-                there&apos;s a better way to do standups when working remotely.
-              </p>
-            </Intro>
+          <SubtleWave />
 
-            <ContentHeader>Can I already use this?</ContentHeader>
+          <Content>
+            <ContentHeader large>Hi there!</ContentHeader>
 
             <p>
-              Not yet, but soon. Signups are <b>disabled</b> at the moment.
+              I&apos;m building Upstand FM because I want to explore if
+              there&apos;s a better way to do standups when working remotely.
             </p>
 
             <p>
-              I just started working on this and the app is not usable yet. But
-              if you&apos;d like access, learn more, or just say hello, send me
-              (Daniël) an email to{' '}
+              Signups are <b>disabled</b> at the moment, because I just started
+              working on this and the app is not usable yet. But if you&apos;d
+              like access, learn more, or just say hello, send me (Daniël) an
+              email to{' '}
               <a href="mailto:hi@upstand.fm?subject=Hi there!">hi@upstand.fm</a>
               .
             </p>
+          </Content>
+        </Section>
 
+        <Section>
+          <Content>
             <ContentHeader>What does "async" mean?</ContentHeader>
 
             <p>
@@ -208,6 +200,27 @@ function UnauthenticatedApp() {
             <p>
               Stay <b>tuned</b> for updates!
             </p>
+          </Content>
+        </Section>
+
+        <Section secondary>
+          <CurveRight />
+
+          <Content>
+            <CenterText>
+              <ContentHeader large>Ready to try Upstand FM?</ContentHeader>
+
+              <p>Signup or login.</p>
+
+              <ButtonWithBrandColor
+                data-cy="login-branded"
+                invertTextColor
+                onClick={login}
+                aria-label="get started"
+              >
+                get started
+              </ButtonWithBrandColor>
+            </CenterText>
           </Content>
         </Section>
       </Main>
