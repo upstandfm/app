@@ -113,7 +113,7 @@ function InfoDropdown() {
   return (
     <Dropdown ref={dropdownEl}>
       <Trigger onClick={handleClick}>
-        <Info>?</Info>
+        <Info data-testid="info">?</Info>
       </Trigger>
 
       <List isOpen={isOpen} {...alignOptions}>
