@@ -116,13 +116,12 @@ jobs:
           command: npm ci
       - run:
           name: Run unit/integration tests
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: 'reports/jest/test-report-junit.xml'
 
           # For more info see:
           # https://circleci.com/docs/2.0/collect-test-data/#jest
-          command: npm test -- --ci --runInBand --coverage --coverageDirectory reports/jest --reporters=jest-junit
-          when: always
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: 'reports/jest/test-report-junit.xml'
+          command: npm test -- --ci --runInBand --coverage --coverageDirectory reports/jest --reporters=default --reporters=jest-junit
       - *store_reports
       - *store_test_artifacts
 
