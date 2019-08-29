@@ -4,7 +4,7 @@ import { useAuth0, useUser } from '../auth0';
 
 import Button from '../components/Button';
 import AvatarDropdown from '../components/AvatarDropdown';
-import InfoDropdown from '../components/InfoDropDown';
+import InfoDropdown from '../components/InfoDropdown';
 
 import { Container, MenuBar, Profile, Menu, Misc, Main } from './Layout';
 
