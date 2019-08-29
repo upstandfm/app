@@ -90,9 +90,19 @@ Code is automatically formatted on commit with Prettier.
 
 ## Tests
 
-### End-to-end
+### Unit & integration
 
-[Cypress](https://www.cypress.io) is used to run end-to-end tests, and all test runs for the app can be viewed [here](https://dashboard.cypress.io/#/projects/b58xj4/runs).
+The [React Testing Library](https://github.com/testing-library/react-testing-library) is used together with [Testing Library Jest DOM](https://github.com/testing-library/jest-dom) to write unit- & integration tests.
+
+Test files are colocated with the implementation files. For example, the component `Button.jsx` will have a test file named `Button.spec.jsx` in the same dir.
+
+### Integration & end-to-end
+
+[Cypress](https://www.cypress.io) is used to run integration- & end-to-end tests, and records them.
+
+The recorded test runs can be viewed [here](https://dashboard.cypress.io/#/projects/b58xj4/runs).
+
+Test files can be found in `/cypress/integration`.
 
 ## CI/CD
 
