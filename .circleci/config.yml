@@ -122,7 +122,7 @@ jobs:
           command: npm test -- --ci --runInBand --coverage --coverageDirectory reports/jest --reporters=jest-junit
           when: always
           environment:
-            JEST_JUNIT_OUTPUT: 'reports/jest/test-report-junit.xml'
+            JEST_JUNIT_OUTPUT_DIR: 'reports/jest/test-report-junit.xml'
       - *store_reports
       - *store_test_artifacts
 
