@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { render } from '../test-utils';
-import theme from '../theme';
+import { render } from '../../test-utils';
+import theme from '../../theme';
 
 import Button from './Button';
 
@@ -30,9 +30,9 @@ describe('<Button />', () => {
     `);
   });
 
-  it('prop "secondary" renders correct theme colors', () => {
+  it('prop "common" renders correct theme colors', () => {
     const { getByTestId } = render(
-      <Button data-testid="btn" secondary>
+      <Button data-testid="btn" common>
         test
       </Button>
     );
