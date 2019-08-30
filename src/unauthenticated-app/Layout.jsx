@@ -61,9 +61,13 @@ export const Content = styled.div`
   margin: 0 auto;
 `;
 
+/**
+ * Large content header:
+ *  <ContentHeader large />
+ */
 export const ContentHeader = styled.h2`
   margin: 2em 0 0.5em 0;
-  font-size: ${props => (props.large ? '2em' : '1')};
+  font-size: ${props => (props.large ? '2em' : '')};
   font-weight: normal;
-  color: ${props => (props.large ? props.theme.brandColor : '#24b47e')};
+  color: #24b47e;
 `;

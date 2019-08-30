@@ -36,6 +36,10 @@ const ButtonWithBrandColor = styled(Button)`
   margin: 1em 0;
 `;
 
+const ContentHeaderWithBrandColor = styled(ContentHeader)`
+  color: ${props => props.theme.brandColor};
+`;
+
 function UnauthenticatedApp() {
   const { login } = useAuth0();
 
@@ -71,7 +75,7 @@ function UnauthenticatedApp() {
           <SubtleWave />
 
           <Content>
-            <ContentHeader large>Hi there!</ContentHeader>
+            <ContentHeaderWithBrandColor>Hi there!</ContentHeaderWithBrandColor>
 
             <p>
               I&apos;m building Upstand FM because I want to explore if
@@ -208,7 +212,9 @@ function UnauthenticatedApp() {
 
           <Content>
             <CenterText>
-              <ContentHeader large>Ready to try Upstand FM?</ContentHeader>
+              <ContentHeaderWithBrandColor large>
+                Ready to try Upstand FM?
+              </ContentHeaderWithBrandColor>
 
               <p>Signup or login.</p>
 

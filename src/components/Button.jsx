@@ -55,7 +55,7 @@ const Button = styled.button`
   background-color: ${_getBackgroundColor};
   color: ${_getColor};
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 
   :hover {
