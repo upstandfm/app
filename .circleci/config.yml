@@ -121,7 +121,7 @@ jobs:
 
           # For more info see:
           # https://circleci.com/docs/2.0/collect-test-data/#jest
-          command: npm test -- --ci --runInBand --coverage --coverageDirectory reports/jest --reporters=default --reporters=jest-junit
+          command: npm test -- --ci --runInBand --coverage --collectCoverageFrom='["src/**/*.{js,jsx}","!src/**/stories/*"]' --coverageDirectory reports/jest --reporters=default --reporters=jest-junit
       - *store_reports
       - *store_test_artifacts
 
