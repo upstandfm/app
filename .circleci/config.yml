@@ -21,25 +21,27 @@ docker_cy_image: &docker_cy_image
 
 # Caching, for more info see:
 # https://circleci.com/docs/2.0/caching/#section=projects
+#
+# Note that the CircleCI cache is immutable and there's not other way to
+# invalidate the cache besides using a different key. Therefore it's advised to
+# use some sort of version pre- or postfix in the.
+#
+# For more info see:
+# https://circleci.com/docs/2.0/caching/#clearing-cache
 restore_deps_cache: &restore_deps_cache
   restore_cache:
-    # CircleCI cache is immutable and there's not other way to invalidate
-    # the cache besides using a different key. Therefore it's advised to
-    # use some sort of version pre- or postfix in the.
-    # For more info see:
-    # https://circleci.com/docs/2.0/caching/#clearing-cache
     keys:
       - npm-cache-v1-{{ checksum "package-lock.json" }}
 
 restore_build_cache: &restore_build_cache
   restore_cache:
-    # CircleCI cache is immutable and there's not other way to invalidate
-    # the cache besides using a different key. Therefore it's advised to
-    # use some sort of version pre- or postfix in the.
-    # For more info see:
-    # https://circleci.com/docs/2.0/caching/#clearing-cache
     keys:
       - build-cache-v1-{{ .Revision }}
+
+restore_build_sb_cache: &restore_build_sb_cache
+  restore_cache:
+    keys:
+      - build-sb-cache-v1-{{ .Revision }}
 
 # Store reports in sub dirs, for more info see:
 # https://circleci.com/docs/2.0/configuration-reference/#store_test_results
@@ -56,6 +58,10 @@ store_test_artifacts: &store_test_artifacts
 store_build_artifacts: &store_build_artifacts
   store_artifacts:
     path: build
+
+store_build_sb_artifacts: &store_build_sb_artifacts
+  store_artifacts:
+    path: build-storybook
 
 # Job filters, for more info see:
 # https://circleci.com/docs/2.0/workflows/#branch-level-job-execution
@@ -88,18 +94,16 @@ jobs:
           name: Install dependencies
           command: npm ci
       - save_cache:
-          # CircleCI cache is immutable and there's not other way to invalidate
-          # the cache besides using a different key. Therefore it's advised to
-          # use some sort of version pre- or postfix in the.
-          # For more info see:
-          # https://circleci.com/docs/2.0/caching/#clearing-cache
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
 
           # "node_modules" should not be cached, because they contain compiled
-          # binaries, which will caus error when using different Node versions
-          # for example. The ".npm" dir also stores deps, but uncompiled.
+          # binaries, which will cause errors when using different Node versions
+          #
+          # The ".npm" dir also stores deps, but uncompiled.
+          #
           # Additionally, some binaries/executables are stord in ".cache" (like
           # "cypres").
+          #
           # For more info see:
           # https://docs.cypress.io/guides/guides/continuous-integration.html#Caching
           paths:
@@ -140,10 +144,11 @@ jobs:
           command: |
             $(npm bin)/cypress verify
 
-      # Cypress requires a local server to be running, to run tests
+      # Cypress requires a local server to be running, to be able to run tests
       - run:
           name: Start dev server
           command: npm start
+          # CircleCI will kill the server when tests have run
           background: true
       - run:
           name: Run integration/end-to-end tests
@@ -174,10 +179,11 @@ jobs:
           command: |
             $(npm bin)/cypress verify
 
-      # Cypress requires a local server to be running, to run tests
+      # Cypress requires a local server to be running, to be able to run tests
       - run:
           name: Start dev server
           command: npm start
+          # CircleCI will kill the server when tests have run
           background: true
       - run:
           name: Run integration/end-to-end tests, and record
@@ -206,15 +212,28 @@ jobs:
           name: Build app
           command: npm run build
       - save_cache:
-          # CircleCI cache is immutable and there's not other way to invalidate
-          # the cache besides using a different key. Therefore it's advised to
-          # use some sort of version pre- or postfix in the.
-          # For more info see:
-          # https://circleci.com/docs/2.0/caching/#clearing-cache
           key: build-cache-v1-{{ .Revision }}
           paths:
             - ./build
       - *store_build_artifacts
+
+  build-storybook:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_deps_cache
+      - *restore_build_sb_cache
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Build Storybook
+          command: npm run sb:build
+      - save_cache:
+          key: build-sb-cache-v1-{{ .Revision }}
+          paths:
+            - ./build-storybook
+      - *store_build_sb_artifacts
 
   release:
     <<: *docker_image
@@ -230,9 +249,27 @@ jobs:
       # See: https://discuss.circleci.com/t/using-environment-variables-in-config-yml-not-working/14237
       - run: echo 'export DEPLOY_MESSAGE="Deployed from CircleCI. See $CIRCLE_BUILD_URL"' >> $BASH_ENV
       - run:
-          name: Release to prod
+          name: Release app to prod
           command: |
             $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SITE_ID" --dir="$NETLIFY_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
+
+  release-storybook:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_deps_cache
+      - *restore_build_sb_cache
+      - run:
+          name: Install dependencies
+          command: npm ci
+
+      # This exposes: $DEPLOY_MESSAGE
+      # See: https://discuss.circleci.com/t/using-environment-variables-in-config-yml-not-working/14237
+      - run: echo 'export DEPLOY_MESSAGE="Deployed from CircleCI. See $CIRCLE_BUILD_URL"' >> $BASH_ENV
+      - run:
+          name: Release Storybook to prod
+          command: |
+            $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SB_SITE_ID" --dir="$NETLIFY_SB_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
 
 workflows:
   build_branch:
@@ -253,7 +290,16 @@ workflows:
             - audit
             - deps
             - test
+
+      # The builds are run in parallel
       - build:
+          <<: *all_branches_except_master
+          requires:
+            - audit
+            - deps
+            - test
+            - e2e
+      - build-storybook:
           <<: *all_branches_except_master
           requires:
             - audit
@@ -279,6 +325,8 @@ workflows:
             - audit
             - deps
             - test
+
+      # The builds are run in parallel
       - build:
           <<: *only_master
           requires:
@@ -286,6 +334,15 @@ workflows:
             - deps
             - test
             - e2e-record
+      - build-storybook:
+          <<: *only_master
+          requires:
+            - audit
+            - deps
+            - test
+            - e2e-record
+
+      # The releases are run in parallel
       - release:
           <<: *only_master
           requires:
@@ -294,3 +351,11 @@ workflows:
             - test
             - e2e-record
             - build
+      - release-storybook:
+          <<: *only_master
+          requires:
+            - audit
+            - deps
+            - test
+            - e2e-record
+            - build-storybook

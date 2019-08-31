@@ -74,13 +74,13 @@ Caveats:
 
 #### `npm run sb`
 
-Starts the Storybook locally.
+Starts the [Storybook](https://storybook.js.org) locally.
 
 This may (but doesn't have to) run together with `npm start` and/or `npm test`.
 
 #### `npm run sb:build`
 
-Builds the Storybook as a static web app, so it can be deployed.
+Builds the Storybook as a static website, so it can be deployed.
 
 ### Code linting
 
@@ -103,13 +103,15 @@ Code is automatically formatted on commit with Prettier.
 
 ## Storybook
 
-[Storybook](https://storybook.js.org) is used to help build components (component driven development), document components, and test components.
+[Storybook](https://storybook.js.org) is used to help build components (component driven development), document component APIs/usage, and test components.
 
-A live version can be found at [sb.upstand.fm](https://storybook.upstand.fm).
+Storybook files are colocated with the implementation files. For example, the component `Button.jsx` will have a Storybook file named `Button.stories.jsx` in the same dir.
+
+A live Storybook can be found at [storybook.upstand.fm](https://storybook.upstand.fm).
 
 ### v5.2
 
-Currently the `v5.2` release candidate is used to use some new Storybook features:
+Currently the `v5.2` release candidate is used, to use some new Storybook features:
 
 - [Component Story Format](https://medium.com/storybookjs/component-story-format-66f4c32366df)
 - [DocsPage](https://github.com/storybookjs/storybook/blob/next/addons/docs/docs/docspage.md)
@@ -140,12 +142,11 @@ Test files can be found in `/cypress/integration`.
 
 [CircleCI](https://circleci.com/gh/organizations/upstandfm) is used to:
 
-- audit npm dependencies for security vulnerabilities
-- run unit/integration tests
-- run integration/end-to-end tests
-- build and deploy the Storybook as an web app via [Netlify](https://app.netlify.com)
-- test app builds
-- deploy the app via Netlify
+- Audit npm dependencies for security vulnerabilities.
+- Run unit/integration tests (Jest).
+- Run integration/end-to-end tests (Cypress).
+- Builds apps (Storybook + app)
+- Deploy apps (Storybook + app) via [Netlify](https://app.netlify.com)
 
 ### Testing
 
@@ -155,25 +156,35 @@ The token can be found in the [Cypress dashboard](https://dashboard.cypress.io/#
 
 ### Netlify
 
-CircleCI requires a Netlify access token, site ID and publish directory to deploy the built files. These are configured as [environment variables](https://circleci.com/gh/upstandfm/app/edit#env-vars), and can be used in the `.circleci/config.yml` file.
+CircleCI requires a Netlify access token, site ID and publish directory to deploy the built files (Storybook + app). These are configured as [environment variables](https://circleci.com/gh/upstandfm/app/edit#env-vars):
 
 #### Token
 
-The Netlify access token can be found in the [1Password](https://1password.com/) "upstand.fm" vault under "Netlify access token for CircleCI".
+The Netlify access token can be found in the [1Password](https://1password.com/) "Upstand FM" vault under "Netlify access token for CircleCI".
 
 The token is configured in CircleCI as an environment variable named `NETLIFY_ACCESS_TOKEN`.
 
 #### Site ID
 
-The Netlify site ID (named "API ID" in the Netlify web app) can be found in the [settings page](https://app.netlify.com/sites/upstand-fm-app/settings/general) under `Settings > General > Site Details > Site Information`.
+There are 2 site IDs (Storybook + app) and their values are configured as env vars:
 
-The site ID is configured in CircleCI as an environment variable named `NETLIFY_SITE_ID`.
+| Type      | Description                                                                    | Env var name         | Netlify UI link                                                                                      |
+| --------- | ------------------------------------------------------------------------------ | -------------------- | ---------------------------------------------------------------------------------------------------- |
+| Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `NETLIFY_SB_SITE_ID` | [upstand-fm-storybook/settings](https://app.netlify.com/sites/upstand-fm-storybook/settings/general) |
+| App       | The web app, at [www.upstand.fm](https://www.upstand.fm).                      | `NETLIFY_SITE_ID`    | [upstand-fm-app/settings](https://app.netlify.com/sites/upstand-fm-app/settings/general)             |
+
+Note that the Netlify site ID is named "API ID" in the Netlify web app. And can be found under `Settings > General > Site Details > Site Information`.
 
 #### Publish directory
 
-The publish directory contains the files that Netlify must deploy. This is the output after running the `npm run build` command, which creates the directory `/build` by default.
+There are 2 publish directories (Storybook app + web app) and their values are configured as env vars:
 
-The publish directory is configured in CircleCI as an environment variable named `NETLIFY_PUBLISH_DIR`. It must have the value `build`.
+| Type      | Description                                                                    | Build command      | Publish directory | Env var name             |
+| --------- | ------------------------------------------------------------------------------ | ------------------ | ----------------- | ------------------------ |
+| Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `npm run sb:build` | `build-storybook` | `NETLIFY_SB_PUBLISH_DIR` |
+| App       | The web app, at [www.upstand.fm](https://www.upstand.fm).                      | `npm run build`    | `build`           | `NETLIFY_PUBLISH_DIR`    |
+
+Note that the publish directory is the "output" of running one of the build commands. A publish directory contains the files that Netlify must deploy.
 
 ## Configuration
 
@@ -182,7 +193,7 @@ The app is configured via `.env` files:
 - `.env.development` is the config required to run the app locally.
 - `.env.production` is the config required to run the app in production.
 
-_Note that these files should **NOT** contain secrets!_
+_Note that these files should **NOT** (and do not) contain secrets!_
 
 Both files must contain the following environment variables:
 
