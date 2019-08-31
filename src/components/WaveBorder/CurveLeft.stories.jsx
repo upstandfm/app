@@ -9,7 +9,7 @@ const Section = styled.div`
 `;
 
 export default {
-  title: 'components/CurveLeft',
+  title: 'components|WaveBorder/CurveLeft',
   component: CurveLeft,
   parameters: {
     componentSubtitle:

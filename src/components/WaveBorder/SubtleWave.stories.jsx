@@ -9,7 +9,7 @@ const Section = styled.div`
 `;
 
 export default {
-  title: 'components/SubtleWave',
+  title: 'components|WaveBorder/SubtleWave',
   component: SubtleWave,
   parameters: {
     componentSubtitle:

@@ -6,7 +6,7 @@ import Button from './Button';
 const handleClick = action('onClick');
 
 export default {
-  title: 'components/Button',
+  title: 'components|Button',
   component: Button,
   parameters: {
     componentSubtitle: 'For primary user actions'

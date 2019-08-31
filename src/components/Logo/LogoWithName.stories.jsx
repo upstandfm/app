@@ -9,7 +9,7 @@ const Header = styled.div`
 `;
 
 export default {
-  title: 'components/LogoWithName',
+  title: 'components|Logo/LogoWithName',
   component: LogoWithName,
   parameters: {
     componentSubtitle: 'For branding (use this in the header)'
