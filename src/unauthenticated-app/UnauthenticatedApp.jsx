@@ -7,7 +7,7 @@ import { LogoWithName } from '../components/Logo';
 import { GlitchOnInterval } from '../components/Glitch';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import { SubtleWave, CurveRight } from '../components/WaveBorder';
+import { SubtleWaveBorder, CurveRightBorder } from '../components/WaveBorder';
 
 import {
   Container,
@@ -72,7 +72,7 @@ function UnauthenticatedApp() {
         </Section>
 
         <Section secondary>
-          <SubtleWave />
+          <SubtleWaveBorder />
 
           <Content>
             <ContentHeaderWithBrandColor>Hi there!</ContentHeaderWithBrandColor>
@@ -208,7 +208,7 @@ function UnauthenticatedApp() {
         </Section>
 
         <Section secondary>
-          <CurveRight />
+          <CurveRightBorder />
 
           <Content>
             <CenterText>

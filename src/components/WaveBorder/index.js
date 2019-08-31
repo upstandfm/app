@@ -1,3 +1,3 @@
-export { default as SubtleWave } from './SubtleWave';
-export { default as CurveRight } from './CurveRight';
-export { default as CurveLeft } from './CurveLeft';
+export { default as SubtleWaveBorder } from './SubtleWaveBorder';
+export { default as CurveRightBorder } from './CurveRightBorder';
+export { default as CurveLeftCurveLeftBorder } from './CurveLeftBorder';

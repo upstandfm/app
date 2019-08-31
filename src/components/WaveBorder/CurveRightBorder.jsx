@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import curveLeft from './curve-left.svg';
+import curveRight from './curve-right.svg';
 
 const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateY(-77%);
+  transform: translateY(-80%);
   width: 100%;
 `;
 
@@ -15,12 +15,12 @@ const Img = styled.img`
   width: 100%;
 `;
 
-function CurveLeft() {
+function CurveRightBorder() {
   return (
     <Container>
-      <Img src={curveLeft} alt="curve left wave border" />
+      <Img src={curveRight} alt="curve right wave border" />
     </Container>
   );
 }
 
-export default CurveLeft;
+export default CurveRightBorder;
