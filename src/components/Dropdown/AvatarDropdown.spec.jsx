@@ -31,7 +31,8 @@ describe('<AvatarDropdown />', () => {
         class="sc-bdVaJa EXKLM"
       >
         <button
-          class="sc-bwzfXH fwseSd"
+          aria-label="click here to see your profile or logout"
+          class="sc-bwzfXH hjHGyr"
         >
           <img
             alt="user avatar"
@@ -41,7 +42,7 @@ describe('<AvatarDropdown />', () => {
           />
         </button>
         <ul
-          class="sc-htpNat ihyjJb"
+          class="sc-htpNat hSMUmh"
         >
           <li
             class="sc-bxivhb fxXJup"
@@ -64,6 +65,8 @@ describe('<AvatarDropdown />', () => {
           />
           <li
             class="sc-bxivhb fEiFpP"
+            role="button"
+            tabindex="0"
           >
             Logout
           </li>

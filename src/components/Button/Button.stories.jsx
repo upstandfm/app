@@ -22,7 +22,7 @@ export const DefaultButton = () => {
 };
 
 DefaultButton.story = {
-  name: '(default) invertTextColor'
+  name: 'default + invertTextColor'
 };
 
 export const CommonButton = () => {

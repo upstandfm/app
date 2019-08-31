@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Dropdown = styled.div`
@@ -8,7 +9,6 @@ export const Trigger = styled.button`
   display: block;
   padding: 0;
   margin: 0 auto;
-  outline: 0;
   border: 0;
   background: none;
   color: inherit;
@@ -21,38 +21,47 @@ export const Trigger = styled.button`
 `;
 
 /**
- * Show List:
+ * Show list:
  *  <List isOpen={true} />
  *
- * Hide List:
+ * Hide list:
  *  <List isOpen={false} />
  *
- * Align List top right:
- *  <List top="60px" />
- *  <List right="15px" />
+ * Open list up:
+ *  <List dropDirection="up" />
  *
- * Align List bottom left:
- *  <List bottom="15px" />
- *  <List left="165px" />
+ * Open list down:
+ *  <List dropDirection="down" />
+ *
+ * Align list left:
+ *  <List alignSelf="left" />
+ *
+ * Align list right:
+ *  <List alignSelf="right" />
  */
 export const List = styled.ul`
   list-style: none;
   position: absolute;
-  top: ${props => props.top};
-  right: ${props => props.right};
-  bottom: ${props => props.bottom};
-  left: ${props => props.left};
   z-index: 999;
-  margin: 0;
+  margin: 0.25em 0;
   padding: 0.5em 0;
   min-width: 240px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid ${props => props.theme.accentColor};
-  border-radius: 8px;
   background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid ${props => props.theme.accentColor};
   opacity: ${props => (props.isOpen ? 1 : 0)};
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
+  bottom: ${props => (props.dropDirection === 'up' ? '100%' : '')};
+  top: ${props => (props.dropDirection === 'down' ? '100%' : '')};
+  left: ${props => (props.alignSelf === 'left' ? '0' : '')};
+  right: ${props => (props.alignSelf === 'right' ? '0' : '')};
 `;
+
+List.propTypes = {
+  dropDirection: PropTypes.oneOf(['up', 'down']),
+  alignSelf: PropTypes.oneOf(['left', 'right'])
+};
 
 const _getListItemBackgroundColor = props => {
   if (props.viewOnly) {
@@ -80,6 +89,10 @@ export const ListItem = styled.li`
     background-color: ${_getListItemBackgroundColor};
   }
 `;
+
+ListItem.propTypes = {
+  viewOnly: PropTypes.bool
+};
 
 export const ListItemText = styled.span`
   display: block;

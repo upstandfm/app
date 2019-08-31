@@ -12,26 +12,29 @@ describe('<InfoDropdown />', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="sc-bdVaJa EXKLM"
+        class="sc-dnqmqq hHLyWY"
       >
         <button
-          class="sc-bwzfXH fwseSd"
+          aria-label="click here to find out more about the app"
+          class="sc-iwsKbI UcRNw"
         >
           <div
-            class="sc-jzJRlG ghnVpa"
+            class="sc-jzJRlG xdtnU"
             data-testid="info"
           >
             ?
           </div>
         </button>
         <ul
-          class="sc-htpNat YshEA"
+          class="sc-gZMcBi gNqGMa"
         >
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href=""
               rel="noopener noreferrer"
               target="_blank"
@@ -40,10 +43,12 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href=""
               rel="noopener noreferrer"
               target="_blank"
@@ -52,10 +57,12 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href=""
               rel="noopener noreferrer"
               target="_blank"
@@ -64,13 +71,15 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <div
-            class="sc-bZQynM bncdIP"
+            class="sc-fjdhpX gxfFsG"
           />
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href="mailto:hi@upstand.fm?subject=Hi there!"
               rel="noopener noreferrer"
               target="_blank"
@@ -79,10 +88,12 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href="https://danillouz.dev"
               rel="noopener noreferrer"
               target="_blank"
@@ -91,10 +102,12 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href="https://blog.danillouz.dev"
               rel="noopener noreferrer"
               target="_blank"
@@ -103,13 +116,15 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <div
-            class="sc-bZQynM bncdIP"
+            class="sc-fjdhpX gxfFsG"
           />
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href="https://github.com/upstandfm"
               rel="noopener noreferrer"
               target="_blank"
@@ -118,10 +133,12 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href="https://storybook.upstand.fm"
               rel="noopener noreferrer"
               target="_blank"
@@ -130,10 +147,12 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-gqjmRU FMMKS"
+            role="button"
+            tabindex="0"
           >
             <a
-              class="sc-EHOje dlBFvZ"
+              class="sc-jTzLTM jjIlLg"
               href="https://twitter.com/danillouz"
               rel="noopener noreferrer"
               target="_blank"
@@ -142,13 +161,14 @@ describe('<InfoDropdown />', () => {
             </a>
           </li>
           <div
-            class="sc-bZQynM bncdIP"
+            class="sc-fjdhpX gxfFsG"
           />
           <li
-            class="sc-bxivhb fxXJup"
+            class="sc-gqjmRU hkoqfC"
+            tabindex="-1"
           >
             <span
-              class="sc-ifAKCX hmSwGL"
+              class="sc-VigVT jRsTOZ"
             >
               <span>
                 © 

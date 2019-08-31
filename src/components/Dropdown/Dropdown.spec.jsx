@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { render } from '../test-utils';
-import theme from '../theme';
+import { render } from '../../test-utils';
+import theme from '../../theme';
 
 import { List } from './Dropdown';
 
@@ -28,23 +28,6 @@ describe('Dropdown', () => {
 
       expect(getByTestId('list')).toHaveStyle(`
         opacity: 1;
-      `);
-    });
-
-    it('props "top", "right", "bottom" and "left" adjust positioning', () => {
-      const pos = {
-        top: '1px',
-        right: '1px',
-        bottom: '1px',
-        left: '1px'
-      };
-      const { getByTestId } = render(<List data-testid="list" {...pos} />);
-
-      expect(getByTestId('list')).toHaveStyle(`
-        top: ${pos.top};
-        right: ${pos.right};
-        bottom: ${pos.bottom};
-        left: ${pos.left};
       `);
     });
   });
