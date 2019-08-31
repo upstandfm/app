@@ -8,15 +8,9 @@ const Img = styled.img`
   display: inline-block;
   margin: 0;
   padding: 0;
-  max-width: ${props => (props.width ? '' : '160px')};
+  max-width: ${props => props.width};
 `;
 
-/**
- * "LogoWithName" defaults to a maximum width of 160px, but this can be
- * overridden:
- *
- *  <LogoWithName width="512px" />
- */
 function LogoWithName(props) {
   return (
     <Img
@@ -32,4 +26,11 @@ LogoWithName.propTypes = {
   width: PropTypes.string
 };
 
+LogoWithName.defaultProps = {
+  width: '160px'
+};
+
+/**
+ * Upstand FM logo with brand name.
+ */
 export default LogoWithName;

@@ -13,7 +13,7 @@ export default {
   }
 };
 
-export const defaultButton = () => {
+export const DefaultButton = () => {
   return (
     <Button onClick={handleClick} invertTextColor>
       click me
@@ -21,11 +21,11 @@ export const defaultButton = () => {
   );
 };
 
-defaultButton.story = {
+DefaultButton.story = {
   name: '(default) invertTextColor'
 };
 
-export const commonButton = () => {
+export const CommonButton = () => {
   return (
     <Button onClick={handleClick} common>
       click me
@@ -33,11 +33,11 @@ export const commonButton = () => {
   );
 };
 
-commonButton.story = {
+CommonButton.story = {
   name: 'common'
 };
 
-export const dangerButton = () => {
+export const DangerButton = () => {
   return (
     <Button onClick={handleClick} danger invertTextColor>
       click me
@@ -45,6 +45,6 @@ export const dangerButton = () => {
   );
 };
 
-dangerButton.story = {
+DangerButton.story = {
   name: 'danger + invertTextColor'
 };
