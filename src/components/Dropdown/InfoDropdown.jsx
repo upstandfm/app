@@ -85,7 +85,7 @@ function InfoDropdown({ dropDirection, alignSelf }) {
       <List isOpen={isOpen} dropDirection={dropDirection} alignSelf={alignSelf}>
         {renderLinks()}
 
-        <ListItem viewOnly tabIndex="-1">
+        <ListItem viewOnly>
           <ListItemText>
             <Copyright />
           </ListItemText>

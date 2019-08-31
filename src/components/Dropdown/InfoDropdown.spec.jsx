@@ -34,7 +34,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href=""
               rel="noopener noreferrer"
               target="_blank"
@@ -48,7 +48,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href=""
               rel="noopener noreferrer"
               target="_blank"
@@ -62,7 +62,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href=""
               rel="noopener noreferrer"
               target="_blank"
@@ -79,7 +79,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href="mailto:hi@upstand.fm?subject=Hi there!"
               rel="noopener noreferrer"
               target="_blank"
@@ -93,7 +93,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href="https://danillouz.dev"
               rel="noopener noreferrer"
               target="_blank"
@@ -107,7 +107,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href="https://blog.danillouz.dev"
               rel="noopener noreferrer"
               target="_blank"
@@ -124,7 +124,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href="https://github.com/upstandfm"
               rel="noopener noreferrer"
               target="_blank"
@@ -138,7 +138,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href="https://storybook.upstand.fm"
               rel="noopener noreferrer"
               target="_blank"
@@ -152,7 +152,7 @@ describe('<InfoDropdown />', () => {
             tabindex="0"
           >
             <a
-              class="sc-jTzLTM jjIlLg"
+              class="sc-jTzLTM kUoyJT"
               href="https://twitter.com/danillouz"
               rel="noopener noreferrer"
               target="_blank"
@@ -165,7 +165,6 @@ describe('<InfoDropdown />', () => {
           />
           <li
             class="sc-gqjmRU hkoqfC"
-            tabindex="-1"
           >
             <span
               class="sc-VigVT jRsTOZ"

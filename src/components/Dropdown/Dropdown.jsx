@@ -101,6 +101,7 @@ export const ListItemText = styled.span`
 
 export const ListItemLink = styled.a`
   display: block;
+  outline: 0;
 
   && {
     color: inherit;
