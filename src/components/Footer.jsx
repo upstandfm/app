@@ -12,11 +12,12 @@ export const FOOTER_LINKS_BY_COLUMN = [
   ],
   [
     { name: 'Say hi!', href: 'mailto:hi@upstand.fm?subject=Hi there!' },
-    { name: 'About', href: 'https://danillouz.dev' }
+    { name: 'About', href: 'https://danillouz.dev' },
+    { name: 'Blog', href: 'https://blog.danillouz.dev' }
   ],
   [
-    { name: 'Blog', href: 'https://blog.danillouz.dev' },
     { name: 'GitHub', href: 'https://github.com/upstandfm' },
+    { name: 'Storybook', href: 'https://storybook.upstand.fm' },
     { name: 'Twitter', href: 'https://twitter.com/danillouz' }
   ]
 ];

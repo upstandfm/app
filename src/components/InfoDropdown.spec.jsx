@@ -90,9 +90,6 @@ describe('<InfoDropdown />', () => {
               About
             </a>
           </li>
-          <div
-            class="sc-bZQynM bncdIP"
-          />
           <li
             class="sc-bxivhb fEiFpP"
           >
@@ -105,6 +102,9 @@ describe('<InfoDropdown />', () => {
               Blog
             </a>
           </li>
+          <div
+            class="sc-bZQynM bncdIP"
+          />
           <li
             class="sc-bxivhb fEiFpP"
           >
@@ -115,6 +115,18 @@ describe('<InfoDropdown />', () => {
               target="_blank"
             >
               GitHub
+            </a>
+          </li>
+          <li
+            class="sc-bxivhb fEiFpP"
+          >
+            <a
+              class="sc-EHOje dlBFvZ"
+              href="https://storybook.upstand.fm"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Storybook
             </a>
           </li>
           <li

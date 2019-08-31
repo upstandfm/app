@@ -71,6 +71,11 @@ describe('Login failed', () => {
       .should('have.attr', 'href', 'https://github.com/upstandfm')
       .should('have.attr', 'target', '_blank')
       .should('have.attr', 'rel', 'noopener noreferrer');
+    cy.get('[data-cy="Storybook"]')
+      .should('have.text', 'Storybook')
+      .should('have.attr', 'href', 'https://storybook.upstand.fm')
+      .should('have.attr', 'target', '_blank')
+      .should('have.attr', 'rel', 'noopener noreferrer');
     cy.get('[data-cy="Twitter"]')
       .should('have.text', 'Twitter')
       .should('have.attr', 'href', 'https://twitter.com/danillouz')
