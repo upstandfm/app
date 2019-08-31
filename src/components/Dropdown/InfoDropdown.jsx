@@ -106,6 +106,6 @@ InfoDropdown.defaultProps = {
 };
 
 /**
- * Dropdown menu, using an avatar image as the trigger.
+ * Dropdown menu, using an info button as the trigger.
  */
 export default InfoDropdown;

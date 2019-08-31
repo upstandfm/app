@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Button from '../components/Button';
-
-import {
-  Content,
-  ContentTitle,
-  ContentSubtitle,
-  ContentSection
-} from '../components/Content';
-
+import Content from '../components/Content';
 import Footer from '../components/Footer';
 
 const Container = styled.div`
@@ -43,52 +36,47 @@ function LoginFailed({ errMessage, handleRetry }) {
   return (
     <Container>
       <Main>
-        <Content>
-          <ContentTitle data-cy="title">Login failed</ContentTitle>
+        <Content
+          title="Login failed"
+          subtitle="Something went wrong on my end when trying to log you in."
+        >
+          <p>I encountered this error:</p>
 
-          <ContentSubtitle data-cy="subtitle">
-            Something went wrong on my end when trying to log you in.
-          </ContentSubtitle>
+          <ErrMessage data-cy="err-msg">{errMessage}</ErrMessage>
 
-          <ContentSection>
-            <p>I encountered this error:</p>
+          <p>I have been notified, but please try again:</p>
 
-            <ErrMessage data-cy="err-msg">{errMessage}</ErrMessage>
+          <Actions>
+            <Button
+              data-cy="retry"
+              invertTextColor
+              onClick={handleRetry}
+              aria-label="login again"
+            >
+              login again
+            </Button>
+          </Actions>
 
-            <p>I have been notified, but please try again:</p>
+          <p>
+            If retrying didn&apos;t work, please send an email to{' '}
+            <a
+              data-cy="support"
+              href="mailto:support@upstand.fm?subject=Login error"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              support@upstand.fm
+            </a>
+            . I&apos;ll do my best to help as you as soon as possible.
+          </p>
 
-            <Actions>
-              <Button
-                data-cy="retry"
-                invertTextColor
-                onClick={handleRetry}
-                aria-label="login again"
-              >
-                login again
-              </Button>
-            </Actions>
-
-            <p>
-              If retrying didn&apos;t work, please send an email to{' '}
-              <a
-                data-cy="support"
-                href="mailto:support@upstand.fm?subject=Login error"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                support@upstand.fm
-              </a>
-              . I&apos;ll do my best to help as you as soon as possible.
-            </p>
-
-            <p>
-              I apologize{' '}
-              <span role="img" aria-label="hands pressed together">
-                🙏
-              </span>{' '}
-              for this inconvenience.
-            </p>
-          </ContentSection>
+          <p>
+            I apologize{' '}
+            <span role="img" aria-label="hands pressed together">
+              🙏
+            </span>{' '}
+            for this inconvenience.
+          </p>
         </Content>
       </Main>
 
