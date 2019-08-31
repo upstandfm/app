@@ -10,21 +10,13 @@ import theme from '../src/theme';
 import sbTheme from './theme';
 
 const Container = styled.div`
-  height: 100vh;
-  display: grid;
-  background-color: ${props => props.theme.secondaryBackgroundColor};
-`;
-
-const Center = styled.div`
-  margin: auto;
+  padding: 1em;
 `;
 
 addDecorator(storyFn => {
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <Center>{storyFn()}</Center>
-      </Container>
+      <Container>{storyFn()}</Container>
     </ThemeProvider>
   );
 });
