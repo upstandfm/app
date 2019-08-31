@@ -177,7 +177,7 @@ Note that the Netlify site ID is named "API ID" in the Netlify web app. And can 
 
 #### Publish directory
 
-There are 2 publish directories (Storybook app + web app) and their values are configured as env vars:
+There are 2 publish directories (Storybook + app) and their values are configured as env vars:
 
 | Type      | Description                                                                    | Build command      | Publish directory | Env var name             |
 | --------- | ------------------------------------------------------------------------------ | ------------------ | ----------------- | ------------------------ |
