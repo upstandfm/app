@@ -3,7 +3,7 @@ const theme = {
   primaryColor: '#39c385', // green, dark-green is "#24b47e"
   brandColor: '#e96d77', // coral
 
-  primaryBackgroundColor: '#341952', // purple
+  primaryBackgroundColor: '#422b77', // purple
   primaryForegroundColor: '#ffffff', // white
 
   secondaryBackgroundColor: '#f8f5fd', // dirty-white

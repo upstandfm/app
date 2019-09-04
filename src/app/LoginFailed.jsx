@@ -4,18 +4,16 @@ import styled from 'styled-components';
 
 import Button from '../components/Button';
 import Content from '../components/Content';
-import Footer from '../components/Footer';
 
 const Container = styled.div`
   height: 100vh;
 `;
 
-const Main = styled.main`
+const Main = styled.div`
   min-height: 100vh;
   background-color: ${props => props.theme.secondaryBackgroundColor};
   color: ${props => props.theme.secondaryForegroundColor};
   margin: 0 auto;
-  padding: 1em;
 `;
 
 const ErrMessage = styled.pre`
@@ -79,8 +77,6 @@ function LoginFailed({ errMessage, handleRetry }) {
           </p>
         </Content>
       </Main>
-
-      <Footer />
     </Container>
   );
 }

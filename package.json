@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/upstandfm/app/issues"
   },
-  "homepage": "https://www.upstand.fm",
+  "homepage": "https://app.upstand.fm",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -38,7 +38,7 @@
     ]
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css,md}": [
+    "src/**/*.{js,jsx,json,css,md,html}": [
       "prettier --single-quote --write",
       "git add"
     ]

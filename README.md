@@ -48,8 +48,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The build is minified and the filenames include the hashes.
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
@@ -134,7 +133,7 @@ Test files are colocated with the implementation files. For example, the compone
 
 [Cypress](https://www.cypress.io) is used to run integration- & end-to-end tests, and records them.
 
-The recorded test runs can be viewed [here](https://dashboard.cypress.io/#/projects/b58xj4/runs).
+The recorded test runs can be viewed [here](https://dashboard.cypress.io/#/projects/b58xj4/runs). The logs are public, but you need a Cypress account view them.. 🤣
 
 Test files can be found in `/cypress/integration`.
 
@@ -145,8 +144,8 @@ Test files can be found in `/cypress/integration`.
 - Audit npm dependencies for security vulnerabilities.
 - Run unit/integration tests (Jest).
 - Run integration/end-to-end tests (Cypress).
-- Builds apps (Storybook + app)
-- Deploy apps (Storybook + app) via [Netlify](https://app.netlify.com)
+- Build Storybook and app
+- Deploy Storybook and app via [Netlify](https://app.netlify.com)
 
 ### Testing
 
@@ -171,7 +170,7 @@ There are 2 site IDs (Storybook + app) and their values are configured as env va
 | Type      | Description                                                                    | Env var name         | Netlify UI link                                                                                      |
 | --------- | ------------------------------------------------------------------------------ | -------------------- | ---------------------------------------------------------------------------------------------------- |
 | Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `NETLIFY_SB_SITE_ID` | [upstand-fm-storybook/settings](https://app.netlify.com/sites/upstand-fm-storybook/settings/general) |
-| App       | The web app, at [www.upstand.fm](https://www.upstand.fm).                      | `NETLIFY_SITE_ID`    | [upstand-fm-app/settings](https://app.netlify.com/sites/upstand-fm-app/settings/general)             |
+| App       | The web app, at [app.upstand.fm](https://app.upstand.fm).                      | `NETLIFY_SITE_ID`    | [upstand-fm-app/settings](https://app.netlify.com/sites/upstand-fm-app/settings/general)             |
 
 Note that the Netlify site ID is named "API ID" in the Netlify web app. And can be found under `Settings > General > Site Details > Site Information`.
 
@@ -182,7 +181,7 @@ There are 2 publish directories (Storybook + app) and their values are configure
 | Type      | Description                                                                    | Build command      | Publish directory | Env var name             |
 | --------- | ------------------------------------------------------------------------------ | ------------------ | ----------------- | ------------------------ |
 | Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `npm run sb:build` | `build-storybook` | `NETLIFY_SB_PUBLISH_DIR` |
-| App       | The web app, at [www.upstand.fm](https://www.upstand.fm).                      | `npm run build`    | `build`           | `NETLIFY_PUBLISH_DIR`    |
+| App       | The web app, at [app.upstand.fm](https://app.upstand.fm).                      | `npm run build`    | `build`           | `NETLIFY_PUBLISH_DIR`    |
 
 Note that the publish directory is the "output" of running one of the build commands. A publish directory contains the files that Netlify must deploy.
 
@@ -201,7 +200,7 @@ Both files must contain the following environment variables:
 | ---------------------------- | -------- | ------------------------------------------------------------------------------------------------------- |
 | REACT_APP_AUTH0_DOMAIN       | Yes      | The Auth0 tenant domain name.                                                                           |
 | REACT_APP_AUTH0_CLIENT_ID    | Yes      | The application client ID as configured in Auth0.                                                       |
-| REACT_APP_AUTH0_REDIRECT_URI | Yes      | Set to `http://localhost:3000` for dev. And `https://www.upstand.fm` for prod.                          |
+| REACT_APP_AUTH0_REDIRECT_URI | Yes      | Set to `http://localhost:3000` for dev. And `https://app.upstand.fm` for prod.                          |
 | REACT_APP_AUTH0_LOGOUT_URL   | Yes      | Should match the `REACT_APP_AUTH0_REDIRECT_URI` value.                                                  |
 | REACT_APP_AUTH0_AUDIENCE     | Yes      | The audience for which the issued token is intended. Set this to `https://api.upstand.fm`.              |
 | REACT_APP_AUTH0_SCOPE        | Yes      | The OAuth scopes that are requested on behalf of the user. And which are "evaluated" by the "audience". |
@@ -224,10 +223,6 @@ See the [design assets](https://github.com/upstandfm/design-assets) for more inf
 [Fira Sans](https://fonts.google.com/specimen/Fira+Sans) is used:
 
 - Regular (400)
-- Bold (700)
+- Bold (600)
 
 They can be found in `src/fonts`.
-
-#### Layout
-
-The app layout is inspired by [Slack's](https://slack.com) sidebar layout.
