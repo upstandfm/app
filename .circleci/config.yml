@@ -43,26 +43,6 @@ restore_build_sb_cache: &restore_build_sb_cache
     keys:
       - build-sb-cache-v1-{{ .Revision }}
 
-# Store reports in sub dirs, for more info see:
-# https://circleci.com/docs/2.0/configuration-reference/#store_test_results
-store_reports: &store_reports
-  store_test_results:
-    path: reports
-
-# Store artifacts in sub dirs, for more info see:
-# https://circleci.com/docs/2.0/configuration-reference/#store_artifacts
-store_test_artifacts: &store_test_artifacts
-  store_artifacts:
-    path: reports
-
-store_build_artifacts: &store_build_artifacts
-  store_artifacts:
-    path: build
-
-store_build_sb_artifacts: &store_build_sb_artifacts
-  store_artifacts:
-    path: build-storybook
-
 # Job filters, for more info see:
 # https://circleci.com/docs/2.0/workflows/#branch-level-job-execution
 all_branches_except_master: &all_branches_except_master
@@ -126,8 +106,10 @@ jobs:
           # For more info see:
           # https://circleci.com/docs/2.0/collect-test-data/#jest
           command: npm test -- --ci --runInBand --coverage --collectCoverageFrom='["src/**/*.{js,jsx}","!src/**/stories/*"]' --coverageDirectory reports/jest --reporters=default --reporters=jest-junit
-      - *store_reports
-      - *store_test_artifacts
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
 
   e2e:
     <<: *docker_cy_image
@@ -154,8 +136,6 @@ jobs:
           name: Run integration/end-to-end tests
           command: |
             $(npm bin)/cypress run --record false --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
-      - *store_reports
-      - *store_test_artifacts
 
       # CircleCI does not support multiple artifact paths, so they must be
       # stored as separate steps
@@ -189,8 +169,6 @@ jobs:
           name: Run integration/end-to-end tests, and record
           command: |
             $(npm bin)/cypress run --group "All tests" --record --key "$CYPRESS_RECORD_KEY" --reporter junit --reporter-options "mochaFile=$MOCHA_FILE"
-      - *store_reports
-      - *store_test_artifacts
 
       # CircleCI does not support multiple artifact paths, so they must be
       # stored as separate steps
@@ -215,7 +193,8 @@ jobs:
           key: build-cache-v1-{{ .Revision }}
           paths:
             - ./build
-      - *store_build_artifacts
+      - store_artifacts:
+          path: build
 
   build-storybook:
     <<: *docker_image
@@ -233,7 +212,8 @@ jobs:
           key: build-sb-cache-v1-{{ .Revision }}
           paths:
             - ./build-storybook
-      - *store_build_sb_artifacts
+      - store_artifacts:
+          path: build-storybook
 
   release:
     <<: *docker_image
