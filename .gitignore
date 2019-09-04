@@ -71,3 +71,6 @@ cypress/screenshots
 
 # Storybook
 build-storybook
+
+# Netlify
+.netlify
