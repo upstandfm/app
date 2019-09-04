@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import logo from './logo-with-name.svg';
 
 const Img = styled.img`
-  display: inline-block;
+  display: block;
   margin: 0;
   padding: 0;
   max-width: ${props => props.width};

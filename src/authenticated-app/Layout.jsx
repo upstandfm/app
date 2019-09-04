@@ -4,71 +4,62 @@ export const Container = styled.div`
   height: 100vh;
   display: grid;
   grid-template-areas:
-    'menubar main'
-    'menubar main';
-  grid-template-columns: 220px 1fr;
-  grid-template-rows: 1fr;
+    'header'
+    'main';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 770px) {
     grid-template-areas:
-      'menubar menubar'
-      'main    main';
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+      'header'
+      'main'
+      'footer';
+    grid-template-rows: auto 1fr auto;
   }
 `;
 
-export const MenuBar = styled.div`
-  grid-area: menubar;
+export const Header = styled.header`
+  grid-area: header;
   display: grid;
-  grid-template-areas:
-    'profile'
-    'menu'
-    'misc';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  grid-gap: 1.5em;
+  grid-template-areas: 'brand actions profile';
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr;
   align-items: center;
-  margin: 0;
-  padding: 1em 0;
+  padding: 1em;
   background-color: ${props => props.theme.primaryBackgroundColor};
-  border-right: 1px solid ${props => props.theme.accentColor};
+`;
 
-  @media (max-width: 1000px) {
-    grid-template-areas: 'profile menu misc';
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: 1fr;
-    border-right: none;
-    border-bottom: 1px solid ${props => props.theme.accentColor};
-  }
+export const Brand = styled.div`
+  grid-area: brand;
+`;
 
-  @media (max-width: 550px) {
-    grid-template-areas:
-      'profile'
-      'menu'
-      'misc';
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+export const Actions = styled.div`
+  grid-area: actions;
+  display: grid;
+  justify-items: center;
+
+  @media (max-width: 770px) {
+    display: none;
   }
 `;
 
 export const Profile = styled.section`
   grid-area: profile;
-  padding: 0 1em;
-`;
-
-export const Menu = styled.section`
-  grid-area: menu;
-  margin: 0 auto;
-  padding: 0 1em;
-`;
-
-export const Misc = styled.section`
-  grid-area: misc;
-  padding: 0 1em;
 `;
 
 export const Main = styled.main`
   grid-area: main;
   overflow: auto;
+`;
+
+export const Footer = styled.footer`
+  grid-area: footer;
+  display: none;
+  padding: 1em;
+  background-color: ${props => props.theme.primaryBackgroundColor};
+
+  @media (max-width: 770px) {
+    display: grid;
+    justify-items: center;
+  }
 `;
