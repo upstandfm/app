@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "description": "Upstand web application.",
+  "description": "Upstand FM web application.",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@auth0/auth0-spa-js": "^1.2.3",
+    "@percy/storybook": "^3.2.0",
     "@storybook/addon-a11y": "^5.2.0-rc.5",
     "@storybook/addon-actions": "^5.2.0-rc.5",
     "@storybook/addon-docs": "^5.2.0-rc.5",

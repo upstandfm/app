@@ -6,7 +6,9 @@
 
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://storybook.upstand.fm)
 
-Upstand web application.
+[![Percy](https://percy.io/static/images/percy-badge.svg)](https://percy.io/upstand-fm/app)
+
+Upstand FM web application.
 
 - [Create React App](#create-react-app)
 - [Storybook](#storybook)
@@ -137,6 +139,14 @@ The recorded test runs can be viewed [here](https://dashboard.cypress.io/#/proje
 
 Test files can be found in `/cypress/integration`.
 
+### Visual regression testing
+
+[Percy](https://percy.io) is used for visually testing/reviewing changes made to components. This is done by taking "snapshots" of components and "diffing" them, whenever a GitHub Pull Request is made.
+
+Percy has been setup together with Storybook, so it captures each story.
+
+The builds/snapshots are public and can be viewed [here](https://percy.io/upstand-fm/app).
+
 ## CI/CD
 
 [CircleCI](https://circleci.com/gh/organizations/upstandfm) is used to:
@@ -145,13 +155,22 @@ Test files can be found in `/cypress/integration`.
 - Run unit/integration tests (Jest).
 - Run integration/end-to-end tests (Cypress).
 - Build Storybook and app
+- Run visual regression tests
 - Deploy Storybook and app via [Netlify](https://app.netlify.com)
 
 ### Testing
 
+#### Cypress
+
 CircleCI requires a Cypress token to record tests and store screenshots.
 
 The token can be found in the [Cypress dashboard](https://dashboard.cypress.io/#/projects/b58xj4/settings) under "Record Keys". It is configured in CircleCI as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars) named `CYPRESS_RECORD_KEY`, and used in the `.circleci/config.yml` file.
+
+#### Percy
+
+CircleCI requires a Percy token to take- and "diff" snapshots.
+
+The token can be found in the [Percy dashboard](https://percy.io/upstand-fm/app/settings) under "Project Token". It is configured in CircleCI as an [environment variable](https://circleci.com/gh/upstandfm/app/edit#env-vars) named `PERCY_TOKEN`, and automatically used by the [percy-storybook](https://docs.percy.io/docs/storybook) binary.
 
 ### Netlify
 
@@ -178,10 +197,10 @@ Note that the Netlify site ID is named "API ID" in the Netlify web app. And can 
 
 There are 2 publish directories (Storybook + app) and their values are configured as env vars:
 
-| Type      | Description                                                                    | Build command      | Publish directory | Env var name             |
-| --------- | ------------------------------------------------------------------------------ | ------------------ | ----------------- | ------------------------ |
-| Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `npm run sb:build` | `build-storybook` | `NETLIFY_SB_PUBLISH_DIR` |
-| App       | The web app, at [app.upstand.fm](https://app.upstand.fm).                      | `npm run build`    | `build`           | `NETLIFY_PUBLISH_DIR`    |
+| Type      | Description                                                                    | Build command      | Publish directory | Env var name          |
+| --------- | ------------------------------------------------------------------------------ | ------------------ | ----------------- | --------------------- |
+| Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `npm run sb:build` | `build-storybook` | `STORYBOOK_BUILD_DIR` |
+| App       | The web app, at [app.upstand.fm](https://app.upstand.fm).                      | `npm run build`    | `build`           | `NETLIFY_PUBLISH_DIR` |
 
 Note that the publish directory is the "output" of running one of the build commands. A publish directory contains the files that Netlify must deploy.
 

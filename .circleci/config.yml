@@ -215,6 +215,20 @@ jobs:
       - store_artifacts:
           path: build-storybook
 
+  snapshots:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_deps_cache
+      - *restore_build_sb_cache
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Visual regression testing
+          command: |
+            $(npm bin)/percy-storybook --widths=320,1280 --build_dir="$STORYBOOK_BUILD_DIR"
+
   release:
     <<: *docker_image
     steps:
@@ -249,7 +263,7 @@ jobs:
       - run:
           name: Release Storybook to prod
           command: |
-            $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SB_SITE_ID" --dir="$NETLIFY_SB_PUBLISH_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
+            $(npm bin)/netlify deploy --prod --message="$DEPLOY_MESSAGE" --site="$NETLIFY_SB_SITE_ID" --dir="$STORYBOOK_BUILD_DIR" --auth="$NETLIFY_ACCESS_TOKEN"
 
 workflows:
   build_branch:
@@ -286,6 +300,16 @@ workflows:
             - deps
             - test
             - e2e
+
+      # Storybook must be built in order to run snapshots with Percy
+      - snapshots:
+          <<: *all_branches_except_master
+          requires:
+            - audit
+            - deps
+            - test
+            - e2e
+            - build-storybook
 
   release_master:
     jobs:
