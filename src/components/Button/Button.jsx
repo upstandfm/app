@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const RootButton = styled.button`
   font-family: 'Fira Sans', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   text-decoration: none;
   text-transform: none;

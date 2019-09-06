@@ -27,7 +27,7 @@ LogoWithName.propTypes = {
 };
 
 LogoWithName.defaultProps = {
-  width: '160px'
+  width: '140px'
 };
 
 /**
