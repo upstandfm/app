@@ -10,11 +10,13 @@ const Container = styled.div`
 const Title = styled.h1`
   margin: 0;
   padding: 0.5em 0 0 0;
+  line-height: 1.125;
 `;
 
 const Subtitle = styled.h3`
   margin: 0;
   padding: 0.5em 0 0 0;
+  line-height: 1.25;
 `;
 
 const Section = styled.section`
