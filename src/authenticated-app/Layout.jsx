@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const AppContainer = styled.div`
   height: 100vh;
   display: grid;
   grid-template-areas:
@@ -20,13 +20,18 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   grid-area: header;
+  padding: 1em;
+  background-color: var(--color-dark-purple);
+`;
+
+export const HeaderContainer = styled.div`
+  max-width: 75rem;
+  margin: 0 auto;
   display: grid;
   grid-template-areas: 'brand actions profile';
   grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr;
   align-items: center;
-  padding: 1em;
-  background-color: var(--color-dark-purple);
 `;
 
 export const Brand = styled.div`
@@ -43,24 +48,28 @@ export const Actions = styled.div`
   }
 `;
 
-export const Profile = styled.section`
+export const Profile = styled.div`
   grid-area: profile;
 `;
 
 export const Main = styled.main`
   grid-area: main;
   overflow: auto;
-  background-color: var(--color-lightest-grey);
+`;
+
+export const MainContainer = styled.div`
+  max-width: 75rem;
+  margin: 0 auto;
 `;
 
 export const Footer = styled.footer`
   grid-area: footer;
   display: none;
   padding: 1em;
-  background-color: var(--color-dark-purple);
+  background-color: transparent;
 
   @media (max-width: 770px) {
     display: grid;
-    justify-items: center;
+    justify-items: end;
   }
 `;

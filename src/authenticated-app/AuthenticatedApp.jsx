@@ -8,12 +8,14 @@ import Button from '../components/Button';
 import { AvatarDropdown } from '../components/Dropdown';
 
 import {
-  Container,
+  AppContainer,
   Header,
+  HeaderContainer,
   Brand,
   Actions,
   Profile,
   Main,
+  MainContainer,
   Footer
 } from './Layout';
 
@@ -22,37 +24,43 @@ function AuthenticatedApp() {
   const { avatarUrl, fullName, email } = useUser();
 
   return (
-    <Container>
+    <AppContainer>
       <Header>
-        <Brand>
-          <LogoWithName />
-        </Brand>
+        <HeaderContainer>
+          <Brand>
+            <LogoWithName />
+          </Brand>
 
-        <Actions>
-          <Button special>
-            <FontAwesomeIcon icon="plus" size="sm" /> New Update
-          </Button>
-        </Actions>
+          <Actions>
+            <Button special>
+              <FontAwesomeIcon icon="plus" size="sm" /> New Update
+            </Button>
+          </Actions>
 
-        <Profile>
-          <AvatarDropdown
-            alignSelf="right"
-            logout={logout}
-            avatarUrl={avatarUrl}
-            fullName={fullName}
-            email={email}
-          />
-        </Profile>
+          <Profile>
+            <AvatarDropdown
+              alignSelf="right"
+              logout={logout}
+              avatarUrl={avatarUrl}
+              fullName={fullName}
+              email={email}
+            />
+          </Profile>
+        </HeaderContainer>
       </Header>
 
-      <Main></Main>
+      <Main>
+        <MainContainer>
+          <p>Hello world!</p>
+        </MainContainer>
+      </Main>
 
       <Footer>
-        <Button special round>
+        <Button special round aria-label="new update">
           <FontAwesomeIcon icon="plus" size="lg" />
         </Button>
       </Footer>
-    </Container>
+    </AppContainer>
   );
 }
 

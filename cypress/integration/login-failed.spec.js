@@ -18,7 +18,7 @@ describe('Login failed', () => {
   });
 
   it('shows "login again" button', () => {
-    cy.get('[data-cy="retry"]').should('have.text', 'login again');
+    cy.get('[data-cy="retry"]').should('have.text', 'Login Again');
   });
 
   it('shows contact support link', () => {
