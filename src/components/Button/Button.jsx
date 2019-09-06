@@ -12,8 +12,13 @@ const RootButton = styled.button`
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
-  padding: 12px 28px;
-  border-radius: 33px;
+  line-height: 1.5;
+  padding: ${props => (props.round ? 0 : '10px 28px;')};
+  border-radius: ${props => (props.round ? '50%' : '33px')};
+  width: ${props => (props.round ? '48px' : 'auto')};
+  height: ${props => (props.round ? '48px' : 'auto')};
+  box-shadow: ${props =>
+    props.round ? '0px 4px 6px 0px rgba(0, 0, 0, 0.2)' : 'none'};
   border: 2px solid;
   transition: all 0.2s ease;
 
@@ -49,7 +54,7 @@ const DefaultButton = styled(RootButton)`
 const SecondaryButton = styled(RootButton)`
   background-color: transparent;
   color: var(--color-purple);
-  border: 3px solid var(--color-purple);
+  border-color: var(--color-purple);
 
   :hover {
     background-color: var(--color-purple);
@@ -66,7 +71,6 @@ const SpecialButton = styled(RootButton)`
   background-color: var(--color-coral);
   color: var(--color-white);
   border-color: var(--color-coral);
-  text-shadow: 0 1px 2px rgba(105, 49, 54, 0.4);
 
   :hover {
     background-color: var(--color-light-coral);
@@ -99,7 +103,12 @@ function Button(props) {
 Button.propTypes = {
   secondary: PropTypes.bool,
   special: PropTypes.bool,
-  disabled: PropTypes.bool
+  round: PropTypes.bool,
+  disabled: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
 };
 
 export default Button;

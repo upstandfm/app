@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './global.css';
+import './icons';
 
 import App from './app';
 import theme from './theme';

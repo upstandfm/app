@@ -1,5 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from './Button';
 
@@ -43,6 +44,30 @@ export const SpecialButton = () => {
 
 SpecialButton.story = {
   name: 'special'
+};
+
+export const IconTextButton = () => {
+  return (
+    <Button onClick={handleClick}>
+      <FontAwesomeIcon icon="plus" size="sm" /> Click Me
+    </Button>
+  );
+};
+
+IconTextButton.story = {
+  name: 'icon + text'
+};
+
+export const IconRoundButton = () => {
+  return (
+    <Button round onClick={handleClick}>
+      <FontAwesomeIcon icon="plus" size="lg" />
+    </Button>
+  );
+};
+
+IconRoundButton.story = {
+  name: 'icon + round'
 };
 
 export const DisabledButton = () => {

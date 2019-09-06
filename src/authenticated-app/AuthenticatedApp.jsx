@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuth0, useUser } from '../auth0';
 
@@ -28,7 +29,9 @@ function AuthenticatedApp() {
         </Brand>
 
         <Actions>
-          <Button special>New Update</Button>
+          <Button special>
+            <FontAwesomeIcon icon="plus" size="sm" /> New Update
+          </Button>
         </Actions>
 
         <Profile>
@@ -45,7 +48,9 @@ function AuthenticatedApp() {
       <Main></Main>
 
       <Footer>
-        <Button special>New Update</Button>
+        <Button special round>
+          <FontAwesomeIcon icon="plus" size="lg" />
+        </Button>
       </Footer>
     </Container>
   );

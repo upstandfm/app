@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { withA11y } from '@storybook/addon-a11y';
 
 import '../src/global.css';
+import '../src/icons';
 
 import theme from '../src/theme';
 
