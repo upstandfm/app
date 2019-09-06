@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const AppContainer = styled.div`
   height: 100vh;
-  min-height: -webkit-fill-available;
+  height: -webkit-fill-available;
   display: grid;
   grid-template-areas:
     'header'
