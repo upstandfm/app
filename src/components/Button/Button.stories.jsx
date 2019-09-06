@@ -9,42 +9,50 @@ export default {
   title: 'components|Button',
   component: Button,
   parameters: {
-    componentSubtitle: 'For primary user actions'
+    componentSubtitle: 'For primary & secondary user actions'
   }
 };
 
 export const DefaultButton = () => {
-  return (
-    <Button onClick={handleClick} invertTextColor>
-      click me
-    </Button>
-  );
+  return <Button onClick={handleClick}>Click Me</Button>;
 };
 
 DefaultButton.story = {
-  name: 'default + invertTextColor'
+  name: 'default'
 };
 
-export const CommonButton = () => {
+export const SecondaryButton = () => {
   return (
-    <Button onClick={handleClick} common>
-      click me
+    <Button secondary onClick={handleClick}>
+      Click Me
     </Button>
   );
 };
 
-CommonButton.story = {
-  name: 'common'
+SecondaryButton.story = {
+  name: 'secondary'
 };
 
-export const DangerButton = () => {
+export const SpecialButton = () => {
   return (
-    <Button onClick={handleClick} danger invertTextColor>
-      click me
+    <Button special onClick={handleClick}>
+      Click Me
     </Button>
   );
 };
 
-DangerButton.story = {
-  name: 'danger + invertTextColor'
+SpecialButton.story = {
+  name: 'special'
+};
+
+export const DisabledButton = () => {
+  return (
+    <Button disabled onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+DisabledButton.story = {
+  name: 'disabled'
 };

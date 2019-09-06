@@ -1,70 +1,105 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
-  margin: 0;
-  padding: 14px;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 18px;
+const RootButton = styled.button`
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 17px;
   font-weight: bold;
-  text-transform: capitalize;
-  letter-spacing: 0.025em;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 1px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12px 28px;
+  border-radius: 33px;
+  border: 2px solid;
   transition: all 0.2s ease;
 
   :hover {
     cursor: pointer;
-    transform: scale(1.05);
   }
 
-  :disabled {
+  :disabled,
+  :disabled:hover {
     cursor: not-allowed;
+    color: var(--color-dark-grey);
+    background-color: var(--color-light-grey);
+    border-color: var(--color-light-grey);
   }
 `;
 
-const _getBorder = props => {
-  if (props.common) {
-    return `1px solid ${props.theme.accentColor}`;
+const DefaultButton = styled(RootButton)`
+  background-color: var(--color-purple);
+  color: var(--color-white);
+  border-color: var(--color-purple);
+
+  :hover {
+    background-color: var(--color-light-purple);
+    border-color: var(--color-light-purple);
   }
 
-  return 'none';
-};
-
-const _getBackgroundColor = props => {
-  if (props.common) {
-    return '#ffffff';
+  :active {
+    background-color: var(--color-dark-purple);
+    border-color: var(--color-dark-purple);
   }
-
-  if (props.danger) {
-    return props.theme.dangerColor;
-  }
-
-  return props.theme.primaryColor;
-};
-
-const _getColor = props => {
-  if (props.invertTextColor) {
-    return props.theme.invertedTextColor;
-  }
-
-  return props.theme.textColor;
-};
-
-const Button = styled(StyledButton)`
-  border: ${_getBorder};
-  background-color: ${_getBackgroundColor};
-  color: ${_getColor};
 `;
 
-Button.propTypes = {
-  common: PropTypes.bool,
-  danger: PropTypes.bool,
-  invertTextColor: PropTypes.bool
-};
+const SecondaryButton = styled(RootButton)`
+  background-color: transparent;
+  color: var(--color-purple);
+  border: 3px solid var(--color-purple);
+
+  :hover {
+    background-color: var(--color-purple);
+    color: var(--color-white);
+  }
+
+  :active {
+    background-color: var(--color-dark-purple);
+    border-color: var(--color-dark-purple);
+  }
+`;
+
+const SpecialButton = styled(RootButton)`
+  background-color: var(--color-coral);
+  color: var(--color-white);
+  border-color: var(--color-coral);
+  text-shadow: 0 1px 2px rgba(105, 49, 54, 0.4);
+
+  :hover {
+    background-color: var(--color-light-coral);
+    border-color: var(--color-light-coral);
+  }
+
+  :active {
+    background-color: var(--color-dark-coral);
+    border-color: var(--color-dark-coral);
+  }
+`;
+
+function Button(props) {
+  const { secondary, special } = props;
+
+  if (secondary) {
+    return <SecondaryButton {...props}>{props.children}</SecondaryButton>;
+  }
+
+  if (special) {
+    return <SpecialButton {...props}>{props.children}</SpecialButton>;
+  }
+
+  return <DefaultButton {...props}>{props.children}</DefaultButton>;
+}
 
 /**
- * Primarily used in forms and user actions.
+ * You can pas any children and props like you would with "regular" buttons.
  */
+Button.propTypes = {
+  secondary: PropTypes.bool,
+  special: PropTypes.bool,
+  disabled: PropTypes.bool
+};
+
 export default Button;

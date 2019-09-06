@@ -16,6 +16,32 @@
     url('./fonts/fira-sans-v10-latin-600.woff2') format('woff2');
 }
 
+:root {
+  /* Primary */
+  --color-darkest-purple: #191238;
+  --color-darker-purple: #2e235d;
+  --color-dark-purple: #4a308d;
+  --color-purple: #5e3da8;
+  --color-light-purple: #8052dc;
+  --color-lighter-purple: #c2aaf9;
+  --color-lightest-purple: #ede6fb;
+
+  /* Neutral */
+  --color-darkest-grey: #353140;
+  --color-dark-grey: #403b4d;
+  --color-grey: #746d86;
+  --color-light-grey: #d3d1d9;
+  --color-lighter-grey: #edebf2;
+  --color-lightest-grey: #fbf8ff;
+  --color-white: #ffffff;
+
+  /* Accent */
+  --color-dark-coral: #dd5f6e;
+  --color-coral: #e96d77;
+  --color-light-coral: #fb7982;
+  --color-mint: #30e8b6;
+}
+
 *,
 *:before,
 *:after {
@@ -29,11 +55,12 @@ body {
   font-size: 19px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--color-darkest-grey);
 }
 
 a,
 a:visited {
-  color: #e96d77;
+  color: var(--color-purple);
   font-weight: bold;
   outline: none;
 }
@@ -43,7 +70,8 @@ a:hover {
 }
 
 p {
-  line-height: 28px;
+  line-height: 1.5;
+  color: var(--color-dark-grey);
 }
 
 ul,
@@ -51,10 +79,10 @@ ol {
   padding: 0 0 0 2.5em;
 }
 
-li {
-  line-height: 1.8;
+ul li {
+  line-height: 1.75;
 }
 
 :focus {
-  outline: 3px solid #e96d77 !important;
+  outline: 3px solid var(--color-mint) !important;
 }
