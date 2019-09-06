@@ -19,6 +19,10 @@ docker_cy_image: &docker_cy_image
         # https://github.com/cypress-io/cypress-example-docker-circle#generate-just-xml-report
         MOCHA_FILE: reports/cypress/test-report-junit.xml
 
+docker_percy_image: &docker_percy_image
+  docker:
+    - image: circleci/node:12.9.0-browsers
+
 # Caching, for more info see:
 # https://circleci.com/docs/2.0/caching/#section=projects
 #
@@ -216,7 +220,7 @@ jobs:
           path: build-storybook
 
   snapshots:
-    <<: *docker_image
+    <<: *docker_percy_image
     steps:
       - checkout
       - *restore_deps_cache
