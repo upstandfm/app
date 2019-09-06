@@ -11,7 +11,7 @@ export const Trigger = styled.button`
   margin: 0 auto;
   border: 0;
   background: none;
-  color: inherit;
+  color: var(--color-dark-grey);
   font-size: 1em;
   line-height: 1;
 
@@ -46,10 +46,10 @@ export const List = styled.ul`
   margin: 0.25em 0;
   padding: 0.5em 0;
   min-width: 240px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-white);
   border-radius: 8px;
-  border: 1px solid ${props => props.theme.accentColor};
+  border: 1px solid var(--color-lighter-grey);
   opacity: ${props => (props.isOpen ? 1 : 0)};
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
   bottom: ${props => (props.dropDirection === 'up' ? '100%' : '')};
@@ -63,14 +63,6 @@ List.propTypes = {
   alignSelf: PropTypes.oneOf(['left', 'right'])
 };
 
-const _getListItemBackgroundColor = props => {
-  if (props.viewOnly) {
-    return 'inherit';
-  }
-
-  return props.theme.accentColor;
-};
-
 /**
  * List item that can be clicked on:
  *  <ListItem>Logout</ListItem>
@@ -81,12 +73,13 @@ const _getListItemBackgroundColor = props => {
 export const ListItem = styled.li`
   position: relative;
   padding: 0.5em 1em;
-  font-weight: ${props => (props.viewOnly ? 'inherit' : 'bold')};
   line-height: 1;
+  color: var(--color-dark-grey);
 
   :hover {
     cursor: ${props => (props.viewOnly ? 'inherit' : 'pointer')};
-    background-color: ${_getListItemBackgroundColor};
+    background-color: ${props =>
+      props.viewOnly ? 'inherit' : 'var(--color-lighter-grey)'};
   }
 `;
 
@@ -97,11 +90,14 @@ ListItem.propTypes = {
 export const ListItemText = styled.span`
   display: block;
   padding: 0.25em;
+  font-weight: ${props => (props.primary ? 'bold' : 'normal')};
+  color: ${props => (props.secondary ? 'var(--color-grey)' : 'inherit')};
 `;
 
 export const ListItemLink = styled.a`
   display: block;
   outline: 0;
+  font-weight: normal;
 
   && {
     color: inherit;
@@ -115,7 +111,6 @@ export const ListItemLink = styled.a`
 
 export const Divider = styled.div`
   height: 0;
-  margin: 0.25em 0;
+  margin: 0.5em 0;
   padding: 0;
-  border-top: 1px solid ${props => props.theme.accentColor};
 `;

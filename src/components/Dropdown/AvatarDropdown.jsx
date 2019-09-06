@@ -15,8 +15,8 @@ import {
 
 const Avatar = styled.img`
   display: inline-block;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 4px;
   padding: 0;
   vertical-align: middle;
@@ -53,8 +53,13 @@ function AvatarDropdown({
 
       <List isOpen={isOpen} dropDirection={dropDirection} alignSelf={alignSelf}>
         <ListItem viewOnly tabindex="-1">
-          <ListItemText data-testid="full-name">{fullName}</ListItemText>
-          <ListItemText data-testid="email">{email}</ListItemText>
+          <ListItemText data-testid="full-name" primary>
+            {fullName}
+          </ListItemText>
+
+          <ListItemText data-testid="email" secondary>
+            {email}
+          </ListItemText>
         </ListItem>
 
         <Divider />
