@@ -11,18 +11,17 @@ const Container = styled.div`
 
 const Main = styled.div`
   min-height: 100vh;
-  background-color: ${props => props.theme.secondaryBackgroundColor};
-  color: ${props => props.theme.secondaryForegroundColor};
+  background-color: var(--color-lightest-grey);
   margin: 0 auto;
 `;
 
 const ErrMessage = styled.pre`
   margin: 1.5em 0;
   padding: 1em;
-  border: 1px solid ${props => props.theme.accentColor};
+  border: 1px solid var(--color-light-grey);
   border-radius: 4px;
-  background-color: #fafafa;
-  color: ${props => props.theme.dangerColor};
+  background-color: #f0f0f0;
+  color: red;
 `;
 
 const Actions = styled.div`
@@ -51,7 +50,7 @@ function LoginFailed({ errMessage, handleRetry }) {
               onClick={handleRetry}
               aria-label="login again"
             >
-              login again
+              Login Again
             </Button>
           </Actions>
 

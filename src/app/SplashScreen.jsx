@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: grid;
   height: 100vh;
-  background-color: ${props => props.theme.primaryBackgroundColor};
-  color: ${props => props.theme.primaryForegroundColor};
+  background-color: var(--color-dark-purple);
+  color: var(--color-white);
 `;
 
 const Splash = styled.div`

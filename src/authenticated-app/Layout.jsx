@@ -26,7 +26,7 @@ export const Header = styled.header`
   grid-template-rows: 1fr;
   align-items: center;
   padding: 1em;
-  background-color: ${props => props.theme.primaryBackgroundColor};
+  background-color: var(--color-dark-purple);
 `;
 
 export const Brand = styled.div`
@@ -50,13 +50,14 @@ export const Profile = styled.section`
 export const Main = styled.main`
   grid-area: main;
   overflow: auto;
+  background-color: var(--color-lightest-grey);
 `;
 
 export const Footer = styled.footer`
   grid-area: footer;
   display: none;
   padding: 1em;
-  background-color: ${props => props.theme.primaryBackgroundColor};
+  background-color: var(--color-dark-purple);
 
   @media (max-width: 770px) {
     display: grid;

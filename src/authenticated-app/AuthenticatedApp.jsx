@@ -28,9 +28,7 @@ function AuthenticatedApp() {
         </Brand>
 
         <Actions>
-          <Button invertTextColor aria-label="new update">
-            new update
-          </Button>
+          <Button special>New Update</Button>
         </Actions>
 
         <Profile>
@@ -47,9 +45,7 @@ function AuthenticatedApp() {
       <Main></Main>
 
       <Footer>
-        <Button invertTextColor aria-label="new update">
-          new update
-        </Button>
+        <Button special>New Update</Button>
       </Footer>
     </Container>
   );

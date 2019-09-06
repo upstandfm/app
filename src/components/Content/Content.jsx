@@ -22,10 +22,9 @@ const Subtitle = styled.h3`
 const Section = styled.section`
   margin: 1.5em 0 0 0;
   padding: 1.5em;
-  border-radius: 16px;
-  background-color: #ffffff;
-  color: ${props => props.theme.textColor};
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: var(--color-white);
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
 `;
 
 function Content(props) {

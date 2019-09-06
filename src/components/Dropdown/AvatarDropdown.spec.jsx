@@ -32,39 +32,39 @@ describe('<AvatarDropdown />', () => {
       >
         <button
           aria-label="click here to see your profile or logout"
-          class="sc-bwzfXH hjHGyr"
+          class="sc-bwzfXH gaWtRt"
         >
           <img
             alt="user avatar"
-            class="sc-gzVnrw giLjzA"
+            class="sc-gzVnrw ktcMRg"
             data-testid="avatar"
             src="https://media.upstand.fm/avatars/1w4fg6y9o.png"
           />
         </button>
         <ul
-          class="sc-htpNat hSMUmh"
+          class="sc-htpNat hHcQaM"
         >
           <li
-            class="sc-bxivhb fxXJup"
+            class="sc-bxivhb iBDSPm"
           >
             <span
-              class="sc-ifAKCX hmSwGL"
+              class="sc-ifAKCX iMedxY"
               data-testid="full-name"
             >
               Test User
             </span>
             <span
-              class="sc-ifAKCX hmSwGL"
+              class="sc-ifAKCX bVKKIO"
               data-testid="email"
             >
               test-user@upstand.fm
             </span>
           </li>
           <div
-            class="sc-bZQynM bncdIP"
+            class="sc-bZQynM iyQmpi"
           />
           <li
-            class="sc-bxivhb fEiFpP"
+            class="sc-bxivhb fZyTNt"
             role="button"
             tabindex="0"
           >
