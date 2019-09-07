@@ -42,7 +42,7 @@ describe('<AvatarDropdown />', () => {
           />
         </button>
         <ul
-          class="sc-htpNat hHcQaM"
+          class="sc-htpNat itrkKD"
         >
           <li
             class="sc-bxivhb iBDSPm"
@@ -61,7 +61,7 @@ describe('<AvatarDropdown />', () => {
             </span>
           </li>
           <div
-            class="sc-bZQynM iyQmpi"
+            class="sc-bZQynM fmdPDK"
           />
           <li
             class="sc-bxivhb fZyTNt"

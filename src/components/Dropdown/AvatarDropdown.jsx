@@ -42,6 +42,12 @@ function AvatarDropdown({
     setIsOpen(s => !s);
   };
 
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      logout();
+    }
+  };
+
   return (
     <Dropdown ref={dropdownEl}>
       <Trigger
@@ -64,7 +70,12 @@ function AvatarDropdown({
 
         <Divider />
 
-        <ListItem onClick={logout} role="button" tabIndex="0">
+        <ListItem
+          onClick={logout}
+          onKeyPress={handleKeyPress}
+          role="button"
+          tabIndex="0"
+        >
           Logout
         </ListItem>
       </List>
