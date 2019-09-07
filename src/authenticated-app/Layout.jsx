@@ -21,12 +21,13 @@ export const AppContainer = styled.div`
 
 export const Header = styled.header`
   grid-area: header;
-  padding: 1em;
+  padding: 16px;
   background-color: var(--color-dark-purple);
 `;
 
 export const HeaderContainer = styled.div`
   max-width: 75rem;
+  height: 40px;
   margin: 0 auto;
   display: grid;
   grid-template-areas: 'brand actions profile';

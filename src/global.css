@@ -52,7 +52,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Fira Sans', sans-serif;
-  font-size: 17px;
+  font-size: 15px;
+  line-height: 1.46667;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-darkest-grey);
@@ -71,7 +72,6 @@ a:hover {
 }
 
 p {
-  line-height: 1.5;
   color: var(--color-dark-grey);
 }
 

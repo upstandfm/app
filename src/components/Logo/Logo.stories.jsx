@@ -19,7 +19,7 @@ DefaultLogo.story = {
 };
 
 export const SizedLogo = () => {
-  return <Logo width="64px" />;
+  return <Logo width="128px" />;
 };
 
 SizedLogo.story = {

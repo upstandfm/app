@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const RootButton = styled.button`
   font-family: 'Fira Sans', sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
   text-decoration: none;
   text-transform: none;
@@ -12,8 +12,8 @@ const RootButton = styled.button`
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
-  line-height: 1.5;
-  padding: ${props => (props.round ? 0 : '10px 28px;')};
+  line-height: 1.30775;
+  padding: ${props => (props.round ? 0 : '8px 20px;')};
   border-radius: ${props => (props.round ? '50%' : '33px')};
   width: ${props => (props.round ? '48px' : 'auto')};
   height: ${props => (props.round ? '48px' : 'auto')};

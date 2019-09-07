@@ -10,19 +10,24 @@ const Container = styled.div`
 const Title = styled.h1`
   margin: 0;
   padding: 0.5em 0 0 0;
-  line-height: 1.125;
+  font-size: 34px;
+  line-height: 1.17651;
+  letter-spacing: 0.022em;
 `;
 
-const Subtitle = styled.h3`
+const Subtitle = styled.h2`
   margin: 0;
   padding: 0.5em 0 0 0;
-  line-height: 1.25;
+  font-size: 18px;
+  line-height: 1.2223;
+  letter-spacing: 0.022em;
 `;
 
 const Section = styled.section`
   margin: 1.5em 0 0 0;
   padding: 1.5em;
-  border-radius: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-lighter-grey);
   background-color: var(--color-white);
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
 `;

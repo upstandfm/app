@@ -45,7 +45,7 @@ export const List = styled.ul`
   z-index: 999;
   margin: 0.25em 0;
   padding: 0.5em 0;
-  min-width: 240px;
+  min-width: 220px;
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
   background-color: var(--color-white);
   border-radius: 8px;
@@ -111,6 +111,6 @@ export const ListItemLink = styled.a`
 
 export const Divider = styled.div`
   height: 0;
-  margin: 0.5em 0;
+  margin: 0.4em 0;
   padding: 0;
 `;
