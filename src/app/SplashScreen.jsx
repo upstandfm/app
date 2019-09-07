@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   display: grid;
@@ -10,18 +11,18 @@ const Container = styled.div`
 
 const Splash = styled.div`
   margin: auto;
+  text-align: center;
 `;
 
-const Text = styled.h2`
-  text-transform: capitalize;
-  font-weight: normal;
-`;
+const Text = styled.h2``;
 
 function SplashScreen() {
   return (
     <Container>
       <Splash>
-        <Text data-cy="loading">loading app..</Text>
+        <FontAwesomeIcon icon="circle-notch" size="3x" spin />
+
+        <Text data-cy="loading">Loading App..</Text>
       </Splash>
     </Container>
   );
