@@ -30,20 +30,34 @@ export const HeaderContainer = styled.div`
   height: 40px;
   margin: 0 auto;
   display: grid;
-  grid-template-areas: 'brand actions profile';
-  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'brand nav actions profile';
+  grid-template-columns: auto 1fr auto auto;
   grid-template-rows: 1fr;
+  grid-gap: 4em;
   align-items: center;
+
+  @media (max-width: 770px) {
+    grid-template-areas:
+      'brand action profile'
+      'nav   nav    nav';
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 0;
+  }
 `;
 
 export const Brand = styled.div`
   grid-area: brand;
 `;
 
+export const Nav = styled.nav`
+  grid-area: nav;
+`;
+
 export const Actions = styled.div`
   grid-area: actions;
   display: grid;
-  justify-items: center;
+  justify-items: end;
 
   @media (max-width: 770px) {
     display: none;

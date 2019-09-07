@@ -12,6 +12,7 @@ import {
   Header,
   HeaderContainer,
   Brand,
+  Nav,
   Actions,
   Profile,
   Main,
@@ -30,6 +31,8 @@ function AuthenticatedApp() {
           <Brand>
             <LogoWithName />
           </Brand>
+
+          <Nav></Nav>
 
           <Actions>
             <Button special>
