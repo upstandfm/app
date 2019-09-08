@@ -68,18 +68,18 @@ const SecondaryButton = styled(RootButton)`
 `;
 
 const SpecialButton = styled(RootButton)`
-  background-color: var(--color-coral);
-  color: var(--color-white);
-  border-color: var(--color-coral);
+  background-color: var(--color-mint);
+  color: var(--color-darkest-grey);
+  border-color: var(--color-mint);
 
   :hover {
-    background-color: var(--color-light-coral);
-    border-color: var(--color-light-coral);
+    background-color: var(--color-light-mint);
+    border-color: var(--color-light-mint);
   }
 
   :active {
-    background-color: var(--color-dark-coral);
-    border-color: var(--color-dark-coral);
+    background-color: var(--color-dark-mint);
+    border-color: var(--color-dark-mint);
   }
 `;
 
