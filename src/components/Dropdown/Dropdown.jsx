@@ -10,13 +10,20 @@ export const Trigger = styled.button`
   padding: 0;
   margin: 0 auto;
   border: 0;
+  border-radius: 4px;
   background: none;
   color: var(--color-dark-grey);
   font-size: 1em;
   line-height: 1;
+  transition: all 0.2s ease;
+  outline: 0;
 
   :hover {
     cursor: pointer;
+  }
+
+  :focus {
+    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
   }
 `;
 
