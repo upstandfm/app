@@ -21,7 +21,11 @@ const RootButton = styled.button`
     props.round ? '0px 4px 6px 0px rgba(0, 0, 0, 0.2)' : 'none'};
   border: 2px solid;
   transition: all 0.2s ease;
+
   outline: 0;
+  :focus {
+    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
+  }
 
   :hover {
     cursor: pointer;
@@ -33,10 +37,6 @@ const RootButton = styled.button`
     color: var(--color-dark-grey);
     background-color: var(--color-light-grey);
     border-color: var(--color-light-grey);
-  }
-
-  :focus {
-    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
   }
 `;
 
