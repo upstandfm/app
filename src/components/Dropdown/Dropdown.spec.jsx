@@ -10,7 +10,7 @@ describe('Dropdown', () => {
       const { getByTestId } = render(<List data-testid="list" />);
 
       expect(getByTestId('list')).toHaveStyle(`
-        opacity: 0;
+        visibility: hidden;
       `);
     });
 
@@ -18,7 +18,7 @@ describe('Dropdown', () => {
       const { getByTestId } = render(<List data-testid="list" isOpen />);
 
       expect(getByTestId('list')).toHaveStyle(`
-        opacity: 1;
+        visibility: visible;
       `);
     });
   });
