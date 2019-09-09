@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Link, Redirect } from '@reach/router';
+import { Router } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuth0, useUser } from '../auth0';
@@ -68,9 +68,7 @@ function AuthenticatedApp() {
       <Main>
         <MainContainer>
           <Router>
-            <Redirect from="/" to="/standups" />
-
-            <Standups path="/standups" />
+            <Standups path="/" />
 
             <NotFound default />
           </Router>
