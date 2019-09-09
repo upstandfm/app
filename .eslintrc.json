@@ -1,6 +1,6 @@
 {
-  "extends": "react-app",
-  "plugins": ["cypress"],
+  "extends": ["react-app", "plugin:jsx-a11y/strict"],
+  "plugins": ["cypress", "jsx-a11y"],
   "env": {
     "cypress/globals": true
   }
