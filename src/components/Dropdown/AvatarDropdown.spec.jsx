@@ -31,44 +31,50 @@ describe('<AvatarDropdown />', () => {
         class="sc-bdVaJa EXKLM"
       >
         <button
-          aria-label="click here to see your profile or logout"
-          class="sc-bwzfXH gaWtRt"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="sc-bwzfXH ftsdsm"
         >
           <img
             alt="user avatar"
-            class="sc-gzVnrw ktcMRg"
+            class="sc-bZQynM eTYoVy"
             data-testid="avatar"
             src="https://media.upstand.fm/avatars/1w4fg6y9o.png"
           />
         </button>
         <ul
-          class="sc-htpNat itrkKD"
+          class="sc-htpNat huBKey"
+          role="menu"
         >
           <li
-            class="sc-bxivhb iBDSPm"
+            class="sc-bxivhb eqXfcB"
           >
             <span
-              class="sc-ifAKCX iMedxY"
+              class="sc-ifAKCX leGXiY"
               data-testid="full-name"
             >
               Test User
             </span>
             <span
-              class="sc-ifAKCX bVKKIO"
+              class="sc-ifAKCX dJomen"
               data-testid="email"
             >
               test-user@upstand.fm
             </span>
           </li>
           <div
-            class="sc-bZQynM fmdPDK"
+            class="sc-EHOje kSJuOY"
           />
           <li
-            class="sc-bxivhb fZyTNt"
-            role="button"
-            tabindex="0"
+            class="sc-bxivhb eqXfcB"
           >
-            Logout
+            <button
+              class="sc-gzVnrw gqnRcH"
+              role="menuitem"
+              tabindex="-1"
+            >
+              Logout
+            </button>
           </li>
         </ul>
       </div>
