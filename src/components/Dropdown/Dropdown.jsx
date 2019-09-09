@@ -16,14 +16,14 @@ export const Trigger = styled.button`
   font-size: 1em;
   line-height: 1;
   transition: all 0.2s ease;
+
   outline: 0;
+  :focus {
+    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
+  }
 
   :hover {
     cursor: pointer;
-  }
-
-  :focus {
-    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
   }
 `;
 
@@ -57,7 +57,6 @@ export const List = styled.ul`
   background-color: var(--color-white);
   border-radius: 8px;
   border: 1px solid var(--color-lighter-grey);
-  opacity: ${props => (props.isOpen ? 1 : 0)};
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
   bottom: ${props => (props.dropDirection === 'up' ? '100%' : '')};
   top: ${props => (props.dropDirection === 'down' ? '100%' : '')};
@@ -79,15 +78,9 @@ List.propTypes = {
  */
 export const ListItem = styled.li`
   position: relative;
-  padding: 0.5em 1em;
+  padding: 0;
   line-height: 1;
   color: var(--color-dark-grey);
-
-  :hover {
-    cursor: ${props => (props.viewOnly ? 'inherit' : 'pointer')};
-    background-color: ${props =>
-      props.viewOnly ? 'inherit' : 'var(--color-lighter-grey)'};
-  }
 `;
 
 ListItem.propTypes = {
@@ -96,28 +89,13 @@ ListItem.propTypes = {
 
 export const ListItemText = styled.span`
   display: block;
-  padding: 0.25em;
+  padding: 0.25em 1em;
   font-weight: ${props => (props.primary ? 'bold' : 'normal')};
   color: ${props => (props.secondary ? 'var(--color-grey)' : 'inherit')};
 `;
 
-export const ListItemLink = styled.a`
-  display: block;
-  outline: 0;
-  font-weight: normal;
-
-  && {
-    color: inherit;
-    text-decoration: none;
-
-    :visited {
-      color: inherit;
-    }
-  }
-`;
-
 export const Divider = styled.div`
   height: 0;
-  margin: 0.4em 0;
+  margin: 1em 0;
   padding: 0;
 `;
