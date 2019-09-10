@@ -17,11 +17,6 @@ export const Trigger = styled.button`
   line-height: 1;
   transition: all 0.2s ease;
 
-  outline: 0;
-  :focus {
-    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
-  }
-
   :hover {
     cursor: pointer;
   }

@@ -67,7 +67,8 @@ const BlankButton = styled.button`
  * 8. Pressing "Escape" closes the dropdown.
  *
  * For more info see:
- * https://www.w3.org/TR/wai-aria-practices/#menubutton
+ * - https://www.w3.org/TR/wai-aria-practices/#menubutton
+ * - https://inclusive-components.design/menus-menu-buttons/
  */
 function AvatarDropdown({
   logout,
