@@ -33,7 +33,7 @@ describe('<AvatarDropdown />', () => {
         <button
           aria-expanded="false"
           aria-haspopup="true"
-          class="sc-bwzfXH ftsdsm"
+          class="sc-bwzfXH fPqriT"
         >
           <img
             alt="user avatar"
