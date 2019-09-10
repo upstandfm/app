@@ -36,13 +36,14 @@ export const HeaderContainer = styled.div`
   grid-gap: 4em;
   align-items: center;
 
-  @media (max-width: 770px) {
+  @media (max-width: 470px) {
     grid-template-areas:
       'brand action profile'
       'nav   nav    nav';
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr 1fr;
-    grid-gap: 0;
+    grid-gap: 1em;
+    height: auto;
   }
 `;
 
@@ -52,6 +53,8 @@ export const Brand = styled.div`
 
 export const Nav = styled.nav`
   grid-area: nav;
+  display: grid;
+  align-items: center;
 `;
 
 export const Actions = styled.div`
