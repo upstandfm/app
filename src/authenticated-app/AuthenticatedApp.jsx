@@ -21,6 +21,8 @@ import {
   Footer
 } from './Layout';
 
+import { Menu, MenuItem, MenuLink } from './Menu';
+
 const Standups = () => (
   <div>
     <h1>Standups</h1>
@@ -45,7 +47,13 @@ function AuthenticatedApp() {
             <LogoWithName />
           </Brand>
 
-          <Nav></Nav>
+          <Nav>
+            <Menu>
+              <MenuItem>
+                <MenuLink to="/">Standups</MenuLink>
+              </MenuItem>
+            </Menu>
+          </Nav>
 
           <Actions>
             <Button special>
