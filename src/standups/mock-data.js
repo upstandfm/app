@@ -34,7 +34,7 @@ export default {
   },
   '6': {
     id: '6',
-    name: 'Team YOLO',
+    name: 'Superdudperawesome',
     imageUrl:
       'https://images.unsplash.com/photo-1486428263684-28ec9e4f2584?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60'
   },
