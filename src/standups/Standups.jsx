@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Cards, Card } from '../components/Cards';
+import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
 
 export function PureStandups({ isLoading, err, standups }) {
   if (isLoading) {
-    return <div>loading..</div>;
+    return (
+      <LoadingCards>
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+      </LoadingCards>
+    );
   }
 
   if (err) {
