@@ -54,13 +54,15 @@ const WrapperLink = styled(Link)`
   }
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   margin: 0.25em 0;
   font-size: 26px;
   line-height: 1.2223;
   letter-spacing: 0.022em;
   color: var(--color-white);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 function Card({ title, linkTo, bgImageUrl }) {

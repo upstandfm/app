@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import Cards from './Cards';
+import { Title } from './Card';
 
 export const LoadingCards = styled(Cards)``;
 
@@ -13,6 +14,10 @@ const Container = styled.li`
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   background-color: var(--color-lighter-grey);
+
+  :hover {
+    cursor: wait;
+  }
 
   @media (max-width: 470px) {
     width: 100%;
@@ -33,13 +38,9 @@ const glimmer = keyframes`
   }
 `;
 
-const Title = styled.span`
-  font-size: 26px;
-  font-weight: bold;
-  line-height: 1.2223;
-  letter-spacing: 0.022em;
+const LoadingTitle = styled(Title)`
+  text-shadow: none;
   border-radius: 33px;
-  margin: 0.25em 0;
   color: transparent;
   background-color: var(--color-light-grey);
   background-repeat: no-repeat;
@@ -57,7 +58,7 @@ export function LoadingCard() {
   return (
     <Container>
       <Wrapper>
-        <Title>A loading title</Title>
+        <LoadingTitle>A loading title</LoadingTitle>
       </Wrapper>
     </Container>
   );
