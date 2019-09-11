@@ -11,9 +11,9 @@ const Container = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
-  background-color: var(--color-lighter-grey);
+  background-color: var(--color-lightest-grey);
 
   :hover {
     cursor: wait;
@@ -42,13 +42,13 @@ const LoadingTitle = styled(Title)`
   text-shadow: none;
   border-radius: 33px;
   color: transparent;
-  background-color: var(--color-light-grey);
+  background-color: var(--color-lighter-grey);
   background-repeat: no-repeat;
   background-image: linear-gradient(
     90deg,
-    var(--color-light-grey),
     var(--color-lighter-grey),
-    var(--color-light-grey)
+    var(--color-lightest-grey),
+    var(--color-lighter-grey)
   );
   background-size: 100% 100%;
   animation: ${glimmer} 1s ease-in-out infinite;
