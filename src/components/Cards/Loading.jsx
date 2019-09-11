@@ -7,7 +7,7 @@ import { Title } from './Card';
 export const LoadingCards = styled(Cards)``;
 
 const Container = styled.li`
-  width: 240px;
+  width: 235px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -31,10 +31,10 @@ const Wrapper = styled.div`
 
 const glimmer = keyframes`
   0% {
-    background-position: -240px 0;
+    background-position: -235px 0;
   }
   100% {
-    background-position: calc(240px + 100%) 0;
+    background-position: calc(235px + 100%) 0;
   }
 `;
 
