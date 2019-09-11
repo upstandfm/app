@@ -12,7 +12,7 @@ describe('<Card />', () => {
       <Card title={title} linkTo={link} />
     );
 
-    expect(getByText(title)).toBeDefined();
+    expect(getByText(title)).toBeInTheDocument();
     expect(getByTestId('link')).toHaveAttribute('href', `/${link}`);
   });
 });

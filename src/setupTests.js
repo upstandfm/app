@@ -6,3 +6,6 @@
 // For more info see:
 // https://github.com/testing-library/jest-dom#custom-matchers
 import '@testing-library/jest-dom/extend-expect';
+
+// Prevents console errors when testing components that use Font Awesome icons
+import './icons';

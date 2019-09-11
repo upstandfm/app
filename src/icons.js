@@ -6,6 +6,10 @@
 // https://github.com/FortAwesome/react-fontawesome#build-a-library-to-reference-icons-throughout-your-app-more-conveniently
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faCircleNotch,
+  faExclamationTriangle
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlus, faCircleNotch);
+library.add(faPlus, faCircleNotch, faExclamationTriangle);
