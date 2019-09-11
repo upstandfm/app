@@ -46,7 +46,7 @@ export const List = styled.ul`
   position: absolute;
   z-index: 999;
   margin: 0.25em 0;
-  padding: 0.5em 0;
+  padding: 1em 0;
   min-width: 220px;
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
   background-color: var(--color-white);

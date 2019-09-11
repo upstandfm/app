@@ -43,7 +43,7 @@ describe('<AvatarDropdown />', () => {
           />
         </button>
         <ul
-          class="sc-htpNat huBKey"
+          class="sc-htpNat gxrzLu"
           role="menu"
         >
           <li
