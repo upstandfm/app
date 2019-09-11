@@ -9,14 +9,6 @@ export const AppContainer = styled.div`
     'main';
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-
-  @media (max-width: 770px) {
-    grid-template-areas:
-      'header'
-      'main'
-      'footer';
-    grid-template-rows: auto 1fr auto;
-  }
 `;
 
 export const Header = styled.header`
@@ -30,18 +22,18 @@ export const HeaderContainer = styled.div`
   height: 40px;
   margin: 0 auto;
   display: grid;
-  grid-template-areas: 'brand nav actions profile';
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-areas: 'brand nav profile';
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr;
   grid-gap: 4em;
   align-items: center;
 
   @media (max-width: 470px) {
     grid-template-areas:
-      'brand action profile'
-      'nav   nav    nav';
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: 1fr 1fr;
+      'brand profile'
+      'nav   nav';
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
     grid-gap: 1em;
     height: auto;
   }
@@ -57,16 +49,6 @@ export const Nav = styled.nav`
   align-items: center;
 `;
 
-export const Actions = styled.div`
-  grid-area: actions;
-  display: grid;
-  justify-items: end;
-
-  @media (max-width: 770px) {
-    display: none;
-  }
-`;
-
 export const Profile = styled.div`
   grid-area: profile;
 `;
@@ -79,16 +61,4 @@ export const Main = styled.main`
 export const MainContainer = styled.div`
   max-width: 75rem;
   margin: 0 auto;
-`;
-
-export const Footer = styled.footer`
-  grid-area: footer;
-  display: none;
-  padding: 1em;
-  background-color: transparent;
-
-  @media (max-width: 770px) {
-    display: grid;
-    justify-items: end;
-  }
 `;
