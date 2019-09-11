@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from '@reach/router';
 
 import mockData from './mock-data';
 import { getStandupsList } from './selectors';
@@ -36,4 +37,12 @@ export const ErrStandups = () => {
 
 ErrStandups.story = {
   name: 'error'
+};
+
+export const EmptyStandups = () => {
+  return <PureStandups isLoading={false} standups={[]} />;
+};
+
+EmptyStandups.story = {
+  name: 'empty'
 };
