@@ -1,11 +1,9 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuth0, useUser } from '../auth0';
 
 import { LogoWithName } from '../components/Logo';
-import Button from '../components/Button';
 import { AvatarDropdown } from '../components/Dropdown';
 
 import {
@@ -14,11 +12,9 @@ import {
   HeaderContainer,
   Brand,
   Nav,
-  Actions,
   Profile,
   Main,
-  MainContainer,
-  Footer
+  MainContainer
 } from './Layout';
 
 import { Menu, MenuItem, MenuLink } from './Menu';
@@ -55,12 +51,6 @@ function AuthenticatedApp() {
             </Menu>
           </Nav>
 
-          <Actions>
-            <Button special>
-              <FontAwesomeIcon icon="plus" size="sm" /> New Update
-            </Button>
-          </Actions>
-
           <Profile>
             <AvatarDropdown
               alignSelf="right"
@@ -82,12 +72,6 @@ function AuthenticatedApp() {
           </Router>
         </MainContainer>
       </Main>
-
-      <Footer>
-        <Button special round aria-label="new update">
-          <FontAwesomeIcon icon="plus" size="lg" />
-        </Button>
-      </Footer>
     </AppContainer>
   );
 }

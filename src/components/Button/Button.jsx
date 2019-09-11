@@ -72,22 +72,6 @@ const SecondaryButton = styled(RootButton)`
   }
 `;
 
-const SpecialButton = styled(RootButton)`
-  background-color: var(--color-mint);
-  color: var(--color-darkest-grey) !important;
-  border-color: var(--color-mint);
-
-  :hover {
-    background-color: var(--color-light-mint);
-    border-color: var(--color-light-mint);
-  }
-
-  :active {
-    background-color: var(--color-dark-mint);
-    border-color: var(--color-dark-mint);
-  }
-`;
-
 /**
  * You can pas any children and props like you would with "regular" buttons.
  *
@@ -105,14 +89,10 @@ const SpecialButton = styled(RootButton)`
  * https://www.styled-components.com/docs/basics#extending-styles
  */
 function Button(props) {
-  const { secondary, special } = props;
+  const { secondary } = props;
 
   if (secondary) {
     return <SecondaryButton {...props}>{props.children}</SecondaryButton>;
-  }
-
-  if (special) {
-    return <SpecialButton {...props}>{props.children}</SpecialButton>;
   }
 
   return <DefaultButton {...props}>{props.children}</DefaultButton>;
@@ -120,7 +100,6 @@ function Button(props) {
 
 Button.propTypes = {
   secondary: PropTypes.bool,
-  special: PropTypes.bool,
   round: PropTypes.bool,
   disabled: PropTypes.bool,
   children: PropTypes.oneOfType([

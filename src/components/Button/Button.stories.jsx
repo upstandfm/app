@@ -34,18 +34,6 @@ SecondaryButton.story = {
   name: 'secondary'
 };
 
-export const SpecialButton = () => {
-  return (
-    <Button special onClick={handleClick}>
-      Click Me
-    </Button>
-  );
-};
-
-SpecialButton.story = {
-  name: 'special'
-};
-
 export const IconTextButton = () => {
   return (
     <Button onClick={handleClick}>
