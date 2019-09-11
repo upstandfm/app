@@ -15,7 +15,7 @@ export default {
 };
 
 export const DefaultStandups = () => {
-  return <PureStandups standups={standups} />;
+  return <PureStandups isLoading={false} standups={standups} />;
 };
 
 DefaultStandups.story = {
