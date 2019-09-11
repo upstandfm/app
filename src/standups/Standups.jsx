@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
+import { FetchError } from '../components/Errors';
 
 export function PureStandups({ isLoading, err, standups }) {
   if (isLoading) {
@@ -15,7 +16,7 @@ export function PureStandups({ isLoading, err, standups }) {
   }
 
   if (err) {
-    return <div>error: {err}</div>;
+    return <FetchError title="Failed to load standups" err={err} />;
   }
 
   return (
