@@ -42,7 +42,7 @@ const RootButton = styled.button`
 
 const DefaultButton = styled(RootButton)`
   background-color: var(--color-purple);
-  color: var(--color-white);
+  color: var(--color-white) !important;
   border-color: var(--color-purple);
 
   :hover {
@@ -58,7 +58,7 @@ const DefaultButton = styled(RootButton)`
 
 const SecondaryButton = styled(RootButton)`
   background-color: transparent;
-  color: var(--color-purple);
+  color: var(--color-purple) !important;
   border-color: var(--color-purple);
 
   :hover {
@@ -74,7 +74,7 @@ const SecondaryButton = styled(RootButton)`
 
 const SpecialButton = styled(RootButton)`
   background-color: var(--color-mint);
-  color: var(--color-darkest-grey);
+  color: var(--color-darkest-grey) !important;
   border-color: var(--color-mint);
 
   :hover {
@@ -90,6 +90,19 @@ const SpecialButton = styled(RootButton)`
 
 /**
  * You can pas any children and props like you would with "regular" buttons.
+ *
+ * Additionally, a button can be rendered as a different component using the
+ * "as" prop. For example, to render a button as a router link, you can do:
+ *
+ * ```js
+ * import { Link } from '@reach/router';
+ *
+ * <Button secondary as={Link} to="/">New Standup</Button>
+ * ```
+ *
+ * For more info see:
+ *
+ * https://www.styled-components.com/docs/basics#extending-styles
  */
 function Button(props) {
   const { secondary, special } = props;
