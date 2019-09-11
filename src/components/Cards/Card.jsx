@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from '@reach/router';
 
 const Container = styled.li`
-  width: 240px;
+  width: 235px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -26,7 +26,7 @@ const Container = styled.li`
     }
   }
 
-  @media (max-width: 470px) {
+  @media (max-width: 370px) {
     width: 100%;
   }
 `;
