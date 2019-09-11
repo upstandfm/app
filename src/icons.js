@@ -9,7 +9,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faPlus,
   faCircleNotch,
-  faExclamationTriangle
+  faExclamationTriangle,
+  faInfoCircle
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlus, faCircleNotch, faExclamationTriangle);
+library.add(faPlus, faCircleNotch, faExclamationTriangle, faInfoCircle);

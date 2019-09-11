@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
 import { FetchError } from '../components/Errors';
 
+import Empty from './Empty';
+
 export function PureStandups({ isLoading, err, standups }) {
   if (isLoading) {
     return (
@@ -17,6 +19,11 @@ export function PureStandups({ isLoading, err, standups }) {
 
   if (err) {
     return <FetchError title="Failed to load standups" err={err} />;
+  }
+
+  const isEmpty = standups.length === 0;
+  if (isEmpty) {
+    return <Empty title="You don't have any standups yet" />;
   }
 
   return (
