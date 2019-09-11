@@ -9,9 +9,6 @@ const Cards = styled.ul`
   grid-gap: 1em;
 `;
 
-/**
- * You can pas <Card/> components as children.
- */
 Cards.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

@@ -30,7 +30,4 @@ LogoWithName.defaultProps = {
   width: '140px'
 };
 
-/**
- * Upstand FM logo with brand name.
- */
 export default LogoWithName;

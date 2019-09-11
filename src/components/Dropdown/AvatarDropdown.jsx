@@ -41,8 +41,8 @@ const BlankButton = styled.button`
 `;
 
 /**
- * To comply with a11y keyboard nav requirements, the list must behave as
- * follows:
+ * To comply with a11y keyboard nav requirements, the dropdown list must behave
+ * as follows:
  *
  * 1. When focusing on the dropdown button (trigger), pressing "Enter",
  *    "Spacebar" or "Arrow Down" must open the dropdown (list).
@@ -67,7 +67,9 @@ const BlankButton = styled.button`
  * 8. Pressing "Escape" closes the dropdown.
  *
  * For more info see:
+ *
  * - https://www.w3.org/TR/wai-aria-practices/#menubutton
+ *
  * - https://inclusive-components.design/menus-menu-buttons/
  */
 function AvatarDropdown({
@@ -258,7 +260,4 @@ AvatarDropdown.defaultProps = {
   alignSelf: 'left'
 };
 
-/**
- * Dropdown menu, using an avatar image as the trigger.
- */
 export default AvatarDropdown;
