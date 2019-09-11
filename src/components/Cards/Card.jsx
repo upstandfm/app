@@ -8,13 +8,13 @@ const Container = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   transition: all 0.2s ease;
 
   :hover {
     transform: scale(1.025);
-    box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.3);
   }
 
   :focus-within {
