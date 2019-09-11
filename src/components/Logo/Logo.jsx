@@ -23,7 +23,4 @@ Logo.defaultProps = {
   width: '48px'
 };
 
-/**
- * Upstand FM logo.
- */
 export default Logo;

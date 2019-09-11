@@ -32,6 +32,9 @@ const Section = styled.section`
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
 `;
 
+/**
+ * Primary page content. You can pass one or more components as children.
+ */
 function Content(props) {
   const { title, subtitle } = props;
 
@@ -44,9 +47,6 @@ function Content(props) {
   );
 }
 
-/**
- * Primary page content. You can pass one or more components as children.
- */
 Content.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired

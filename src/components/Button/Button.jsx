@@ -88,6 +88,9 @@ const SpecialButton = styled(RootButton)`
   }
 `;
 
+/**
+ * You can pas any children and props like you would with "regular" buttons.
+ */
 function Button(props) {
   const { secondary, special } = props;
 
@@ -102,9 +105,6 @@ function Button(props) {
   return <DefaultButton {...props}>{props.children}</DefaultButton>;
 }
 
-/**
- * You can pas any children and props like you would with "regular" buttons.
- */
 Button.propTypes = {
   secondary: PropTypes.bool,
   special: PropTypes.bool,
