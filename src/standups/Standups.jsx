@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Link } from '@reach/router';
+
+import { getStandupsList } from './selectors';
 
 import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
 import { FetchError } from '../components/Errors';
+import Button from '../components/Button';
 
 import Empty from './Empty';
 
@@ -55,6 +60,43 @@ PureStandups.propTypes = {
   )
 };
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 1em;
+  align-items: center;
+  padding: 1em;
+`;
+
+const Actions = styled.div`
+  display: grid;
+  justify-items: end;
+  padding: 2em 0;
+
+  @media (max-width: 470px) {
+    justify-items: center;
+    padding: 1em 0;
+  }
+`;
+
+const Main = styled.div``;
+
 export default function Standups() {
-  return null;
+  // TODO: fetch standups
+  const standups = getStandupsList({});
+
+  return (
+    <Container>
+      <Actions>
+        <Button as={Link} to="/">
+          New Standup
+        </Button>
+      </Actions>
+
+      <Main>
+        <PureStandups isLoading={false} standups={standups} />
+      </Main>
+    </Container>
+  );
 }
