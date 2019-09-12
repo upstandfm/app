@@ -19,7 +19,7 @@ const Container = styled.li`
 
   :focus-within {
     transform: scale(1.025);
-    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
+    box-shadow: 0px 0px 0px 3px var(--color-light-mint);
 
     a:focus {
       text-decoration: none;

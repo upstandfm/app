@@ -14,7 +14,7 @@ export const AppContainer = styled.div`
 export const Header = styled.header`
   grid-area: header;
   padding: 16px;
-  background-color: var(--color-dark-purple);
+  background-color: var(--color-darkest-purple);
 `;
 
 export const HeaderContainer = styled.div`
@@ -25,14 +25,14 @@ export const HeaderContainer = styled.div`
   grid-template-areas: 'brand nav profile';
   grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr;
-  grid-gap: 4em;
+  grid-gap: 8em;
   align-items: center;
 
-  @media (max-width: 470px) {
+  @media (max-width: 570px) {
     grid-template-areas:
       'brand profile'
       'nav   nav';
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
     grid-gap: 1em;
     height: auto;
