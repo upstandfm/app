@@ -89,3 +89,11 @@ ul li {
   outline: 0;
   box-shadow: 0px 0px 0px 3px var(--color-light-coral);
 }
+
+/*
+Reach Router focuses div for a11y to assist screenreaders, but a visual
+style isn't necessary.
+*/
+div:focus {
+  box-shadow: none;
+}
