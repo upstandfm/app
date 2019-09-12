@@ -10,14 +10,11 @@ const Container = styled.div`
 const Wrapper = styled.div`
   margin: 1em auto;
   padding: 1em;
+  text-align: center;
 `;
 
 const Title = styled.h2`
   margin: 0.5em 0 0.25em 0;
-`;
-
-const Subtitle = styled.h3`
-  margin: 0 0 1.5em 0;
 `;
 
 const FetchError = function({ title, err }) {
@@ -36,23 +33,17 @@ const FetchError = function({ title, err }) {
           <FontAwesomeIcon icon="exclamation-triangle" /> {title}
         </Title>
 
-        <Subtitle>
-          Sorry! It looks like I couldn't fetch your data from the server.
-        </Subtitle>
-
         <p>Please try again by refreshing this page.</p>
 
         <p>
-          If that doesn&apos;t help, please send me an email to{' '}
-          <a
-            data-testid="support"
-            href={`mailto:support@upstand.fm?subject=${title}`}
-          >
+          If that doesn&apos;t help, send us an email to
+          <br />
+          <a href={`mailto:support@upstand.fm?subject=${title}`}>
             support@upstand.fm
           </a>
-          .<br />
-          I&apos;ll do my best to help as you as soon as possible.
         </p>
+
+        <p>We&apos;ll do our best to fix this as soon as possible.</p>
       </Wrapper>
     </Container>
   );

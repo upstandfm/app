@@ -11,7 +11,7 @@ export default {
 };
 
 export const DefaultFetchError = () => {
-  return <FetchError title="Fetch failed" />;
+  return <FetchError title="Failed to load data" />;
 };
 
 DefaultFetchError.story = {
