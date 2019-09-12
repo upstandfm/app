@@ -89,7 +89,7 @@ export default function Standups() {
   return (
     <Container>
       <Actions>
-        <Button as={Link} to="/">
+        <Button as={Link} to="/new">
           New Standup
         </Button>
       </Actions>

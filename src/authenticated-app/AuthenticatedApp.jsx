@@ -5,6 +5,9 @@ import { useAuth0, useUser } from '../auth0';
 
 import { LogoWithName } from '../components/Logo';
 import { AvatarDropdown } from '../components/Dropdown';
+import { NotFound } from '../components/Errors';
+
+import Standups from '../standups';
 
 import {
   AppContainer,
@@ -18,18 +21,6 @@ import {
 } from './Layout';
 
 import { Menu, MenuItem, MenuLink } from './Menu';
-
-const Standups = () => (
-  <div>
-    <h1>Standups</h1>
-  </div>
-);
-
-const NotFound = () => (
-  <div>
-    <h1>Page not found</h1>
-  </div>
-);
 
 function AuthenticatedApp() {
   const { logout } = useAuth0();
