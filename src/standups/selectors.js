@@ -7,6 +7,5 @@
  */
 export function getStandupsList(state) {
   const ids = Object.keys(state);
-  const list = ids.map(id => state[id]);
-  return list;
+  return ids.map(id => state[id]);
 }

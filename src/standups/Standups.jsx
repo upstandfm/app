@@ -26,8 +26,7 @@ export function PureStandups({ isLoading, err, standups }) {
     return <FetchError title="Failed to load standups" err={err} />;
   }
 
-  const isEmpty = standups.length === 0;
-  if (isEmpty) {
+  if (standups.length === 0) {
     return <Empty title="You don't have any standups yet" />;
   }
 

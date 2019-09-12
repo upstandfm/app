@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Section = styled.div`
@@ -20,8 +21,11 @@ export const Label = styled.label`
   }
 `;
 
+Label.propTypes = {
+  inline: PropTypes.bool
+};
+
 export const Input = styled.input`
-  display: ${props => (props.inline ? 'inline-block' : 'block')};
   box-sizing: border-box;
   padding: 0.75rem;
   font-size: 17px;
