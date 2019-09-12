@@ -5,7 +5,7 @@ import LogoWithName from './LogoWithName';
 
 const Header = styled.div`
   padding: 1em;
-  background-color: var(--color-dark-purple);
+  background-color: var(--color-darkest-purple);
 `;
 
 export default {

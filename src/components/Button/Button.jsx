@@ -24,7 +24,7 @@ const RootButton = styled.button`
 
   outline: 0;
   :focus {
-    box-shadow: 0px 0px 0px 3px var(--color-light-coral);
+    box-shadow: 0px 0px 0px 3px var(--color-light-mint);
   }
 
   :hover {
