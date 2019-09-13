@@ -34,7 +34,7 @@ const RootButton = styled.button`
   :disabled,
   :disabled:hover {
     cursor: not-allowed;
-    color: var(--color-dark-grey);
+    color: var(--color-dark-grey) !important;
     background-color: var(--color-light-grey);
     border-color: var(--color-light-grey);
   }
@@ -63,12 +63,34 @@ const SecondaryButton = styled(RootButton)`
 
   :hover {
     background-color: var(--color-purple);
-    color: var(--color-white);
+    color: var(--color-white) !important;
   }
 
   :active {
     background-color: var(--color-dark-purple);
     border-color: var(--color-dark-purple);
+  }
+`;
+
+const TertiaryButton = styled(RootButton)`
+  background-color: transparent;
+  color: var(--color-purple) !important;
+  border-color: transparent;
+
+  :hover {
+    color: var(--color-light-purple) !important;
+  }
+
+  :active {
+    color: var(--color-dark-purple) !important;
+  }
+
+  :disabled,
+  :disabled:hover {
+    color: var(--color-dark-grey) !important;
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: line-through;
   }
 `;
 
@@ -89,10 +111,14 @@ const SecondaryButton = styled(RootButton)`
  * https://www.styled-components.com/docs/basics#extending-styles
  */
 function Button(props) {
-  const { secondary } = props;
+  const { secondary, tertiary } = props;
 
   if (secondary) {
     return <SecondaryButton {...props}>{props.children}</SecondaryButton>;
+  }
+
+  if (tertiary) {
+    return <TertiaryButton {...props}>{props.children}</TertiaryButton>;
   }
 
   return <DefaultButton {...props}>{props.children}</DefaultButton>;
@@ -100,6 +126,7 @@ function Button(props) {
 
 Button.propTypes = {
   secondary: PropTypes.bool,
+  tertiary: PropTypes.bool,
   round: PropTypes.bool,
   disabled: PropTypes.bool,
   children: PropTypes.oneOfType([
