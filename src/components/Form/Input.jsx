@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Section = styled.div`
@@ -7,8 +6,7 @@ export const Section = styled.div`
 
 export const Label = styled.label`
   display: grid;
-  grid-template-columns: ${props => (props.inline ? 'auto 1fr' : '1fr')};
-  grid-gap: ${props => (props.inline ? '1rem' : '0.5rem')};
+  grid-gap: 1em;
   align-items: center;
   text-transform: none;
   font-weight: bold;
@@ -21,18 +19,27 @@ export const Label = styled.label`
   }
 `;
 
-Label.propTypes = {
-  inline: PropTypes.bool
-};
+export const InlineLabel = styled(Label)`
+  grid-template-columns: auto 1fr;
+
+  @media (max-width: 470px) {
+    grid-template-columns: auto;
+  }
+`;
 
 export const Input = styled.input`
   box-sizing: border-box;
   padding: 0.75rem;
   font-size: 17px;
+  font-weight: bold;
   line-height: 1.25;
   border: 2px solid var(--color-light-grey);
   border-radius: 4px;
   color: var(--color-darkest-grey);
+
+  ::placeholder {
+    font-weight: normal;
+  }
 
   :focus {
     box-shadow: 0 0 1px 0 var(--color-purple);
