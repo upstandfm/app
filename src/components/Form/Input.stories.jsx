@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Section, Label, Input, Description } from './Input';
+import { Section, Label, InlineLabel, Input, Description } from './Input';
 
 export default {
   title: 'components|Form/Input',
@@ -54,23 +54,6 @@ DefaultValueInput.story = {
   name: 'default value'
 };
 
-export const InlineInput = () => {
-  return (
-    <Form>
-      <Section>
-        <Label htmlFor="name" inline>
-          NAME
-          <Input type="text" id="name" placeholder="Placeholder" />
-        </Label>
-      </Section>
-    </Form>
-  );
-};
-
-InlineInput.story = {
-  name: 'inline'
-};
-
 export const DisabledInput = () => {
   return (
     <Form>
@@ -96,7 +79,7 @@ export const DisabledValueInput = () => {
       <Section>
         <Label htmlFor="name">
           NAME
-          <Input type="text" id="name" value="Daniël" disabled />
+          <Input disabled type="text" id="name" value="Daniël" />
         </Label>
 
         <Description>Your preferred name.</Description>
@@ -107,4 +90,21 @@ export const DisabledValueInput = () => {
 
 DisabledValueInput.story = {
   name: 'disabled value'
+};
+
+export const InlineInput = () => {
+  return (
+    <Form>
+      <Section>
+        <InlineLabel htmlFor="name">
+          NAME
+          <Input type="text" id="name" placeholder="Placeholder" />
+        </InlineLabel>
+      </Section>
+    </Form>
+  );
+};
+
+InlineInput.story = {
+  name: 'inline'
 };
