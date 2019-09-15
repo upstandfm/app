@@ -2,25 +2,19 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import Cards from './Cards';
-import { Title } from './Card';
+import { Container, Title } from './Card';
 
 export const LoadingCards = styled(Cards)``;
 
-const Container = styled.li`
-  width: 235px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 16px;
+const LoadingContainer = styled(Container).attrs(() => ({
+  as: 'div'
+}))`
   background-color: var(--color-lightest-grey);
 
   :hover {
     cursor: wait;
-  }
-
-  @media (max-width: 470px) {
-    width: 100%;
+    transform: none;
+    box-shadow: inherit;
   }
 `;
 
@@ -56,10 +50,10 @@ const LoadingTitle = styled(Title)`
 
 export function LoadingCard() {
   return (
-    <Container>
+    <LoadingContainer>
       <Wrapper>
         <LoadingTitle>A loading title</LoadingTitle>
       </Wrapper>
-    </Container>
+    </LoadingContainer>
   );
 }

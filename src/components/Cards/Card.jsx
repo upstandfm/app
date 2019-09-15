@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
 
-const Container = styled.li`
+export const Container = styled.li`
   width: 235px;
   list-style: none;
   margin: 0;
@@ -26,12 +26,12 @@ const Container = styled.li`
     }
   }
 
-  @media (max-width: 370px) {
+  @media (max-width: 350px) {
     width: 100%;
   }
 `;
 
-const WrapperLink = styled(Link)`
+export const WrapperLink = styled(Link)`
   display: grid;
   height: 260px;
   padding: 1em;

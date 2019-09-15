@@ -10,7 +10,7 @@ export default {
   }
 };
 
-export const CardWithNameAndLink = () => {
+export const CardWithTitleAndLink = () => {
   return (
     <ul>
       <Card linkTo="standups/1" title="Team awesome and nice people" />
@@ -18,7 +18,7 @@ export const CardWithNameAndLink = () => {
   );
 };
 
-CardWithNameAndLink.story = {
+CardWithTitleAndLink.story = {
   name: 'linkTo + title'
 };
 
