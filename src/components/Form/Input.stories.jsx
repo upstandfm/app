@@ -92,6 +92,25 @@ DisabledValueInput.story = {
   name: 'disabled value'
 };
 
+export const ErroredInput = () => {
+  return (
+    <Form>
+      <Section>
+        <Label htmlFor="email">
+          NAME
+          <Input type="email" id="email" value="abc" />
+        </Label>
+
+        <Description error>Invalid email.</Description>
+      </Section>
+    </Form>
+  );
+};
+
+ErroredInput.story = {
+  name: 'error'
+};
+
 export const InlineInput = () => {
   return (
     <Form>
