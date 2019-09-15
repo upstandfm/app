@@ -14,7 +14,7 @@ const LoadingContainer = styled(Container).attrs(() => ({
   :hover {
     cursor: wait;
     transform: none;
-    box-shadow: inherit;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   }
 `;
 
