@@ -10,7 +10,18 @@ import {
   faPlus,
   faCircleNotch,
   faExclamationTriangle,
-  faInfoCircle
+  faInfoCircle,
+  faUser,
+  faCheck,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlus, faCircleNotch, faExclamationTriangle, faInfoCircle);
+library.add(
+  faPlus,
+  faCircleNotch,
+  faExclamationTriangle,
+  faInfoCircle,
+  faUser,
+  faCheck,
+  faTimes
+);
