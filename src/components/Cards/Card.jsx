@@ -61,8 +61,8 @@ export const Title = styled.h2`
   letter-spacing: 0.022em;
   color: var(--color-white);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-word;
+  overflow: auto;
 `;
 
 function Card({ title, linkTo, bgImageUrl }) {
