@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from '@reach/router';
 
 import mockData from './mock-data';
 import { getStandupsList } from './selectors';
