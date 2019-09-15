@@ -36,3 +36,11 @@ export const StepOne = () => {
 StepOne.story = {
   name: 'step 1'
 };
+
+export const StepTwo = () => {
+  return <PureNewStandup {...props} stepIndex={1} />;
+};
+
+StepTwo.story = {
+  name: 'step 2'
+};
