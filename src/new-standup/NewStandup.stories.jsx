@@ -44,3 +44,11 @@ export const StepTwo = () => {
 StepTwo.story = {
   name: 'step 2'
 };
+
+export const StepThree = () => {
+  return <PureNewStandup {...props} stepIndex={2} />;
+};
+
+StepThree.story = {
+  name: 'step 3'
+};
