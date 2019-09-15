@@ -42,6 +42,24 @@
   --color-dark-mint: #22d39b;
   --color-mint: #30e8b6;
   --color-light-mint: #2cf6c3;
+
+  /* Error */
+  --color-darkest-red: #9b2c2c;
+  --color-darker-red: #c53030;
+  --color-dark-red: #e53e3e;
+  --color-red: #f56565;
+  --color-light-red: #fc8181;
+  --color-lighter-red: #feb2b2;
+  --color-lightest-red: #fed7d7;
+
+  /* Success */
+  --color-darkest-green: #276749;
+  --color-darker-green: #2f855a;
+  --color-dark-green: #38a169;
+  --color-green: #48bb78;
+  --color-light-green: #68d391;
+  --color-lighter-green: #9ae6b4;
+  --color-lightest-green: #c6f6d5;
 }
 
 *,

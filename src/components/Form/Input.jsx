@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Section = styled.div`
@@ -39,6 +40,7 @@ export const Input = styled.input`
 
   ::placeholder {
     font-weight: normal;
+    opacity: 0.4;
   }
 
   :focus {
@@ -48,8 +50,13 @@ export const Input = styled.input`
 
   :disabled {
     cursor: not-allowed;
-    background-color: var(--color-lighter-grey);
+    background-color: var(--color-lightest-grey);
     color: var(--color-grey);
+  }
+
+  :invalid {
+    box-shadow: 0 0 1px 0 var(--color-red);
+    border-color: var(--color-red);
   }
 `;
 
@@ -58,5 +65,11 @@ export const Description = styled.p`
   font-size: 0.9em;
   font-style: italic;
   line-height: 1.5;
-  color: var(--color-grey);
+  color: ${props =>
+    props.error ? 'var(--color-dark-red)' : 'var(--color-grey)'};
+  height: 21px;
 `;
+
+Description.propTypes = {
+  error: PropTypes.bool
+};
