@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+export const Form = styled.form``;
+
 export const Section = styled.div`
   margin: 1em 0;
 `;
