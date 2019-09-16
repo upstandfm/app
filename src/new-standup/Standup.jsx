@@ -39,6 +39,7 @@ function Standup({ standupName, dispatch, handleNextStep }) {
             ref={nameInput}
             value={standupName}
             onChange={handleInput}
+            maxLength={70}
           />
         </Label>
       </Section>
