@@ -37,7 +37,7 @@ describe('<AvatarDropdown />', () => {
         >
           <img
             alt="user avatar"
-            class="sc-bZQynM eTYoVy"
+            class="sc-bZQynM fBZhpA"
             data-testid="avatar"
             src="https://media.upstand.fm/avatars/1w4fg6y9o.png"
           />

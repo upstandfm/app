@@ -16,8 +16,8 @@ import {
 
 const Avatar = styled.img`
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 4px;
   padding: 0;
   vertical-align: middle;
@@ -42,30 +42,37 @@ const BlankButton = styled.button`
 `;
 
 /**
- * To comply with a11y keyboard nav requirements, the dropdown list must behave
- * as follows:
+ * To comply with accessibility (a11y) keyboard navigation requirements, the
+ * dropdown list must behave as follows:
  *
- * 1. When focusing on the dropdown button (trigger), pressing "Enter",
- *    "Spacebar" or "Arrow Down" must open the dropdown (list).
+ * 1. When focusing on the dropdown button (trigger), pressing `Enter`,
+ *    `Spacebar` or `Arrow Down` must open the dropdown (list).
  *
  * 2. When the dropdown opens, the first list item must get focus.
  *
- * 3. When pressing "Arrow Down" while a list item has focus, we must cycle
+ * 3. When pressing `Arrow Down` while a list item has focus, we must cycle
  *    through all list items (forwards).
  *
- * 4. When pressing "Arrow Up" while a list item has focus, we must cycle
+ * 4. When pressing `Arrow Up` while a list item has focus, we must cycle
  *    through all list items (backwards).
  *
- * 5. Pressing "Tab" while the list has focus, closes the dropdown and puts
- *    focus on the next element (i.e. NOT the dropdown).
+ * 5. Pressing `Tab` while the list has focus, closes the dropdown and puts
+ *    focus on the next element (i.e. _not_ the dropdown).
  *
- * 6. Pressing "Shift + Tab" while the list has focus, puts focus back on the
+ * 6. Pressing `Shift + Tab` while the list has focus, puts focus back on the
  *    dropdown button (trigger).
  *
- * 7. Pressing "Arrow Up" while the dropdown button (trigger) has focus, closes
- *    the dropdown.
+ * 7. Pressing `Arrow Up` while the dropdown button (trigger) has focus, and
+ *    the dropdown (list) is open, closes the dropdown (list).
  *
- * 8. Pressing "Escape" closes the dropdown.
+ * 8. When the dropdown (list) is open, pressing `Escape` closes it. Clicking
+ *    "outside" the dropdown (list) also closes it.
+ *
+ *
+ * Additionally, it meets the following requirements:
+ *
+ * - ✅ The dropdown has all relevant WAI-ARIA attributes in accordance with
+ *   a11y guidelines.
  *
  * For more info see:
  *
