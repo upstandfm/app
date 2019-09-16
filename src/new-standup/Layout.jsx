@@ -17,8 +17,6 @@ export const Header = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.h1``;
-
 export const Main = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;

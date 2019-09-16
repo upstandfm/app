@@ -8,7 +8,7 @@ import { CardPreview } from '../components/Cards';
 
 import standupReducer from './reducer';
 
-import { Container, Header, Title, Main, Preview, PreviewText } from './Layout';
+import { Container, Header, Main, Preview, PreviewText } from './Layout';
 import { Steps, Step } from './Steps';
 import Standup from './Standup';
 import Invite from './Invite';
@@ -105,7 +105,7 @@ function NewStandup() {
   return (
     <Container>
       <Header>
-        <Title>New standup</Title>
+        <h1>New standup</h1>
 
         <Exit
           round

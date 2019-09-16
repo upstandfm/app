@@ -9,7 +9,7 @@ const PreviewContainer = styled(Container).attrs(() => ({
 }))`
   :hover {
     transform: none;
-    box-shadow: inherit;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   }
 `;
 
