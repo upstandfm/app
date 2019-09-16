@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -64,11 +63,3 @@ export const Actions = styled.div`
     justify-content: center;
   }
 `;
-
-Actions.defaultProps = {
-  count: 1
-};
-
-Actions.propTypes = {
-  count: PropTypes.number
-};

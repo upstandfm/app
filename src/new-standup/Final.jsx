@@ -55,7 +55,7 @@ function Final({ standupUsers, handlePreviousStep }) {
         </List>
       </ListContainer>
 
-      <Actions count={2}>
+      <Actions>
         <ButtonSpaceRight tertiary onClick={handlePrevious}>
           Previous
         </ButtonSpaceRight>

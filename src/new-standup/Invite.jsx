@@ -198,7 +198,7 @@ function Invite({
         </List>
       </ListContainer>
 
-      <Actions count={2}>
+      <Actions>
         <ButtonSpaceRight tertiary onClick={handlePrevious}>
           Previous
         </ButtonSpaceRight>
