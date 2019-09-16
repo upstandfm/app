@@ -110,19 +110,31 @@ const TertiaryButton = styled(RootButton)`
  *
  * https://www.styled-components.com/docs/basics#extending-styles
  */
-function Button(props) {
+const Button = React.forwardRef((props, ref) => {
   const { secondary, tertiary } = props;
 
   if (secondary) {
-    return <SecondaryButton {...props}>{props.children}</SecondaryButton>;
+    return (
+      <SecondaryButton ref={ref} {...props}>
+        {props.children}
+      </SecondaryButton>
+    );
   }
 
   if (tertiary) {
-    return <TertiaryButton {...props}>{props.children}</TertiaryButton>;
+    return (
+      <TertiaryButton ref={ref} {...props}>
+        {props.children}
+      </TertiaryButton>
+    );
   }
 
-  return <DefaultButton {...props}>{props.children}</DefaultButton>;
-}
+  return (
+    <DefaultButton ref={ref} {...props}>
+      {props.children}
+    </DefaultButton>
+  );
+});
 
 Button.propTypes = {
   secondary: PropTypes.bool,
