@@ -11,7 +11,7 @@ function useOutsideClicks(onOutsideClick) {
   const el = React.useRef();
 
   const handleOutsideClicks = e => {
-    const isInside = el.current.contains(e.target);
+    const isInside = el.current && el.current.contains(e.target);
     if (isInside) {
       return;
     }

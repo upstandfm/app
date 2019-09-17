@@ -115,3 +115,10 @@ style isn't necessary.
 div:focus {
   box-shadow: none;
 }
+
+/**
+* Lock the scroll position by adding this class to the "html" element.
+*/
+.scroll-lock {
+  overflow: hidden !important;
+}
