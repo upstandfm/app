@@ -15,8 +15,8 @@ const RootButton = styled.button`
   line-height: 1.30775;
   padding: ${props => (props.round ? 0 : '8px 20px;')};
   border-radius: ${props => (props.round ? '50%' : '33px')};
-  width: ${props => (props.round ? '48px' : 'auto')};
-  height: ${props => (props.round ? '48px' : 'auto')};
+  width: ${props => (props.round ? '40px' : 'auto')};
+  height: ${props => (props.round ? '40px' : 'auto')};
   box-shadow: ${props =>
     props.round ? '0px 4px 6px 0px rgba(0, 0, 0, 0.2)' : 'none'};
   border: 2px solid;

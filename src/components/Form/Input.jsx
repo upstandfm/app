@@ -9,11 +9,11 @@ export const Section = styled.div`
 
 export const Label = styled.label`
   display: grid;
-  grid-gap: 1em;
+  grid-gap: 0.6rem;
   align-items: center;
   text-transform: none;
   font-weight: bold;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.035rem;
   line-height: 1.5;
   color: var(--color-grey);
 
@@ -32,8 +32,8 @@ export const InlineLabel = styled(Label)`
 
 export const Input = styled.input`
   box-sizing: border-box;
-  padding: 0.75rem;
-  font-size: 17px;
+  padding: 0.6rem;
+  font-size: 15px;
   font-weight: bold;
   line-height: 1.25;
   border: 2px solid var(--color-light-grey);
@@ -63,13 +63,13 @@ export const Input = styled.input`
 `;
 
 export const Description = styled.p`
-  margin: 0.75rem 0 0 0;
-  font-size: 0.9em;
+  margin: 0.5rem 0 0 0;
+  font-size: 0.8rem;
   font-style: italic;
   line-height: 1.5;
   color: ${props =>
     props.error ? 'var(--color-dark-red)' : 'var(--color-grey)'};
-  height: 21px;
+  height: 20px;
 `;
 
 Description.propTypes = {
