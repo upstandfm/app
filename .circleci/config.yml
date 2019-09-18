@@ -28,7 +28,7 @@ docker_percy_image: &docker_percy_image
 #
 # Note that the CircleCI cache is immutable and there's not other way to
 # invalidate the cache besides using a different key. Therefore it's advised to
-# use some sort of version pre- or postfix in the.
+# use some sort of version pre- or postfix in the key.
 #
 # For more info see:
 # https://circleci.com/docs/2.0/caching/#clearing-cache
@@ -80,8 +80,9 @@ jobs:
       - save_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
 
-          # "node_modules" should not be cached, because they contain compiled
-          # binaries, which will cause errors when using different Node versions
+          # Dir "node_modules" should not be cached, because it contains
+          # compiled binaries, which will cause errors when using different
+          # Node versions.
           #
           # The ".npm" dir also stores deps, but uncompiled.
           #
