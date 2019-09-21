@@ -110,19 +110,6 @@ Storybook files are colocated with the implementation files. For example, the co
 
 A live Storybook can be found at [storybook.upstand.fm](https://storybook.upstand.fm).
 
-### v5.2
-
-Currently the `v5.2` release candidate is used, to use some new Storybook features:
-
-- [Component Story Format](https://medium.com/storybookjs/component-story-format-66f4c32366df)
-- [DocsPage](https://github.com/storybookjs/storybook/blob/next/addons/docs/docs/docspage.md)
-
-All Storybook dependencies can be updated to use the latest release candidate versions by running:
-
-```sh
-npx npm-check-updates '/storybook/' -un && npm i
-```
-
 ## Tests
 
 ### Unit & integration

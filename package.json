@@ -49,8 +49,8 @@
     }
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.22",
-    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.24",
+    "@fortawesome/free-solid-svg-icons": "^5.11.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@reach/router": "^1.2.1",
     "focus-trap-react": "^6.0.0",
@@ -62,13 +62,13 @@
   "devDependencies": {
     "@auth0/auth0-spa-js": "^1.2.3",
     "@percy/storybook": "^3.2.0",
-    "@storybook/addon-a11y": "^5.2.0-rc.5",
-    "@storybook/addon-actions": "^5.2.0-rc.5",
-    "@storybook/addon-docs": "^5.2.0-rc.5",
-    "@storybook/addon-links": "^5.2.0-rc.5",
-    "@storybook/addon-viewport": "^5.2.0-rc.5",
-    "@storybook/addons": "^5.2.0-rc.5",
-    "@storybook/react": "^5.2.0-rc.5",
+    "@storybook/addon-a11y": "^5.2.1",
+    "@storybook/addon-actions": "^5.2.1",
+    "@storybook/addon-docs": "^5.2.1",
+    "@storybook/addon-links": "^5.2.1",
+    "@storybook/addon-viewport": "^5.2.1",
+    "@storybook/addons": "^5.2.1",
+    "@storybook/react": "^5.2.1",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
     "cypress": "^3.4.1",
@@ -77,7 +77,7 @@
     "husky": "^3.0.5",
     "jest-junit": "^8.0.0",
     "lint-staged": "^9.2.5",
-    "netlify-cli": "^2.13.1",
+    "netlify-cli": "^2.15.0",
     "prettier": "^1.18.2"
   }
 }
