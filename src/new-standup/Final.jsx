@@ -25,37 +25,13 @@ const ButtonSpaceRight = styled(Button)`
   margin: 0 1.5em 0 0;
 `;
 
-function Final({ standupName, standupUsers, handlePreviousStep }) {
-  const [
-    createStandup,
-    abortCreateStandup,
-    isCreating,
-    err
-  ] = useCreateStandup();
-
-  React.useEffect(() => {
-    return () => {
-      abortCreateStandup();
-    };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handlePrevious = e => {
-    e.preventDefault();
-    handlePreviousStep();
-  };
-
-  const handleCreate = async e => {
-    e.preventDefault();
-
-    const data = {
-      standupName
-    };
-    const res = await createStandup(data);
-    if (res && res.standupId) {
-      navigate(`/${res.standupId}`);
-    }
-  };
-
+export function PureFinal({
+  standupUsers,
+  handlePrevious,
+  handleCreate,
+  isCreating,
+  err
+}) {
   return (
     <Form>
       <Subtitle>Looks good?</Subtitle>
@@ -100,6 +76,59 @@ function Final({ standupName, standupUsers, handlePreviousStep }) {
 
       {err && <CreateError message={err.message} details={err.details} />}
     </Form>
+  );
+}
+
+PureFinal.propTypes = {
+  standupUsers: PropTypes.arrayOf(PropTypes.string),
+  handlePrevious: PropTypes.func.isRequired,
+  handleCreate: PropTypes.func.isRequired,
+  isCreating: PropTypes.bool.isRequired,
+  err: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+    details: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+  })
+};
+
+function Final({ standupName, standupUsers, handlePreviousStep }) {
+  const [
+    createStandup,
+    abortCreateStandup,
+    isCreating,
+    err
+  ] = useCreateStandup();
+
+  React.useEffect(() => {
+    return () => {
+      abortCreateStandup();
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handlePrevious = e => {
+    e.preventDefault();
+    handlePreviousStep();
+  };
+
+  const handleCreate = async e => {
+    e.preventDefault();
+
+    const data = {
+      standupName
+    };
+    const res = await createStandup(data);
+    if (res && res.standupId) {
+      navigate(`/${res.standupId}`);
+    }
+  };
+
+  return (
+    <PureFinal
+      standupUsers={standupUsers}
+      handlePrevious={handlePrevious}
+      handleCreate={handleCreate}
+      isCreating={isCreating}
+      err={err}
+    />
   );
 }
 
