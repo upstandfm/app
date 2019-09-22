@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 
 import { ComponentsByStepIndex, PureNewStandup } from './NewStandup';
+import CreateError from './CreateError';
 
 const props = {
   componentsByStepIndex: ComponentsByStepIndex,
@@ -51,4 +52,17 @@ export const StepThree = () => {
 
 StepThree.story = {
   name: 'step 3'
+};
+
+export const CreateStandupError = () => {
+  return (
+    <CreateError
+      message="Invalid request data"
+      details={['"standupName" is required']}
+    />
+  );
+};
+
+CreateStandupError.story = {
+  name: 'create error'
 };
