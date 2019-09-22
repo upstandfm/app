@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { navigate } from '@reach/router';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -16,21 +17,43 @@ import { Form } from '../components/Form';
 import Button from '../components/Button';
 
 import { Subtitle, Actions } from './Layout';
+import CreateError from './CreateError';
+
+import useCreateStandup from './use-create-standup';
 
 const ButtonSpaceRight = styled(Button)`
   margin: 0 1.5em 0 0;
 `;
 
-function Final({ standupUsers, handlePreviousStep }) {
+function Final({ standupName, standupUsers, handlePreviousStep }) {
+  const [
+    createStandup,
+    abortCreateStandup,
+    isCreating,
+    err
+  ] = useCreateStandup();
+
+  React.useEffect(() => {
+    return () => {
+      abortCreateStandup();
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handlePrevious = e => {
     e.preventDefault();
     handlePreviousStep();
   };
 
-  const handleCreate = e => {
+  const handleCreate = async e => {
     e.preventDefault();
-    console.log('create');
-    // TODO: create standup
+
+    const data = {
+      standupName
+    };
+    const res = await createStandup(data);
+    if (res && res.standupId) {
+      navigate(`/${res.standupId}`);
+    }
   };
 
   return (
@@ -56,17 +79,32 @@ function Final({ standupUsers, handlePreviousStep }) {
       </ListContainer>
 
       <Actions>
-        <ButtonSpaceRight tertiary onClick={handlePrevious}>
+        <ButtonSpaceRight
+          tertiary
+          onClick={handlePrevious}
+          disabled={isCreating}
+        >
           Previous
         </ButtonSpaceRight>
 
-        <Button onClick={handleCreate}>Yes, create</Button>
+        <Button onClick={handleCreate} disabled={isCreating}>
+          {isCreating ? (
+            <>
+              <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Creating..
+            </>
+          ) : (
+            'Yes, create'
+          )}
+        </Button>
       </Actions>
+
+      {err && <CreateError message={err.message} details={err.details} />}
     </Form>
   );
 }
 
 Final.propTypes = {
+  standupName: PropTypes.string.isRequired,
   standupUsers: PropTypes.arrayOf(PropTypes.string),
   handlePreviousStep: PropTypes.func.isRequired
 };

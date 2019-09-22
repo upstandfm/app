@@ -50,7 +50,7 @@
   --color-red: #f56565;
   --color-light-red: #fc8181;
   --color-lighter-red: #feb2b2;
-  --color-lightest-red: #fed7d7;
+  --color-lightest-red: #fdecec;
 
   /* Success */
   --color-darkest-green: #276749;
@@ -59,7 +59,7 @@
   --color-green: #48bb78;
   --color-light-green: #68d391;
   --color-lighter-green: #9ae6b4;
-  --color-lightest-green: #c6f6d5;
+  --color-lightest-green: #ebfcf0;
 }
 
 *,
