@@ -22,7 +22,7 @@ export const ComponentsByStepIndex = [
   ['Create', Final]
 ];
 
-export function PureNewStandup({
+function PureNewStandup({
   componentsByStepIndex,
   standup,
   dispatch,
