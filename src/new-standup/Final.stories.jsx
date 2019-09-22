@@ -21,12 +21,18 @@ const props = {
 export default {
   title: 'screens|New Standup/Final',
   parameters: {
-    componentSubtitle: 'Final step in standup creation'
+    componentSubtitle: 'Finalize standup creation'
   }
 };
 
 export const DefaultFinal = () => {
-  return <PureFinal {...props} />;
+  return (
+    <PureFinal
+      standupUsers={props.standupUsers}
+      handlePrevious={props.handlePrevious}
+      handleCreate={props.handleCreate}
+    />
+  );
 };
 
 DefaultFinal.story = {
