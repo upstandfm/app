@@ -59,6 +59,7 @@ function AuthenticatedApp() {
         <MainContainer>
           <Router>
             <Standups path="/" />
+
             <NewStandup path="/new" />
 
             <NotFound default />

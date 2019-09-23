@@ -90,7 +90,6 @@ const TertiaryButton = styled(RootButton)`
     color: var(--color-dark-grey) !important;
     background-color: transparent;
     border-color: transparent;
-    text-decoration: line-through;
   }
 `;
 

@@ -1,10 +1,10 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 
 import mockData from './mock-data';
-import { getStandupsList } from './selectors';
 import { PureStandups } from './Standups';
 
-const standups = getStandupsList(mockData);
+const fetchNextPage = action('fetchNextPage');
 
 export default {
   title: 'screens|Standups',
@@ -15,7 +15,7 @@ export default {
 };
 
 export const DefaultStandups = () => {
-  return <PureStandups isLoading={false} standups={standups} />;
+  return <PureStandups isLoading={false} standups={mockData} />;
 };
 
 DefaultStandups.story = {
@@ -28,6 +28,36 @@ export const LoadingStandups = () => {
 
 LoadingStandups.story = {
   name: 'loading'
+};
+
+export const LoadMoreStandups = () => {
+  return (
+    <PureStandups
+      isLoading={false}
+      cursor="1q2w3e4r5t6y="
+      standups={mockData}
+      fetchNextPage={fetchNextPage}
+    />
+  );
+};
+
+LoadMoreStandups.story = {
+  name: 'load more'
+};
+
+export const FetchingMoreStandups = () => {
+  return (
+    <PureStandups
+      isLoading={true}
+      cursor="1q2w3e4r5t6y="
+      standups={mockData}
+      fetchNextPage={fetchNextPage}
+    />
+  );
+};
+
+FetchingMoreStandups.story = {
+  name: 'loading more'
 };
 
 export const ErrStandups = () => {

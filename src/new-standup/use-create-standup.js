@@ -31,7 +31,7 @@ function useCreateStandup() {
       }
 
       const { response = {} } = err;
-      const { data = {} } = response;
+      const { data } = response;
       setErr(data ? data : err);
       setIsCreating(false);
     }
