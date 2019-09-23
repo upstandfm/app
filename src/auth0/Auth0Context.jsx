@@ -151,7 +151,7 @@ function Auth0Provider(props) {
 function useAuth0() {
   const ctx = React.useContext(Auth0Context);
   if (!ctx) {
-    throw new Error('useAuth0() hook must be used inside <Auth0Context/>');
+    throw new Error('"useAuth0" hook must be used inside "Auth0Context"');
   }
   return ctx;
 }
