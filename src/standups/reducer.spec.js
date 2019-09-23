@@ -30,4 +30,16 @@ describe('standups reducer', () => {
     const newState = reducer(state, action);
     expect(newState).toContain(standups[0]);
   });
+
+  it('returns default state', () => {
+    const state = [{ standupId: '1', standupName: 'One' }];
+
+    const action = {
+      type: 'DOES_NOT_EXIST',
+      data: {}
+    };
+
+    const newState = reducer(state, action);
+    expect(newState).toEqual(state);
+  });
 });

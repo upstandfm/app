@@ -4,7 +4,7 @@ const { REACT_APP_API_DOMAIN } = process.env;
 
 const api = {
   /**
-   * Get all standups
+   * Get all standups.
    *
    * @param {String} token - Access token
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
