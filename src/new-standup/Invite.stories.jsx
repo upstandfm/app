@@ -9,6 +9,7 @@ const handleNextStep = action('handleNextStep');
 
 export default {
   title: 'screens|New Standup/Invite',
+  component: Invite,
   parameters: {
     componentSubtitle: 'Invite users for the standup'
   }

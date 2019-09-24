@@ -8,6 +8,7 @@ const handleNextStep = action('handleNextStep');
 
 export default {
   title: 'screens|New Standup/Standup',
+  component: Standup,
   parameters: {
     componentSubtitle: 'Provide standup information'
   }

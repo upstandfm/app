@@ -20,6 +20,7 @@ const props = {
 
 export default {
   title: 'screens|New Standup/Final',
+  component: PureFinal,
   parameters: {
     componentSubtitle: 'Finalize standup creation'
   }
