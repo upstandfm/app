@@ -60,17 +60,18 @@ PureNewStandup.propTypes = {
 };
 
 const Exit = styled(Button)`
-  background-color: var(--color-light-grey);
+  background-color: transparent;
   box-shadow: none;
   border-color: transparent;
+  color: var(--color-grey) !important;
 
   :hover {
-    background-color: var(--color-grey);
+    background-color: var(--color-lighter-grey);
     border-color: transparent;
   }
 
   :active {
-    background-color: var(--color-dark-grey);
+    background-color: var(--color-light-grey);
     border-color: transparent;
   }
 `;
