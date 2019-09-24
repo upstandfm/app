@@ -53,7 +53,7 @@ function Standup({ standupName, dispatch, handleNextStep }) {
   );
 }
 
-Standup.popTypes = {
+Standup.propTypes = {
   standupName: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired

@@ -211,7 +211,7 @@ function Invite({
   );
 }
 
-Invite.popTypes = {
+Invite.propTypes = {
   standupUsers: PropTypes.arrayOf([PropTypes.string]),
   dispatch: PropTypes.func.isRequired,
   handlePreviousStep: PropTypes.func.isRequired,
