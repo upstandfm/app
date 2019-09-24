@@ -6,6 +6,7 @@ import { useAuth0, useUser } from '../auth0';
 import { LogoWithName } from '../components/Logo';
 import { AvatarDropdown } from '../components/Dropdown';
 import { NotFound } from '../components/Errors';
+import Snackbar from '../components/Snackbar';
 
 import Standups from '../standups';
 import NewStandup from '../new-standup';
@@ -28,45 +29,49 @@ function AuthenticatedApp() {
   const { avatarUrl, fullName, email } = useUser();
 
   return (
-    <AppContainer>
-      <Header>
-        <HeaderContainer>
-          <Brand>
-            <LogoWithName />
-          </Brand>
+    <>
+      <AppContainer>
+        <Header>
+          <HeaderContainer>
+            <Brand>
+              <LogoWithName />
+            </Brand>
 
-          <Nav>
-            <Menu>
-              <MenuItem>
-                <MenuLink to="/">Standups</MenuLink>
-              </MenuItem>
-            </Menu>
-          </Nav>
+            <Nav>
+              <Menu>
+                <MenuItem>
+                  <MenuLink to="/">Standups</MenuLink>
+                </MenuItem>
+              </Menu>
+            </Nav>
 
-          <Profile>
-            <AvatarDropdown
-              alignSelf="right"
-              logout={logout}
-              avatarUrl={avatarUrl}
-              fullName={fullName}
-              email={email}
-            />
-          </Profile>
-        </HeaderContainer>
-      </Header>
+            <Profile>
+              <AvatarDropdown
+                alignSelf="right"
+                logout={logout}
+                avatarUrl={avatarUrl}
+                fullName={fullName}
+                email={email}
+              />
+            </Profile>
+          </HeaderContainer>
+        </Header>
 
-      <Main>
-        <MainContainer>
-          <Router>
-            <Standups path="/" />
+        <Main>
+          <MainContainer>
+            <Router>
+              <Standups path="/" />
 
-            <NewStandup path="/new" />
+              <NewStandup path="/new" />
 
-            <NotFound default />
-          </Router>
-        </MainContainer>
-      </Main>
-    </AppContainer>
+              <NotFound default />
+            </Router>
+          </MainContainer>
+        </Main>
+      </AppContainer>
+
+      <Snackbar />
+    </>
   );
 }
 
