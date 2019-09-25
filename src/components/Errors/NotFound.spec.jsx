@@ -11,6 +11,6 @@ describe('<NotFound />', () => {
 
   it('renders "home" link', () => {
     const { getByText } = render(<NotFound />);
-    expect(getByText('Back to home')).toHaveAttribute('href', '/');
+    expect(getByText('Go back home')).toHaveAttribute('href', '/');
   });
 });
