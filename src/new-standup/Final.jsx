@@ -13,11 +13,12 @@ import {
   ListItemText
 } from '../components/List/List';
 
+import { useSnackbar } from '../components/Snackbar';
+
 import { Form } from '../components/Form';
 import Button from '../components/Button';
 
 import { Subtitle, Actions } from './Layout';
-import CreateError from './CreateError';
 
 import useCreateStandup from './use-create-standup';
 
@@ -29,8 +30,7 @@ export function PureFinal({
   standupUsers,
   handlePrevious,
   handleCreate,
-  isCreating,
-  err
+  isCreating
 }) {
   return (
     <Form>
@@ -73,8 +73,6 @@ export function PureFinal({
           )}
         </Button>
       </Actions>
-
-      {err && <CreateError message={err.message} details={err.details} />}
     </Form>
   );
 }
@@ -83,11 +81,7 @@ PureFinal.propTypes = {
   standupUsers: PropTypes.arrayOf(PropTypes.string),
   handlePrevious: PropTypes.func.isRequired,
   handleCreate: PropTypes.func.isRequired,
-  isCreating: PropTypes.bool.isRequired,
-  err: PropTypes.shape({
-    message: PropTypes.string.isRequired,
-    details: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
-  })
+  isCreating: PropTypes.bool.isRequired
 };
 
 function Final({ standupName, standupUsers, handlePreviousStep }) {
@@ -98,11 +92,37 @@ function Final({ standupName, standupUsers, handlePreviousStep }) {
     err
   ] = useCreateStandup();
 
+  const [, snackbarDispatch] = useSnackbar();
+
   React.useEffect(() => {
     return () => {
       abortCreateStandup();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect(() => {
+    if (!err) {
+      return;
+    }
+
+    let text;
+    if (err.details) {
+      text = Array.isArray(err.details)
+        ? `${err.message}: ${err.details.join(', ')}.`
+        : err.details + '.';
+    } else {
+      text = err.message + '.';
+    }
+
+    snackbarDispatch({
+      type: 'ENQUEUE_SNACKBAR_MSG',
+      data: {
+        type: 'error',
+        title: 'Failed to create standup',
+        text
+      }
+    });
+  }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handlePrevious = e => {
     e.preventDefault();
@@ -127,7 +147,6 @@ function Final({ standupName, standupUsers, handlePreviousStep }) {
       handlePrevious={handlePrevious}
       handleCreate={handleCreate}
       isCreating={isCreating}
-      err={err}
     />
   );
 }
