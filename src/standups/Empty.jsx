@@ -22,7 +22,7 @@ function Empty({ title }) {
     <Container>
       <Wrapper>
         <Title>
-          <FontAwesomeIcon icon="info-circle" /> {title}
+          <FontAwesomeIcon icon="lightbulb" size="sm" /> {title}
         </Title>
       </Wrapper>
     </Container>

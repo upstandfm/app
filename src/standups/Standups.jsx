@@ -5,8 +5,8 @@ import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
-import { FetchError } from '../components/Errors';
 import Button from '../components/Button';
+import { useSnackbar } from '../components/Snackbar';
 
 import Empty from './Empty';
 
@@ -18,13 +18,7 @@ const LoadMore = styled.div`
   margin: 3em 0 0 0;
 `;
 
-export function PureStandups({
-  isLoading,
-  err,
-  cursor,
-  fetchNextPage,
-  standups
-}) {
+export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
     return (
       <LoadingCards>
@@ -35,12 +29,8 @@ export function PureStandups({
     );
   }
 
-  if (err) {
-    return <FetchError title="Failed to load standups" err={err} />;
-  }
-
   if (standups.length === 0) {
-    return <Empty title="You don't have any standups yet" />;
+    return <Empty title="No standups to show.." />;
   }
 
   const handleLoadMore = () => {
@@ -82,10 +72,6 @@ export function PureStandups({
 
 PureStandups.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  err: PropTypes.shape({
-    message: PropTypes.string.isRequired,
-    details: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
-  }),
   cursor: PropTypes.string,
   fetchNextPage: PropTypes.func.isRequired,
   standups: PropTypes.arrayOf(
@@ -131,6 +117,8 @@ function Standups() {
     nextPageCursor
   ] = useFetchStandups(standupsDispatch);
 
+  const [, snackbarDispatch] = useSnackbar();
+
   React.useEffect(() => {
     fetchStandups(PAGE_LIMIT);
 
@@ -138,6 +126,23 @@ function Standups() {
       abortFetchStandups();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect(() => {
+    if (!err) {
+      return;
+    }
+
+    snackbarDispatch({
+      type: 'ENQUEUE_SNACKBAR_MSG',
+      data: {
+        type: 'error',
+        title: 'Failed to fetch standups',
+        text: err.details
+          ? `${err.message}: ${err.details}.`
+          : err.message + '.'
+      }
+    });
+  }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchNextPage = cursor => {
     fetchStandups(PAGE_LIMIT, cursor);
@@ -154,7 +159,6 @@ function Standups() {
       <Main>
         <PureStandups
           isLoading={isFetching}
-          err={err}
           cursor={nextPageCursor}
           fetchNextPage={fetchNextPage}
           standups={standupsState}
