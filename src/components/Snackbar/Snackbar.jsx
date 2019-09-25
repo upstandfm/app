@@ -7,11 +7,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useSnackbar } from './SnackbarContext';
 import Message from './Message';
 
-const Container = styled.aside`
-  position: absolute;
-  bottom: 1em;
-  left: 1em;
-`;
+const Container = styled.aside``;
 
 function Snackbar({ maxMessages, timeout }) {
   const [snackbarState, snackbarDispatch] = useSnackbar();
@@ -41,6 +37,7 @@ function Snackbar({ maxMessages, timeout }) {
               message={message}
               index={i}
               dismissMessage={dismissMessage}
+              queuedCount={snackbarState.length - 1}
             />
           </CSSTransition>
         );
