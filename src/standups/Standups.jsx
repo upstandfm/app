@@ -7,10 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
-
 import Empty from './Empty';
-
-import { StandupsProvider, useStandups } from './StandupsContext';
+import standupsReducer from './reducer';
 import useFetchStandups from './use-fetch-standups';
 
 const LoadMore = styled.div`
@@ -108,7 +106,11 @@ const Main = styled.div``;
 const PAGE_LIMIT = 12;
 
 function Standups() {
-  const [standupsState, standupsDispatch] = useStandups();
+  const [standupsState, standupsDispatch] = React.useReducer(
+    standupsReducer,
+    []
+  );
+
   const [
     fetchStandups,
     abortFetchStandups,
@@ -168,10 +170,4 @@ function Standups() {
   );
 }
 
-export default function StandupsRoot() {
-  return (
-    <StandupsProvider>
-      <Standups />
-    </StandupsProvider>
-  );
-}
+export default Standups;

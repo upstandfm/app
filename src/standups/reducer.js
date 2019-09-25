@@ -1,10 +1,10 @@
 /**
  * Standups reducer.
  *
- * @param {Object} state - Standup
+ * @param {Object} state - Standups
  * @param {Object} action - Reducer action with "type" and "data" props
  *
- * @returns {Object} Standup state
+ * @returns {Object} Standups state
  */
 function standupsReducer(state, action) {
   switch (action.type) {
