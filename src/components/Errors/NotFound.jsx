@@ -28,14 +28,14 @@ const NotFound = function() {
     <Container>
       <Wrapper>
         <Title>
-          <FontAwesomeIcon icon="info-circle" /> Page not found
+          <FontAwesomeIcon icon="lightbulb" /> Page not found
         </Title>
 
         <p>Sorry! This page doesn't exist.</p>
 
         <Actions>
           <Button as={Link} to="/">
-            Back to home
+            Go back home
           </Button>
         </Actions>
       </Wrapper>
