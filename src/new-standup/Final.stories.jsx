@@ -47,19 +47,3 @@ export const FinalCreating = () => {
 FinalCreating.story = {
   name: 'creating'
 };
-
-export const FinalCreateErr = () => {
-  return (
-    <PureFinal
-      {...props}
-      err={{
-        message: 'Invalid request data',
-        details: ['"standupName" is required']
-      }}
-    />
-  );
-};
-
-FinalCreateErr.story = {
-  name: 'error'
-};

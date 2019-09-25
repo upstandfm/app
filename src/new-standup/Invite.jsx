@@ -212,7 +212,7 @@ function Invite({
 }
 
 Invite.propTypes = {
-  standupUsers: PropTypes.arrayOf([PropTypes.string]),
+  standupUsers: PropTypes.arrayOf(PropTypes.string),
   dispatch: PropTypes.func.isRequired,
   handlePreviousStep: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired
