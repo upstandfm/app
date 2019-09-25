@@ -13,7 +13,7 @@ function standupsReducer(state, action) {
     case 'ENQUEUE_SNACKBAR_MSG': {
       const msg = {
         id: shortid.generate(),
-        text: action.data
+        ...action.data
       };
       return [...state, msg];
     }
