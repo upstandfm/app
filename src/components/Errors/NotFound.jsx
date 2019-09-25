@@ -28,7 +28,7 @@ const NotFound = function() {
     <Container>
       <Wrapper>
         <Title>
-          <FontAwesomeIcon icon="lightbulb" /> Page not found
+          <FontAwesomeIcon icon="lightbulb" size="sm" /> Page not found
         </Title>
 
         <p>Sorry! This page doesn't exist.</p>

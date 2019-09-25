@@ -60,14 +60,6 @@ FetchingMoreStandups.story = {
   name: 'loading more'
 };
 
-export const ErrStandups = () => {
-  return <PureStandups isLoading={false} err="Boom!" />;
-};
-
-ErrStandups.story = {
-  name: 'error'
-};
-
 export const EmptyStandups = () => {
   return <PureStandups isLoading={false} standups={[]} />;
 };
