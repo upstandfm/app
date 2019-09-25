@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
   max-width: 440px;
   box-sizing: border-box;
   margin: 0;
@@ -69,19 +72,38 @@ const Container = styled.div`
     transform: translateX(-100%);
     opacity: 0;
   }
+
+  @media (max-width: 470px) {
+    right: 1em;
+  }
+`;
+
+const Meta = styled.span`
+  display: block;
+  margin: 1.25em 0 0 0;
+  opacity: 0.65;
+  text-align: right;
 `;
 
 const Title = styled.span`
   display: block;
   font-weight: bold;
+  line-height: 1.4414;
 `;
 
-export function PureMessage({ index, message }) {
+export function PureMessage({ index, message, queuedCount }) {
   return (
-    <Container type={message.type} index={index}>
+    <Container
+      type={message.type}
+      index={index}
+      role="status"
+      aria-live="polite"
+    >
       {message.title && <Title>{message.title}</Title>}
 
       <span>{message.text}</span>
+
+      {queuedCount > 0 && <Meta>+{queuedCount} message(s) queued</Meta>}
     </Container>
   );
 }
@@ -93,31 +115,33 @@ PureMessage.propTypes = {
     type: PropTypes.oneOf(['success', 'error']),
     title: PropTypes.string.isRequired,
     text: PropTypes.string
-  })
+  }),
+  queuedCount: PropTypes.number.isRequired
 };
 
-function Message({ timeout, message, index, dismissMessage }) {
+function Message({ timeout, message, index, dismissMessage, queuedCount }) {
   React.useEffect(() => {
     setTimeout(() => {
       dismissMessage(message.id);
     }, timeout);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <PureMessage index={index} message={message} />;
+  return (
+    <PureMessage index={index} message={message} queuedCount={queuedCount} />
+  );
 }
 
 Message.propTypes = {
   timeout: PropTypes.number.isRequired,
-  message: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(['success', 'error']),
-      title: PropTypes.string.isRequired,
-      text: PropTypes.string
-    })
-  ),
+  message: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['success', 'error']),
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string
+  }),
   index: PropTypes.number.isRequired,
-  dismissMessage: PropTypes.func.isRequired
+  dismissMessage: PropTypes.func.isRequired,
+  queuedCount: PropTypes.number.isRequired
 };
 
 export default Message;

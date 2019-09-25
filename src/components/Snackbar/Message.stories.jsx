@@ -66,3 +66,21 @@ export const ErrorMessage = () => {
 ErrorMessage.story = {
   name: 'error'
 };
+
+export const QueuedMessages = () => {
+  return (
+    <PureMessage
+      index={0}
+      message={{
+        title: 'Message',
+        text: 'Message text with 2 more messages queued up.'
+      }}
+      queuedCount={2}
+      handleDismissMessage={handleDismissMessage}
+    />
+  );
+};
+
+QueuedMessages.story = {
+  name: 'queued'
+};
