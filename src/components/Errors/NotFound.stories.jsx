@@ -11,9 +11,17 @@ export default {
 };
 
 export const DefaultNotFound = () => {
-  return <NotFound />;
+  return <NotFound title="Page not found" />;
 };
 
 DefaultNotFound.story = {
   name: 'default'
+};
+
+export const InfoNotFound = () => {
+  return <NotFound title="Page not found" info="This page doesn't exist." />;
+};
+
+InfoNotFound.story = {
+  name: 'info'
 };

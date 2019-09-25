@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
@@ -23,15 +24,15 @@ const Actions = styled.div`
   margin: 2em 0 0 0;
 `;
 
-const NotFound = function() {
+const NotFound = function({ title, info }) {
   return (
     <Container>
       <Wrapper>
         <Title>
-          <FontAwesomeIcon icon="lightbulb" size="sm" /> Page not found
+          <FontAwesomeIcon icon="lightbulb" size="sm" /> {title}
         </Title>
 
-        <p>Sorry! This page doesn't exist.</p>
+        {info && <p>{info}</p>}
 
         <Actions>
           <Button as={Link} to="/">
@@ -41,6 +42,11 @@ const NotFound = function() {
       </Wrapper>
     </Container>
   );
+};
+
+NotFound.propTypes = {
+  title: PropTypes.string.isRequired,
+  info: PropTypes.string
 };
 
 export default NotFound;
