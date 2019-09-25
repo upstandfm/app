@@ -10,6 +10,7 @@ import Snackbar from '../components/Snackbar';
 
 import Standups from '../standups';
 import NewStandup from '../new-standup';
+import Standup from '../standup';
 
 import {
   AppContainer,
@@ -61,10 +62,14 @@ function AuthenticatedApp() {
           <MainContainer>
             <Router>
               <Standups path="/" />
-
               <NewStandup path="/new" />
+              <Standup path="/:standupId" />
 
-              <NotFound default />
+              <NotFound
+                default
+                title="Page not found.."
+                info="Sorry! This page doesn't exist."
+              />
             </Router>
           </MainContainer>
         </Main>
