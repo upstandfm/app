@@ -5,78 +5,16 @@ import styled from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { useSnackbar } from './SnackbarContext';
+import Message from './Message';
 
-const Container = styled.aside``;
-
-const Message = styled.div`
-  position: fixed;
-  bottom: ${props => 1 + props.index * 4.5 + 'rem'};
-  left: 1rem;
-  opacity: 1;
-  background-color: red;
-  margin: 0;
-  padding: 1rem;
-  border: 1px solid;
-  transition: all 250ms ease-in-out;
-
-  &.msg-enter {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  &.msg-enter-active {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  &.msg-exit {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  &.msg-exit-active {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
+const Container = styled.aside`
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
 `;
 
-function SnackbarMessage({ timeout, message, index, dismissMessage }) {
-  React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      dismissMessage(message.id);
-    }, timeout);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  const handleDismissMessage = e => {
-    dismissMessage(e.target.getAttribute('data-msg-id'));
-  };
-
-  return (
-    <Message key={message.id} index={index}>
-      {message.text}
-
-      <button data-msg-id={message.id} onClick={handleDismissMessage}>
-        dismiss
-      </button>
-    </Message>
-  );
-}
-
-SnackbarMessage.propTypes = {
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
-    })
-  ),
-  index: PropTypes.number.isRequired,
-  dismissMessage: PropTypes.func.isRequired
-};
-
-function Snackbar({ timeout }) {
+function Snackbar({ maxMessages, timeout }) {
   const [snackbarState, snackbarDispatch] = useSnackbar();
-  console.log('snackbarState: ', snackbarState);
 
   const dismissMessage = id => {
     snackbarDispatch({
@@ -85,12 +23,20 @@ function Snackbar({ timeout }) {
     });
   };
 
+  const messages = snackbarState.length
+    ? snackbarState.slice(0, maxMessages)
+    : snackbarState;
+
   return ReactDOM.createPortal(
     <TransitionGroup component={Container}>
-      {snackbarState.map((message, i) => {
+      {messages.map((message, i) => {
         return (
-          <CSSTransition key={message.id} timeout={250} classNames="msg">
-            <SnackbarMessage
+          <CSSTransition
+            key={message.id}
+            timeout={500}
+            classNames="snackbar-msg"
+          >
+            <Message
               timeout={timeout}
               message={message}
               index={i}
@@ -105,10 +51,12 @@ function Snackbar({ timeout }) {
 }
 
 Snackbar.propTypes = {
+  maxMessages: PropTypes.number,
   timeout: PropTypes.number
 };
 
 Snackbar.defaultProps = {
+  maxMessages: 1,
   timeout: 8e3
 };
 
