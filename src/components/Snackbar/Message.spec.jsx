@@ -11,9 +11,26 @@ describe('<PureMessage />', () => {
       text: 'This is a test message.'
     };
 
-    const { getByText } = render(<PureMessage index={0} message={msg} />);
+    const { getByText } = render(
+      <PureMessage index={0} message={msg} queuedCount={0} />
+    );
 
     expect(getByText(msg.title)).toBeInTheDocument();
     expect(getByText(msg.text)).toBeInTheDocument();
+  });
+
+  it('renders queued messages count', () => {
+    const msg = {
+      id: '1',
+      title: 'Test message',
+      text: 'This is a test message.'
+    };
+    const queuedCount = 3;
+
+    const { getByText } = render(
+      <PureMessage index={0} message={msg} queuedCount={queuedCount} />
+    );
+
+    expect(getByText(`+${queuedCount} message(s) queued`)).toBeInTheDocument();
   });
 });
