@@ -11,13 +11,23 @@ import {
   StandupUpdates
 } from './Layout';
 
-import Info from './Info';
+import Info, { LoadingInfo } from './Info';
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
 
-function PureStandup({ isLoading, standup }) {
+export function PureStandup({ isLoading, standup }) {
   if (isLoading) {
-    return <div>loading..</div>;
+    return (
+      <Container>
+        {/* TODO: Player skeleton */}
+
+        <StandupInfo>
+          <LoadingInfo />
+        </StandupInfo>
+
+        {/* TODO: Updates skeleton */}
+      </Container>
+    );
   }
 
   if (Object.keys(standup).length === 0) {
@@ -26,11 +36,11 @@ function PureStandup({ isLoading, standup }) {
 
   return (
     <Container>
+      <StandupPlayer />
+
       <StandupInfo>
         <Info standup={standup} />
       </StandupInfo>
-
-      <StandupPlayer />
 
       <StandupUpdates />
     </Container>

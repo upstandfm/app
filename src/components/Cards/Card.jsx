@@ -54,6 +54,10 @@ export const WrapperLink = styled(Link)`
   }
 `;
 
+WrapperLink.propTypes = {
+  bg: PropTypes.string
+};
+
 export const Title = styled.h2`
   margin: 0.25em 0;
   font-size: 26px;
