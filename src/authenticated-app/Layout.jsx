@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const AppContainer = styled.div`
   height: 100vh;
-  height: -webkit-fill-available;
   display: grid;
   grid-template-areas:
     'header'
@@ -35,7 +34,7 @@ export const HeaderContainer = styled.div`
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
     grid-gap: 1em;
-    height: auto;
+    height: 80px;
   }
 `;
 

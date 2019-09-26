@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
 
+import {
+  Container,
+  StandupInfo,
+  StandupPlayer,
+  StandupUpdates
+} from './Layout';
+
 import Details from './Details';
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
@@ -17,7 +24,17 @@ function PureStandup({ isLoading, standup }) {
     return <NotFound title="Standup not found.." />;
   }
 
-  return <Details standup={standup} />;
+  return (
+    <Container>
+      <StandupInfo>
+        <Details standup={standup} />
+      </StandupInfo>
+
+      <StandupPlayer />
+
+      <StandupUpdates />
+    </Container>
+  );
 }
 
 PureStandup.propTypes = {
