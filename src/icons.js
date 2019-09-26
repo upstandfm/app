@@ -15,7 +15,8 @@ import {
   faCheck,
   faTimes,
   faChevronDown,
-  faLightbulb
+  faLightbulb,
+  faCog
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -27,5 +28,6 @@ library.add(
   faCheck,
   faTimes,
   faChevronDown,
-  faLightbulb
+  faLightbulb,
+  faCog
 );

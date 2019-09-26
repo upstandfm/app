@@ -11,7 +11,7 @@ import {
   StandupUpdates
 } from './Layout';
 
-import Details from './Details';
+import Info from './Info';
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
 
@@ -27,7 +27,7 @@ function PureStandup({ isLoading, standup }) {
   return (
     <Container>
       <StandupInfo>
-        <Details standup={standup} />
+        <Info standup={standup} />
       </StandupInfo>
 
       <StandupPlayer />
