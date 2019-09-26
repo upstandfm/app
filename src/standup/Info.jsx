@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -8,7 +8,28 @@ const Container = styled.div`
   width: 235px;
   margin: 2em;
   padding: 0;
+  border-radius: 8px;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+
+  @media (max-width: 770px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
+
+const LoadingContainer = styled(Container)`
+  background-color: var(--color-lighter-grey);
+
+  :hover {
+    cursor: wait;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: grid;
+  padding: 1em;
+  height: 260px;
   border-radius: 8px;
   background-color: var(--color-dark-purple);
   background-position: center center;
@@ -20,18 +41,16 @@ const Container = styled.div`
       rgba(0, 0, 0, 0) 70%
     ),
     url(${props.bg})`};
-  transition: all 0.2s ease;
-
-  @media (max-width: 770px) {
-    margin-left: auto;
-    margin-right: auto;
-  }
 `;
 
-const Wrapper = styled.div`
-  display: grid;
-  padding: 1em;
+Wrapper.propTypes = {
+  bg: PropTypes.string
+};
+
+const LoadingWrapper = styled.div`
+  display: block;
   height: 260px;
+  padding: 1em;
 `;
 
 const Title = styled.h2`
@@ -44,6 +63,41 @@ const Title = styled.h2`
   word-break: break-word;
   overflow: auto;
 `;
+
+const glimmer = keyframes`
+  0% {
+    background-position: -235px 0;
+  }
+  100% {
+    background-position: calc(235px + 100%) 0;
+  }
+`;
+
+const LoadingTitle = styled(Title)`
+  text-shadow: none;
+  border-radius: 33px;
+  color: transparent;
+  background-color: var(--color-light-grey);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-light-grey),
+    var(--color-lighter-grey),
+    var(--color-light-grey)
+  );
+  background-size: 100% 100%;
+  animation: ${glimmer} 1s ease-in-out infinite;
+`;
+
+export function LoadingInfo() {
+  return (
+    <LoadingContainer>
+      <LoadingWrapper>
+        <LoadingTitle>A loading tite</LoadingTitle>
+      </LoadingWrapper>
+    </LoadingContainer>
+  );
+}
 
 const Settings = styled.div`
   align-self: end;
@@ -71,12 +125,17 @@ const SettingsLink = styled(Link)`
 
 function Info({ standup }) {
   return (
-    <Container bg={standup.standupImageUrl}>
-      <Wrapper>
+    <Container>
+      <Wrapper bg={standup.standupImageUrl}>
         <Title>{standup.standupName}</Title>
 
         <Settings>
-          <SettingsLink to="settings" aria-label="settings" title="settings">
+          <SettingsLink
+            data-testid="link"
+            to="settings"
+            aria-label="settings"
+            title="settings"
+          >
             <FontAwesomeIcon icon="cog" size="lg" />
           </SettingsLink>
         </Settings>

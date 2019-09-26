@@ -5,14 +5,14 @@ import Info from './Info';
 const now = Date.now();
 
 const standup = {
-  id: '1',
+  standupId: '1',
   standupName: 'Team awesome',
   createdAt: now,
   updatedAt: now
 };
 
 const standupWithBg = {
-  id: '1',
+  standupId: '1',
   standupName: 'Team awesome',
   createdAt: now,
   updatedAt: now,
