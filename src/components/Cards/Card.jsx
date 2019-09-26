@@ -9,7 +9,7 @@ export const Container = styled.li`
   margin: 0;
   padding: 0;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 16px;
+  border-radius: 8px;
   transition: all 0.2s ease;
 
   :hover {
@@ -35,16 +35,16 @@ export const WrapperLink = styled(Link)`
   display: grid;
   height: 260px;
   padding: 1em;
-  border-radius: 16px;
+  border-radius: 8px;
   text-decoration: none;
-  background-color: var(--color-darkest-purple);
+  background-color: var(--color-dark-purple);
   background-position: center center;
   background-size: cover;
   background-clip: border-box;
   background-repeat: repeat;
   background-image: ${props => `linear-gradient(
-      rgba(0, 0, 0, 0.69) 0%,
-      rgba(0, 0, 0, 0) 57%
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0) 70%
     ),
     url(${props.bg})`};
 

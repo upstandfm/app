@@ -9,7 +9,7 @@ export const LoadingCards = styled(Cards)``;
 const LoadingContainer = styled(Container).attrs(() => ({
   as: 'div'
 }))`
-  background-color: var(--color-lightest-grey);
+  background-color: var(--color-lighter-grey);
 
   :hover {
     cursor: wait;
@@ -36,13 +36,13 @@ const LoadingTitle = styled(Title)`
   text-shadow: none;
   border-radius: 33px;
   color: transparent;
-  background-color: var(--color-lighter-grey);
+  background-color: var(--color-light-grey);
   background-repeat: no-repeat;
   background-image: linear-gradient(
     90deg,
+    var(--color-light-grey),
     var(--color-lighter-grey),
-    var(--color-lightest-grey),
-    var(--color-lighter-grey)
+    var(--color-light-grey)
   );
   background-size: 100% 100%;
   animation: ${glimmer} 1s ease-in-out infinite;
