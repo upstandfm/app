@@ -13,12 +13,9 @@ const RootButton = styled.button`
   box-sizing: border-box;
   margin: 0;
   line-height: 1.30775;
-  padding: ${props => (props.round ? 0 : '8px 20px;')};
-  border-radius: ${props => (props.round ? '50%' : '33px')};
-  width: ${props => (props.round ? '40px' : 'auto')};
-  height: ${props => (props.round ? '40px' : 'auto')};
-  box-shadow: ${props =>
-    props.round ? '0px 4px 6px 0px rgba(0, 0, 0, 0.2)' : 'none'};
+  padding: 8px 20px;
+  border-radius: 33px;
+  box-shadow: none;
   border: 2px solid;
   transition: all 0.2s ease;
 
@@ -93,6 +90,14 @@ const TertiaryButton = styled(RootButton)`
   }
 `;
 
+const RoundButton = styled(DefaultButton)`
+  padding: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+`;
+
 /**
  * You can pas any children and props like you would with "regular" buttons.
  *
@@ -110,7 +115,7 @@ const TertiaryButton = styled(RootButton)`
  * https://www.styled-components.com/docs/basics#extending-styles
  */
 const Button = React.forwardRef((props, ref) => {
-  const { secondary, tertiary } = props;
+  const { secondary, tertiary, round } = props;
 
   if (secondary) {
     return (
@@ -125,6 +130,14 @@ const Button = React.forwardRef((props, ref) => {
       <TertiaryButton ref={ref} {...props}>
         {props.children}
       </TertiaryButton>
+    );
+  }
+
+  if (round) {
+    return (
+      <RoundButton ref={ref} {...props}>
+        {props.children}
+      </RoundButton>
     );
   }
 
