@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Button from '../components/Button';
+import { ExitButton } from '../components/Button';
 import { CardPreview } from '../components/Cards';
 import { Confirm } from '../components/Modal';
 
@@ -59,23 +58,6 @@ PureNewStandup.propTypes = {
   handlePreviousStep: PropTypes.func.isRequired
 };
 
-const Exit = styled(Button)`
-  background-color: transparent;
-  box-shadow: none;
-  border-color: transparent;
-  color: var(--color-grey) !important;
-
-  :hover {
-    background-color: var(--color-lighter-grey);
-    border-color: transparent;
-  }
-
-  :active {
-    background-color: var(--color-light-grey);
-    border-color: transparent;
-  }
-`;
-
 function NewStandup() {
   const [showConfirm, setShowConfirm] = React.useState(false);
   const [stepIndex, setStepIndex] = React.useState(0);
@@ -126,9 +108,7 @@ function NewStandup() {
         <Header>
           <h1>New standup</h1>
 
-          <Exit round aria-label="exit" title="exit" onClick={handleExit}>
-            <FontAwesomeIcon icon="times" size="lg" />
-          </Exit>
+          <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
         </Header>
 
         <Steps total={totalSteps} aria-label="steps to create new standup">
