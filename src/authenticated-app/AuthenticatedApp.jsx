@@ -11,6 +11,7 @@ import Snackbar from '../components/Snackbar';
 import Standups from '../standups';
 import NewStandup from '../new-standup';
 import Standup from '../standup';
+import NewUpdate from '../new-update';
 
 import {
   AppContainer,
@@ -64,6 +65,7 @@ function AuthenticatedApp() {
               <Standups path="/" />
               <NewStandup path="/new" />
               <Standup path="/:standupId" />
+              <NewUpdate path="/:standupId/new-update" />
 
               <NotFound
                 default

@@ -18,7 +18,7 @@ Steps.propTypes = {
 export const Step = styled.li`
   margin: 0;
   padding: 0.5em 0 0 0;
-  border-top: 5px solid;
+  border-top: 2px solid;
   border-color: ${props =>
     props.done || props.current
       ? 'var(--color-light-purple)'

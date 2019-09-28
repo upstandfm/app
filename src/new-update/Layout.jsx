@@ -17,6 +17,8 @@ export const Header = styled.div`
 `;
 
 export const Main = styled.div`
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 3em;
@@ -42,23 +44,4 @@ export const PreviewText = styled.p`
   color: var(--color-grey);
   letter-spacing: 1px;
   margin: 0 0 0.5em 0;
-`;
-
-export const Subtitle = styled.h2`
-  margin: 0 0 0.25em 0;
-`;
-
-export const Text = styled.h2`
-  margin: 0;
-  font-weight: normal;
-`;
-
-export const Actions = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin: 3em 0 0 0;
-
-  @media (max-width: 470px) {
-    justify-content: center;
-  }
 `;
