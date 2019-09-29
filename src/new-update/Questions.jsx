@@ -46,7 +46,7 @@ const Title = styled.h2`
 `;
 
 const Subtitle = styled.h2`
-  margin: 0 0 0.75rem 0;
+  margin: 0;
   font-weight: normal;
 `;
 
@@ -108,3 +108,15 @@ Question.defaultProps = {
   isLast: false,
   title: PropTypes.string.isRequired
 };
+
+export const Actions = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 4em;
+  margin: 2em 0 1em 0;
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+  }
+`;
