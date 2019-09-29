@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Questions, Question } from './Questions';
+import { Questions, Question, Actions } from './Questions';
 
 export default {
   title: 'screens|New Update/Questions',
@@ -107,4 +107,25 @@ export const ThirdActiveQuestions = () => {
 
 ThirdActiveQuestions.story = {
   name: 'third active'
+};
+
+export const QuestionWithActions = () => {
+  return (
+    <Questions>
+      <Question
+        isActive={true}
+        title="Yesterday"
+        subtitle="What did you work on yesterday?"
+      >
+        <Actions>
+          <div>Action 1</div>
+          <div>Action 2</div>
+        </Actions>
+      </Question>
+    </Questions>
+  );
+};
+
+QuestionWithActions.story = {
+  name: 'actions'
 };
