@@ -6,7 +6,7 @@ import { useSnackbar } from '../components/Snackbar';
 
 const Container = styled.div`
   margin: 2em 0 1em 0;
-  padding: 0.75em;
+  padding: 1em;
   background-color: var(--color-lightest-purple);
   border-radius: 8px;
 `;
