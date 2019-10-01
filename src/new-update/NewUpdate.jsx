@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import AudioRecorder from '../audio-recorder';
 import Button, { ExitButton } from '../components/Button';
 
 import { Container, Header, Main, Preview, PreviewText } from './Layout';
@@ -23,17 +24,25 @@ const QUESTIONS = [
 
 function NewStandup() {
   const [activeQuestionIndex, setActiveQuestionIndex] = React.useState(0);
+  const [showRecorder, setShowRecorder] = React.useState(false);
 
   const handleSkip = () => {
+    setShowRecorder(false);
     setActiveQuestionIndex(activeQuestionIndex + 1);
   };
 
   const handlePrevious = () => {
+    setShowRecorder(false);
     setActiveQuestionIndex(activeQuestionIndex - 1);
   };
 
+  const handleNext = () => {
+    setShowRecorder(false);
+    setActiveQuestionIndex(activeQuestionIndex + 1);
+  };
+
   const handleRecord = () => {
-    //
+    setShowRecorder(true);
   };
 
   return (
@@ -74,10 +83,16 @@ function NewStandup() {
                       Previous
                     </Button>
                   )}
-                  <Button primary onClick={handleRecord}>
+                  <Button
+                    primary
+                    onClick={handleRecord}
+                    disabled={showRecorder}
+                  >
                     <FontAwesomeIcon icon="microphone" /> Record update
                   </Button>
                 </Actions>
+
+                {showRecorder && <AudioRecorder onDone={handleNext} />}
               </Question>
             );
           })}

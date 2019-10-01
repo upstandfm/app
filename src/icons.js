@@ -17,7 +17,9 @@ import {
   faChevronDown,
   faLightbulb,
   faCog,
-  faMicrophone
+  faMicrophone,
+  faStop,
+  faCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -31,5 +33,7 @@ library.add(
   faChevronDown,
   faLightbulb,
   faCog,
-  faMicrophone
+  faMicrophone,
+  faStop,
+  faCircle
 );
