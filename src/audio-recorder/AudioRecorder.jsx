@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
 
-import useGetUserMedia from './use-get-user-media';
 import useRecordAudio from './use-record-audio';
-import Loading from './Loading';
-import { MediaError, RecorderError } from './Errors';
-import { Container, Main, Title, Info, Actions } from './Layout';
+
+import { RecorderError } from './Errors';
+import { Container, Main, Subtitle, Info } from './Layout';
 import PreparingTimer from './PreparingTimer';
 import ProgressTimer from './ProgressTimer';
 
@@ -51,23 +51,15 @@ const StopRecordButton = styled(Button)`
   }
 `;
 
-function AudioRecorder({ onDone }) {
-  const [getMediaStream, isLoading, mediaErr, mediaStream] = useGetUserMedia();
-
+function AudioRecorder({ id, stream, dispatch, hasRecording }) {
   const [
     startRecording,
     stopRecording,
-    resetPreview,
     recorderErr,
-    isRecording,
-    previewUrl
-  ] = useRecordAudio(mediaStream);
+    isRecording
+  ] = useRecordAudio(id, stream, dispatch);
 
   const [isPreparing, setIsPreparing] = React.useState(false);
-
-  React.useEffect(() => {
-    getMediaStream({ audio: true });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleStartCountDown = () => {
     setIsPreparing(true);
@@ -78,34 +70,9 @@ function AudioRecorder({ onDone }) {
     startRecording();
   };
 
-  const handleDiscard = () => {
-    // TODO: confirm
-
-    resetPreview();
-  };
-
-  const handleSave = () => {
-    const [track] = mediaStream.getAudioTracks();
-    track.stop();
-
-    // TODO: save + upload
-
-    onDone();
-  };
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (mediaErr) {
-    return <MediaError err={mediaErr} />;
-  }
-
   if (recorderErr) {
     return <RecorderError err={recorderErr} />;
   }
-
-  const hasPreview = Boolean(previewUrl);
 
   return (
     <Container>
@@ -116,66 +83,60 @@ function AudioRecorder({ onDone }) {
           onDone={handleEndCountDown}
         />
       )}
-
-      {hasPreview ? (
-        <Main>
-          <Title>Sounds good?</Title>
-
-          <audio controls src={previewUrl}></audio>
-
-          <Actions>
-            <Button secondary onClick={handleDiscard}>
-              No, try again
-            </Button>
-
-            <Button onClick={handleSave}>Yes, save it</Button>
-          </Actions>
-        </Main>
-      ) : (
-        <Main>
-          <Title>
-            {isRecording ? (
-              <ProgressTimer
-                maxCountSec={180}
-                intervalMs={1e3}
-                onDone={stopRecording}
-              />
-            ) : (
-              <>
-                Hit <b>rec</b> to start recording
-              </>
-            )}
-          </Title>
-
+      <Main>
+        <Subtitle>
           {isRecording ? (
-            <StopRecordButton
-              round
-              title="stop recording"
-              aria-label="stop recording"
-              onClick={stopRecording}
-            >
-              <FontAwesomeIcon icon="stop" size="2x" />
-            </StopRecordButton>
+            <ProgressTimer
+              maxCountSec={180}
+              intervalMs={1e3}
+              onDone={stopRecording}
+            />
+          ) : hasRecording ? (
+            'Recording added to preview!'
           ) : (
-            <StartRecordButton
-              round
-              title="start recording"
-              aria-label="start recording"
-              disabled={isPreparing}
-              onClick={handleStartCountDown}
-            >
-              rec
-            </StartRecordButton>
+            <>
+              Hit <b>rec</b> to start your update.
+            </>
           )}
+        </Subtitle>
 
-          <Info>
-            <FontAwesomeIcon icon="lightbulb" size="sm" /> You can preview
-            before saving.
-          </Info>
-        </Main>
-      )}
+        {isRecording ? (
+          <StopRecordButton
+            round
+            title="stop recording"
+            aria-label="stop recording"
+            onClick={stopRecording}
+          >
+            <FontAwesomeIcon icon="stop" size="2x" />
+          </StopRecordButton>
+        ) : (
+          <StartRecordButton
+            round
+            title="start recording"
+            aria-label="start recording"
+            disabled={isPreparing || hasRecording}
+            onClick={handleStartCountDown}
+          >
+            rec
+          </StartRecordButton>
+        )}
+
+        <Info>
+          <FontAwesomeIcon icon="lightbulb" size="sm" />{' '}
+          {hasRecording
+            ? 'Delete the preview to record again.'
+            : 'You can preview updates before saving.'}
+        </Info>
+      </Main>
     </Container>
   );
 }
+
+AudioRecorder.propTypes = {
+  id: PropTypes.oneOf(['yesterday', 'today', 'blockers']).isRequired,
+  stream: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  hasRecording: PropTypes.bool.isRequired
+};
 
 export default AudioRecorder;

@@ -21,16 +21,13 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.h2`
-  font-weight: normal;
   margin: 0;
+  font-weight: normal;
   color: var(--color-white);
 `;
 
-const Counter = styled.h1`
-  margin: 0;
-  color: var(--color-white);
+const Counter = styled(Text)`
   font-family: Menlo, monospace;
-  font-weight: normal;
 `;
 
 function PreparingTimer({ maxCountSec, intervalMs, onDone }) {
@@ -53,7 +50,6 @@ function PreparingTimer({ maxCountSec, intervalMs, onDone }) {
     <Container>
       <Wrapper>
         <Text>Recording in..</Text>
-
         <Counter>{count}</Counter>
       </Wrapper>
     </Container>
