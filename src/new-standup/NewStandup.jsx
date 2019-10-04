@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ExitButton } from '../components/Button';
 import { CardPreview } from '../components/Cards';
 import { Confirm } from '../components/Modal';
+import { Steps, Step } from '../components/StepForm';
 
 import standupReducer from './reducer';
 
 import { Container, Header, Main, Preview, PreviewText } from './Layout';
-import { Steps, Step } from './Steps';
 import Standup from './Standup';
 import Invite from './Invite';
 import Final from './Final';
