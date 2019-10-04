@@ -92,7 +92,7 @@ function AudioRecorder({ id, stream, dispatch, hasRecording }) {
               onDone={stopRecording}
             />
           ) : hasRecording ? (
-            'Recording added to preview!'
+            'Update added to preview!'
           ) : (
             <>
               Hit <b>rec</b> to start your update.

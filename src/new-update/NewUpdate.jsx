@@ -1,48 +1,132 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import AudioRecorder from '../audio-recorder';
-import Button, { ExitButton } from '../components/Button';
+import { ExitButton } from '../components/Button';
+import { Steps, Step } from '../components/StepForm';
 
 import { Container, Header, Main, Preview, PreviewText } from './Layout';
-import { Questions, Question, Actions } from './Questions';
+import Permission from './Permission';
+import Yesterday from './Yesterday';
+import Today from './Today';
+import Blockers from './Blockers';
+import Save from './Save';
+import Recordings from './Recordings';
 
-const QUESTIONS = [
+import updatesReducer, { defaultUpdatesState } from './reducer';
+import useGetUserMedia from './use-get-user-media';
+
+export const questionsByStepIndex = [
   {
+    id: 'yesterday',
     title: 'Yesterday',
-    subtitle: 'What did you work on yesterday?'
+    Component: Yesterday
   },
+
   {
+    id: 'today',
     title: 'Today',
-    subtitle: 'What do you have planned for today?'
+    Component: Today
   },
+
   {
+    id: 'blockers',
     title: 'Blockers',
-    subtitle: 'Anything blocking you from doing your work?'
+    Component: Blockers
+  },
+
+  {
+    id: 'save',
+    title: 'Save & publish',
+    Component: Save
   }
 ];
 
-function NewStandup() {
-  const [activeQuestionIndex, setActiveQuestionIndex] = React.useState(0);
-  const [showRecorder, setShowRecorder] = React.useState(false);
+function PureNewUpdate({
+  questionsByStepIndex,
+  stepIndex,
+  updatesByQuestionId,
+  dispatch,
+  stream,
+  handleNextStep,
+  handlePreviousStep
+}) {
+  const { id, Component } = questionsByStepIndex[stepIndex] || {};
+  const update = updatesByQuestionId[id];
 
-  const handleSkip = () => {
-    setShowRecorder(false);
-    setActiveQuestionIndex(activeQuestionIndex + 1);
+  if (!Component) {
+    return null;
+  }
+
+  return (
+    <Component
+      update={update}
+      dispatch={dispatch}
+      stream={stream}
+      handleNextStep={handleNextStep}
+      handlePreviousStep={handlePreviousStep}
+    />
+  );
+}
+
+PureNewUpdate.propTypes = {
+  questionsByStepIndex: PropTypes.arrayOf(PropTypes.object),
+  stepIndex: PropTypes.number.isRequired,
+  updatesByQuestionId: PropTypes.shape({
+    yesterday: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      blob: PropTypes.object
+    }),
+    today: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      blob: PropTypes.object
+    }),
+    blockers: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      blob: PropTypes.object
+    })
+  }),
+  dispatch: PropTypes.func.isRequired,
+  stream: PropTypes.object.isRequired,
+  handleNextStep: PropTypes.func.isRequired,
+  handlePreviousStep: PropTypes.func.isRequired
+};
+
+function NewUpdate() {
+  const [updatesState, updatesDispatch] = React.useReducer(
+    updatesReducer,
+    defaultUpdatesState
+  );
+
+  const [
+    getUserMedia,
+    isGettingPermission,
+    permissionErr,
+    userMediaStream
+  ] = useGetUserMedia();
+
+  const [stepIndex, setStepIndex] = React.useState(0);
+
+  const totalSteps = questionsByStepIndex.length;
+
+  const handleGetPermission = () => {
+    getUserMedia({ audio: true });
   };
 
-  const handlePrevious = () => {
-    setShowRecorder(false);
-    setActiveQuestionIndex(activeQuestionIndex - 1);
+  const handleNextStep = () => {
+    if (stepIndex >= totalSteps - 1) {
+      return;
+    }
+
+    setStepIndex(i => i + 1);
   };
 
-  const handleNext = () => {
-    setShowRecorder(false);
-    setActiveQuestionIndex(activeQuestionIndex + 1);
-  };
+  const handlePreviousStep = () => {
+    if (stepIndex <= 0) {
+      return;
+    }
 
-  const handleRecord = () => {
-    setShowRecorder(true);
+    setStepIndex(i => i - 1);
   };
 
   return (
@@ -53,57 +137,58 @@ function NewStandup() {
         <ExitButton aria-label="exit" title="exit" />
       </Header>
 
-      <Main>
-        <Questions aria-label="steps to create new update">
-          {QUESTIONS.map((question, i) => {
-            const isDone = i < activeQuestionIndex;
-            const isActive = i === activeQuestionIndex;
-            const isFirst = i === 0;
-            const isLast = i === QUESTIONS.length - 1;
+      {!userMediaStream ? (
+        <Permission
+          isLoading={isGettingPermission}
+          err={permissionErr}
+          handleGetPermission={handleGetPermission}
+        />
+      ) : (
+        <>
+          <Steps total={totalSteps} aria-label="steps to create new update">
+            {questionsByStepIndex.map((el, i) => {
+              const { id, title } = el;
+              const isDone = i < stepIndex;
+              const isCurrent = i === stepIndex;
 
-            return (
-              <Question
-                key={`${question.title.toLowerCase()}-${i}`}
-                isDone={isDone}
-                isActive={isActive}
-                isLast={isLast}
-                title={question.title}
-                subtitle={question.subtitle}
-                aria-current={
-                  isActive ? `step ${question.title.toLowerCase()}` : ''
-                }
-              >
-                <Actions>
-                  {isFirst ? (
-                    <Button tertiary onClick={handleSkip}>
-                      Skip
-                    </Button>
-                  ) : (
-                    <Button tertiary onClick={handlePrevious}>
-                      Previous
-                    </Button>
-                  )}
-                  <Button
-                    primary
-                    onClick={handleRecord}
-                    disabled={showRecorder}
-                  >
-                    <FontAwesomeIcon icon="microphone" /> Record update
-                  </Button>
-                </Actions>
+              return (
+                <Step
+                  key={id}
+                  done={isDone}
+                  current={isCurrent}
+                  aria-current={isCurrent ? `step ${id}` : ''}
+                >
+                  {title} {isDone && <FontAwesomeIcon icon="check" size="sm" />}
+                </Step>
+              );
+            })}
+          </Steps>
 
-                {showRecorder && <AudioRecorder onDone={handleNext} />}
-              </Question>
-            );
-          })}
-        </Questions>
+          <Main>
+            <PureNewUpdate
+              questionsByStepIndex={questionsByStepIndex}
+              stepIndex={stepIndex}
+              updatesByQuestionId={updatesState}
+              dispatch={updatesDispatch}
+              stream={userMediaStream}
+              handleNextStep={handleNextStep}
+              handlePreviousStep={handlePreviousStep}
+            />
 
-        <Preview>
-          <PreviewText>PREVIEW</PreviewText>
-        </Preview>
-      </Main>
+            <Preview>
+              <PreviewText>PREVIEW</PreviewText>
+
+              <Recordings
+                updatesByQuestionId={updatesState}
+                dispatch={updatesDispatch}
+                currentQuestionId={questionsByStepIndex[stepIndex].id}
+              />
+            </Preview>
+          </Main>
+        </>
+      )}
     </Container>
   );
 }
 
-export default NewStandup;
+export default NewUpdate;
