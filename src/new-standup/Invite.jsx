@@ -12,7 +12,7 @@ import {
   List,
   ListItem,
   ListItemText
-} from '../components/List/List';
+} from '../components/List';
 
 import { Subtitle, Text, Actions } from './Layout';
 
