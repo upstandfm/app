@@ -1,37 +1,36 @@
 import React from 'react';
 
-let chunks = [];
-
 /**
  * Custom hook to create a media recorder from a media stream.
  *
  * @param {Object} stream - MediaStream
- * @param {Object} options
  *
  * For more info see:
  * - https://developer.mozilla.org/en-US/docs/Web/API/MediaStream
  * - https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
  */
-function useRecordAudio(stream, options) {
+function useRecordAudio(id, stream, dispatch) {
   const [mediaRecorder, setMediaRecorder] = React.useState(null);
   const [recorderErr, setRecorderErr] = React.useState(null);
   const [isRecording, setIsRecording] = React.useState(false);
-  const [previewUrl, setPreviewUrl] = React.useState(null);
+
+  const chunks = React.useRef([]);
 
   React.useEffect(() => {
     if (!window.MediaRecorder) {
       const err = new Error('MediaRecorder API not supported');
       setRecorderErr(err);
-      return;
     }
+  }, []);
 
+  React.useEffect(() => {
     if (!stream.id) {
       return;
     }
 
     let recorder;
     try {
-      recorder = new MediaRecorder(stream, options);
+      recorder = new MediaRecorder(stream);
       setMediaRecorder(recorder);
     } catch (err) {
       setRecorderErr(err);
@@ -40,22 +39,32 @@ function useRecordAudio(stream, options) {
 
     // Recorder event listeners
 
-    const onError = e => setRecorderErr(e.error);
+    const onError = e => {
+      setRecorderErr(e.error);
+    };
 
     const onDataAvailable = e => {
       if (e.data.size > 0) {
-        chunks.push(e.data);
+        chunks.current.push(e.data);
       }
     };
 
-    const onStart = () => setIsRecording(true);
+    const onStart = () => {
+      setIsRecording(true);
+    };
 
     const onStop = () => {
-      const blob = new Blob(chunks);
-      chunks = [];
+      const blob = new Blob(chunks.current);
+      dispatch({
+        type: 'NEW_RECORDING',
+        data: {
+          id,
+          blob
+        }
+      });
 
-      const url = window.URL.createObjectURL(blob);
-      setPreviewUrl(url);
+      chunks.current = [];
+
       setIsRecording(false);
     };
 
@@ -74,20 +83,17 @@ function useRecordAudio(stream, options) {
       recorder.removeEventListener('start', onStart);
       recorder.removeEventListener('stop', onStop);
     };
-  }, [stream.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [id, stream.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const startRecording = () => mediaRecorder.start();
-  const stopRecording = () => mediaRecorder.stop();
-  const resetPreview = () => setPreviewUrl(null);
+  const startRecording = () => {
+    mediaRecorder.start();
+  };
 
-  return [
-    startRecording,
-    stopRecording,
-    resetPreview,
-    recorderErr,
-    isRecording,
-    previewUrl
-  ];
+  const stopRecording = () => {
+    mediaRecorder.stop();
+  };
+
+  return [startRecording, stopRecording, recorderErr, isRecording];
 }
 
 export default useRecordAudio;

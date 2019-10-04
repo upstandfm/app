@@ -17,7 +17,7 @@ export const Main = styled.div`
   justify-items: center;
 `;
 
-export const Title = styled.h3`
+export const Subtitle = styled.h3`
   margin: 0;
   font-weight: normal;
 
@@ -29,14 +29,4 @@ export const Title = styled.h3`
 export const Info = styled.p`
   margin: 0;
   color: var(--color-grey);
-`;
-
-export const Actions = styled.div`
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 1em;
-
-  @media (max-width: 410px) {
-    grid-template-columns: 1fr;
-  }
 `;
