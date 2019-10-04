@@ -56,7 +56,7 @@ function useRecordAudio(id, stream, dispatch) {
     const onStop = () => {
       const blob = new Blob(chunks.current);
       dispatch({
-        type: 'NEW_RECORDING',
+        type: 'NEW_UPDATE_RECORDING',
         data: {
           id,
           blob

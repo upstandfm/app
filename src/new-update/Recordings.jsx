@@ -73,7 +73,7 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
 
   const deleteUpdate = () => {
     dispatch({
-      type: 'DELETE_RECORDING',
+      type: 'DELETE_UPDATE_RECORDING',
       data: {
         id: idToDelete
       }
