@@ -26,6 +26,9 @@ export const Step = styled.li`
   color: ${props =>
     props.current ? 'var(--color-purple)' : 'var(--color-lighter-purple)'};
   counter-increment: step-progress;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   ::before {
     content: counter(step-progress) '. ';
