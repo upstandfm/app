@@ -8,28 +8,42 @@ import { CardPreview } from '../components/Cards';
 import { Confirm } from '../components/Modal';
 import { Steps, Step } from '../components/StepForm';
 
-import standupReducer from './reducer';
+import standupReducer, { defaultStandupState } from './reducer';
 
 import { Container, Header, Main, Preview, PreviewText } from './Layout';
 import Standup from './Standup';
 import Invite from './Invite';
 import Final from './Final';
 
-export const ComponentsByStepIndex = [
-  ['Name', Standup],
-  ['Invite', Invite],
-  ['Create', Final]
+export const questionsByStepIndex = [
+  {
+    id: 'name',
+    title: 'Name',
+    Component: Standup
+  },
+
+  {
+    id: 'invite',
+    title: 'Invite',
+    Component: Invite
+  },
+
+  {
+    id: 'create',
+    title: 'Create',
+    Component: Final
+  }
 ];
 
 function PureNewStandup({
-  componentsByStepIndex,
+  questionsByStepIndex,
+  stepIndex,
   standup,
   dispatch,
-  stepIndex,
   handleNextStep,
   handlePreviousStep
 }) {
-  const [, Component] = componentsByStepIndex[stepIndex] || [];
+  const { Component } = questionsByStepIndex[stepIndex] || {};
 
   if (!Component) {
     return null;
@@ -47,13 +61,13 @@ function PureNewStandup({
 }
 
 PureNewStandup.propTypes = {
-  componentsByStepIndex: PropTypes.arrayOf(PropTypes.array),
+  questionsByStepIndex: PropTypes.arrayOf(PropTypes.object),
+  stepIndex: PropTypes.number.isRequired,
   standup: PropTypes.shape({
     name: PropTypes.string,
     users: PropTypes.arrayOf(PropTypes.string)
   }),
   dispatch: PropTypes.func.isRequired,
-  stepIndex: PropTypes.number.isRequired,
   handleNextStep: PropTypes.func.isRequired,
   handlePreviousStep: PropTypes.func.isRequired
 };
@@ -61,12 +75,12 @@ PureNewStandup.propTypes = {
 function NewStandup() {
   const [showConfirm, setShowConfirm] = React.useState(false);
   const [stepIndex, setStepIndex] = React.useState(0);
-  const [standup, dispatch] = React.useReducer(standupReducer, {
-    name: '',
-    users: []
-  });
+  const [standup, dispatch] = React.useReducer(
+    standupReducer,
+    defaultStandupState
+  );
 
-  const totalSteps = ComponentsByStepIndex.length;
+  const totalSteps = questionsByStepIndex.length;
 
   const navigateHome = () => {
     navigate('/');
@@ -112,17 +126,17 @@ function NewStandup() {
         </Header>
 
         <Steps total={totalSteps} aria-label="steps to create new standup">
-          {ComponentsByStepIndex.map((el, i) => {
-            const [title] = el;
+          {questionsByStepIndex.map((el, i) => {
+            const { id, title } = el;
             const isDone = i < stepIndex;
             const isCurrent = i === stepIndex;
 
             return (
               <Step
-                key={title}
+                key={id}
                 done={isDone}
                 current={isCurrent}
-                aria-current={isCurrent ? `step ${title.toLowerCase()}` : ''}
+                aria-current={isCurrent ? `step ${id}` : ''}
               >
                 {title} {isDone && <FontAwesomeIcon icon="check" size="sm" />}
               </Step>
@@ -132,10 +146,10 @@ function NewStandup() {
 
         <Main>
           <PureNewStandup
-            componentsByStepIndex={ComponentsByStepIndex}
+            questionsByStepIndex={questionsByStepIndex}
+            stepIndex={stepIndex}
             standup={standup}
             dispatch={dispatch}
-            stepIndex={stepIndex}
             handleNextStep={handleNextStep}
             handlePreviousStep={handlePreviousStep}
           />
