@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, Section, Label, Input } from '../components/Form';
 import Button from '../components/Button';
 
-import { Subtitle, Text, Actions } from './Layout';
+import { Subtitle, Actions } from './Layout';
 
 function Standup({ standupName, dispatch, handleNextStep }) {
   const nameInput = React.createRef();
@@ -27,8 +27,7 @@ function Standup({ standupName, dispatch, handleNextStep }) {
 
   return (
     <Form>
-      <Subtitle>Name your standup</Subtitle>
-      <Text>What describes your team best?</Text>
+      <Subtitle>What name describes your team best?</Subtitle>
 
       <Section>
         <Label htmlFor="name">
