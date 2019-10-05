@@ -14,7 +14,7 @@ import {
   ListItemText
 } from '../components/List';
 
-import { Subtitle, Text, Actions } from './Layout';
+import { Subtitle, Actions } from './Layout';
 
 const InlineSection = styled(Section)`
   display: grid;
@@ -146,7 +146,7 @@ function Invite({
   return (
     <Form>
       <Subtitle>
-        Invite your team{' '}
+        Who are your team members?{' '}
         <Help>
           <FontAwesomeIcon
             icon="info-circle"
@@ -155,8 +155,6 @@ function Invite({
           />
         </Help>
       </Subtitle>
-
-      <Text>Added users will receive an invite by email.</Text>
 
       <InlineSection>
         <InlineInput
@@ -178,7 +176,7 @@ function Invite({
         </InlineButton>
 
         <InlineDescription error={Boolean(feedback)}>
-          {feedback}
+          {feedback ? feedback : 'Added users will receive an invite by email.'}
         </InlineDescription>
       </InlineSection>
 

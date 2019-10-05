@@ -45,10 +45,6 @@ export const PreviewText = styled.p`
 `;
 
 export const Subtitle = styled.h2`
-  margin: 0 0 0.25em 0;
-`;
-
-export const Text = styled.h2`
   margin: 0;
   font-weight: normal;
 `;
