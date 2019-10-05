@@ -65,16 +65,6 @@ const ButtonSpaceRight = styled(Button)`
   margin: 0 1.5em 0 0;
 `;
 
-const DeleteButton = styled(Button)`
-  :hover {
-    color: var(--color-red) !important;
-  }
-
-  :active {
-    color: var(--color-darker-red) !important;
-  }
-`;
-
 function Invite({
   standupUsers,
   dispatch,
@@ -129,7 +119,7 @@ function Invite({
 
     dispatch({
       type: 'REMOVE_USER',
-      data: e.target.getAttribute('data-email')
+      data: e.currentTarget.getAttribute('data-email')
     });
   };
 
@@ -193,7 +183,7 @@ function Invite({
 
                 <ListItemText>{userEmail}</ListItemText>
 
-                <DeleteButton
+                <Button
                   tertiary
                   data-email={userEmail}
                   onClick={handleRemoveUser}
@@ -201,7 +191,7 @@ function Invite({
                   title="remove user"
                 >
                   <FontAwesomeIcon icon="trash" />
-                </DeleteButton>
+                </Button>
               </ListItem>
             );
           })}

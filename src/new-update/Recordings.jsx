@@ -7,16 +7,6 @@ import Button from '../components/Button';
 import { ListContainer, List, ListItem } from '../components/List';
 import { Confirm } from '../components/Modal';
 
-const DeleteButton = styled(Button)`
-  :hover {
-    color: var(--color-red) !important;
-  }
-
-  :active {
-    color: var(--color-darker-red) !important;
-  }
-`;
-
 const RecordingListItem = styled(ListItem)`
   display: grid;
   grid-template-columns: 1fr;
@@ -117,7 +107,7 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
                     <InfoText>No recording.</InfoText>
                   )}
 
-                  <DeleteButton
+                  <Button
                     tertiary
                     data-id={update.id}
                     disabled={!isCurrent || !hasRecording}
@@ -126,7 +116,7 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
                     title="delete recording"
                   >
                     <FontAwesomeIcon icon="trash" />
-                  </DeleteButton>
+                  </Button>
                 </RecordingAudio>
               </RecordingListItem>
             );
