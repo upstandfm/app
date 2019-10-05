@@ -86,11 +86,19 @@ function useRecordAudio(id, stream, dispatch) {
   }, [id, stream.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const startRecording = () => {
-    mediaRecorder.start();
+    try {
+      mediaRecorder.start();
+    } catch (err) {
+      setRecorderErr(err);
+    }
   };
 
   const stopRecording = () => {
-    mediaRecorder.stop();
+    try {
+      mediaRecorder.stop();
+    } catch (err) {
+      setRecorderErr(err);
+    }
   };
 
   return [startRecording, stopRecording, recorderErr, isRecording];
