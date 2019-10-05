@@ -4,12 +4,10 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
-import { ListContainer, ListTitle, List, ListItem } from '../components/List';
+import { ListContainer, List, ListItem } from '../components/List';
 import { Confirm } from '../components/Modal';
 
 const DeleteButton = styled(Button)`
-  color: var(--color-dark-red) !important;
-
   :hover {
     color: var(--color-red) !important;
   }
@@ -23,9 +21,16 @@ const RecordingListItem = styled(ListItem)`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
-  border-left: 3px solid;
-  border-color: ${props =>
-    props.isCurrent ? 'var(--color-purple)' : 'transparent'};
+  grid-gap: 0;
+  background-color: ${props =>
+    props.isCurrent ? 'var(--color-lightest-purple)' : 'inherit'};
+
+  :hover {
+    background-color: ${props =>
+      props.isCurrent
+        ? 'var(--color-lightest-purple)'
+        : 'var(--color-lightest-grey)'};
+  }
 `;
 
 RecordingListItem.propTypes = {
@@ -33,7 +38,7 @@ RecordingListItem.propTypes = {
 };
 
 const RecordingTitle = styled.h4`
-  margin: 0.25em 0 0 0;
+  margin: 0;
   text-transform: capitalize;
   color: ${props => (props.isCurrent ? 'inherit' : 'var(--color-grey)')};
 `;
@@ -86,8 +91,6 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
   return (
     <>
       <ListContainer>
-        <ListTitle>Your update</ListTitle>
-
         <List>
           {Object.keys(updatesByQuestionId).map(id => {
             const update = updatesByQuestionId[id];
@@ -119,6 +122,8 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
                     data-id={update.id}
                     disabled={!isCurrent || !hasRecording}
                     onClick={handleDelete}
+                    aria-label="delete recording"
+                    title="delete recording"
                   >
                     <FontAwesomeIcon icon="trash" />
                   </DeleteButton>
@@ -133,7 +138,7 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
         show={showConfirm}
         handleCancel={handleCancel}
         handleConfirm={deleteUpdate}
-        title="Are you sure you want to delete this update?"
+        title="Are you sure you want to delete this recording?"
         message={
           <>
             You&apos;ll have to record a new update for <b>{idToDelete}</b>{' '}

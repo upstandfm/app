@@ -65,6 +65,16 @@ const ButtonSpaceRight = styled(Button)`
   margin: 0 1.5em 0 0;
 `;
 
+const DeleteButton = styled(Button)`
+  :hover {
+    color: var(--color-red) !important;
+  }
+
+  :active {
+    color: var(--color-darker-red) !important;
+  }
+`;
+
 function Invite({
   standupUsers,
   dispatch,
@@ -185,13 +195,15 @@ function Invite({
 
                 <ListItemText>{userEmail}</ListItemText>
 
-                <Button
+                <DeleteButton
                   tertiary
                   data-email={userEmail}
                   onClick={handleRemoveUser}
+                  aria-label="remove user"
+                  title="remove user"
                 >
-                  remove
-                </Button>
+                  <FontAwesomeIcon icon="trash" />
+                </DeleteButton>
               </ListItem>
             );
           })}
