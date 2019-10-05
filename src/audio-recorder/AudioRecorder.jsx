@@ -92,7 +92,7 @@ function AudioRecorder({ id, stream, dispatch, hasRecording }) {
               onDone={stopRecording}
             />
           ) : hasRecording ? (
-            'Update added to preview!'
+            'Recording added to preview!'
           ) : (
             <>
               Hit <b>rec</b> to start your update.
@@ -125,7 +125,7 @@ function AudioRecorder({ id, stream, dispatch, hasRecording }) {
           <FontAwesomeIcon icon="lightbulb" size="sm" />{' '}
           {hasRecording
             ? 'Delete the preview to record again.'
-            : 'You can preview updates before saving.'}
+            : 'You can preview your update before saving.'}
         </Info>
       </Main>
     </Container>

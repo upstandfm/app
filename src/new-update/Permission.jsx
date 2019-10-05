@@ -36,7 +36,7 @@ function Permission({ isLoading, err, handleGetPermission }) {
   return (
     <Container>
       <Title>
-        To get started, we need <b>temporary</b> access to your microphone.
+        We need <b>temporary</b> access to your microphone to get started.
       </Title>
 
       <p>We&apos;ll use your microphone to record your update.</p>

@@ -10,17 +10,17 @@ export const ListContainer = styled.div`
 export const ListTitle = styled.h3`
   color: var(--color-grey);
   margin: 0;
-  padding: 1em 0.75em 0 0.75em;
+  padding: 1rem 1rem 0 1rem;
 `;
 
 export const List = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 1em 0;
+  padding: 1rem 0;
 `;
 
 export const ListEmpty = styled.li`
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
   text-align: center;
   color: var(--color-grey);
 `;
@@ -30,9 +30,9 @@ export const ListItem = styled.li`
   grid-template-columns: auto 1fr auto;
   grid-gap: 0.5em;
   align-items: center;
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
 
-  :nth-child(2n) {
+  :hover {
     background-color: var(--color-lightest-grey);
   }
 `;
