@@ -1,3 +1,8 @@
+export const defaultStandupState = {
+  name: '',
+  users: []
+};
+
 /**
  * Standup reducer that manages standup state when creating a new standup.
  *
