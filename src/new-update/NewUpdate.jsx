@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { navigate } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ExitButton } from '../components/Button';
 import { Steps, Step } from '../components/StepForm';
+import { Confirm } from '../components/Modal';
 
 import { Container, Header, Main, Preview, PreviewText } from './Layout';
 import Permission from './Permission';
@@ -92,7 +94,7 @@ PureNewUpdate.propTypes = {
   handlePreviousStep: PropTypes.func.isRequired
 };
 
-function NewUpdate() {
+function NewUpdate({ standupId }) {
   const [updatesState, updatesDispatch] = React.useReducer(
     updatesReducer,
     defaultUpdatesState
@@ -105,9 +107,30 @@ function NewUpdate() {
     userMediaStream
   ] = useGetUserMedia();
 
+  const [showConfirm, setShowConfirm] = React.useState(false);
   const [stepIndex, setStepIndex] = React.useState(0);
 
   const totalSteps = questionsByStepIndex.length;
+
+  const navigateToStandup = () => {
+    navigate(`/${standupId}`);
+  };
+
+  const handleExit = () => {
+    const hasProgress = Object.values(updatesState).some(update =>
+      Boolean(update.blob)
+    );
+    if (hasProgress) {
+      setShowConfirm(true);
+      return;
+    }
+
+    navigateToStandup();
+  };
+
+  const handleCancel = () => {
+    setShowConfirm(false);
+  };
 
   const handleGetPermission = () => {
     getUserMedia({ audio: true });
@@ -130,65 +153,84 @@ function NewUpdate() {
   };
 
   return (
-    <Container>
-      <Header>
-        <h1>New update</h1>
+    <>
+      <Container>
+        <Header>
+          <h1>New update</h1>
 
-        <ExitButton aria-label="exit" title="exit" />
-      </Header>
+          <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
+        </Header>
 
-      {!userMediaStream ? (
-        <Permission
-          isLoading={isGettingPermission}
-          err={permissionErr}
-          handleGetPermission={handleGetPermission}
-        />
-      ) : (
-        <>
-          <Steps total={totalSteps} aria-label="steps to create new update">
-            {questionsByStepIndex.map((el, i) => {
-              const { id, title } = el;
-              const isDone = i < stepIndex;
-              const isCurrent = i === stepIndex;
+        {!userMediaStream ? (
+          <Permission
+            isLoading={isGettingPermission}
+            err={permissionErr}
+            handleGetPermission={handleGetPermission}
+          />
+        ) : (
+          <>
+            <Steps total={totalSteps} aria-label="steps to create new update">
+              {questionsByStepIndex.map((el, i) => {
+                const { id, title } = el;
+                const isDone = i < stepIndex;
+                const isCurrent = i === stepIndex;
 
-              return (
-                <Step
-                  key={id}
-                  done={isDone}
-                  current={isCurrent}
-                  aria-current={isCurrent ? `step ${id}` : ''}
-                >
-                  {title} {isDone && <FontAwesomeIcon icon="check" size="sm" />}
-                </Step>
-              );
-            })}
-          </Steps>
+                return (
+                  <Step
+                    key={id}
+                    done={isDone}
+                    current={isCurrent}
+                    aria-current={isCurrent ? `step ${id}` : ''}
+                  >
+                    {title}{' '}
+                    {isDone && <FontAwesomeIcon icon="check" size="sm" />}
+                  </Step>
+                );
+              })}
+            </Steps>
 
-          <Main>
-            <PureNewUpdate
-              questionsByStepIndex={questionsByStepIndex}
-              stepIndex={stepIndex}
-              updatesByQuestionId={updatesState}
-              dispatch={updatesDispatch}
-              stream={userMediaStream}
-              handleNextStep={handleNextStep}
-              handlePreviousStep={handlePreviousStep}
-            />
-
-            <Preview>
-              <PreviewText>PREVIEW</PreviewText>
-
-              <Recordings
+            <Main>
+              <PureNewUpdate
+                questionsByStepIndex={questionsByStepIndex}
+                stepIndex={stepIndex}
                 updatesByQuestionId={updatesState}
                 dispatch={updatesDispatch}
-                currentQuestionId={questionsByStepIndex[stepIndex].id}
+                stream={userMediaStream}
+                handleNextStep={handleNextStep}
+                handlePreviousStep={handlePreviousStep}
               />
-            </Preview>
-          </Main>
-        </>
-      )}
-    </Container>
+
+              <Preview>
+                <PreviewText>PREVIEW</PreviewText>
+
+                <Recordings
+                  updatesByQuestionId={updatesState}
+                  dispatch={updatesDispatch}
+                  currentQuestionId={questionsByStepIndex[stepIndex].id}
+                />
+              </Preview>
+            </Main>
+          </>
+        )}
+      </Container>
+
+      <Confirm
+        show={showConfirm}
+        handleCancel={handleCancel}
+        handleConfirm={navigateToStandup}
+        title="Are you sure you want to exit?"
+        message={
+          <>
+            Your progress will be <b>lost</b> if you exit now.
+          </>
+        }
+      />
+    </>
   );
 }
+
+NewUpdate.propTypes = {
+  standupId: PropTypes.string
+};
 
 export default NewUpdate;
