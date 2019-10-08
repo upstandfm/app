@@ -44,7 +44,7 @@ describe('<AvatarDropdown />', () => {
            
           <svg
             aria-hidden="true"
-            class="svg-inline--fa fa-chevron-down fa-w-14 fa-sm "
+            class="svg-inline--fa fa-chevron-down fa-w-14 fa-sm fa-rotate-null fa-pull-null "
             data-icon="chevron-down"
             data-prefix="fas"
             focusable="false"

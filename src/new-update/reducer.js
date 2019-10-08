@@ -1,15 +1,18 @@
 export const defaultUpdatesState = {
   yesterday: {
     id: 'yesterday',
-    blob: null
+    blob: null,
+    isUploaded: false
   },
   today: {
     id: 'today',
-    blob: null
+    blob: null,
+    isUploaded: false
   },
   blockers: {
     id: 'blockers',
-    blob: null
+    blob: null,
+    isUploaded: false
   }
 };
 
@@ -24,18 +27,41 @@ export const defaultUpdatesState = {
 function updatesReducer(state, action) {
   switch (action.type) {
     case 'NEW_UPDATE_RECORDING': {
+      const { id } = action.data;
+      const oldUpdateState = state[id];
+
       return {
         ...state,
-        [action.data.id]: action.data
+        [id]: {
+          ...oldUpdateState,
+          ...action.data
+        }
       };
     }
 
     case 'DELETE_UPDATE_RECORDING': {
+      const { id } = action.data;
+      const oldUpdateState = state[id];
+
       return {
         ...state,
         [action.data.id]: {
           ...action.data,
+          ...oldUpdateState,
           blob: null
+        }
+      };
+    }
+
+    case 'UPLOADED_UPDATE_RECORDING': {
+      const { id } = action.data;
+      const oldUpdateState = state[id];
+
+      return {
+        ...state,
+        [id]: {
+          ...oldUpdateState,
+          ...action.data
         }
       };
     }

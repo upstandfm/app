@@ -23,7 +23,8 @@ describe('updates reducer', () => {
     const state = {
       [id]: {
         id,
-        blob: {}
+        blob: {},
+        isUploaded: false
       }
     };
 
@@ -36,6 +37,22 @@ describe('updates reducer', () => {
 
     const newState = reducer(state, action);
     expect(newState[id].blob).toEqual(null);
+  });
+
+  it('updates upload state', () => {
+    const state = defaultUpdatesState;
+
+    const id = 'yesterday';
+    const action = {
+      type: 'UPLOADED_UPDATE_RECORDING',
+      data: {
+        id,
+        isUploaded: true
+      }
+    };
+
+    const newState = reducer(state, action);
+    expect(newState[id].isUploaded).toEqual(true);
   });
 
   it('returns default state', () => {
