@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ExitButton } from '../components/Button';
 import { CardPreview } from '../components/Cards';
@@ -10,7 +9,7 @@ import { Steps, Step } from '../components/StepForm';
 
 import standupReducer, { defaultStandupState } from './reducer';
 
-import { Container, Header, Main, Preview, PreviewText } from './Layout';
+import { Container, Header, Title, Main, Preview, PreviewText } from './Layout';
 import Standup from './Standup';
 import Invite from './Invite';
 import Final from './Final';
@@ -120,7 +119,7 @@ function NewStandup() {
     <>
       <Container>
         <Header>
-          <h1>New standup</h1>
+          <Title>New standup</Title>
 
           <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
         </Header>
@@ -138,7 +137,7 @@ function NewStandup() {
                 current={isCurrent}
                 aria-current={isCurrent ? `step ${id}` : ''}
               >
-                {title} {isDone && <FontAwesomeIcon icon="check" size="sm" />}
+                {title}
               </Step>
             );
           })}

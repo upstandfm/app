@@ -16,6 +16,10 @@ export const Header = styled.div`
   align-items: center;
 `;
 
+export const Title = styled.h1`
+  font-weight: normal;
+`;
+
 export const Main = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;

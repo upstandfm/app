@@ -5,7 +5,7 @@ export const Steps = styled.ol`
   list-style: none;
   display: grid;
   grid-template-columns: ${props => `repeat(${props.total}, 1fr)`};
-  grid-gap: 0.25em;
+  grid-gap: 0;
   margin: 0 0 3em 0;
   padding: 0;
   counter-reset: step-progress;
