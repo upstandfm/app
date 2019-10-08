@@ -15,6 +15,7 @@ export const Main = styled.div`
   grid-gap: 1em;
   align-items: center;
   justify-items: center;
+  text-align: center;
 `;
 
 export const Subtitle = styled.h3`

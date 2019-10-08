@@ -11,7 +11,9 @@ const api = {
    * @param {Number} limit - Amount of items to fetch
    * @param {String} cursor - Cursor to fetch the "next page"
    *
-   * @return {Promise} Axios res: https://github.com/axios/axios#response-schema
+   * @return {Promise} Axios res with standups list and page cursor data
+   *
+   * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
   getStandups(token, cancelToken, limit, cursor) {
     let params = {};

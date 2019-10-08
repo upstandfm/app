@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ExitButton } from '../components/Button';
 import { Steps, Step } from '../components/StepForm';
 import { Confirm } from '../components/Modal';
 
-import { Container, Header, Main, Preview, PreviewText } from './Layout';
+import { Container, Header, Title, Main, Preview, PreviewText } from './Layout';
 import Permission from './Permission';
 import Yesterday from './Yesterday';
 import Today from './Today';
@@ -194,7 +193,7 @@ function NewUpdate({ standupId }) {
     <>
       <Container>
         <Header>
-          <h1>New update</h1>
+          <Title>New update</Title>
 
           <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
         </Header>
@@ -221,7 +220,6 @@ function NewUpdate({ standupId }) {
                     aria-current={isCurrent ? `step ${id}` : ''}
                   >
                     {title}{' '}
-                    {isDone && <FontAwesomeIcon icon="check" size="sm" />}
                   </Step>
                 );
               })}

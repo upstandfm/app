@@ -10,7 +10,9 @@ const api = {
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
    * @param {Object} data - Standup data
    *
-   * @return {Promise} Axios res: https://github.com/axios/axios#response-schema
+   * @return {Promise} Axios res with created standup
+   *
+   * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
   createStandup(token, cancelToken, data) {
     return axios({
