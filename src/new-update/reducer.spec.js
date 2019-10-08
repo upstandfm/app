@@ -41,7 +41,6 @@ describe('updates reducer', () => {
 
   it('updates upload state', () => {
     const state = defaultUpdatesState;
-
     const id = 'yesterday';
     const action = {
       type: 'UPLOADED_UPDATE_RECORDING',
