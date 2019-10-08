@@ -14,6 +14,7 @@ import Today from './Today';
 import Blockers from './Blockers';
 import Save from './Save';
 import Recordings from './Recordings';
+import UploadRecordings from './UploadRecordings';
 
 import updatesReducer, { defaultUpdatesState } from './reducer';
 import useGetUserMedia from './use-get-user-media';
@@ -51,7 +52,9 @@ function PureNewUpdate({
   dispatch,
   stream,
   handleNextStep,
-  handlePreviousStep
+  handlePreviousStep,
+  handleSave,
+  isSaving
 }) {
   const { id, Component } = questionsByStepIndex[stepIndex] || {};
   const update = updatesByQuestionId[id];
@@ -67,6 +70,8 @@ function PureNewUpdate({
       stream={stream}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
+      handleSave={handleSave}
+      isSaving={isSaving}
     />
   );
 }
@@ -77,24 +82,31 @@ PureNewUpdate.propTypes = {
   updatesByQuestionId: PropTypes.shape({
     yesterday: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      blob: PropTypes.object
+      blob: PropTypes.object,
+      isUploaded: PropTypes.bool.isRequired
     }),
     today: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      blob: PropTypes.object
+      blob: PropTypes.object,
+      isUploaded: PropTypes.bool.isRequired
     }),
     blockers: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      blob: PropTypes.object
+      blob: PropTypes.object,
+      isUploaded: PropTypes.bool.isRequired
     })
   }),
   dispatch: PropTypes.func.isRequired,
   stream: PropTypes.object.isRequired,
   handleNextStep: PropTypes.func.isRequired,
-  handlePreviousStep: PropTypes.func.isRequired
+  handlePreviousStep: PropTypes.func.isRequired,
+  handleSave: PropTypes.func.isRequired,
+  isSaving: PropTypes.bool.isRequired
 };
 
 function NewUpdate({ standupId }) {
+  const totalSteps = questionsByStepIndex.length;
+
   const [updatesState, updatesDispatch] = React.useReducer(
     updatesReducer,
     defaultUpdatesState
@@ -109,12 +121,34 @@ function NewUpdate({ standupId }) {
 
   const [showConfirm, setShowConfirm] = React.useState(false);
   const [stepIndex, setStepIndex] = React.useState(0);
-
-  const totalSteps = questionsByStepIndex.length;
+  const [isSaving, setIsSaving] = React.useState(false);
 
   const navigateToStandup = () => {
     navigate(`/${standupId}`);
   };
+
+  const updateIdsWithRecording = Object.keys(updatesState).filter(id =>
+    Boolean(updatesState[id].blob)
+  );
+  const isDoneUploading = updateIdsWithRecording.every(
+    id => updatesState[id].isUploaded
+  );
+
+  React.useEffect(
+    function redirectWhenDoneUploading() {
+      if (!isSaving) {
+        return;
+      }
+
+      if (isDoneUploading) {
+        // Give some time for the progress animation(s) to finish
+        setTimeout(navigateToStandup, 500);
+      }
+    },
+    [isSaving, isDoneUploading] // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
+  // Event handlers
 
   const handleExit = () => {
     const hasProgress = Object.values(updatesState).some(update =>
@@ -150,6 +184,10 @@ function NewUpdate({ standupId }) {
     }
 
     setStepIndex(i => i - 1);
+  };
+
+  const handleSave = () => {
+    setIsSaving(true);
   };
 
   return (
@@ -198,16 +236,26 @@ function NewUpdate({ standupId }) {
                 stream={userMediaStream}
                 handleNextStep={handleNextStep}
                 handlePreviousStep={handlePreviousStep}
+                handleSave={handleSave}
+                isSaving={isSaving}
               />
 
               <Preview>
                 <PreviewText>PREVIEW</PreviewText>
 
-                <Recordings
-                  updatesByQuestionId={updatesState}
-                  dispatch={updatesDispatch}
-                  currentQuestionId={questionsByStepIndex[stepIndex].id}
-                />
+                {isSaving ? (
+                  <UploadRecordings
+                    standupId={standupId}
+                    updatesByQuestionId={updatesState}
+                    dispatch={updatesDispatch}
+                  />
+                ) : (
+                  <Recordings
+                    updatesByQuestionId={updatesState}
+                    dispatch={updatesDispatch}
+                    currentQuestionId={questionsByStepIndex[stepIndex].id}
+                  />
+                )}
               </Preview>
             </Main>
           </>

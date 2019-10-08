@@ -20,6 +20,30 @@ function useGetUserMedia() {
     }
   }, []);
 
+  const stream = React.useRef();
+
+  React.useEffect(() => {
+    stream.current = userMediaStream;
+  });
+
+  React.useEffect(function closeStreamOnUnmount() {
+    return () => {
+      const currentStream = stream.current;
+
+      if (!currentStream) {
+        return;
+      }
+
+      const tracks = currentStream.getAudioTracks();
+
+      if (!tracks || !tracks.length) {
+        return;
+      }
+
+      tracks.forEach(track => track.stop());
+    };
+  }, []);
+
   const getUserMedia = async constraints => {
     try {
       setIsLoading(true);
