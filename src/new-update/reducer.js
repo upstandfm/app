@@ -46,8 +46,8 @@ function updatesReducer(state, action) {
       return {
         ...state,
         [action.data.id]: {
-          ...action.data,
           ...oldUpdateState,
+          ...action.data,
           blob: null
         }
       };

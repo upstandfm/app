@@ -93,7 +93,8 @@ UploadFile.propTypes = {
   standupId: PropTypes.string.isRequired,
   update: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    blob: PropTypes.object
+    blob: PropTypes.object,
+    isUploaded: PropTypes.bool.isRequired
   }),
   dispatch: PropTypes.func.isRequired
 };
