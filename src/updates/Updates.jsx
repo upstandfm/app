@@ -4,6 +4,10 @@ import { Link } from '@reach/router';
 import styled from 'styled-components';
 
 import Button from '../components/Button';
+import { useSnackbar } from '../components/Snackbar';
+
+import updatesReducer from './reducer';
+import useFetchUpdates from './use-fetch-updates';
 
 const Container = styled.div`
   display: grid;
@@ -27,7 +31,56 @@ const Actions = styled.div`
 
 const Main = styled.div``;
 
-function Updates() {
+export function PureUpdates({ isLoading, updates }) {
+  if (isLoading) {
+    return <div>loading..</div>;
+  }
+
+  if (updates.length === 0) {
+    return <div>no updates</div>;
+  }
+
+  return <Main />;
+}
+
+PureUpdates.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  updates: PropTypes.object.isRequired
+};
+
+function Updates({ standupId }) {
+  const [updatesState, updatesDispatch] = React.useReducer(updatesReducer, {});
+  const [fetchUpdates, abortFetchUpdates, isFetching, err] = useFetchUpdates(
+    updatesDispatch
+  );
+
+  const [, snackbarDispatch] = useSnackbar();
+
+  React.useEffect(() => {
+    fetchUpdates(standupId);
+
+    return () => {
+      abortFetchUpdates();
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect(() => {
+    if (!err) {
+      return;
+    }
+
+    snackbarDispatch({
+      type: 'ENQUEUE_SNACKBAR_MSG',
+      data: {
+        type: 'error',
+        title: 'Failed to fetch updates',
+        text: err.details
+          ? `${err.message}: ${err.details}.`
+          : err.message + '.'
+      }
+    });
+  }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <Container>
       <Actions>
@@ -36,7 +89,7 @@ function Updates() {
         </Button>
       </Actions>
 
-      <Main />
+      <PureUpdates isLoading={isFetching} updates={updatesState} />
     </Container>
   );
 }
