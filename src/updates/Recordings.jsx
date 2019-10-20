@@ -9,6 +9,7 @@ import {
   ListItem,
   ListEmpty
 } from '../components/List';
+import Empty from '../components/Empty';
 
 import { formatDate, isDateToday } from './utils';
 
@@ -62,10 +63,10 @@ function Recordings({ epoch, recordings }) {
 
   if (recordings.length === 0) {
     return (
-      <div>
+      <>
         <Title isToday={isToday}>{formattedDate}</Title>
-        <p>No updates.</p>
-      </div>
+        <Empty title="No updates to show.." />
+      </>
     );
   }
 
