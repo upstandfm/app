@@ -1,35 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
-import styled from 'styled-components';
 
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 
+import { Container, Actions, Main } from './Layout';
+import Recordings from './Recordings';
+
 import updatesReducer from './reducer';
 import useFetchUpdates from './use-fetch-updates';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  grid-gap: 1em;
-  align-items: center;
-  padding: 1em;
-`;
-
-const Actions = styled.div`
-  display: grid;
-  justify-items: end;
-  padding: 2em 0;
-
-  @media (max-width: 470px) {
-    justify-items: center;
-    padding: 1em 0;
-  }
-`;
-
-const Main = styled.div``;
+import { sortDateKeysDescending } from './utils';
 
 export function PureUpdates({ isLoading, updates }) {
   if (isLoading) {
@@ -40,7 +21,21 @@ export function PureUpdates({ isLoading, updates }) {
     return <div>no updates</div>;
   }
 
-  return <Main />;
+  const dateKeys = Object.keys(updates);
+  const sortedDateKeys = sortDateKeysDescending(dateKeys);
+
+  return (
+    <Main>
+      {sortedDateKeys.map(data => {
+        const { dateKey } = data;
+        const recordings = updates[dateKey];
+
+        return (
+          <Recordings key={dateKey} dateKey={dateKey} recordings={recordings} />
+        );
+      })}
+    </Main>
+  );
 }
 
 PureUpdates.propTypes = {
