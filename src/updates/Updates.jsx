@@ -27,11 +27,10 @@ export function PureUpdates({ isLoading, updates }) {
   return (
     <Main>
       {sortedDateKeys.map(data => {
-        const { dateKey } = data;
-        const recordings = updates[dateKey];
+        const { epoch, dateKey } = data;
 
         return (
-          <Recordings key={dateKey} dateKey={dateKey} recordings={recordings} />
+          <Recordings key={epoch} epoch={epoch} recordings={updates[dateKey]} />
         );
       })}
     </Main>

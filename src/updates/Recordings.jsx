@@ -10,28 +10,36 @@ import {
   ListEmpty
 } from '../components/List';
 
-const PrimaryAction = styled.div`
+import { formatDate, isDateToday } from './utils';
+
+const Title = styled.h2`
+  margin: 0 0 1em 0;
+  font-weight: normal;
+  color: ${props => (props.isToday ? 'var(--color-purple)' : 'inherit')};
+`;
+
+const RecordingPrimaryAction = styled.div`
   width: 48px;
   height: 48px;
 `;
 
-const Content = styled.div`
+const RecordingContent = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-gap: 1em;
   align-items: center;
 `;
 
-const Title = styled.h4`
+const RecordingTitle = styled.h4`
   margin: 0;
   text-transform: capitalize;
 `;
 
-const Status = styled.div`
+const RecordingStatus = styled.div`
   justify-self: center;
 `;
 
-const Badge = styled.span`
+const StatusBadge = styled.span`
   padding: 0.25em 0.5em;
   background-color: ${props =>
     props.status === 'error'
@@ -44,15 +52,18 @@ const Badge = styled.span`
   border-radius: 4px;
 `;
 
-const Meta = styled.div`
+const RecordingMeta = styled.div`
   color: var(--color-grey);
 `;
 
-function Recordings({ dateKey, recordings }) {
+function Recordings({ epoch, recordings }) {
+  const formattedDate = formatDate(epoch);
+  const isToday = isDateToday(epoch);
+
   if (recordings.length === 0) {
     return (
       <div>
-        <h2>{dateKey}</h2>
+        <Title isToday={isToday}>{formattedDate}</Title>
         <p>No updates.</p>
       </div>
     );
@@ -68,8 +79,8 @@ function Recordings({ dateKey, recordings }) {
   }, {});
 
   return (
-    <div key={dateKey}>
-      <h2>{dateKey}</h2>
+    <div>
+      <Title isToday={isToday}>{formattedDate}</Title>
 
       {Object.keys(recordingsByUserId).map(userId => {
         const recordings = recordingsByUserId[userId];
@@ -85,21 +96,21 @@ function Recordings({ dateKey, recordings }) {
                 recordings.map(recording => {
                   return (
                     <ListItem key={recording.recordingId}>
-                      <PrimaryAction />
+                      <RecordingPrimaryAction />
 
-                      <Content>
-                        <Title>{recording.filename}</Title>
+                      <RecordingContent>
+                        <RecordingTitle>{recording.filename}</RecordingTitle>
 
-                        <Status>
+                        <RecordingStatus>
                           {recording.status !== 'completed' && (
-                            <Badge status={recording.status}>
+                            <StatusBadge status={recording.status}>
                               {recording.status}
-                            </Badge>
+                            </StatusBadge>
                           )}
-                        </Status>
+                        </RecordingStatus>
 
-                        <Meta />
-                      </Content>
+                        <RecordingMeta />
+                      </RecordingContent>
                     </ListItem>
                   );
                 })
@@ -113,7 +124,7 @@ function Recordings({ dateKey, recordings }) {
 }
 
 Recordings.propTypes = {
-  dateKey: PropTypes.string.isRequired,
+  epoch: PropTypes.number.isRequired,
   recordings: PropTypes.array.isRequired
 };
 
