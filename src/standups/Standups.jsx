@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
-import Empty from './Empty';
+import Empty from '../components/Empty';
 import standupsReducer from './reducer';
 import useFetchStandups from './use-fetch-standups';
 

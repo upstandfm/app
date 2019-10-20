@@ -13,8 +13,10 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   margin: 0.5em 0 0.25em 0;
+  font-weight: normal;
+  color: var(--color-grey);
 `;
 
 function Empty({ title }) {

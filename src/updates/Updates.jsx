@@ -17,10 +17,6 @@ export function PureUpdates({ isLoading, updates }) {
     return <div>loading..</div>;
   }
 
-  if (updates.length === 0) {
-    return <div>no updates</div>;
-  }
-
   const dateKeys = Object.keys(updates);
   const sortedDateKeys = sortDateKeysDescending(dateKeys);
 
