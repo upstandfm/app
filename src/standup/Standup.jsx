@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
 
-import Updates from '../updates';
+import Updates, { LoadingUpdates } from '../updates';
 
 import {
   Container,
@@ -27,7 +27,9 @@ export function PureStandup({ isLoading, standup }) {
           <LoadingInfo />
         </StandupInfo>
 
-        {/* TODO: Updates skeleton */}
+        <StandupUpdates>
+          <LoadingUpdates />
+        </StandupUpdates>
       </Container>
     );
   }
