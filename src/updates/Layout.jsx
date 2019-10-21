@@ -21,3 +21,9 @@ export const Actions = styled.div`
 `;
 
 export const Main = styled.div``;
+
+export const Subtitle = styled.h2`
+  margin: 0 0 1em 0;
+  font-weight: normal;
+  color: ${props => (props.isToday ? 'var(--color-purple)' : 'inherit')};
+`;

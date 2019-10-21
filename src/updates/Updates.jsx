@@ -5,12 +5,12 @@ import { Link } from '@reach/router';
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 
-import { Container, Actions, Main } from './Layout';
-import Recordings from './Recordings';
+import { Container, Actions, Main, Subtitle } from './Layout';
+import UserRecordings from './UserRecordings';
 
 import updatesReducer from './reducer';
 import useFetchUpdates from './use-fetch-updates';
-import { sortDateKeysDescending } from './utils';
+import { sortDateKeysDescending, formatDate, isDateToday } from './utils';
 
 export function PureUpdates({ isLoading, updates }) {
   if (isLoading) {
@@ -20,17 +20,19 @@ export function PureUpdates({ isLoading, updates }) {
   const dateKeys = Object.keys(updates);
   const sortedDateKeys = sortDateKeysDescending(dateKeys);
 
-  return (
-    <Main>
-      {sortedDateKeys.map(data => {
-        const { epoch, dateKey } = data;
+  return sortedDateKeys.map(data => {
+    const { epoch, dateKey } = data;
+    const formattedDate = formatDate(epoch);
+    const isToday = isDateToday(epoch);
 
-        return (
-          <Recordings key={epoch} epoch={epoch} recordings={updates[dateKey]} />
-        );
-      })}
-    </Main>
-  );
+    return (
+      <div key={epoch}>
+        <Subtitle isToday={isToday}>{formattedDate}</Subtitle>
+
+        <UserRecordings recordings={updates[dateKey]} />
+      </div>
+    );
+  });
 }
 
 PureUpdates.propTypes = {
@@ -79,7 +81,9 @@ function Updates({ standupId }) {
         </Button>
       </Actions>
 
-      <PureUpdates isLoading={isFetching} updates={updatesState} />
+      <Main>
+        <PureUpdates isLoading={isFetching} updates={updatesState} />
+      </Main>
     </Container>
   );
 }
