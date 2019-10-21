@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { ListContainer, List, ListItem, ListEmpty } from '../components/List';
+import {
+  ListContainer,
+  List,
+  ListItem,
+  ListEmpty,
+  LoadingListItem,
+  LoadingListItemText
+} from '../components/List';
 
 const UserListItem = styled(ListItem)`
   :hover {
@@ -138,3 +145,83 @@ UserRecordings.propTypes = {
 };
 
 export default UserRecordings;
+
+export function LoadingUserRecordings() {
+  return (
+    <ListContainer>
+      <List as="div">
+        <div>
+          <LoadingListItem as="div">
+            <UserAvatar />
+
+            <div>
+              <LoadingListItemText>Loading user name</LoadingListItemText>
+            </div>
+          </LoadingListItem>
+
+          <RecordingsList>
+            <LoadingListItem>
+              <RecordingPrimaryAction />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+
+            <LoadingListItem>
+              <RecordingPrimaryAction />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+
+            <LoadingListItem>
+              <RecordingPrimaryAction />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+          </RecordingsList>
+        </div>
+
+        <div>
+          <LoadingListItem as="div">
+            <UserAvatar />
+
+            <div>
+              <LoadingListItemText>Loading user name</LoadingListItemText>
+            </div>
+          </LoadingListItem>
+
+          <RecordingsList>
+            <LoadingListItem>
+              <RecordingPrimaryAction />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+
+            <LoadingListItem>
+              <RecordingPrimaryAction />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+
+            <LoadingListItem>
+              <RecordingPrimaryAction />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+          </RecordingsList>
+        </div>
+      </List>
+    </ListContainer>
+  );
+}

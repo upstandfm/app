@@ -18,3 +18,11 @@ export const DefaultUpdates = () => {
 DefaultUpdates.story = {
   name: 'default'
 };
+
+export const LoadingUpdates = () => {
+  return <PureUpdates isLoading={true} updates={{}} />;
+};
+
+LoadingUpdates.story = {
+  name: 'loading'
+};
