@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
@@ -23,7 +24,36 @@ export const Actions = styled.div`
 export const Main = styled.div``;
 
 export const Subtitle = styled.h2`
-  margin: 0 0 1em 0;
+  display: inline-block;
+  margin: 0 0 0.5em 0;
   font-weight: normal;
   color: ${props => (props.isToday ? 'var(--color-purple)' : 'inherit')};
+`;
+
+Subtitle.propTypes = {
+  isToday: PropTypes.bool
+};
+
+const glimmer = keyframes`
+  0% {
+    background-position: -235px 0;
+  }
+  100% {
+    background-position: calc(235px + 100%) 0;
+  }
+`;
+
+export const LoadingSubtitle = styled(Subtitle)`
+  border-radius: 33px;
+  color: transparent;
+  background-color: var(--color-light-grey);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-light-grey),
+    var(--color-lighter-grey),
+    var(--color-light-grey)
+  );
+  background-size: 100% 100%;
+  animation: ${glimmer} 1s ease-in-out infinite;
 `;

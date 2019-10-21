@@ -5,8 +5,8 @@ import { Link } from '@reach/router';
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 
-import { Container, Actions, Main, Subtitle } from './Layout';
-import UserRecordings from './UserRecordings';
+import { Container, Actions, Main, Subtitle, LoadingSubtitle } from './Layout';
+import UserRecordings, { LoadingUserRecordings } from './UserRecordings';
 
 import updatesReducer from './reducer';
 import useFetchUpdates from './use-fetch-updates';
@@ -14,7 +14,12 @@ import { sortDateKeysDescending, formatDate, isDateToday } from './utils';
 
 export function PureUpdates({ isLoading, updates }) {
   if (isLoading) {
-    return <div>loading..</div>;
+    return (
+      <div>
+        <LoadingSubtitle>Loading date</LoadingSubtitle>
+        <LoadingUserRecordings />
+      </div>
+    );
   }
 
   const dateKeys = Object.keys(updates);
@@ -28,7 +33,6 @@ export function PureUpdates({ isLoading, updates }) {
     return (
       <div key={epoch}>
         <Subtitle isToday={isToday}>{formattedDate}</Subtitle>
-
         <UserRecordings recordings={updates[dateKey]} />
       </div>
     );
