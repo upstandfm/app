@@ -12,13 +12,30 @@ import updatesReducer from './reducer';
 import useFetchUpdates from './use-fetch-updates';
 import { sortDateKeysDescending, formatDate, isDateToday } from './utils';
 
+export function LoadingUpdates() {
+  return (
+    <Container>
+      <Actions>
+        <Button as={Link} to="new-update">
+          New update
+        </Button>
+      </Actions>
+
+      <Main>
+        <LoadingSubtitle>Loading date</LoadingSubtitle>
+        <LoadingUserRecordings />
+      </Main>
+    </Container>
+  );
+}
+
 export function PureUpdates({ isLoading, updates }) {
   if (isLoading) {
     return (
-      <div>
+      <>
         <LoadingSubtitle>Loading date</LoadingSubtitle>
         <LoadingUserRecordings />
-      </div>
+      </>
     );
   }
 

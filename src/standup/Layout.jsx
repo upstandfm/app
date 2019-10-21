@@ -39,5 +39,4 @@ export const StandupInfo = styled.div`
 
 export const StandupUpdates = styled.div`
   grid-area: standup-updates;
-  overflow: auto;
 `;
