@@ -148,7 +148,5 @@ export default {
       updatedAt: yesterday.getTime(),
       transcodedFileKey: `audio/standups/standup1/${yesterdayDateKey}/auth0|user2/today.mp3`
     }
-  ],
-
-  '1-1-2019': []
+  ]
 };
