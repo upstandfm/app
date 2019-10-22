@@ -31,6 +31,8 @@ export const Container = styled.div`
 
 export const StandupPlayer = styled.div`
   grid-area: standup-player;
+  display: grid;
+  justify-items: center;
 `;
 
 export const StandupInfo = styled.div`

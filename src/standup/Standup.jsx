@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AudioPlayer, { AudioPlayerProvider } from '../components/AudioPlayer';
 import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
 
@@ -40,7 +41,9 @@ export function PureStandup({ isLoading, standup }) {
 
   return (
     <Container>
-      <StandupPlayer />
+      <StandupPlayer>
+        <AudioPlayer />
+      </StandupPlayer>
 
       <StandupInfo>
         <Info standup={standup} />
@@ -91,7 +94,11 @@ function Standup({ standupId }) {
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <PureStandup isLoading={isFetching} standup={standupState} />;
+  return (
+    <AudioPlayerProvider>
+      <PureStandup isLoading={isFetching} standup={standupState} />
+    </AudioPlayerProvider>
+  );
 }
 
 Standup.propTypes = {
