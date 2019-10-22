@@ -19,7 +19,7 @@ const api = {
     return axios({
       cancelToken,
       method: 'post',
-      url: `${REACT_APP_API_DOMAIN}/files/standup-update`,
+      url: `${REACT_APP_API_DOMAIN}/files/standup-update/upload`,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
