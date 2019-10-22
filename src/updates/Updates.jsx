@@ -4,6 +4,7 @@ import { Link } from '@reach/router';
 
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
+import { useAudioPlayer } from '../components/AudioPlayer';
 
 import { Container, Actions, Main, Subtitle, LoadingSubtitle } from './Layout';
 import UserRecordings, { LoadingUserRecordings } from './UserRecordings';
@@ -29,7 +30,7 @@ export function LoadingUpdates() {
   );
 }
 
-export function PureUpdates({ isLoading, updates }) {
+export function PureUpdates({ isLoading, updates, playPauseAudio }) {
   if (isLoading) {
     return (
       <>
@@ -50,7 +51,10 @@ export function PureUpdates({ isLoading, updates }) {
     return (
       <div key={epoch}>
         <Subtitle isToday={isToday}>{formattedDate}</Subtitle>
-        <UserRecordings recordings={updates[dateKey]} />
+        <UserRecordings
+          recordings={updates[dateKey]}
+          playPauseAudio={playPauseAudio}
+        />
       </div>
     );
   });
@@ -58,7 +62,8 @@ export function PureUpdates({ isLoading, updates }) {
 
 PureUpdates.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  updates: PropTypes.object.isRequired
+  updates: PropTypes.object.isRequired,
+  playPauseAudio: PropTypes.func.isRequired
 };
 
 function Updates({ standupId }) {
@@ -94,6 +99,38 @@ function Updates({ standupId }) {
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
+
+  const playPauseAudio = recordingId => {
+    const { isPlaying } = audioPlayerState;
+
+    if (!isPlaying) {
+      audioPlayerDispatch({
+        type: 'PLAY_AUDIO',
+        data: {
+          fileId: recordingId
+        }
+      });
+    }
+
+    const isPlayingRecording = recordingId === audioPlayerState.playingFileId;
+    if (isPlaying && isPlayingRecording) {
+      audioPlayerDispatch({
+        type: 'PAUSE_AUDIO',
+        data: {
+          fileId: recordingId
+        }
+      });
+    } else {
+      audioPlayerDispatch({
+        type: 'PLAY_AUDIO',
+        data: {
+          fileId: recordingId
+        }
+      });
+    }
+  };
+
   return (
     <Container>
       <Actions>
@@ -103,7 +140,11 @@ function Updates({ standupId }) {
       </Actions>
 
       <Main>
-        <PureUpdates isLoading={isFetching} updates={updatesState} />
+        <PureUpdates
+          isLoading={isFetching}
+          updates={updatesState}
+          playPauseAudio={playPauseAudio}
+        />
       </Main>
     </Container>
   );

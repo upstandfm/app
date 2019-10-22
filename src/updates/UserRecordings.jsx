@@ -79,7 +79,7 @@ const RecordingMeta = styled.div`
   color: var(--color-grey);
 `;
 
-function UserRecordings({ recordings }) {
+function UserRecordings({ recordings, playPauseAudio }) {
   const recordingsByUserId = recordings.reduce((mapping, recording) => {
     if (!mapping[recording.userId]) {
       mapping[recording.userId] = [];
@@ -91,6 +91,11 @@ function UserRecordings({ recordings }) {
 
   // TODO: fetch user data from API (standup members)
   const userIds = Object.keys(recordingsByUserId);
+
+  const handlePlayPauseRecording = e => {
+    const recordingId = e.currentTarget.getAttribute('data-recording-id');
+    playPauseAudio(recordingId);
+  };
 
   return (
     <ListContainer>
@@ -110,17 +115,22 @@ function UserRecordings({ recordings }) {
                   <ListEmpty>No update.</ListEmpty>
                 ) : (
                   recordings.map(recording => {
+                    const { recordingId, filename, status } = recording;
                     return (
-                      <ListItem key={recording.recordingId}>
+                      <ListItem
+                        data-recording-id={recordingId}
+                        key={recordingId}
+                        onClick={handlePlayPauseRecording}
+                      >
                         <RecordingPrimaryAction />
 
                         <RecordingContent>
-                          <RecordingTitle>{recording.filename}</RecordingTitle>
+                          <RecordingTitle>{filename}</RecordingTitle>
 
                           <RecordingStatus>
-                            {recording.status !== 'completed' && (
-                              <StatusBadge status={recording.status}>
-                                {recording.status}
+                            {status !== 'completed' && (
+                              <StatusBadge status={status}>
+                                {status}
                               </StatusBadge>
                             )}
                           </RecordingStatus>
@@ -141,7 +151,8 @@ function UserRecordings({ recordings }) {
 }
 
 UserRecordings.propTypes = {
-  recordings: PropTypes.array.isRequired
+  recordings: PropTypes.array.isRequired,
+  playPauseAudio: PropTypes.func.isRequired
 };
 
 export default UserRecordings;
