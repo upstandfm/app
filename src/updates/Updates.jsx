@@ -30,7 +30,13 @@ export function LoadingUpdates() {
   );
 }
 
-export function PureUpdates({ isLoading, updates, playPauseAudio }) {
+export function PureUpdates({
+  isLoading,
+  updates,
+  playPauseAudio,
+  playingFileId,
+  audioPlayerIsPlaying
+}) {
   if (isLoading) {
     return (
       <>
@@ -54,6 +60,8 @@ export function PureUpdates({ isLoading, updates, playPauseAudio }) {
         <UserRecordings
           recordings={updates[dateKey]}
           playPauseAudio={playPauseAudio}
+          playingFileId={playingFileId}
+          audioPlayerIsPlaying={audioPlayerIsPlaying}
         />
       </div>
     );
@@ -63,7 +71,9 @@ export function PureUpdates({ isLoading, updates, playPauseAudio }) {
 PureUpdates.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   updates: PropTypes.object.isRequired,
-  playPauseAudio: PropTypes.func.isRequired
+  playPauseAudio: PropTypes.func.isRequired,
+  playingFileId: PropTypes.string,
+  audioPlayerIsPlaying: PropTypes.bool.isRequired
 };
 
 function Updates({ standupId }) {
@@ -136,6 +146,8 @@ function Updates({ standupId }) {
           isLoading={isFetching}
           updates={updatesState}
           playPauseAudio={playPauseAudio}
+          playingFileId={audioPlayerState.playingFile.fileId}
+          audioPlayerIsPlaying={audioPlayerState.isPlaying}
         />
       </Main>
     </Container>

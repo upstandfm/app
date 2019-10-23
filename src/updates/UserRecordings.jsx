@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
   ListContainer,
@@ -40,7 +41,36 @@ const RecordingsList = styled(List)`
   }
 `;
 
+const RecordingListItem = styled(ListItem)`
+  background-color: ${props =>
+    props.isSelected ? 'var(--color-lightest-purple)' : 'inherit'};
+
+  .play-status {
+    color: var(--color-dark-purple);
+    opacity: ${props => (props.isSelected ? 1 : 0)};
+  }
+
+  :hover {
+    cursor: pointer;
+    background-color: ${props =>
+      props.isSelected
+        ? 'var(--color-lightest-purple)'
+        : 'var(--color-lightest-grey)'};
+
+    .play-status {
+      opacity: 1;
+    }
+  }
+`;
+
+RecordingListItem.propTypes = {
+  isSelected: PropTypes.bool.isRequired
+};
+
 const RecordingPrimaryAction = styled.div`
+  display: grid;
+  align-items: center;
+  justify-items: center;
   width: 40px;
   height: 40px;
 `;
@@ -79,7 +109,12 @@ const RecordingMeta = styled.div`
   color: var(--color-grey);
 `;
 
-function UserRecordings({ recordings, playPauseAudio }) {
+function UserRecordings({
+  recordings,
+  playPauseAudio,
+  playingFileId,
+  audioPlayerIsPlaying
+}) {
   const recordingsByUserId = recordings.reduce((mapping, recording) => {
     if (!mapping[recording.userId]) {
       mapping[recording.userId] = [];
@@ -123,14 +158,28 @@ function UserRecordings({ recordings, playPauseAudio }) {
                       status
                     } = recording;
 
+                    const isSelected = recordingId === playingFileId;
+                    const isPlaying = isSelected && audioPlayerIsPlaying;
+
                     return (
-                      <ListItem
+                      <RecordingListItem
+                        aria-label={`${isPlaying ? 'pause' : 'play'} recording`}
+                        title={`${isPlaying ? 'pause' : 'play'} recording`}
+                        isSelected={isSelected}
                         data-recording-id={recordingId}
                         data-file-key={transcodedFileKey}
                         key={recordingId}
                         onClick={handlePlayPauseRecording}
                       >
-                        <RecordingPrimaryAction />
+                        <RecordingPrimaryAction>
+                          <div className="play-status">
+                            {isPlaying ? (
+                              <FontAwesomeIcon icon="pause" size="lg" />
+                            ) : (
+                              <FontAwesomeIcon icon="play" size="lg" />
+                            )}
+                          </div>
+                        </RecordingPrimaryAction>
 
                         <RecordingContent>
                           <RecordingTitle>{filename}</RecordingTitle>
@@ -145,7 +194,7 @@ function UserRecordings({ recordings, playPauseAudio }) {
 
                           <RecordingMeta />
                         </RecordingContent>
-                      </ListItem>
+                      </RecordingListItem>
                     );
                   })
                 )}

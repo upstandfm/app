@@ -20,7 +20,9 @@ import {
   faMicrophone,
   faStop,
   faCircle,
-  faTrash
+  faTrash,
+  faPlay,
+  faPause
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -37,5 +39,7 @@ library.add(
   faMicrophone,
   faStop,
   faCircle,
-  faTrash
+  faTrash,
+  faPlay,
+  faPause
 );
