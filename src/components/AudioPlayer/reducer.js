@@ -1,6 +1,12 @@
 export const defaultAudioPlayerState = {
-  playingFileId: null,
-  isPlaying: false
+  playingFile: {
+    fileId: null,
+    fileKey: null
+  },
+  isPlaying: false,
+
+  // Maps a "fileId" to a file "ObjectURL"
+  downloadedFiles: {}
 };
 
 /**
@@ -16,7 +22,7 @@ function audioPlayerReducer(state, action) {
     case 'PLAY_AUDIO': {
       return {
         ...state,
-        playingFileId: action.data.fileId,
+        playingFile: action.data.playingFile,
         isPlaying: true
       };
     }
@@ -24,8 +30,17 @@ function audioPlayerReducer(state, action) {
     case 'PAUSE_AUDIO': {
       return {
         ...state,
-        playingFileId: action.data.fileId,
         isPlaying: false
+      };
+    }
+
+    case 'DOWNLOADED_AUDIO_FILE': {
+      return {
+        ...state,
+        downloadedFiles: {
+          ...state.downloadedFiles,
+          [action.data.fileId]: action.data.fileUrl
+        }
       };
     }
 
