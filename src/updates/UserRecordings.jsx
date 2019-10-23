@@ -94,7 +94,8 @@ function UserRecordings({ recordings, playPauseAudio }) {
 
   const handlePlayPauseRecording = e => {
     const recordingId = e.currentTarget.getAttribute('data-recording-id');
-    playPauseAudio(recordingId);
+    const fileKey = e.currentTarget.getAttribute('data-file-key');
+    playPauseAudio(recordingId, fileKey);
   };
 
   return (
@@ -115,10 +116,17 @@ function UserRecordings({ recordings, playPauseAudio }) {
                   <ListEmpty>No update.</ListEmpty>
                 ) : (
                   recordings.map(recording => {
-                    const { recordingId, filename, status } = recording;
+                    const {
+                      recordingId,
+                      transcodedFileKey,
+                      filename,
+                      status
+                    } = recording;
+
                     return (
                       <ListItem
                         data-recording-id={recordingId}
+                        data-file-key={transcodedFileKey}
                         key={recordingId}
                         onClick={handlePlayPauseRecording}
                       >

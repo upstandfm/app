@@ -3,34 +3,49 @@ import reducer, { defaultAudioPlayerState } from './reducer';
 describe('audio player reducer', () => {
   it('plays audio', () => {
     const state = defaultAudioPlayerState;
-    const fileId = 1;
+    const playingFile = {
+      fileId: 1,
+      fileKey: 'audio/file'
+    };
+
     const action = {
       type: 'PLAY_AUDIO',
       data: {
-        fileId
+        playingFile
       }
     };
 
     const newState = reducer(state, action);
-    expect(newState).toEqual({ playingFileId: fileId, isPlaying: true });
+    expect(newState.playingFile).toEqual(playingFile);
+    expect(newState.isPlaying).toEqual(true);
   });
 
   it('pauses audio', () => {
-    const fileId = 1;
-    const state = {
-      playingFileId: fileId,
-      isPlaying: true
-    };
-
+    const state = defaultAudioPlayerState;
     const action = {
       type: 'PAUSE_AUDIO',
+      data: {}
+    };
+
+    const newState = reducer(state, action);
+    expect(newState.isPlaying).toEqual(false);
+  });
+
+  it('downloads audio', () => {
+    const state = defaultAudioPlayerState;
+    const fileId = 1;
+    const fileUrl =
+      'blob:http://localhost:3000/14fdd0c2-04fb-d34f-9bb5-fa705661578c';
+    const action = {
+      type: 'DOWNLOADED_AUDIO_FILE',
       data: {
-        fileId
+        fileId,
+        fileUrl
       }
     };
 
     const newState = reducer(state, action);
-    expect(newState).toEqual({ playingFileId: fileId, isPlaying: false });
+    expect(newState.downloadedFiles[fileId]).toEqual(fileUrl);
   });
 
   it('returns default state', () => {
