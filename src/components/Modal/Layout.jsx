@@ -6,6 +6,7 @@ export const Main = styled.div`
 
 export const Title = styled.h2`
   margin: 0 0 0.5em 0;
+  font-weight: normal;
 `;
 
 export const Footer = styled.div`

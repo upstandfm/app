@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h2`
   margin: 0.5em 0 0.25em 0;
+  font-weight: normal;
 `;
 
 const Actions = styled.div`

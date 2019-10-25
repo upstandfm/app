@@ -15,6 +15,7 @@ const Container = styled.div`
 const Title = styled.h2`
   margin: 0;
   color: var(--color-dark-purple);
+  font-weight: normal;
 `;
 
 const List = styled.ol``;
