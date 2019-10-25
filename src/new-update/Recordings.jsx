@@ -13,14 +13,7 @@ const RecordingListItem = styled(ListItem)`
   grid-template-rows: auto auto;
   grid-gap: 0;
   background-color: ${props =>
-    props.isCurrent ? 'var(--color-lightest-purple)' : 'inherit'};
-
-  :hover {
-    background-color: ${props =>
-      props.isCurrent
-        ? 'var(--color-lightest-purple)'
-        : 'var(--color-lightest-grey)'};
-  }
+    props.isCurrent ? 'var(--color-lightest-grey)' : 'inherit'};
 `;
 
 RecordingListItem.propTypes = {
@@ -30,7 +23,8 @@ RecordingListItem.propTypes = {
 const RecordingTitle = styled.h4`
   margin: 0;
   text-transform: capitalize;
-  color: ${props => (props.isCurrent ? 'inherit' : 'var(--color-grey)')};
+  color: ${props =>
+    props.isCurrent ? 'var(--color-dark-purple)' : 'var(--color-grey)'};
 `;
 
 RecordingTitle.propTypes = {
