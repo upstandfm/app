@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Empty from '../components/Empty';
 import {
   ListContainer,
   List,
@@ -123,6 +124,10 @@ export function LoadingUserRecordings() {
 }
 
 function UserRecordings({ recordings, audioPlayerState, playPauseAudio }) {
+  if (recordings.length === 0) {
+    return <Empty title="No updates to show.." />;
+  }
+
   const recordingsByUserId = recordings.reduce((mapping, recording) => {
     if (!mapping[recording.userId]) {
       mapping[recording.userId] = [];
@@ -139,7 +144,7 @@ function UserRecordings({ recordings, audioPlayerState, playPauseAudio }) {
     <ListContainer>
       <List as="div">
         {userIds.map(userId => {
-          const recordings = recordingsByUserId[userId];
+          const userRecordings = recordingsByUserId[userId];
 
           return (
             <div key={userId}>
@@ -149,10 +154,10 @@ function UserRecordings({ recordings, audioPlayerState, playPauseAudio }) {
               </UserListItem>
 
               <RecordingsList>
-                {recordings.length === 0 ? (
+                {userRecordings.length === 0 ? (
                   <ListEmpty>No update.</ListEmpty>
                 ) : (
-                  recordings.map(recording => {
+                  userRecordings.map(recording => {
                     return (
                       <UserRecording
                         key={recording.recordingId}
