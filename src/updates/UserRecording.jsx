@@ -33,6 +33,14 @@ const RecordingListItem = styled(ListItem)`
       color: var(--color-dark-purple);
     }
   }
+
+  :focus {
+    background-color: var(--color-lightest-grey);
+
+    .play-state {
+      color: var(--color-dark-purple);
+    }
+  }
 `;
 
 RecordingListItem.propTypes = {
@@ -152,8 +160,17 @@ function UserRecording({ recording, audioPlayerState, playPauseAudio }) {
     playPauseAudio(recordingId, fileKey);
   };
 
+  const handleKeyPress = e => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    handlePlayPauseRecording(e);
+  };
+
   return (
     <RecordingListItem
+      tabIndex={isReady ? '0' : '-1'}
       aria-label={isReady && !isDownloading ? helpText : ''}
       title={isReady && !isDownloading ? helpText : ''}
       data-recording-id={recordingId}
@@ -162,6 +179,7 @@ function UserRecording({ recording, audioPlayerState, playPauseAudio }) {
       isDownloading={isDownloading}
       isSelected={isSelected}
       onClick={handlePlayPauseRecording}
+      onKeyDown={handleKeyPress}
     >
       <RecordingPlayState
         isReady={isReady}
