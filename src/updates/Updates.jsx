@@ -1,12 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 import { useAudioPlayer } from '../components/AudioPlayer';
 
-import { Container, Actions, Main, Subtitle, LoadingSubtitle } from './Layout';
+import {
+  Container,
+  Actions,
+  Main,
+  Subtitle,
+  LoadingSubtitle,
+  UpdatesContainer,
+  LoadMoreContainer
+} from './Layout';
+
 import UserRecordings, { LoadingUserRecordings } from './UserRecordings';
 
 import updatesReducer from './reducer';
@@ -32,11 +42,13 @@ export function LoadingUpdates() {
 
 export function PureUpdates({
   isLoading,
+  isLoadingMore,
   updates,
   audioPlayerState,
-  playPauseAudio
+  playPauseAudio,
+  fetchMoreUpdates
 }) {
-  if (isLoading) {
+  if (isLoading && !isLoadingMore) {
     return (
       <>
         <LoadingSubtitle>Loading date</LoadingSubtitle>
@@ -45,25 +57,45 @@ export function PureUpdates({
     );
   }
 
+  const handleLoadMore = () => {
+    fetchMoreUpdates();
+  };
+
   const dateKeys = Object.keys(updates);
   const sortedDateKeys = sortDateKeysDescending(dateKeys);
 
-  return sortedDateKeys.map(data => {
-    const { epoch, dateKey } = data;
-    const formattedDate = formatDate(epoch);
-    const isToday = isDateToday(epoch);
+  return (
+    <>
+      {sortedDateKeys.map(data => {
+        const { epoch, dateKey } = data;
+        const formattedDate = formatDate(epoch);
+        const isToday = isDateToday(epoch);
 
-    return (
-      <div key={epoch}>
-        <Subtitle isToday={isToday}>{formattedDate}</Subtitle>
-        <UserRecordings
-          recordings={updates[dateKey]}
-          playPauseAudio={playPauseAudio}
-          audioPlayerState={audioPlayerState}
-        />
-      </div>
-    );
-  });
+        return (
+          <UpdatesContainer key={epoch}>
+            <Subtitle isToday={isToday}>{formattedDate}</Subtitle>
+            <UserRecordings
+              recordings={updates[dateKey]}
+              playPauseAudio={playPauseAudio}
+              audioPlayerState={audioPlayerState}
+            />
+          </UpdatesContainer>
+        );
+      })}
+
+      <LoadMoreContainer>
+        <Button tertiary disabled={isLoadingMore} onClick={handleLoadMore}>
+          {isLoadingMore ? (
+            <>
+              <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Loading..
+            </>
+          ) : (
+            'Load older updates'
+          )}
+        </Button>
+      </LoadMoreContainer>
+    </>
+  );
 }
 
 PureUpdates.propTypes = {
@@ -79,8 +111,10 @@ function Updates({ standupId }) {
     updatesDispatch
   );
 
+  const [dayOffset, setDayOffset] = React.useState(0);
+
   React.useEffect(() => {
-    fetchUpdates(standupId);
+    fetchUpdates(standupId).then(() => setDayOffset(s => s + 1));
 
     return () => {
       abortFetchUpdates();
@@ -129,6 +163,21 @@ function Updates({ standupId }) {
     }
   };
 
+  const fetchMoreUpdates = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const monthIndex = today.getMonth();
+    const day = today.getDate();
+
+    const pastDate = new Date(year, monthIndex, day - dayOffset);
+    const pastDateDay = pastDate.getDate();
+    const pastDateMonthIndex = pastDate.getMonth();
+    const pastDateYear = pastDate.getFullYear();
+    const dateKey = `${pastDateDay}-${pastDateMonthIndex + 1}-${pastDateYear}`;
+
+    fetchUpdates(standupId, dateKey).then(() => setDayOffset(s => s + 1));
+  };
+
   return (
     <Container>
       <Actions>
@@ -140,9 +189,11 @@ function Updates({ standupId }) {
       <Main>
         <PureUpdates
           isLoading={isFetching}
+          isLoadingMore={isFetching && dayOffset > 0}
           updates={updatesState}
           audioPlayerState={audioPlayerState}
           playPauseAudio={playPauseAudio}
+          fetchMoreUpdates={fetchMoreUpdates}
         />
       </Main>
     </Container>

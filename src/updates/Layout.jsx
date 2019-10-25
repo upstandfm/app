@@ -25,7 +25,7 @@ export const Main = styled.div``;
 
 export const Subtitle = styled.h2`
   display: inline-block;
-  margin: 0 0 0.5em 0;
+  margin: 0;
   font-weight: normal;
   color: ${props => (props.isToday ? 'var(--color-purple)' : 'inherit')};
 `;
@@ -56,4 +56,12 @@ export const LoadingSubtitle = styled(Subtitle)`
   );
   background-size: 100% 100%;
   animation: ${glimmer} 1s ease-in-out infinite;
+`;
+
+export const UpdatesContainer = styled.div`
+  margin: 0 0 3em 0;
+`;
+export const LoadMoreContainer = styled.div`
+  display: grid;
+  align-items: center;
 `;
