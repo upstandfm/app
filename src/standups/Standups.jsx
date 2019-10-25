@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -8,13 +7,18 @@ import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 import Empty from '../components/Empty';
+
+import {
+  Container,
+  Header,
+  Title,
+  Actions,
+  Main,
+  LoadMoreContainer
+} from './Layout';
+
 import standupsReducer from './reducer';
 import useFetchStandups from './use-fetch-standups';
-
-const LoadMore = styled.div`
-  display: grid;
-  margin: 3em 0 0 0;
-`;
 
 export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
@@ -52,7 +56,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
       </Cards>
 
       {cursor && (
-        <LoadMore>
+        <LoadMoreContainer>
           <Button tertiary disabled={isLoading} onClick={handleLoadMore}>
             {isLoading ? (
               <>
@@ -62,7 +66,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
               'Load more'
             )}
           </Button>
-        </LoadMore>
+        </LoadMoreContainer>
       )}
     </>
   );
@@ -80,28 +84,6 @@ PureStandups.propTypes = {
     })
   )
 };
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  grid-gap: 1em;
-  align-items: center;
-  padding: 1em;
-`;
-
-const Actions = styled.div`
-  display: grid;
-  justify-items: end;
-  padding: 2em 0;
-
-  @media (max-width: 470px) {
-    justify-items: center;
-    padding: 1em 0;
-  }
-`;
-
-const Main = styled.div``;
 
 const PAGE_LIMIT = 12;
 
@@ -152,11 +134,15 @@ function Standups() {
 
   return (
     <Container>
-      <Actions>
-        <Button as={Link} to="/new">
-          New standup
-        </Button>
-      </Actions>
+      <Header>
+        <Title>Standups</Title>
+
+        <Actions>
+          <Button as={Link} to="/new">
+            New standup
+          </Button>
+        </Actions>
+      </Header>
 
       <Main>
         <PureStandups
