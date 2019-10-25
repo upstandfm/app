@@ -5,9 +5,11 @@ import LoadApp from './LoadApp';
 
 function App(props) {
   return (
-    <Providers {...props}>
-      <LoadApp />
-    </Providers>
+    <React.StrictMode>
+      <Providers {...props}>
+        <LoadApp />
+      </Providers>
+    </React.StrictMode>
   );
 }
 
