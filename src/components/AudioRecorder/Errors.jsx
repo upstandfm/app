@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { useSnackbar } from '../components/Snackbar';
+import { useSnackbar } from '../Snackbar';
 
 const Container = styled.div`
   margin: 2em 0 1em 0;

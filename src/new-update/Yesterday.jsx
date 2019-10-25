@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../components/Button';
-import AudioRecorder from '../audio-recorder';
+import AudioRecorder from '../components/AudioRecorder';
 
 import { Subtitle, Actions } from './Layout';
 

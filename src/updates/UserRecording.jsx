@@ -213,7 +213,7 @@ UserRecording.propTypes = {
     status: PropTypes.oneOf(['transcoding', 'error', 'completed']),
     createdAt: PropTypes.number.isRequired,
     updatedAt: PropTypes.number.isRequired,
-    transcodedFileKey: PropTypes.string.isRequired
+    transcodedFileKey: PropTypes.string
   }),
   audioPlayerState: PropTypes.shape({
     playingFile: PropTypes.shape({

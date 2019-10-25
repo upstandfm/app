@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Button from '../components/Button';
+import Button from '../Button';
 
 import useRecordAudio from './use-record-audio';
 
