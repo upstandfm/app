@@ -16,21 +16,33 @@ function useDownloadFile(dispatch) {
   const { getToken } = useAuth0();
 
   const [err, setErr] = React.useState(null);
-  const [downloadProgress, setDownloadProgress] = React.useState(0);
 
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-  const _onDownloadProgress = e => {
-    const percentage = Math.round((100 * e.loaded) / e.total);
-    if (downloadProgress !== percentage) {
-      setDownloadProgress(percentage);
-    }
-  };
-
   const downloadFile = async (fileId, fileKey) => {
     try {
+      const _onDownloadProgress = e => {
+        const percentage = Math.round((100 * e.loaded) / e.total);
+
+        dispatch({
+          type: 'DOWNLOADING_AUDIO_FILE',
+          data: {
+            fileId,
+            progress: percentage
+          }
+        });
+      };
+
       setErr(null);
+
+      dispatch({
+        type: 'DOWNLOADING_AUDIO_FILE',
+        data: {
+          fileId,
+          progress: 0
+        }
+      });
 
       const token = await getToken();
       const res = await api.createPreSignedDownloadUrl(
@@ -64,7 +76,7 @@ function useDownloadFile(dispatch) {
     }
   };
 
-  return [downloadFile, source.cancel, downloadProgress, err];
+  return [downloadFile, source.cancel, err];
 }
 
 export default useDownloadFile;

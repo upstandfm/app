@@ -5,8 +5,12 @@ export const defaultAudioPlayerState = {
   },
   isPlaying: false,
 
+  // Maps a "fileId" to a progress Object with "isDownloading" and "progress"
+  // props
+  downloadProgress: {},
+
   // Maps a "fileId" to a file "ObjectURL"
-  downloadedFiles: {}
+  files: {}
 };
 
 /**
@@ -34,11 +38,24 @@ function audioPlayerReducer(state, action) {
       };
     }
 
+    case 'DOWNLOADING_AUDIO_FILE': {
+      return {
+        ...state,
+        downloadProgress: {
+          ...state.downloadProgress,
+          [action.data.fileId]: {
+            isDownloading: action.data.progress !== 100,
+            progress: action.data.progress
+          }
+        }
+      };
+    }
+
     case 'DOWNLOADED_AUDIO_FILE': {
       return {
         ...state,
-        downloadedFiles: {
-          ...state.downloadedFiles,
+        files: {
+          ...state.files,
           [action.data.fileId]: action.data.fileUrl
         }
       };

@@ -31,6 +31,23 @@ describe('audio player reducer', () => {
     expect(newState.isPlaying).toEqual(false);
   });
 
+  it('keeps track of download progress', () => {
+    const state = defaultAudioPlayerState;
+    const fileId = 1;
+    const progress = 71;
+    const action = {
+      type: 'DOWNLOADING_AUDIO_FILE',
+      data: {
+        fileId,
+        progress
+      }
+    };
+
+    const newState = reducer(state, action);
+    expect(newState.downloadProgress[fileId].isDownloading).toEqual(true);
+    expect(newState.downloadProgress[fileId].progress).toEqual(progress);
+  });
+
   it('downloads audio', () => {
     const state = defaultAudioPlayerState;
     const fileId = 1;
@@ -45,7 +62,7 @@ describe('audio player reducer', () => {
     };
 
     const newState = reducer(state, action);
-    expect(newState.downloadedFiles[fileId]).toEqual(fileUrl);
+    expect(newState.files[fileId]).toEqual(fileUrl);
   });
 
   it('returns default state', () => {

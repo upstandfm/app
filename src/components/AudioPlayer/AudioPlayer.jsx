@@ -7,21 +7,21 @@ import useDownloadFile from './use-download-file';
 
 function AudioPlayer() {
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
-  const [downloadFile, abortDownloadFile, , err] = useDownloadFile(
+  const [downloadFile, abortDownloadFile, err] = useDownloadFile(
     audioPlayerDispatch
   );
   const [, snackbarDispatch] = useSnackbar();
 
-  const { playingFile, downloadedFiles } = audioPlayerState;
+  const { playingFile, files } = audioPlayerState;
   const { fileId, fileKey } = playingFile;
-  const hasDownloadedFile = Boolean(downloadedFiles[fileId]);
+  const hasFile = Boolean(files[fileId]);
 
   React.useEffect(() => {
     if (!fileId || !fileKey) {
       return;
     }
 
-    if (hasDownloadedFile) {
+    if (hasFile) {
       return;
     }
 
@@ -30,7 +30,7 @@ function AudioPlayer() {
     return () => {
       abortDownloadFile();
     };
-  }, [fileId, fileKey, hasDownloadedFile]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [fileId, fileKey, hasFile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     if (!err) {
@@ -51,7 +51,7 @@ function AudioPlayer() {
 
   const audioPlayer = React.createRef();
   const { isPlaying } = audioPlayerState;
-  const fileUrl = downloadedFiles[fileId];
+  const fileUrl = files[fileId];
 
   React.useEffect(() => {
     if (!fileUrl) {
