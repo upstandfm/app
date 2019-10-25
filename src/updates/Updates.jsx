@@ -9,6 +9,8 @@ import { useAudioPlayer } from '../components/AudioPlayer';
 
 import {
   Container,
+  Header,
+  Title,
   Actions,
   Main,
   Subtitle,
@@ -26,11 +28,15 @@ import { sortDateKeysDescending, formatDate, isDateToday } from './utils';
 export function LoadingUpdates() {
   return (
     <Container>
-      <Actions>
-        <Button as={Link} to="new-update">
-          New update
-        </Button>
-      </Actions>
+      <Header>
+        <Title>Updates</Title>
+
+        <Actions>
+          <Button as={Link} to="new-update">
+            New update
+          </Button>
+        </Actions>
+      </Header>
 
       <Main>
         <LoadingSubtitle>Loading date</LoadingSubtitle>
@@ -180,11 +186,15 @@ function Updates({ standupId }) {
 
   return (
     <Container>
-      <Actions>
-        <Button as={Link} to="new-update">
-          New update
-        </Button>
-      </Actions>
+      <Header>
+        <Title>Updates</Title>
+
+        <Actions>
+          <Button as={Link} to="new-update">
+            New update
+          </Button>
+        </Actions>
+      </Header>
 
       <Main>
         <PureUpdates

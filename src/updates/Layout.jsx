@@ -10,16 +10,26 @@ export const Container = styled.div`
   padding: 1em;
 `;
 
-export const Actions = styled.div`
+export const Header = styled.div`
   display: grid;
-  justify-items: end;
-  padding: 2em 0;
+  grid-template-columns: 1fr auto;
+  grid-gap: 1em;
+  align-items: center;
+  padding: 1em 0;
 
   @media (max-width: 470px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
     justify-items: center;
-    padding: 1em 0;
   }
 `;
+
+export const Title = styled.h1`
+  font-weight: normal;
+  margin: 0;
+`;
+
+export const Actions = styled.div``;
 
 export const Main = styled.div``;
 
