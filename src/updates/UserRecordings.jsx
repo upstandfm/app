@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
   ListContainer,
@@ -11,6 +10,8 @@ import {
   LoadingListItem,
   LoadingListItemText
 } from '../components/List';
+
+import UserRecording, { RecordingPlayState } from './UserRecording';
 
 const UserListItem = styled(ListItem)`
   :hover {
@@ -41,80 +42,87 @@ const RecordingsList = styled(List)`
   }
 `;
 
-const RecordingListItem = styled(ListItem)`
-  background-color: ${props =>
-    props.isSelected ? 'var(--color-lightest-purple)' : 'inherit'};
+export function LoadingUserRecordings() {
+  return (
+    <ListContainer>
+      <List as="div">
+        <div>
+          <LoadingListItem as="div">
+            <UserAvatar />
 
-  .play-status {
-    color: var(--color-dark-purple);
-    opacity: ${props => (props.isSelected ? 1 : 0)};
-  }
+            <div>
+              <LoadingListItemText>Loading user name</LoadingListItemText>
+            </div>
+          </LoadingListItem>
 
-  :hover {
-    cursor: pointer;
-    background-color: ${props =>
-      props.isSelected
-        ? 'var(--color-lightest-purple)'
-        : 'var(--color-lightest-grey)'};
+          <RecordingsList>
+            <LoadingListItem>
+              <RecordingPlayState />
 
-    .play-status {
-      opacity: 1;
-    }
-  }
-`;
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
 
-RecordingListItem.propTypes = {
-  isSelected: PropTypes.bool.isRequired
-};
+            <LoadingListItem>
+              <RecordingPlayState />
 
-const RecordingPrimaryAction = styled.div`
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  width: 40px;
-  height: 40px;
-`;
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
 
-const RecordingContent = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-gap: 1em;
-  align-items: center;
-`;
+            <LoadingListItem>
+              <RecordingPlayState />
 
-const RecordingTitle = styled.h4`
-  margin: 0;
-  text-transform: capitalize;
-  font-weight: normal;
-`;
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+          </RecordingsList>
+        </div>
 
-const RecordingStatus = styled.div`
-  justify-self: center;
-`;
+        <div>
+          <LoadingListItem as="div">
+            <UserAvatar />
 
-const StatusBadge = styled.span`
-  padding: 0.25em 0.5em;
-  background-color: ${props =>
-    props.status === 'error'
-      ? 'var(--color-lightest-red)'
-      : 'var(--color-lightest-purple)'};
-  color: ${props =>
-    props.status === 'error'
-      ? 'var(--color-dark-red)'
-      : 'var(--color-dark-purple)'};
-  border-radius: 4px;
-`;
+            <div>
+              <LoadingListItemText>Loading user name</LoadingListItemText>
+            </div>
+          </LoadingListItem>
 
-const RecordingMeta = styled.div`
-  color: var(--color-grey);
-`;
+          <RecordingsList>
+            <LoadingListItem>
+              <RecordingPlayState />
 
-function UserRecordings({
-  recordings,
-  playPauseAudio,
-  playingFileId,
-  audioPlayerIsPlaying
-}) {
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+
+            <LoadingListItem>
+              <RecordingPlayState />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+
+            <LoadingListItem>
+              <RecordingPlayState />
+
+              <div>
+                <LoadingListItemText>Loading recording</LoadingListItemText>
+              </div>
+            </LoadingListItem>
+          </RecordingsList>
+        </div>
+      </List>
+    </ListContainer>
+  );
+}
+
+function UserRecordings({ recordings, audioPlayerState, playPauseAudio }) {
   const recordingsByUserId = recordings.reduce((mapping, recording) => {
     if (!mapping[recording.userId]) {
       mapping[recording.userId] = [];
@@ -126,12 +134,6 @@ function UserRecordings({
 
   // TODO: fetch user data from API (standup members)
   const userIds = Object.keys(recordingsByUserId);
-
-  const handlePlayPauseRecording = e => {
-    const recordingId = e.currentTarget.getAttribute('data-recording-id');
-    const fileKey = e.currentTarget.getAttribute('data-file-key');
-    playPauseAudio(recordingId, fileKey);
-  };
 
   return (
     <ListContainer>
@@ -151,50 +153,13 @@ function UserRecordings({
                   <ListEmpty>No update.</ListEmpty>
                 ) : (
                   recordings.map(recording => {
-                    const {
-                      recordingId,
-                      transcodedFileKey,
-                      filename,
-                      status
-                    } = recording;
-
-                    const isSelected = recordingId === playingFileId;
-                    const isPlaying = isSelected && audioPlayerIsPlaying;
-
                     return (
-                      <RecordingListItem
-                        aria-label={`${isPlaying ? 'pause' : 'play'} recording`}
-                        title={`${isPlaying ? 'pause' : 'play'} recording`}
-                        isSelected={isSelected}
-                        data-recording-id={recordingId}
-                        data-file-key={transcodedFileKey}
-                        key={recordingId}
-                        onClick={handlePlayPauseRecording}
-                      >
-                        <RecordingPrimaryAction>
-                          <div className="play-status">
-                            {isPlaying ? (
-                              <FontAwesomeIcon icon="pause" size="lg" />
-                            ) : (
-                              <FontAwesomeIcon icon="play" size="lg" />
-                            )}
-                          </div>
-                        </RecordingPrimaryAction>
-
-                        <RecordingContent>
-                          <RecordingTitle>{filename}</RecordingTitle>
-
-                          <RecordingStatus>
-                            {status !== 'completed' && (
-                              <StatusBadge status={status}>
-                                {status}
-                              </StatusBadge>
-                            )}
-                          </RecordingStatus>
-
-                          <RecordingMeta />
-                        </RecordingContent>
-                      </RecordingListItem>
+                      <UserRecording
+                        key={recording.recordingId}
+                        recording={recording}
+                        audioPlayerState={audioPlayerState}
+                        playPauseAudio={playPauseAudio}
+                      />
                     );
                   })
                 )}
@@ -209,87 +174,8 @@ function UserRecordings({
 
 UserRecordings.propTypes = {
   recordings: PropTypes.array.isRequired,
+  audioPlayerState: PropTypes.object.isRequired,
   playPauseAudio: PropTypes.func.isRequired
 };
 
 export default UserRecordings;
-
-export function LoadingUserRecordings() {
-  return (
-    <ListContainer>
-      <List as="div">
-        <div>
-          <LoadingListItem as="div">
-            <UserAvatar />
-
-            <div>
-              <LoadingListItemText>Loading user name</LoadingListItemText>
-            </div>
-          </LoadingListItem>
-
-          <RecordingsList>
-            <LoadingListItem>
-              <RecordingPrimaryAction />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
-
-            <LoadingListItem>
-              <RecordingPrimaryAction />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
-
-            <LoadingListItem>
-              <RecordingPrimaryAction />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
-          </RecordingsList>
-        </div>
-
-        <div>
-          <LoadingListItem as="div">
-            <UserAvatar />
-
-            <div>
-              <LoadingListItemText>Loading user name</LoadingListItemText>
-            </div>
-          </LoadingListItem>
-
-          <RecordingsList>
-            <LoadingListItem>
-              <RecordingPrimaryAction />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
-
-            <LoadingListItem>
-              <RecordingPrimaryAction />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
-
-            <LoadingListItem>
-              <RecordingPrimaryAction />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
-          </RecordingsList>
-        </div>
-      </List>
-    </ListContainer>
-  );
-}

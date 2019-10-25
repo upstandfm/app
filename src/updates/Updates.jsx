@@ -33,9 +33,8 @@ export function LoadingUpdates() {
 export function PureUpdates({
   isLoading,
   updates,
-  playPauseAudio,
-  playingFileId,
-  audioPlayerIsPlaying
+  audioPlayerState,
+  playPauseAudio
 }) {
   if (isLoading) {
     return (
@@ -60,8 +59,7 @@ export function PureUpdates({
         <UserRecordings
           recordings={updates[dateKey]}
           playPauseAudio={playPauseAudio}
-          playingFileId={playingFileId}
-          audioPlayerIsPlaying={audioPlayerIsPlaying}
+          audioPlayerState={audioPlayerState}
         />
       </div>
     );
@@ -71,9 +69,8 @@ export function PureUpdates({
 PureUpdates.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   updates: PropTypes.object.isRequired,
-  playPauseAudio: PropTypes.func.isRequired,
-  playingFileId: PropTypes.string,
-  audioPlayerIsPlaying: PropTypes.bool.isRequired
+  audioPlayerState: PropTypes.object.isRequired,
+  playPauseAudio: PropTypes.func.isRequired
 };
 
 function Updates({ standupId }) {
@@ -81,8 +78,6 @@ function Updates({ standupId }) {
   const [fetchUpdates, abortFetchUpdates, isFetching, err] = useFetchUpdates(
     updatesDispatch
   );
-
-  const [, snackbarDispatch] = useSnackbar();
 
   React.useEffect(() => {
     fetchUpdates(standupId);
@@ -92,6 +87,7 @@ function Updates({ standupId }) {
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const [, snackbarDispatch] = useSnackbar();
   React.useEffect(() => {
     if (!err) {
       return;
@@ -145,9 +141,8 @@ function Updates({ standupId }) {
         <PureUpdates
           isLoading={isFetching}
           updates={updatesState}
+          audioPlayerState={audioPlayerState}
           playPauseAudio={playPauseAudio}
-          playingFileId={audioPlayerState.playingFile.fileId}
-          audioPlayerIsPlaying={audioPlayerState.isPlaying}
         />
       </Main>
     </Container>
