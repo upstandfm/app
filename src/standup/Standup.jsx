@@ -6,6 +6,7 @@ import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
 
 import Updates, { LoadingUpdates } from '../updates';
+import StandupMembers, { StandupMembersProvider } from '../standup-members';
 
 import {
   Container,
@@ -26,6 +27,8 @@ export function PureStandup({ isLoading, standup }) {
 
         <StandupInfo>
           <LoadingInfo />
+
+          {/* TODO: StandupMembers skeleton */}
         </StandupInfo>
 
         <StandupUpdates>
@@ -47,6 +50,7 @@ export function PureStandup({ isLoading, standup }) {
 
       <StandupInfo>
         <Info standup={standup} />
+        <StandupMembers standupId={standup.standupId} />
       </StandupInfo>
 
       <StandupUpdates>
@@ -96,7 +100,9 @@ function Standup({ standupId }) {
 
   return (
     <AudioPlayerProvider>
-      <PureStandup isLoading={isFetching} standup={standupState} />
+      <StandupMembersProvider>
+        <PureStandup isLoading={isFetching} standup={standupState} />
+      </StandupMembersProvider>
     </AudioPlayerProvider>
   );
 }
