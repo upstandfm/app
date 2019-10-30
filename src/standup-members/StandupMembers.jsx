@@ -38,8 +38,8 @@ export function PureStandupMembers({ isLoading, members, maxCount }) {
           return (
             <Member
               key={member.userId}
-              title={member.fullName}
-              initials={getFullNameInitials(member.fullName)}
+              title={member.userFullName}
+              initials={getFullNameInitials(member.userFullName)}
               avatarUrl={member.avatarUrl}
             />
           );
