@@ -13,7 +13,7 @@ const yesterdayMonth = yesterday.getMonth() + 1;
 const yesterdayYear = yesterday.getFullYear();
 const yesterdayDateKey = `${yesterday.getDate()}-${yesterdayMonth}-${yesterdayYear}`;
 
-export default {
+export const updatesMockData = {
   [todayDateKey]: [
     {
       recordingId: 'rec1',
@@ -150,3 +150,23 @@ export default {
     }
   ]
 };
+
+export const membersMockData = [
+  {
+    userId: 'auth0|user1',
+    userFullName: 'Daniël Illouz',
+    avatarUrl: 'https://avatars1.githubusercontent.com/u/6201287'
+  },
+
+  {
+    userId: 'auth0|user2',
+    userFullName: 'User Two',
+    avatarUrl: ''
+  },
+
+  {
+    userId: 'auth0|user3',
+    userFullName: 'Some User Three',
+    avatarUrl: ''
+  }
+];

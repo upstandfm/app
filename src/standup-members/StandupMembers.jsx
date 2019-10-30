@@ -8,7 +8,6 @@ import { Members, Member, LoadingMember, RestCount } from './Members';
 
 import { useStandupMembers } from './StandupMembersContext';
 import useFetchStandupMembers from './use-fetch-standup-members';
-import { getFullNameInitials } from './utils';
 
 export function PureStandupMembers({ isLoading, members, maxCount }) {
   if (isLoading) {
@@ -35,14 +34,7 @@ export function PureStandupMembers({ isLoading, members, maxCount }) {
         {restCount > 0 && <RestCount count={restCount} />}
 
         {membersToShow.map(member => {
-          return (
-            <Member
-              key={member.userId}
-              title={member.userFullName}
-              initials={getFullNameInitials(member.userFullName)}
-              avatarUrl={member.avatarUrl}
-            />
-          );
+          return <Member key={member.userId} {...member} />;
         })}
       </Members>
     </Container>

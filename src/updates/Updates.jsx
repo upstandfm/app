@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 import { useAudioPlayer } from '../components/AudioPlayer';
+import { useStandupMembers } from '../standup-members';
 
 import {
   Container,
@@ -50,6 +51,7 @@ export function PureUpdates({
   isLoading,
   isLoadingMore,
   updates,
+  members,
   audioPlayerState,
   playPauseAudio,
   fetchMoreUpdates
@@ -80,7 +82,9 @@ export function PureUpdates({
         return (
           <UpdatesContainer key={epoch}>
             <Subtitle isToday={isToday}>{formattedDate}</Subtitle>
+
             <UserRecordings
+              members={members}
               recordings={updates[dateKey]}
               playPauseAudio={playPauseAudio}
               audioPlayerState={audioPlayerState}
@@ -107,6 +111,13 @@ export function PureUpdates({
 PureUpdates.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   updates: PropTypes.object.isRequired,
+  members: PropTypes.arrayOf(
+    PropTypes.shape({
+      userId: PropTypes.string.isRequired,
+      fullName: PropTypes.string,
+      avatarUrl: PropTypes.string
+    })
+  ),
   audioPlayerState: PropTypes.object.isRequired,
   playPauseAudio: PropTypes.func.isRequired
 };
@@ -116,6 +127,7 @@ function Updates({ standupId }) {
   const [fetchUpdates, abortFetchUpdates, isFetching, err] = useFetchUpdates(
     updatesDispatch
   );
+  const [membersState] = useStandupMembers();
 
   const [dayOffset, setDayOffset] = React.useState(0);
 
@@ -201,6 +213,7 @@ function Updates({ standupId }) {
           isLoading={isFetching}
           isLoadingMore={isFetching && dayOffset > 0}
           updates={updatesState}
+          members={membersState}
           audioPlayerState={audioPlayerState}
           playPauseAudio={playPauseAudio}
           fetchMoreUpdates={fetchMoreUpdates}

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { getFullNameInitials } from './utils';
 export const Members = styled.ul`
   display: inline-flex;
   flex-direction: row-reverse;
@@ -43,9 +44,10 @@ const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-export function Member({ title, initials, avatarUrl }) {
+export function Member({ userFullName, avatarUrl }) {
+  const initials = getFullNameInitials(userFullName);
   return (
-    <MemberContainer title={title}>
+    <MemberContainer title={userFullName}>
       <AvatarContainer>
         {initials}
         <Avatar src={avatarUrl} alt="standup member avatar" />
