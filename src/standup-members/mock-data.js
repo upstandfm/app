@@ -4,49 +4,49 @@
 export default [
   {
     userId: '1',
-    fullName: 'Daniël Illouz',
+    userFullName: 'Daniël Illouz',
     avatarUrl: 'https://avatars1.githubusercontent.com/u/6201287'
   },
 
   {
     userId: '2',
-    fullName: 'User Two',
+    userFullName: 'User Two',
     avatarUrl: ''
   },
 
   {
     userId: '3',
-    fullName: 'User Three',
+    userFullName: 'User Three',
     avatarUrl: ''
   },
 
   {
     userId: '4',
-    fullName: 'User Four',
+    userFullName: 'User Four',
     avatarUrl: ''
   },
 
   {
     userId: '5',
-    fullName: 'User Five',
+    userFullName: 'User Five',
     avatarUrl: ''
   },
 
   {
     userId: '6',
-    fullName: '',
+    userFullName: '',
     avatarUrl: ''
   },
 
   {
     userId: '7',
-    fullName: 'User Seven',
+    userFullName: 'User Seven',
     avatarUrl: ''
   },
 
   {
     userId: '8',
-    fullName: 'User Eight',
+    userFullName: 'User Eight',
     avatarUrl: ''
   }
 ];

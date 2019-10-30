@@ -12,6 +12,10 @@ export const Members = styled.ul`
 const MemberContainer = styled.li`
   display: inline-block;
   margin-right: -10px;
+
+  :hover {
+    cursor: default;
+  }
 `;
 
 const AvatarContainer = styled.div`
