@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 
 import { useSnackbar } from '../components/Snackbar';
 
+import { Members, Member } from './Members';
+
 import { useStandupMembers } from './StandupMembersContext';
 import useFetchStandupMembers from './use-fetch-standup-members';
+import { getFullNameInitials } from './utils';
 
 export function PureStandupMembers({ isLoading, members }) {
   if (isLoading) {
@@ -13,11 +16,18 @@ export function PureStandupMembers({ isLoading, members }) {
   }
 
   return (
-    <ul>
+    <Members>
       {members.map(member => {
-        return <li key={member.userId}>{member.userId}</li>;
+        return (
+          <Member
+            key={member.userId}
+            title={member.fullName}
+            initials={getFullNameInitials(member.fullName)}
+            avatarUrl={member.avatarUrl}
+          />
+        );
       })}
-    </ul>
+    </Members>
   );
 }
 
@@ -25,7 +35,9 @@ PureStandupMembers.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   members: PropTypes.arrayOf(
     PropTypes.shape({
-      userId: PropTypes.string.isRequired
+      userId: PropTypes.string.isRequired,
+      fullName: PropTypes.string,
+      avatarUrl: PropTypes.string
     })
   )
 };
@@ -71,7 +83,7 @@ function StandupMembers({ standupId }) {
 }
 
 StandupMembers.propTypes = {
-  standupId: PropTypes.string
+  standupId: PropTypes.string.isRequired
 };
 
 export default StandupMembers;
