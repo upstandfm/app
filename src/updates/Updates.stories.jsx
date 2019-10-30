@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import mockData from './mock-data';
+import { updatesMockData, membersMockData } from './mock-data';
 import { PureUpdates } from './Updates';
 
 const playPauseAudio = action('playPauseAudio');
@@ -20,7 +20,8 @@ export const DefaultUpdates = () => {
     <PureUpdates
       isLoading={false}
       isLoadingMore={false}
-      updates={mockData}
+      updates={updatesMockData}
+      members={membersMockData}
       audioPlayerState={{
         playingFile: {
           fileId: null,
@@ -45,7 +46,8 @@ export const LoadingUpdates = () => {
     <PureUpdates
       isLoading={true}
       isLoadingMore={false}
-      updates={mockData}
+      updates={updatesMockData}
+      members={membersMockData}
       audioPlayerState={{
         playingFile: {
           fileId: null,
@@ -70,7 +72,8 @@ export const LoadingMoreUpdates = () => {
     <PureUpdates
       isLoading={true}
       isLoadingMore={true}
-      updates={mockData}
+      updates={updatesMockData}
+      members={membersMockData}
       audioPlayerState={{
         playingFile: {
           fileId: null,

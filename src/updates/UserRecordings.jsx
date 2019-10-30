@@ -20,7 +20,8 @@ const UserListItem = styled(ListItem)`
   }
 `;
 
-const UserAvatar = styled.div`
+const AvatarContainer = styled.div`
+  position: relative;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -30,6 +31,18 @@ const UserAvatar = styled.div`
   background-color: var(--color-lighter-grey);
   color: var(--color-dark-purple);
   font-weight: bold;
+  border: 4px solid var(--color-white);
+`;
+
+const Avatar = styled.img`
+  position: absolute;
+  display: ${props => (Boolean(props.src) ? 'block' : 'none')};
+  top: 0;
+  left: 0;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 `;
 
 const RecordingsList = styled(List)`
@@ -49,7 +62,7 @@ export function LoadingUserRecordings() {
       <List as="div">
         <div>
           <LoadingListItem as="div">
-            <UserAvatar />
+            <AvatarContainer />
 
             <div>
               <LoadingListItemText>Loading user name</LoadingListItemText>
@@ -85,7 +98,7 @@ export function LoadingUserRecordings() {
 
         <div>
           <LoadingListItem as="div">
-            <UserAvatar />
+            <AvatarContainer />
 
             <div>
               <LoadingListItemText>Loading user name</LoadingListItemText>
@@ -123,9 +136,14 @@ export function LoadingUserRecordings() {
   );
 }
 
-function UserRecordings({ recordings, audioPlayerState, playPauseAudio }) {
+function UserRecordings({
+  members,
+  recordings,
+  audioPlayerState,
+  playPauseAudio
+}) {
   if (recordings.length === 0) {
-    return <Empty title="No updates to show.." />;
+    return <Empty title="No updates." />;
   }
 
   const recordingsByUserId = recordings.reduce((mapping, recording) => {
@@ -137,20 +155,22 @@ function UserRecordings({ recordings, audioPlayerState, playPauseAudio }) {
     return mapping;
   }, {});
 
-  // TODO: fetch user data from API (standup members)
-  const userIds = Object.keys(recordingsByUserId);
-
   return (
     <ListContainer>
       <List as="div">
-        {userIds.map(userId => {
-          const userRecordings = recordingsByUserId[userId];
+        {members.map(member => {
+          const { userId, userFullName } = member;
+          const userRecordings = recordingsByUserId[userId] || [];
 
           return (
             <div key={userId}>
               <UserListItem as="div">
-                <UserAvatar>DI</UserAvatar>
-                {userId}
+                <AvatarContainer>
+                  {'DI'}
+                  <Avatar src={member.avatarUrl} alt="standup member avatar" />
+                </AvatarContainer>
+
+                {userFullName}
               </UserListItem>
 
               <RecordingsList>
@@ -178,6 +198,13 @@ function UserRecordings({ recordings, audioPlayerState, playPauseAudio }) {
 }
 
 UserRecordings.propTypes = {
+  members: PropTypes.arrayOf(
+    PropTypes.shape({
+      userId: PropTypes.string.isRequired,
+      fullName: PropTypes.string,
+      avatarUrl: PropTypes.string
+    })
+  ),
   recordings: PropTypes.array.isRequired,
   audioPlayerState: PropTypes.object.isRequired,
   playPauseAudio: PropTypes.func.isRequired
