@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useSnackbar } from '../components/Snackbar';
 
+import { Container, Title } from './Layout';
 import { Members, Member } from './Members';
 
 import { useStandupMembers } from './StandupMembersContext';
@@ -16,18 +17,22 @@ export function PureStandupMembers({ isLoading, members }) {
   }
 
   return (
-    <Members>
-      {members.map(member => {
-        return (
-          <Member
-            key={member.userId}
-            title={member.fullName}
-            initials={getFullNameInitials(member.fullName)}
-            avatarUrl={member.avatarUrl}
-          />
-        );
-      })}
-    </Members>
+    <Container>
+      <Title>MEMBERS</Title>
+
+      <Members>
+        {members.map(member => {
+          return (
+            <Member
+              key={member.userId}
+              title={member.fullName}
+              initials={getFullNameInitials(member.fullName)}
+              avatarUrl={member.avatarUrl}
+            />
+          );
+        })}
+      </Members>
+    </Container>
   );
 }
 

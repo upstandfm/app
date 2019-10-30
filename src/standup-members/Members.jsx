@@ -5,6 +5,8 @@ import styled from 'styled-components';
 export const Members = styled.ul`
   display: inline-flex;
   flex-direction: row-reverse;
+  margin: 0;
+  padding: 0;
 `;
 
 const MemberContainer = styled.li`
