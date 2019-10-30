@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useSnackbar } from '../components/Snackbar';
 
 import { Container, Title } from './Layout';
-import { Members, Member, RestCount } from './Members';
+import { Members, Member, LoadingMember, RestCount } from './Members';
 
 import { useStandupMembers } from './StandupMembersContext';
 import useFetchStandupMembers from './use-fetch-standup-members';
@@ -12,13 +12,21 @@ import { getFullNameInitials } from './utils';
 
 export function PureStandupMembers({ isLoading, members, maxCount }) {
   if (isLoading) {
-    // TODO: create loading skeleton
-    return <p>loading..</p>;
+    return (
+      <Container>
+        <Title>MEMBERS</Title>
+
+        <Members>
+          <LoadingMember />
+          <LoadingMember />
+          <LoadingMember />
+        </Members>
+      </Container>
+    );
   }
 
   const membersToShow = members.slice(0, maxCount);
   const restCount = members.length - maxCount;
-
   return (
     <Container>
       <Title>MEMBERS</Title>
