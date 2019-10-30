@@ -4,24 +4,29 @@ import PropTypes from 'prop-types';
 import { useSnackbar } from '../components/Snackbar';
 
 import { Container, Title } from './Layout';
-import { Members, Member } from './Members';
+import { Members, Member, RestCount } from './Members';
 
 import { useStandupMembers } from './StandupMembersContext';
 import useFetchStandupMembers from './use-fetch-standup-members';
 import { getFullNameInitials } from './utils';
 
-export function PureStandupMembers({ isLoading, members }) {
+export function PureStandupMembers({ isLoading, members, maxCount }) {
   if (isLoading) {
     // TODO: create loading skeleton
     return <p>loading..</p>;
   }
+
+  const membersToShow = members.slice(0, maxCount);
+  const restCount = members.length - maxCount;
 
   return (
     <Container>
       <Title>MEMBERS</Title>
 
       <Members>
-        {members.map(member => {
+        {restCount > 0 && <RestCount count={restCount} />}
+
+        {membersToShow.map(member => {
           return (
             <Member
               key={member.userId}
@@ -44,7 +49,12 @@ PureStandupMembers.propTypes = {
       fullName: PropTypes.string,
       avatarUrl: PropTypes.string
     })
-  )
+  ),
+  maxCount: PropTypes.number.isRequired
+};
+
+PureStandupMembers.defaultProps = {
+  maxCount: 5
 };
 
 function StandupMembers({ standupId }) {
