@@ -55,3 +55,17 @@ Member.propTypes = {
   initials: PropTypes.string,
   avatarUrl: PropTypes.string
 };
+
+const Count = styled(AvatarContainer)`
+  font-weight: normal;
+  background-color: transparent;
+  color: var(--color-grey);
+`;
+
+export function RestCount({ count }) {
+  return (
+    <MemberContainer title={`${count} more members`}>
+      <Count>+{count}</Count>
+    </MemberContainer>
+  );
+}

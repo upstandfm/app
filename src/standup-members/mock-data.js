@@ -36,5 +36,17 @@ export default [
     userId: '6',
     fullName: '',
     avatarUrl: ''
+  },
+
+  {
+    userId: '7',
+    fullName: 'User Seven',
+    avatarUrl: ''
+  },
+
+  {
+    userId: '8',
+    fullName: 'User Eight',
+    avatarUrl: ''
   }
 ];
