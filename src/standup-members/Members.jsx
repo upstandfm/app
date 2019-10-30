@@ -69,3 +69,21 @@ export function RestCount({ count }) {
     </MemberContainer>
   );
 }
+
+RestCount.propTypes = {
+  count: PropTypes.number.isRequired
+};
+
+const LoadingContainer = styled(MemberContainer)`
+  :hover {
+    cursor: wait;
+  }
+`;
+
+export function LoadingMember() {
+  return (
+    <LoadingContainer>
+      <AvatarContainer />
+    </LoadingContainer>
+  );
+}
