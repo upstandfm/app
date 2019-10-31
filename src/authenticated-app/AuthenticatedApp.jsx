@@ -69,7 +69,7 @@ function AuthenticatedApp() {
 
               <NotFound
                 default
-                title="Page not found.."
+                title="Page not found"
                 info="Sorry! This page doesn't exist."
               />
             </Router>

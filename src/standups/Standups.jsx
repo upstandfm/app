@@ -32,7 +32,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   }
 
   if (standups.length === 0) {
-    return <Empty title="No standups to show.." />;
+    return <Empty title="No standups to show" />;
   }
 
   const handleLoadMore = () => {
