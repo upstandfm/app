@@ -10,7 +10,7 @@ const Container = styled.div`
   display: grid;
   background-color: var(--color-lightest-grey);
   border-radius: 8px;
-  margin: 1em 0;
+  margin: 2em 0;
 `;
 
 const Wrapper = styled.div`
