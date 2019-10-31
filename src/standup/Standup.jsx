@@ -6,7 +6,10 @@ import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
 
 import Updates, { LoadingUpdates } from '../updates';
-import StandupMembers, { StandupMembersProvider } from '../standup-members';
+import StandupMembers, {
+  LoadingStandupMembers,
+  StandupMembersProvider
+} from '../standup-members';
 
 import {
   Container,
@@ -28,7 +31,7 @@ export function PureStandup({ isLoading, standup }) {
         <StandupInfo>
           <LoadingInfo />
 
-          {/* TODO: StandupMembers skeleton */}
+          <LoadingStandupMembers />
         </StandupInfo>
 
         <StandupUpdates>

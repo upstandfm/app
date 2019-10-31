@@ -9,19 +9,23 @@ import { Members, Member, LoadingMember, RestCount } from './Members';
 import { useStandupMembers } from './StandupMembersContext';
 import useFetchStandupMembers from './use-fetch-standup-members';
 
+export function LoadingStandupMembers() {
+  return (
+    <Container>
+      <Title>MEMBERS</Title>
+
+      <Members>
+        <LoadingMember />
+        <LoadingMember />
+        <LoadingMember />
+      </Members>
+    </Container>
+  );
+}
+
 export function PureStandupMembers({ isLoading, members, maxCount }) {
   if (isLoading) {
-    return (
-      <Container>
-        <Title>MEMBERS</Title>
-
-        <Members>
-          <LoadingMember />
-          <LoadingMember />
-          <LoadingMember />
-        </Members>
-      </Container>
-    );
+    return <LoadingStandupMembers />;
   }
 
   const membersToShow = members.slice(0, maxCount);
