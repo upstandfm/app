@@ -44,7 +44,7 @@ export function PureStandup({ isLoading, standup }) {
   if (Object.keys(standup).length === 0) {
     return (
       <NotFound
-        title="Standup not found.."
+        title="Standup not found"
         info="You might not be a member of this standup."
       />
     );
