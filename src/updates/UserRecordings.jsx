@@ -16,6 +16,8 @@ import {
 import UserRecording, { RecordingPlayState } from './UserRecording';
 
 const UserListItem = styled(ListItem)`
+  font-weight: bold;
+
   :hover {
     background-color: inherit;
   }
