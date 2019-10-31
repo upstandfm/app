@@ -30,7 +30,6 @@ export function PureStandup({ isLoading, standup }) {
 
         <StandupInfo>
           <LoadingInfo />
-
           <LoadingStandupMembers />
         </StandupInfo>
 
