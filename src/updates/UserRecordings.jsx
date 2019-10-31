@@ -147,7 +147,7 @@ function UserRecordings({
                   title={userFullName}
                   fullName={userFullName}
                   avatarUrl={member.avatarUrl}
-                  altText="standup member avatar image"
+                  altText={`avatar of ${userFullName}`}
                 />
 
                 {userFullName}
@@ -181,7 +181,7 @@ UserRecordings.propTypes = {
   members: PropTypes.arrayOf(
     PropTypes.shape({
       userId: PropTypes.string.isRequired,
-      fullName: PropTypes.string,
+      userFullName: PropTypes.string,
       avatarUrl: PropTypes.string
     })
   ),

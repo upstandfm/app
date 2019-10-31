@@ -23,15 +23,14 @@ export function Member({ userFullName, avatarUrl }) {
         title={userFullName}
         fullName={userFullName}
         avatarUrl={avatarUrl}
-        altText="standup member avatar image"
+        altText={`avatar of ${userFullName}`}
       />
     </MemberContainer>
   );
 }
 
 Member.propTypes = {
-  title: PropTypes.string,
-  initials: PropTypes.string,
+  userFullName: PropTypes.string,
   avatarUrl: PropTypes.string
 };
 

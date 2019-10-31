@@ -114,7 +114,7 @@ PureUpdates.propTypes = {
   members: PropTypes.arrayOf(
     PropTypes.shape({
       userId: PropTypes.string.isRequired,
-      fullName: PropTypes.string,
+      userFullName: PropTypes.string,
       avatarUrl: PropTypes.string
     })
   ),
