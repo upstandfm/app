@@ -69,7 +69,7 @@ export const LoadingSubtitle = styled(Subtitle)`
 `;
 
 export const UpdatesContainer = styled.div`
-  margin: 0 0 3em 0;
+  margin: 0 0 2em 0;
 `;
 export const LoadMoreContainer = styled.div`
   display: grid;

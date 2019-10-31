@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   display: grid;
+  background-color: var(--color-lightest-grey);
+  border-radius: 8px;
+  margin: 1em 0;
 `;
 
 const Wrapper = styled.div`
@@ -16,7 +19,7 @@ const Wrapper = styled.div`
 const Title = styled.h3`
   margin: 0.5em 0 0.25em 0;
   font-weight: normal;
-  color: var(--color-grey);
+  color: var(--color-dark-grey);
 `;
 
 function Empty({ title }) {

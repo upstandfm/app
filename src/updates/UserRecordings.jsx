@@ -121,7 +121,7 @@ function UserRecordings({
   playPauseAudio
 }) {
   if (recordings.length === 0) {
-    return <Empty title="No updates." />;
+    return <Empty title="No updates.." />;
   }
 
   const recordingsByUserId = recordings.reduce((mapping, recording) => {

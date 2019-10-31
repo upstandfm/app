@@ -92,3 +92,29 @@ export const LoadingMoreUpdates = () => {
 LoadingMoreUpdates.story = {
   name: 'loading more'
 };
+
+export const EmptyUpdates = () => {
+  return (
+    <PureUpdates
+      isLoading={false}
+      isLoadingMore={false}
+      updates={{ '01-01-2020': [] }}
+      members={membersMockData}
+      audioPlayerState={{
+        playingFile: {
+          fileId: null,
+          fileKey: null
+        },
+        isPlaying: false,
+        downloadProgress: {},
+        files: {}
+      }}
+      playPauseAudio={playPauseAudio}
+      fetchMoreUpdates={fetchMoreUpdates}
+    />
+  );
+};
+
+EmptyUpdates.story = {
+  name: 'empty'
+};
