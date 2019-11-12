@@ -6,6 +6,9 @@ import { useSnackbar } from '../Snackbar';
 import { useAudioPlayer } from './AudioPlayerContext';
 import useDownloadFile from './use-download-file';
 
+import { Container, Controls, Main, Title, Meta } from './Layout';
+import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
+
 export function PureAudioPlayer({ isPlaying, fileUrl }) {
   const audioPlayer = React.createRef();
 
@@ -22,7 +25,26 @@ export function PureAudioPlayer({ isPlaying, fileUrl }) {
   }, [isPlaying, fileUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // eslint-disable-next-line jsx-a11y/media-has-caption
-  return <audio ref={audioPlayer} controls src={fileUrl}></audio>;
+  // return <audio ref={audioPlayer} controls src={fileUrl}></audio>;
+
+  return (
+    <Container>
+      <Controls>{isPlaying ? 'pause' : 'play'}</Controls>
+
+      <Main>
+        <Title>Audio file title</Title>
+
+        <ProgressBar percent={40} handleSeek={() => console.log('seek')} />
+
+        <Timing>
+          <PlayTime>0:33</PlayTime>
+          <TotalTime>3:00</TotalTime>
+        </Timing>
+      </Main>
+
+      <Meta>mute</Meta>
+    </Container>
+  );
 }
 
 PureAudioPlayer.propTypes = {
