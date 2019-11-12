@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useSnackbar } from '../Snackbar';
+import Button from '../Button';
 
 import { useAudioPlayer } from './AudioPlayerContext';
 import useDownloadFile from './use-download-file';
@@ -29,7 +31,15 @@ export function PureAudioPlayer({ isPlaying, fileUrl }) {
 
   return (
     <Container>
-      <Controls>{isPlaying ? 'pause' : 'play'}</Controls>
+      <Controls>
+        <Button tertiary>
+          {isPlaying ? (
+            <FontAwesomeIcon icon="pause" size="2x" />
+          ) : (
+            <FontAwesomeIcon icon="play" size="2x" />
+          )}
+        </Button>
+      </Controls>
 
       <Main>
         <Title>Audio file title</Title>
@@ -42,7 +52,7 @@ export function PureAudioPlayer({ isPlaying, fileUrl }) {
         </Timing>
       </Main>
 
-      <Meta>mute</Meta>
+      <Meta />
     </Container>
   );
 }
