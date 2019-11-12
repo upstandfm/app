@@ -1,9 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { useSnackbar } from '../Snackbar';
 
 import { useAudioPlayer } from './AudioPlayerContext';
 import useDownloadFile from './use-download-file';
+
+export function PureAudioPlayer({ isPlaying, fileUrl }) {
+  const audioPlayer = React.createRef();
+
+  React.useEffect(() => {
+    if (!fileUrl) {
+      return;
+    }
+
+    if (isPlaying) {
+      audioPlayer.current.play();
+    } else {
+      audioPlayer.current.pause();
+    }
+  }, [isPlaying, fileUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // eslint-disable-next-line jsx-a11y/media-has-caption
+  return <audio ref={audioPlayer} controls src={fileUrl}></audio>;
+}
+
+PureAudioPlayer.propTypes = {
+  isPlaying: PropTypes.bool.isRequired,
+  fileUrl: PropTypes.string
+};
 
 function AudioPlayer() {
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
@@ -49,24 +74,10 @@ function AudioPlayer() {
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const audioPlayer = React.createRef();
   const { isPlaying } = audioPlayerState;
   const fileUrl = files[fileId];
 
-  React.useEffect(() => {
-    if (!fileUrl) {
-      return;
-    }
-
-    if (isPlaying) {
-      audioPlayer.current.play();
-    } else {
-      audioPlayer.current.pause();
-    }
-  }, [isPlaying, fileUrl]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // eslint-disable-next-line jsx-a11y/media-has-caption
-  return <audio ref={audioPlayer} controls src={fileUrl}></audio>;
+  return <PureAudioPlayer isPlaying={isPlaying} fileUrl={fileUrl} />;
 }
 
 export default AudioPlayer;
