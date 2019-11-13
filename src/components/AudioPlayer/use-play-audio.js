@@ -20,10 +20,11 @@ function usePlayAudio(src) {
   const [audio, setAudio] = React.useState(null);
   const [err, setErr] = React.useState('');
   const [canPlay, setCanPlay] = React.useState(false);
+  const [isPaused, setIsPaused] = React.useState(true);
   const [isSeeking, setIsSeeking] = React.useState(false);
   const [hasEnded, setHasEnded] = React.useState(false);
   const [totalTimeSeconds, setTotalTimeSeconds] = React.useState(0);
-  const [currentTimeSeconds, setCurrentTimeSeconds] = React.useState(0);
+  const [playedTimeSeconds, setPlayedTimeSeconds] = React.useState(0);
   const [progressPercent, setProgressPercent] = React.useState(0);
 
   React.useEffect(() => {
@@ -49,7 +50,7 @@ function usePlayAudio(src) {
     const onLoadedData = () => {
       setErr('');
       setTotalTimeSeconds(audio.duration);
-      setCurrentTimeSeconds(audio.currentTime);
+      setPlayedTimeSeconds(audio.currentTime);
     };
     audio.addEventListener('loadeddata', onLoadedData);
 
@@ -58,8 +59,18 @@ function usePlayAudio(src) {
     };
     audio.addEventListener('canplay', onCanPlay);
 
+    const onPause = () => {
+      setIsPaused(true);
+    };
+    audio.addEventListener('pause', onPause);
+
+    const onPlay = () => {
+      setIsPaused(false);
+    };
+    audio.addEventListener('play', onPlay);
+
     const onTimeUpdate = () => {
-      setCurrentTimeSeconds(audio.currentTime);
+      setPlayedTimeSeconds(audio.currentTime);
 
       const percent = (audio.currentTime / audio.duration) * 100;
       setProgressPercent(percent);
@@ -76,6 +87,11 @@ function usePlayAudio(src) {
     };
     audio.addEventListener('seeked', onSeeked);
 
+    const onPlaying = () => {
+      setHasEnded(false);
+    };
+    audio.addEventListener('playing', onPlaying);
+
     const onEnded = () => {
       setHasEnded(true);
     };
@@ -87,9 +103,13 @@ function usePlayAudio(src) {
       audio.removeEventListener('error', onError);
       audio.removeEventListener('loadeddata', onLoadedData);
       audio.removeEventListener('canplay', onCanPlay);
+      audio.removeEventListener('pause', onPause);
+      audio.removeEventListener('play', onPlay);
       audio.removeEventListener('timeupdate', onTimeUpdate);
       audio.removeEventListener('seeking', onSeeking);
       audio.removeEventListener('seeked', onSeeked);
+      audio.removeEventListener('playing', onPlaying);
+      audio.removeEventListener('ended', onEnded);
     };
   }, [src]);
 
@@ -151,10 +171,11 @@ function usePlayAudio(src) {
   return [
     err,
     canPlay,
+    isPaused,
     isSeeking,
     hasEnded,
     totalTimeSeconds,
-    currentTimeSeconds,
+    playedTimeSeconds,
     progressPercent,
     play,
     pause,
