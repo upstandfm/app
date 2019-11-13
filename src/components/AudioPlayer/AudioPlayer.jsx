@@ -7,44 +7,58 @@ import Button from '../Button';
 
 import { useAudioPlayer } from './AudioPlayerContext';
 import useDownloadFile from './use-download-file';
+import usePlayAudio from './use-play-audio';
 
 import { Container, Controls, Main, Title, Meta } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
 
-export function PureAudioPlayer({ isPlaying, fileUrl }) {
-  const audioPlayer = React.createRef();
-
+export function PureAudioPlayer({
+  isPlaying,
+  isDownloading,
+  fileUrl,
+  onDonePlaying,
+  canPlay,
+  isPaused,
+  isSeeking,
+  hasEnded,
+  totalTimeSeconds,
+  playedTimeSeconds,
+  progressPercent,
+  playAudio,
+  pauseAudio,
+  seekAudio
+}) {
   React.useEffect(() => {
-    if (!fileUrl) {
+    if (!fileUrl || !canPlay) {
       return;
     }
 
-    if (isPlaying) {
-      audioPlayer.current.play();
-    } else {
-      audioPlayer.current.pause();
-    }
-  }, [isPlaying, fileUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+    isPlaying ? playAudio() : pauseAudio();
+  }, [isPlaying, fileUrl, canPlay]);
 
-  // eslint-disable-next-line jsx-a11y/media-has-caption
-  // return <audio ref={audioPlayer} controls src={fileUrl}></audio>;
+  React.useEffect(() => {
+    if (hasEnded) {
+      onDonePlaying();
+    }
+  }, [hasEnded]);
 
   return (
     <Container>
       <Controls>
-        <Button tertiary>
-          {isPlaying ? (
-            <FontAwesomeIcon icon="pause" size="2x" />
-          ) : (
-            <FontAwesomeIcon icon="play" size="2x" />
-          )}
+        <Button tertiary disabled={!canPlay}>
+          <FontAwesomeIcon icon={isPaused ? 'play' : 'pause'} size="2x" />
         </Button>
       </Controls>
 
       <Main>
-        <Title>Audio file title</Title>
+        <Title>
+          {isDownloading ? 'Downloading file..' : 'Audio file title'}
+        </Title>
 
-        <ProgressBar percent={40} handleSeek={() => console.log('seek')} />
+        <ProgressBar
+          percent={progressPercent}
+          handleSeek={() => console.log('seek')}
+        />
 
         <Timing>
           <PlayTime>0:33</PlayTime>
@@ -59,7 +73,23 @@ export function PureAudioPlayer({ isPlaying, fileUrl }) {
 
 PureAudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
-  fileUrl: PropTypes.string
+  isDownloading: PropTypes.bool,
+  fileUrl: PropTypes.string,
+  onDonePlaying: PropTypes.func.isRequired,
+  canPlay: PropTypes.bool.isRequired,
+  isPaused: PropTypes.bool.isRequired,
+  isSeeking: PropTypes.bool.isRequired,
+  hasEnded: PropTypes.bool.isRequired,
+  totalTimeSeconds: PropTypes.number.isRequired,
+  playedTimeSeconds: PropTypes.number.isRequired,
+  progressPercent: PropTypes.number.isRequired,
+  playAudio: PropTypes.func.isRequired,
+  pauseAudio: PropTypes.func.isRequired,
+  seekAudio: PropTypes.func.isRequired
+};
+
+PureAudioPlayer.defaultProps = {
+  isDownloading: false
 };
 
 function AudioPlayer() {
@@ -107,9 +137,65 @@ function AudioPlayer() {
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { isPlaying } = audioPlayerState;
+  const { isDownloading } = audioPlayerState.downloadProgress[fileId] || {};
   const fileUrl = files[fileId];
 
-  return <PureAudioPlayer isPlaying={isPlaying} fileUrl={fileUrl} />;
+  const pauseAudio = () => {
+    audioPlayerDispatch({
+      type: 'PAUSE_AUDIO',
+      data: {}
+    });
+  };
+
+  const [
+    playAudioErrMsg,
+    canPlay,
+    isPaused,
+    isSeeking,
+    hasEnded,
+    totalTimeSeconds,
+    playedTimeSeconds,
+    progressPercent,
+    play,
+    pause,
+    ,
+    ,
+    seek
+  ] = usePlayAudio(fileUrl);
+
+  React.useEffect(() => {
+    if (!playAudioErrMsg) {
+      return;
+    }
+
+    snackbarDispatch({
+      type: 'ENQUEUE_SNACKBAR_MSG',
+      data: {
+        type: 'error',
+        title: 'Failed to play audio',
+        text: playAudioErrMsg
+      }
+    });
+  }, [playAudioErrMsg]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <PureAudioPlayer
+      isPlaying={isPlaying}
+      isDownloading={isDownloading}
+      fileUrl={fileUrl}
+      onDonePlaying={pauseAudio}
+      canPlay={canPlay}
+      isPaused={isPaused}
+      isSeeking={isSeeking}
+      hasEnded={hasEnded}
+      totalTimeSeconds={totalTimeSeconds}
+      playedTimeSeconds={playedTimeSeconds}
+      progressPercent={progressPercent}
+      playAudio={play}
+      pauseAudio={pause}
+      seekAudio={seek}
+    />
+  );
 }
 
 export default AudioPlayer;
