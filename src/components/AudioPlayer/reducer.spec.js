@@ -1,7 +1,7 @@
 import reducer, { defaultAudioPlayerState } from './reducer';
 
 describe('audio player reducer', () => {
-  it('plays audio', () => {
+  it('loads and plays audio', () => {
     const state = defaultAudioPlayerState;
     const playingFile = {
       fileId: 1,
@@ -9,9 +9,9 @@ describe('audio player reducer', () => {
     };
 
     const action = {
-      type: 'PLAY_AUDIO',
+      type: 'LOAD_AUDIO_FILE',
       data: {
-        playingFile
+        ...playingFile
       }
     };
 
@@ -20,15 +20,15 @@ describe('audio player reducer', () => {
     expect(newState.isPlaying).toEqual(true);
   });
 
-  it('pauses audio', () => {
+  it('plays and pauses audio', () => {
     const state = defaultAudioPlayerState;
     const action = {
-      type: 'PAUSE_AUDIO',
+      type: 'PLAY_PAUSE_AUDIO',
       data: {}
     };
 
     const newState = reducer(state, action);
-    expect(newState.isPlaying).toEqual(false);
+    expect(newState.isPlaying).toEqual(true);
   });
 
   it('keeps track of download progress', () => {

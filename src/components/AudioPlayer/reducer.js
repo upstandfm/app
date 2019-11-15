@@ -23,18 +23,18 @@ export const defaultAudioPlayerState = {
  */
 function audioPlayerReducer(state, action) {
   switch (action.type) {
-    case 'PLAY_AUDIO': {
+    case 'LOAD_AUDIO_FILE': {
       return {
         ...state,
-        playingFile: action.data.playingFile,
+        playingFile: action.data,
         isPlaying: true
       };
     }
 
-    case 'PAUSE_AUDIO': {
+    case 'PLAY_PAUSE_AUDIO': {
       return {
         ...state,
-        isPlaying: false
+        isPlaying: !state.isPlaying
       };
     }
 
