@@ -14,11 +14,10 @@ import { Container, Controls, Main, Title, Meta } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
 
 export function PureAudioPlayer({
+  dispatch,
   isPlaying,
   isDownloading,
-  fileUrl,
   fileTitle,
-  onDonePlaying,
   canPlay,
   isPaused,
   isSeeking,
@@ -31,18 +30,28 @@ export function PureAudioPlayer({
   seekAudio
 }) {
   React.useEffect(() => {
-    if (!fileUrl || !canPlay) {
+    if (!canPlay) {
       return;
     }
 
     isPlaying ? playAudio() : pauseAudio();
-  }, [isPlaying, fileUrl, canPlay]);
+  }, [canPlay, isPlaying]);
 
   React.useEffect(() => {
     if (hasEnded) {
-      onDonePlaying();
+      dispatch({
+        type: 'PLAY_PAUSE_AUDIO',
+        data: {}
+      });
     }
   }, [hasEnded]);
+
+  const handlePlayPause = () => {
+    dispatch({
+      type: 'PLAY_PAUSE_AUDIO',
+      data: {}
+    });
+  };
 
   const playedTime = formatTime(playedTimeSeconds);
   const totalTime = formatTime(totalTimeSeconds);
@@ -51,7 +60,7 @@ export function PureAudioPlayer({
   return (
     <Container>
       <Controls>
-        <Button tertiary disabled={!canPlay}>
+        <Button tertiary disabled={!canPlay} onClick={handlePlayPause}>
           <FontAwesomeIcon icon={isPaused ? 'play' : 'pause'} size="2x" />
         </Button>
       </Controls>
@@ -83,9 +92,7 @@ export function PureAudioPlayer({
 PureAudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   isDownloading: PropTypes.bool,
-  fileUrl: PropTypes.string,
   fileTitle: PropTypes.string,
-  onDonePlaying: PropTypes.func.isRequired,
   canPlay: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
   isSeeking: PropTypes.bool.isRequired,
@@ -118,11 +125,9 @@ function AudioPlayer() {
       return;
     }
 
-    if (hasFile) {
-      return;
+    if (!hasFile) {
+      downloadFile(fileId, fileKey);
     }
-
-    downloadFile(fileId, fileKey);
 
     return () => {
       abortDownloadFile();
@@ -149,13 +154,6 @@ function AudioPlayer() {
   const { isPlaying } = audioPlayerState;
   const { isDownloading } = audioPlayerState.downloadProgress[fileId] || {};
   const fileUrl = files[fileId];
-
-  const pauseAudio = () => {
-    audioPlayerDispatch({
-      type: 'PAUSE_AUDIO',
-      data: {}
-    });
-  };
 
   const [
     playAudioErrMsg,
@@ -190,11 +188,11 @@ function AudioPlayer() {
 
   return (
     <PureAudioPlayer
+      dispatch={audioPlayerDispatch}
       isPlaying={isPlaying}
       isDownloading={isDownloading}
       fileUrl={fileUrl}
       fileTitle={fileTitle}
-      onDonePlaying={pauseAudio}
       canPlay={canPlay}
       isPaused={isPaused}
       isSeeking={isSeeking}
