@@ -26,6 +26,7 @@ export const Main = styled.div`
 
 export const Title = styled.h4`
   margin: 0;
+  height: 22px;
 `;
 
 export const Meta = styled.div`
