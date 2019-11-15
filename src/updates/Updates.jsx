@@ -160,23 +160,19 @@ function Updates({ standupId }) {
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
 
   const playPauseAudio = (recordingId, fileKey) => {
-    const isPlayingCurrentRecording =
-      recordingId === audioPlayerState.playingFile.fileId;
-
-    if (audioPlayerState.isPlaying && isPlayingCurrentRecording) {
+    const loadedFile = recordingId === audioPlayerState.playingFile.fileId;
+    if (!loadedFile) {
       audioPlayerDispatch({
-        type: 'PAUSE_AUDIO',
-        data: {}
+        type: 'LOAD_AUDIO_FILE',
+        data: {
+          fileId: recordingId,
+          fileKey
+        }
       });
     } else {
       audioPlayerDispatch({
-        type: 'PLAY_AUDIO',
-        data: {
-          playingFile: {
-            fileId: recordingId,
-            fileKey
-          }
-        }
+        type: 'PLAY_PAUSE_AUDIO',
+        data: {}
       });
     }
   };
