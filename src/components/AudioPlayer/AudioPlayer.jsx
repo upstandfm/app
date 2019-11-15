@@ -17,6 +17,7 @@ export function PureAudioPlayer({
   isPlaying,
   isDownloading,
   fileUrl,
+  fileTitle,
   onDonePlaying,
   canPlay,
   isPaused,
@@ -56,9 +57,7 @@ export function PureAudioPlayer({
       </Controls>
 
       <Main>
-        <Title>
-          {isDownloading ? 'Downloading file..' : 'Audio file title'}
-        </Title>
+        <Title>{isDownloading ? 'Downloading file..' : fileTitle}</Title>
 
         <ProgressBar
           percent={progressPercent}
@@ -85,6 +84,7 @@ PureAudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   isDownloading: PropTypes.bool,
   fileUrl: PropTypes.string,
+  fileTitle: PropTypes.string,
   onDonePlaying: PropTypes.func.isRequired,
   canPlay: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
@@ -110,7 +110,7 @@ function AudioPlayer() {
   const [, snackbarDispatch] = useSnackbar();
 
   const { playingFile, files } = audioPlayerState;
-  const { fileId, fileKey } = playingFile;
+  const { fileId, fileKey, fileTitle } = playingFile;
   const hasFile = Boolean(files[fileId]);
 
   React.useEffect(() => {
@@ -193,6 +193,7 @@ function AudioPlayer() {
       isPlaying={isPlaying}
       isDownloading={isDownloading}
       fileUrl={fileUrl}
+      fileTitle={fileTitle}
       onDonePlaying={pauseAudio}
       canPlay={canPlay}
       isPaused={isPaused}
