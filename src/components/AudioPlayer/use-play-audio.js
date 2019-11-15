@@ -28,9 +28,11 @@ function usePlayAudio(src) {
   const [progressPercent, setProgressPercent] = React.useState(0);
 
   React.useEffect(() => {
-    if (!src) {
-      return;
-    }
+    setErr('');
+    setCanPlay(false);
+    setIsPaused(true);
+    setIsSeeking(false);
+    setHasEnded(false);
 
     const audio = new Audio(src);
     setAudio(audio);
