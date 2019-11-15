@@ -8,6 +8,7 @@ import Button from '../Button';
 import { useAudioPlayer } from './AudioPlayerContext';
 import useDownloadFile from './use-download-file';
 import usePlayAudio from './use-play-audio';
+import { formatTime } from './utils';
 
 import { Container, Controls, Main, Title, Meta } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
@@ -42,6 +43,10 @@ export function PureAudioPlayer({
     }
   }, [hasEnded]);
 
+  const playedTime = formatTime(playedTimeSeconds);
+  const totalTime = formatTime(totalTimeSeconds);
+  const hasTimeData = Boolean(totalTimeSeconds);
+
   return (
     <Container>
       <Controls>
@@ -61,8 +66,13 @@ export function PureAudioPlayer({
         />
 
         <Timing>
-          <PlayTime>0:33</PlayTime>
-          <TotalTime>3:00</TotalTime>
+          <PlayTime datetime={playedTime}>
+            {hasTimeData ? playedTime : ''}
+          </PlayTime>
+
+          <TotalTime datetime={totalTime}>
+            {hasTimeData ? totalTime : ''}
+          </TotalTime>
         </Timing>
       </Main>
 
@@ -94,7 +104,7 @@ PureAudioPlayer.defaultProps = {
 
 function AudioPlayer() {
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
-  const [downloadFile, abortDownloadFile, err] = useDownloadFile(
+  const [downloadFile, abortDownloadFile, downloadErr] = useDownloadFile(
     audioPlayerDispatch
   );
   const [, snackbarDispatch] = useSnackbar();
@@ -120,7 +130,7 @@ function AudioPlayer() {
   }, [fileId, fileKey, hasFile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
-    if (!err) {
+    if (!downloadErr) {
       return;
     }
 
@@ -129,12 +139,12 @@ function AudioPlayer() {
       data: {
         type: 'error',
         title: 'Failed to download audio',
-        text: err.details
-          ? `${err.message}: ${err.details}.`
-          : err.message + '.'
+        text: downloadErr.details
+          ? `${downloadErr.message}: ${downloadErr.details}.`
+          : downloadErr.message + '.'
       }
     });
-  }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [downloadErr]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { isPlaying } = audioPlayerState;
   const { isDownloading } = audioPlayerState.downloadProgress[fileId] || {};

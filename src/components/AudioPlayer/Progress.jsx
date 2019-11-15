@@ -38,12 +38,14 @@ export const Timing = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
+  height: 22px;
+  color: var(--color-grey);
 `;
 
-export const PlayTime = styled.span`
+export const PlayTime = styled.time`
   justify-self: start;
 `;
 
-export const TotalTime = styled.span`
+export const TotalTime = styled.time`
   justify-self: end;
 `;
