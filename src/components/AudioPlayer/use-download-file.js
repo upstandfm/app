@@ -67,6 +67,14 @@ function useDownloadFile(dispatch) {
       });
     } catch (err) {
       if (axios.isCancel(err)) {
+        dispatch({
+          type: 'DOWNLOADING_AUDIO_FILE',
+          data: {
+            fileId,
+            progress: 100
+          }
+        });
+
         return;
       }
 
