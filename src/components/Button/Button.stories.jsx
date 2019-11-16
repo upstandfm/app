@@ -22,6 +22,18 @@ DefaultButton.story = {
   name: 'default'
 };
 
+export const SpecialButton = () => {
+  return (
+    <Button special onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+SpecialButton.story = {
+  name: 'special'
+};
+
 export const SecondaryButton = () => {
   return (
     <Button secondary onClick={handleClick}>
@@ -58,18 +70,6 @@ IconTextButton.story = {
   name: 'icon + text'
 };
 
-export const IconRoundButton = () => {
-  return (
-    <Button round onClick={handleClick}>
-      <FontAwesomeIcon icon="plus" size="lg" />
-    </Button>
-  );
-};
-
-IconRoundButton.story = {
-  name: 'icon + round'
-};
-
 export const DisabledButton = () => {
   return (
     <Button disabled onClick={handleClick}>
@@ -79,7 +79,31 @@ export const DisabledButton = () => {
 };
 
 DisabledButton.story = {
-  name: 'disabled'
+  name: 'disabled default'
+};
+
+export const DisabledSpecialButton = () => {
+  return (
+    <Button special disabled onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+DisabledSpecialButton.story = {
+  name: 'disabled special'
+};
+
+export const DisabledSecondaryButton = () => {
+  return (
+    <Button secondary disabled onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+DisabledSecondaryButton.story = {
+  name: 'disabled secondary'
 };
 
 export const DisabledTertiaryButton = () => {

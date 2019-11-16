@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const RootButton = styled.button`
   font-family: 'Fira Sans', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   text-decoration: none;
   text-transform: none;
@@ -12,16 +12,15 @@ const RootButton = styled.button`
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
-  line-height: 1.30775;
   padding: 8px 20px;
-  border-radius: 33px;
   box-shadow: none;
   border: 2px solid;
-  transition: all 0.2s ease;
+  transition: all 0.1s linear;
+  box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
+  color: var(--color-darkest-purple);
 
-  outline: 0;
   :focus {
-    box-shadow: 0px 0px 0px 3px var(--color-light-mint);
+    outline: 3px solid var(--color-light-mint);
   }
 
   :hover {
@@ -31,71 +30,64 @@ const RootButton = styled.button`
   :disabled,
   :disabled:hover {
     cursor: not-allowed;
-    color: var(--color-dark-grey) !important;
+    color: var(--color-dark-grey);
     background-color: var(--color-light-grey);
-    border-color: var(--color-light-grey);
+    box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
+    text-decoration: line-through;
   }
 `;
 
-const DefaultButton = styled(RootButton)`
-  background-color: var(--color-purple);
-  color: var(--color-white) !important;
-  border-color: var(--color-purple);
+const SpecialButton = styled(RootButton)`
+  background-color: var(--color-light-coral);
+  border-color: var(--color-darkest-purple);
 
   :hover {
-    background-color: var(--color-light-purple);
-    border-color: var(--color-light-purple);
+    background-color: var(--color-lighter-coral);
+    box-shadow: 8px 8px 0 0 var(--color-darkest-purple);
   }
+`;
 
-  :active {
-    background-color: var(--color-dark-purple);
-    border-color: var(--color-dark-purple);
+const PrimaryButton = styled(RootButton)`
+  background-color: var(--color-lighter-purple);
+  border-color: var(--color-darkest-purple);
+
+  :hover {
+    background-color: var(--color-lightest-purple);
+    box-shadow: 8px 8px 0 0 var(--color-darkest-purple);
   }
 `;
 
 const SecondaryButton = styled(RootButton)`
   background-color: transparent;
-  color: var(--color-purple) !important;
-  border-color: var(--color-purple);
+  border-color: var(--color-darkest-purple);
+  box-shadow: none;
 
   :hover {
-    background-color: var(--color-purple);
-    color: var(--color-white) !important;
+    background-color: var(--color-lightest-grey);
   }
 
-  :active {
-    background-color: var(--color-dark-purple);
-    border-color: var(--color-dark-purple);
+  :disabled,
+  :disabled:hover {
+    background-color: transparent;
+    box-shadow: none;
   }
 `;
 
 const TertiaryButton = styled(RootButton)`
   background-color: transparent;
-  color: var(--color-purple) !important;
   border-color: transparent;
+  box-shadow: none;
 
   :hover {
-    color: var(--color-light-purple) !important;
-  }
-
-  :active {
-    color: var(--color-dark-purple) !important;
+    color: var(--color-purple);
   }
 
   :disabled,
   :disabled:hover {
-    color: var(--color-dark-grey) !important;
     background-color: transparent;
     border-color: transparent;
+    box-shadow: none;
   }
-`;
-
-const RoundButton = styled(DefaultButton)`
-  padding: 0;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
 `;
 
 /**
@@ -115,7 +107,15 @@ const RoundButton = styled(DefaultButton)`
  * https://www.styled-components.com/docs/basics#extending-styles
  */
 const Button = React.forwardRef((props, ref) => {
-  const { secondary, tertiary, round } = props;
+  const { special, secondary, tertiary } = props;
+
+  if (special) {
+    return (
+      <SpecialButton ref={ref} {...props}>
+        {props.children}
+      </SpecialButton>
+    );
+  }
 
   if (secondary) {
     return (
@@ -133,25 +133,17 @@ const Button = React.forwardRef((props, ref) => {
     );
   }
 
-  if (round) {
-    return (
-      <RoundButton ref={ref} {...props}>
-        {props.children}
-      </RoundButton>
-    );
-  }
-
   return (
-    <DefaultButton ref={ref} {...props}>
+    <PrimaryButton ref={ref} {...props}>
       {props.children}
-    </DefaultButton>
+    </PrimaryButton>
   );
 });
 
 Button.propTypes = {
+  special: PropTypes.bool,
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
-  round: PropTypes.bool,
   disabled: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

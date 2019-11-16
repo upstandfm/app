@@ -39,6 +39,7 @@
   --color-dark-coral: #dd5f6e;
   --color-coral: #e96d77;
   --color-light-coral: #fb7982;
+  --color-lighter-coral: #fb9fa2;
   --color-dark-mint: #22d39b;
   --color-mint: #30e8b6;
   --color-light-mint: #2cf6c3;
@@ -81,13 +82,7 @@ body {
 
 a,
 a:visited {
-  color: var(--color-purple);
   font-weight: bold;
-  outline: 0;
-}
-
-a:hover {
-  text-decoration: none;
 }
 
 p {
