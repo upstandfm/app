@@ -15,7 +15,7 @@ import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
 
 export function PureAudioPlayer({
   fileTitle,
-  isPlaying,
+  shouldPlay,
   isDownloading,
   playAudio,
   pauseAudio,
@@ -25,7 +25,7 @@ export function PureAudioPlayer({
   hasEnded,
   totalTimeSeconds,
   playedTimeSeconds,
-  progressPercent,
+  playProgressPercent,
   play,
   pause,
   seek
@@ -35,8 +35,8 @@ export function PureAudioPlayer({
       return;
     }
 
-    isPlaying ? play() : pause();
-  }, [canPlay, isPlaying, play, pause]);
+    shouldPlay ? play() : pause();
+  }, [canPlay, shouldPlay, play, pause]);
 
   React.useEffect(() => {
     if (hasEnded) {
@@ -45,7 +45,7 @@ export function PureAudioPlayer({
   }, [hasEnded, pauseAudio]);
 
   const handlePlayPause = () => {
-    isPlaying ? pauseAudio() : playAudio();
+    shouldPlay ? pauseAudio() : playAudio();
   };
 
   const playedTime = formatTime(playedTimeSeconds);
@@ -64,7 +64,7 @@ export function PureAudioPlayer({
         <Title>{isDownloading ? 'Downloading file..' : fileTitle}</Title>
 
         <ProgressBar
-          percent={progressPercent}
+          percent={playProgressPercent}
           handleSeek={() => console.log('seek')}
         />
 
@@ -86,7 +86,7 @@ export function PureAudioPlayer({
 
 PureAudioPlayer.propTypes = {
   fileTitle: PropTypes.string,
-  isPlaying: PropTypes.bool.isRequired,
+  shouldPlay: PropTypes.bool.isRequired,
   isDownloading: PropTypes.bool,
   playAudio: PropTypes.func.isRequired,
   pauseAudio: PropTypes.func.isRequired,
@@ -96,7 +96,7 @@ PureAudioPlayer.propTypes = {
   hasEnded: PropTypes.bool.isRequired,
   totalTimeSeconds: PropTypes.number.isRequired,
   playedTimeSeconds: PropTypes.number.isRequired,
-  progressPercent: PropTypes.number.isRequired,
+  playProgressPercent: PropTypes.number.isRequired,
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
   seek: PropTypes.func.isRequired
@@ -159,7 +159,7 @@ function AudioPlayer() {
     hasEnded,
     totalTimeSeconds,
     playedTimeSeconds,
-    progressPercent,
+    playProgressPercent,
     play,
     pause,
     ,
@@ -205,7 +205,7 @@ function AudioPlayer() {
   return (
     <PureAudioPlayer
       fileTitle={fileTitle}
-      isPlaying={isPlaying}
+      shouldPlay={isPlaying}
       isDownloading={isDownloading}
       playAudio={playAudio}
       pauseAudio={pauseAudio}
@@ -215,7 +215,7 @@ function AudioPlayer() {
       hasEnded={hasEnded}
       totalTimeSeconds={totalTimeSeconds}
       playedTimeSeconds={playedTimeSeconds}
-      progressPercent={progressPercent}
+      playProgressPercent={playProgressPercent}
       play={memoizedPlay}
       pause={memoizedPause}
       seek={seek}
