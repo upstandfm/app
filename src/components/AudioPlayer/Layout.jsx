@@ -24,6 +24,14 @@ export const Main = styled.div`
   width: 100%;
 `;
 
+export const PlayState = styled.div`
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  width: 40px;
+  height: 40px;
+`;
+
 export const Title = styled.h4`
   margin: 0;
   height: 22px;

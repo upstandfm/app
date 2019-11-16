@@ -20,7 +20,6 @@ function usePlayAudio(src) {
   const [audio, setAudio] = React.useState(null);
   const [err, setErr] = React.useState('');
   const [canPlay, setCanPlay] = React.useState(false);
-  const [isPaused, setIsPaused] = React.useState(true);
   const [isSeeking, setIsSeeking] = React.useState(false);
   const [hasEnded, setHasEnded] = React.useState(false);
   const [totalTimeSeconds, setTotalTimeSeconds] = React.useState(0);
@@ -30,7 +29,6 @@ function usePlayAudio(src) {
   React.useEffect(() => {
     setErr('');
     setCanPlay(false);
-    setIsPaused(true);
     setIsSeeking(false);
     setHasEnded(false);
 
@@ -60,16 +58,6 @@ function usePlayAudio(src) {
       setCanPlay(true);
     };
     audio.addEventListener('canplay', onCanPlay);
-
-    const onPause = () => {
-      setIsPaused(true);
-    };
-    audio.addEventListener('pause', onPause);
-
-    const onPlay = () => {
-      setIsPaused(false);
-    };
-    audio.addEventListener('play', onPlay);
 
     const onTimeUpdate = () => {
       setPlayedTimeSeconds(audio.currentTime);
@@ -105,8 +93,6 @@ function usePlayAudio(src) {
       audio.removeEventListener('error', onError);
       audio.removeEventListener('loadeddata', onLoadedData);
       audio.removeEventListener('canplay', onCanPlay);
-      audio.removeEventListener('pause', onPause);
-      audio.removeEventListener('play', onPlay);
       audio.removeEventListener('timeupdate', onTimeUpdate);
       audio.removeEventListener('seeking', onSeeking);
       audio.removeEventListener('seeked', onSeeked);
@@ -173,7 +159,6 @@ function usePlayAudio(src) {
     audio,
     err,
     canPlay,
-    isPaused,
     isSeeking,
     hasEnded,
     totalTimeSeconds,
