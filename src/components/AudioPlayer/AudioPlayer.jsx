@@ -14,10 +14,11 @@ import { Container, Controls, Main, Title, Meta } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
 
 export function PureAudioPlayer({
-  dispatch,
+  fileTitle,
   isPlaying,
   isDownloading,
-  fileTitle,
+  playAudio,
+  pauseAudio,
   canPlay,
   isPaused,
   isSeeking,
@@ -25,32 +26,26 @@ export function PureAudioPlayer({
   totalTimeSeconds,
   playedTimeSeconds,
   progressPercent,
-  playAudio,
-  pauseAudio,
-  seekAudio
+  play,
+  pause,
+  seek
 }) {
   React.useEffect(() => {
     if (!canPlay) {
       return;
     }
 
-    isPlaying ? playAudio() : pauseAudio();
+    isPlaying ? play() : pause();
   }, [canPlay, isPlaying]);
 
   React.useEffect(() => {
     if (hasEnded) {
-      dispatch({
-        type: 'PLAY_PAUSE_AUDIO',
-        data: {}
-      });
+      pauseAudio();
     }
   }, [hasEnded]);
 
   const handlePlayPause = () => {
-    dispatch({
-      type: 'PLAY_PAUSE_AUDIO',
-      data: {}
-    });
+    isPlaying ? pauseAudio() : playAudio();
   };
 
   const playedTime = formatTime(playedTimeSeconds);
@@ -90,9 +85,11 @@ export function PureAudioPlayer({
 }
 
 PureAudioPlayer.propTypes = {
+  fileTitle: PropTypes.string,
   isPlaying: PropTypes.bool.isRequired,
   isDownloading: PropTypes.bool,
-  fileTitle: PropTypes.string,
+  playAudio: PropTypes.func.isRequired,
+  pauseAudio: PropTypes.func.isRequired,
   canPlay: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
   isSeeking: PropTypes.bool.isRequired,
@@ -100,9 +97,9 @@ PureAudioPlayer.propTypes = {
   totalTimeSeconds: PropTypes.number.isRequired,
   playedTimeSeconds: PropTypes.number.isRequired,
   progressPercent: PropTypes.number.isRequired,
-  playAudio: PropTypes.func.isRequired,
-  pauseAudio: PropTypes.func.isRequired,
-  seekAudio: PropTypes.func.isRequired
+  play: PropTypes.func.isRequired,
+  pause: PropTypes.func.isRequired,
+  seek: PropTypes.func.isRequired
 };
 
 PureAudioPlayer.defaultProps = {
@@ -116,7 +113,8 @@ function AudioPlayer() {
   );
   const [, snackbarDispatch] = useSnackbar();
 
-  const { playingFile, files } = audioPlayerState;
+  const { isPlaying, playingFile, files } = audioPlayerState;
+
   const { fileId, fileKey, fileTitle } = playingFile;
   const hasFile = Boolean(files[fileId]);
 
@@ -151,10 +149,7 @@ function AudioPlayer() {
     });
   }, [downloadErr]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const { isPlaying } = audioPlayerState;
-  const { isDownloading } = audioPlayerState.downloadProgress[fileId] || {};
   const fileUrl = files[fileId];
-
   const [
     playAudioErrMsg,
     canPlay,
@@ -186,13 +181,29 @@ function AudioPlayer() {
     });
   }, [playAudioErrMsg]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const { isDownloading } = audioPlayerState.downloadProgress[fileId] || {};
+
+  const playAudio = () => {
+    audioPlayerDispatch({
+      type: 'PLAY_AUDIO',
+      data: {}
+    });
+  };
+
+  const pauseAudio = () => {
+    audioPlayerDispatch({
+      type: 'PAUSE_AUDIO',
+      data: {}
+    });
+  };
+
   return (
     <PureAudioPlayer
-      dispatch={audioPlayerDispatch}
+      fileTitle={fileTitle}
       isPlaying={isPlaying}
       isDownloading={isDownloading}
-      fileUrl={fileUrl}
-      fileTitle={fileTitle}
+      playAudio={playAudio}
+      pauseAudio={pauseAudio}
       canPlay={canPlay}
       isPaused={isPaused}
       isSeeking={isSeeking}
@@ -200,9 +211,9 @@ function AudioPlayer() {
       totalTimeSeconds={totalTimeSeconds}
       playedTimeSeconds={playedTimeSeconds}
       progressPercent={progressPercent}
-      playAudio={play}
-      pauseAudio={pause}
-      seekAudio={seek}
+      play={play}
+      pause={pause}
+      seek={seek}
     />
   );
 }

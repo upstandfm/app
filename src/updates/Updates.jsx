@@ -163,7 +163,7 @@ function Updates({ standupId }) {
     const loadedFile = recordingId === audioPlayerState.playingFile.fileId;
     if (!loadedFile) {
       audioPlayerDispatch({
-        type: 'LOAD_AUDIO_FILE',
+        type: 'LOAD_AND_PLAY_AUDIO_FILE',
         data: {
           fileId: recordingId,
           fileKey
@@ -171,7 +171,7 @@ function Updates({ standupId }) {
       });
     } else {
       audioPlayerDispatch({
-        type: 'PLAY_PAUSE_AUDIO',
+        type: audioPlayerState.isPlaying ? 'PAUSE_AUDIO' : 'PLAY_AUDIO',
         data: {}
       });
     }

@@ -9,7 +9,7 @@ describe('audio player reducer', () => {
     };
 
     const action = {
-      type: 'LOAD_AUDIO_FILE',
+      type: 'LOAD_AND_PLAY_AUDIO_FILE',
       data: {
         ...playingFile
       }
@@ -20,15 +20,26 @@ describe('audio player reducer', () => {
     expect(newState.isPlaying).toEqual(true);
   });
 
-  it('plays and pauses audio', () => {
+  it('plays audio', () => {
     const state = defaultAudioPlayerState;
     const action = {
-      type: 'PLAY_PAUSE_AUDIO',
+      type: 'PLAY_AUDIO',
       data: {}
     };
 
     const newState = reducer(state, action);
     expect(newState.isPlaying).toEqual(true);
+  });
+
+  it('pauses audio', () => {
+    const state = defaultAudioPlayerState;
+    const action = {
+      type: 'PAUSE_AUDIO',
+      data: {}
+    };
+
+    const newState = reducer(state, action);
+    expect(newState.isPlaying).toEqual(false);
   });
 
   it('keeps track of download progress', () => {
