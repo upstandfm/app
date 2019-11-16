@@ -157,7 +157,8 @@ function UserRecording({ recording, audioPlayerState, playPauseAudio }) {
 
     const recordingId = e.currentTarget.getAttribute('data-recording-id');
     const fileKey = e.currentTarget.getAttribute('data-file-key');
-    playPauseAudio(recordingId, fileKey);
+    const fileTitle = filename;
+    playPauseAudio(recordingId, fileKey, fileTitle);
   };
 
   const handleKeyPress = e => {
