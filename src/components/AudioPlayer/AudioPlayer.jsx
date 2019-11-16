@@ -81,7 +81,7 @@ export function PureAudioPlayer({
       </Controls>
 
       <Main>
-        <Title>{isDownloading ? 'Downloading file..' : fileTitle}</Title>
+        <Title>{fileTitle}</Title>
 
         <ProgressBar
           ref={progressBarEl}

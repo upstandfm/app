@@ -1,7 +1,8 @@
 export const defaultAudioPlayerState = {
   playingFile: {
     fileId: null,
-    fileKey: null
+    fileKey: null,
+    fileTitle: ''
   },
   isPlaying: false,
 

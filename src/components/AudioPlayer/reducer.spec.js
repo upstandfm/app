@@ -5,7 +5,8 @@ describe('audio player reducer', () => {
     const state = defaultAudioPlayerState;
     const playingFile = {
       fileId: 1,
-      fileKey: 'audio/file'
+      fileKey: 'audio/file',
+      fileTitle: 'My audio file'
     };
 
     const action = {
