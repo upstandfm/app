@@ -153,21 +153,20 @@ function usePlayAudio(src) {
   /**
    * Seek audio.
    *
-   * @param {Number} newCurrentTimeSeconds - The "seeked" time in seconds
+   * @param {Number} newProgressRatio - "where" in the seek bar has been clicked
    */
-  const seek = newCurrentTimeSeconds => {
-    if (newCurrentTimeSeconds < 0) {
+  const seek = newProgressRatio => {
+    if (newProgressRatio < 0) {
       audio.currentTime = 0;
       return;
     }
 
-    // Prevents the progress bar from "skipping"
-    if (newCurrentTimeSeconds > audio.duration) {
+    if (newProgressRatio > 1) {
       audio.currentTime = audio.duration;
       return;
     }
 
-    audio.currentTime = newCurrentTimeSeconds;
+    audio.currentTime = audio.duration * newProgressRatio;
   };
 
   return [

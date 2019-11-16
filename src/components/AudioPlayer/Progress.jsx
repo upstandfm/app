@@ -10,7 +10,7 @@ const Outer = styled.div`
   border-radius: 3px;
 
   :hover {
-    cursor: pointer;
+    cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   }
 `;
 
@@ -23,13 +23,14 @@ const Inner = styled.div`
 
 export const ProgressBar = React.forwardRef((props, ref) => {
   return (
-    <Outer ref={ref} onClick={props.handleSeek}>
+    <Outer ref={ref} isDisabled={props.isDisabled} onClick={props.handleSeek}>
       <Inner percent={props.percent} />
     </Outer>
   );
 });
 
 ProgressBar.propTypes = {
+  isDisabled: PropTypes.bool.isRequired,
   handleSeek: PropTypes.func.isRequired,
   percent: PropTypes.number.isRequired
 };

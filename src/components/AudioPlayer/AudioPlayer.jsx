@@ -44,8 +44,28 @@ export function PureAudioPlayer({
     }
   }, [hasEnded, pauseAudio]);
 
+  const progressBarEl = React.createRef();
+
   const handlePlayPause = () => {
+    if (!canPlay) {
+      return;
+    }
+
     shouldPlay ? pauseAudio() : playAudio();
+  };
+
+  const handleSeek = e => {
+    if (!canPlay || isSeeking) {
+      return;
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth
+    const layoutWidth = progressBarEl.current.offsetWidth;
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/offsetX
+    const offsetX = e.nativeEvent.offsetX;
+
+    seek(offsetX / layoutWidth);
   };
 
   const playedTime = formatTime(playedTimeSeconds);
@@ -64,8 +84,10 @@ export function PureAudioPlayer({
         <Title>{isDownloading ? 'Downloading file..' : fileTitle}</Title>
 
         <ProgressBar
+          ref={progressBarEl}
+          isDisabled={!canPlay}
           percent={playProgressPercent}
-          handleSeek={() => console.log('seek')}
+          handleSeek={handleSeek}
         />
 
         <Timing>
