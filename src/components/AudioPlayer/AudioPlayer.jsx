@@ -36,13 +36,13 @@ export function PureAudioPlayer({
     }
 
     isPlaying ? play() : pause();
-  }, [canPlay, isPlaying]);
+  }, [canPlay, isPlaying, play, pause]);
 
   React.useEffect(() => {
     if (hasEnded) {
       pauseAudio();
     }
-  }, [hasEnded]);
+  }, [hasEnded, pauseAudio]);
 
   const handlePlayPause = () => {
     isPlaying ? pauseAudio() : playAudio();
@@ -151,6 +151,7 @@ function AudioPlayer() {
 
   const fileUrl = files[fileId];
   const [
+    audio,
     playAudioErrMsg,
     canPlay,
     isPaused,
@@ -182,20 +183,24 @@ function AudioPlayer() {
   }, [playAudioErrMsg]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { isDownloading } = audioPlayerState.downloadProgress[fileId] || {};
+  const memoizedDispatch = React.useCallback(audioPlayerDispatch, []);
 
-  const playAudio = () => {
-    audioPlayerDispatch({
+  const playAudio = React.useCallback(() => {
+    memoizedDispatch({
       type: 'PLAY_AUDIO',
       data: {}
     });
-  };
+  }, [memoizedDispatch]);
 
-  const pauseAudio = () => {
-    audioPlayerDispatch({
+  const pauseAudio = React.useCallback(() => {
+    memoizedDispatch({
       type: 'PAUSE_AUDIO',
       data: {}
     });
-  };
+  }, [memoizedDispatch]);
+
+  const memoizedPlay = React.useCallback(play, [audio]);
+  const memoizedPause = React.useCallback(pause, [audio]);
 
   return (
     <PureAudioPlayer
@@ -211,8 +216,8 @@ function AudioPlayer() {
       totalTimeSeconds={totalTimeSeconds}
       playedTimeSeconds={playedTimeSeconds}
       progressPercent={progressPercent}
-      play={play}
-      pause={pause}
+      play={memoizedPlay}
+      pause={memoizedPause}
       seek={seek}
     />
   );

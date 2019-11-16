@@ -171,6 +171,7 @@ function usePlayAudio(src) {
   };
 
   return [
+    audio,
     err,
     canPlay,
     isPaused,
