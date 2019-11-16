@@ -14,9 +14,12 @@ const Outer = styled.div`
   }
 `;
 
-const Inner = styled.div`
+const Inner = styled.div.attrs(props => ({
+  style: {
+    width: props.percent + '%'
+  }
+}))`
   background: var(--color-purple);
-  width: ${props => props.percent + '%'};
   height: 100%;
   border-radius: 3px;
 `;
