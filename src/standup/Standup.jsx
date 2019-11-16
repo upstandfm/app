@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AudioPlayer, { AudioPlayerProvider } from '../components/AudioPlayer';
+import AudioPlayer, {
+  AudioPlayerProvider,
+  LoadingAudioPlayer
+} from '../components/AudioPlayer';
+
 import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
 
@@ -26,7 +30,9 @@ export function PureStandup({ isLoading, standup }) {
   if (isLoading) {
     return (
       <Container>
-        {/* TODO: Player skeleton */}
+        <StandupPlayer>
+          <LoadingAudioPlayer />
+        </StandupPlayer>
 
         <StandupInfo>
           <LoadingInfo />

@@ -13,6 +13,37 @@ import { formatTime } from './utils';
 import { Container, Controls, Main, PlayState, Title, Meta } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
 
+export function LoadingAudioPlayer() {
+  return (
+    <Container>
+      <Controls>
+        <Button tertiary disabled>
+          <PlayState>
+            <FontAwesomeIcon icon="play" size="2x" />
+          </PlayState>
+        </Button>
+      </Controls>
+
+      <Main>
+        <Title />
+
+        <ProgressBar
+          isDisabled={true}
+          percent={0}
+          handleSeek={() => undefined}
+        />
+
+        <Timing>
+          <PlayTime />
+          <TotalTime />
+        </Timing>
+      </Main>
+
+      <Meta />
+    </Container>
+  );
+}
+
 export function PureAudioPlayer({
   fileTitle,
   isPlaying,
