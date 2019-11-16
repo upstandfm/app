@@ -10,17 +10,16 @@ import useDownloadFile from './use-download-file';
 import usePlayAudio from './use-play-audio';
 import { formatTime } from './utils';
 
-import { Container, Controls, Main, Title, Meta } from './Layout';
+import { Container, Controls, Main, PlayState, Title, Meta } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
 
 export function PureAudioPlayer({
   fileTitle,
-  shouldPlay,
+  isPlaying,
   isDownloading,
   playAudio,
   pauseAudio,
   canPlay,
-  isPaused,
   isSeeking,
   hasEnded,
   totalTimeSeconds,
@@ -35,8 +34,8 @@ export function PureAudioPlayer({
       return;
     }
 
-    shouldPlay ? play() : pause();
-  }, [canPlay, shouldPlay, play, pause]);
+    isPlaying ? play() : pause();
+  }, [canPlay, isPlaying, play, pause]);
 
   React.useEffect(() => {
     if (hasEnded) {
@@ -51,7 +50,7 @@ export function PureAudioPlayer({
       return;
     }
 
-    shouldPlay ? pauseAudio() : playAudio();
+    isPlaying ? pauseAudio() : playAudio();
   };
 
   const handleSeek = e => {
@@ -76,7 +75,13 @@ export function PureAudioPlayer({
     <Container>
       <Controls>
         <Button tertiary disabled={!canPlay} onClick={handlePlayPause}>
-          <FontAwesomeIcon icon={isPaused ? 'play' : 'pause'} size="2x" />
+          <PlayState>
+            {isDownloading ? (
+              <FontAwesomeIcon icon="circle-notch" size="2x" spin />
+            ) : (
+              <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="2x" />
+            )}
+          </PlayState>
         </Button>
       </Controls>
 
@@ -108,12 +113,11 @@ export function PureAudioPlayer({
 
 PureAudioPlayer.propTypes = {
   fileTitle: PropTypes.string,
-  shouldPlay: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
   isDownloading: PropTypes.bool,
   playAudio: PropTypes.func.isRequired,
   pauseAudio: PropTypes.func.isRequired,
   canPlay: PropTypes.bool.isRequired,
-  isPaused: PropTypes.bool.isRequired,
   isSeeking: PropTypes.bool.isRequired,
   hasEnded: PropTypes.bool.isRequired,
   totalTimeSeconds: PropTypes.number.isRequired,
@@ -176,7 +180,6 @@ function AudioPlayer() {
     audio,
     playAudioErrMsg,
     canPlay,
-    isPaused,
     isSeeking,
     hasEnded,
     totalTimeSeconds,
@@ -227,12 +230,11 @@ function AudioPlayer() {
   return (
     <PureAudioPlayer
       fileTitle={fileTitle}
-      shouldPlay={isPlaying}
+      isPlaying={isPlaying}
       isDownloading={isDownloading}
       playAudio={playAudio}
       pauseAudio={pauseAudio}
       canPlay={canPlay}
-      isPaused={isPaused}
       isSeeking={isSeeking}
       hasEnded={hasEnded}
       totalTimeSeconds={totalTimeSeconds}
