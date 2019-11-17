@@ -13,41 +13,22 @@ import PreparingTimer from './PreparingTimer';
 import ProgressTimer from './ProgressTimer';
 
 const StartRecordButton = styled(Button)`
-  width: 56px;
-  height: 56px;
+  color: var(--color-white);
   background-color: var(--color-dark-red);
-  border-color: var(--color-dark-red);
-  box-shadow: none;
 
   :hover {
     background-color: var(--color-red);
     border-color: var(--color-red);
   }
-
-  :active {
-    background-color: var(--color-darker-red);
-    border-color: var(--color-darker-red);
-  }
 `;
 
 const StopRecordButton = styled(Button)`
-  width: 56px;
-  height: 56px;
   background-color: var(--color-light-grey);
-  border-color: var(--color-light-grey);
-  color: var(--color-dark-red) !important;
-  box-shadow: none;
+  color: var(--color-dark-red);
 
   :hover {
     background-color: var(--color-light-grey);
-    border-color: var(--color-light-grey);
-    color: var(--color-red) !important;
-  }
-
-  :active {
-    background-color: var(--color-light-grey);
-    border-color: var(--color-light-grey);
-    color: var(--color-darker-red) !important;
+    color: var(--color-red);
   }
 `;
 

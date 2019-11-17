@@ -135,7 +135,7 @@ function Standups() {
   return (
     <Container>
       <Header>
-        <Title>Standups</Title>
+        <Title />
 
         <Actions>
           <Button as={Link} to="/new">

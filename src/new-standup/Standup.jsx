@@ -44,7 +44,11 @@ function Standup({ standupName, dispatch, handleNextStep }) {
       </Section>
 
       <Actions>
-        <Button disabled={standupName.length === 0} onClick={handleClickNext}>
+        <Button
+          secondary
+          disabled={standupName.length === 0}
+          onClick={handleClickNext}
+        >
           Next
         </Button>
       </Actions>

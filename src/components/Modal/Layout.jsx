@@ -16,8 +16,6 @@ export const Footer = styled.div`
   background-color: var(--color-lightest-grey);
   padding: 1.25em;
 
-  border-radius: 0 0 16px 16px;
-
   @media (max-width: 470px) {
     flex-direction: column;
   }
