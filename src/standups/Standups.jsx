@@ -43,14 +43,9 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
     <>
       <Cards>
         {standups.map(standup => {
-          const { standupId, standupName, standupImageUrl } = standup;
+          const { standupId, standupName } = standup;
           return (
-            <Card
-              key={standupId}
-              linkTo={standupId}
-              title={standupName}
-              bgImageUrl={standupImageUrl}
-            />
+            <Card key={standupId} linkTo={standupId} title={standupName} />
           );
         })}
       </Cards>
@@ -77,8 +72,7 @@ PureStandups.propTypes = {
   standups: PropTypes.arrayOf(
     PropTypes.shape({
       standupId: PropTypes.string.isRequired,
-      standupName: PropTypes.string.isRequired,
-      standupImageUrl: PropTypes.string
+      standupName: PropTypes.string.isRequired
     })
   )
 };
