@@ -13,8 +13,7 @@ const LoadingContainer = styled(Container).attrs(() => ({
 
   :hover {
     cursor: wait;
-    transform: none;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
   }
 `;
 
@@ -33,8 +32,6 @@ const glimmer = keyframes`
 `;
 
 const LoadingTitle = styled(Title)`
-  text-shadow: none;
-  border-radius: 33px;
   color: transparent;
   background-color: var(--color-light-grey);
   background-repeat: no-repeat;
