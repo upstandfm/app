@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Button from '../components/Button';
 import AudioRecorder from '../components/AudioRecorder';
 
 import { Subtitle, Actions } from './Layout';
+
+const ButtonSpaceRight = styled(Button)`
+  margin: 0 1.5em 0 0;
+`;
 
 function Today({
   update,
@@ -27,11 +32,11 @@ function Today({
       />
 
       <Actions>
-        <Button tertiary onClick={handlePreviousStep}>
+        <ButtonSpaceRight tertiary onClick={handlePreviousStep}>
           Previous
-        </Button>
+        </ButtonSpaceRight>
 
-        <Button secondary disabled={!hasRecording} onClick={handleNextStep}>
+        <Button tertiary disabled={!hasRecording} onClick={handleNextStep}>
           Next
         </Button>
       </Actions>

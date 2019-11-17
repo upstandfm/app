@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Button from '../components/Button';
 
 import { Subtitle, Actions } from './Layout';
+
+const ButtonSpaceRight = styled(Button)`
+  margin: 0 1.5em 0 0;
+`;
 
 function Save({ handlePreviousStep, handleSave, isSaving }) {
   return (
@@ -11,9 +16,13 @@ function Save({ handlePreviousStep, handleSave, isSaving }) {
       <Subtitle>Ready to save and publish your update?</Subtitle>
 
       <Actions>
-        <Button tertiary onClick={handlePreviousStep} disabled={isSaving}>
+        <ButtonSpaceRight
+          tertiary
+          onClick={handlePreviousStep}
+          disabled={isSaving}
+        >
           Previous
-        </Button>
+        </ButtonSpaceRight>
 
         <Button disabled={isSaving} onClick={handleSave}>
           {isSaving ? 'Saving..' : 'Yes, save and publish'}

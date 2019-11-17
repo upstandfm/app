@@ -22,11 +22,11 @@ function Yesterday({ update, dispatch, stream, handleNextStep }) {
 
       <Actions>
         {hasRecording ? (
-          <Button secondary onClick={handleNextStep}>
+          <Button tertiary onClick={handleNextStep}>
             Next
           </Button>
         ) : (
-          <Button secondary onClick={handleNextStep}>
+          <Button tertiary onClick={handleNextStep}>
             Skip
           </Button>
         )}

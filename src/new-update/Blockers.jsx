@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Button from '../components/Button';
 import AudioRecorder from '../components/AudioRecorder';
 
 import { Subtitle, Actions } from './Layout';
+
+const ButtonSpaceRight = styled(Button)`
+  margin: 0 1.5em 0 0;
+`;
 
 function Blockers({
   update,
@@ -27,16 +32,16 @@ function Blockers({
       />
 
       <Actions>
-        <Button tertiary onClick={handlePreviousStep}>
+        <ButtonSpaceRight tertiary onClick={handlePreviousStep}>
           Previous
-        </Button>
+        </ButtonSpaceRight>
 
         {hasRecording ? (
-          <Button secondary onClick={handleNextStep}>
+          <Button tertiary onClick={handleNextStep}>
             Next
           </Button>
         ) : (
-          <Button secondary onClick={handleNextStep}>
+          <Button tertiary onClick={handleNextStep}>
             Skip
           </Button>
         )}
