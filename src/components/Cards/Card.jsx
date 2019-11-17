@@ -8,26 +8,20 @@ export const Container = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
+  border: 2px solid var(--color-darkest-purple);
+  transition: all 0.1s linear;
 
   :hover {
-    transform: scale(1.025);
-    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 8px 8px 0 0 var(--color-darkest-purple);
   }
 
   :focus-within {
-    transform: scale(1.025);
-    box-shadow: 0px 0px 0px 3px var(--color-light-mint);
+    outline: 3px solid var(--color-light-mint);
 
     a:focus {
       text-decoration: none;
     }
-  }
-
-  @media (max-width: 350px) {
-    width: 100%;
   }
 `;
 
@@ -35,44 +29,29 @@ export const WrapperLink = styled(Link)`
   display: grid;
   height: 260px;
   padding: 1em;
-  border-radius: 8px;
   text-decoration: none;
-  background-color: var(--color-dark-purple);
-  background-position: center center;
-  background-size: cover;
-  background-clip: border-box;
-  background-repeat: repeat;
-  background-image: ${props => `linear-gradient(
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0) 70%
-    ),
-    url(${props.bg})`};
+  background-color: var(--color-lighter-coral);
+  transition: all 0.1s linear;
 
-  :focus {
-    box-shadow: none;
-    text-decoration: underline;
+  :hover {
+    background-color: var(--color-lightest-coral);
   }
 `;
-
-WrapperLink.propTypes = {
-  bg: PropTypes.string
-};
 
 export const Title = styled.h2`
   margin: 0.25em 0;
   font-size: 26px;
   line-height: 1.2223;
   letter-spacing: 0.022em;
-  color: var(--color-white);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  color: var(--color-darkest-purple);
   word-break: break-word;
   overflow: auto;
 `;
 
-function Card({ title, linkTo, bgImageUrl }) {
+function Card({ title, linkTo }) {
   return (
     <Container>
-      <WrapperLink data-testid="link" to={linkTo} title={title} bg={bgImageUrl}>
+      <WrapperLink data-testid="link" to={linkTo} title={title}>
         <Title>{title}</Title>
       </WrapperLink>
     </Container>
@@ -81,8 +60,7 @@ function Card({ title, linkTo, bgImageUrl }) {
 
 Card.propTypes = {
   linkTo: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  bgImageUrl: PropTypes.string
+  title: PropTypes.string.isRequired
 };
 
 export default Card;

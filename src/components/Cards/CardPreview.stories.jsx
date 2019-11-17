@@ -17,16 +17,3 @@ export const CardPreviewWithTitle = () => {
 CardPreviewWithTitle.story = {
   name: 'title'
 };
-
-export const CardPreviewWithBgImage = () => {
-  return (
-    <CardPreview
-      title="A preview title"
-      bgImageUrl="https://images.unsplash.com/photo-1568027867737-cedfbcb5e98a"
-    />
-  );
-};
-
-CardPreviewWithBgImage.story = {
-  name: 'title + bgImageUrl'
-};

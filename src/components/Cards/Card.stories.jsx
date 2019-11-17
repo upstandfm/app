@@ -21,19 +21,3 @@ export const CardWithTitleAndLink = () => {
 CardWithTitleAndLink.story = {
   name: 'linkTo + title'
 };
-
-export const CardWithBgImage = () => {
-  return (
-    <ul>
-      <Card
-        linkTo="standups/2"
-        title="Team donut"
-        bgImageUrl="https://images.unsplash.com/photo-1568027867737-cedfbcb5e98a"
-      />
-    </ul>
-  );
-};
-
-CardWithBgImage.story = {
-  name: 'linkTo + title + bgImageUrl'
-};

@@ -8,19 +8,22 @@ const PreviewContainer = styled(Container).attrs(() => ({
   as: 'div'
 }))`
   :hover {
-    transform: none;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
   }
 `;
 
 const Wrapper = styled(WrapperLink).attrs(() => ({
   as: 'div'
-}))``;
+}))`
+  :hover {
+    background-color: var(--color-lighter-coral);
+  }
+`;
 
-function CardPreview({ title, bgImageUrl }) {
+function CardPreview({ title }) {
   return (
     <PreviewContainer>
-      <Wrapper title={title} bg={bgImageUrl}>
+      <Wrapper title={title}>
         <Title>{title}</Title>
       </Wrapper>
     </PreviewContainer>
@@ -28,8 +31,7 @@ function CardPreview({ title, bgImageUrl }) {
 }
 
 CardPreview.propTypes = {
-  title: PropTypes.string.isRequired,
-  bgImageUrl: PropTypes.string
+  title: PropTypes.string.isRequired
 };
 
 export default CardPreview;
