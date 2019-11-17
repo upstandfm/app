@@ -46,30 +46,6 @@ DisabledButton.story = {
   name: 'disabled default'
 };
 
-export const SpecialButton = () => {
-  return (
-    <Button special onClick={handleClick}>
-      Click Me
-    </Button>
-  );
-};
-
-SpecialButton.story = {
-  name: 'special'
-};
-
-export const DisabledSpecialButton = () => {
-  return (
-    <Button special disabled onClick={handleClick}>
-      Click Me
-    </Button>
-  );
-};
-
-DisabledSpecialButton.story = {
-  name: 'disabled special'
-};
-
 export const SecondaryButton = () => {
   return (
     <Button secondary onClick={handleClick}>
@@ -121,7 +97,7 @@ DisabledTertiaryButton.story = {
 export const RoundButton = () => {
   return (
     <Button round onClick={handleClick}>
-      add
+      Add
     </Button>
   );
 };
@@ -133,7 +109,7 @@ RoundButton.story = {
 export const DisabledRoundButton = () => {
   return (
     <Button round disabled onClick={handleClick}>
-      add
+      Add
     </Button>
   );
 };
