@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
 
@@ -25,7 +26,13 @@ function Save({ handlePreviousStep, handleSave, isSaving }) {
         </ButtonSpaceRight>
 
         <Button disabled={isSaving} onClick={handleSave}>
-          {isSaving ? 'Saving..' : 'Yes, save and publish'}
+          {isSaving ? (
+            <>
+              <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Saving..
+            </>
+          ) : (
+            'Yes, save and publish'
+          )}
         </Button>
       </Actions>
     </div>
