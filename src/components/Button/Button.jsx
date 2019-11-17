@@ -37,16 +37,6 @@ const RootButton = styled.button`
   }
 `;
 
-const SpecialButton = styled(RootButton)`
-  background-color: var(--color-light-coral);
-  border-color: var(--color-darkest-purple);
-
-  :hover {
-    background-color: var(--color-lighter-coral);
-    box-shadow: 8px 8px 0 0 var(--color-darkest-purple);
-  }
-`;
-
 const PrimaryButton = styled(RootButton)`
   background-color: var(--color-lighter-purple);
   border-color: var(--color-darkest-purple);
@@ -76,7 +66,6 @@ const TertiaryButton = styled(RootButton)`
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
-  color: var(--color-purple);
 
   :hover {
     color: var(--color-light-purple);
@@ -127,15 +116,7 @@ const RoundButton = styled(RootButton)`
  * https://www.styled-components.com/docs/basics#extending-styles
  */
 const Button = React.forwardRef((props, ref) => {
-  const { special, secondary, tertiary, round } = props;
-
-  if (special) {
-    return (
-      <SpecialButton ref={ref} {...props}>
-        {props.children}
-      </SpecialButton>
-    );
-  }
+  const { secondary, tertiary, round } = props;
 
   if (secondary) {
     return (
@@ -169,7 +150,6 @@ const Button = React.forwardRef((props, ref) => {
 });
 
 Button.propTypes = {
-  special: PropTypes.bool,
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
   round: PropTypes.bool,
