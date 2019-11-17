@@ -21,10 +21,10 @@ export const Step = styled.li`
   border-top: 2px solid;
   border-color: ${props =>
     props.done || props.current
-      ? 'var(--color-light-purple)'
-      : 'var(--color-lightest-purple)'};
+      ? 'var(--color-darkest-purple)'
+      : 'var(--color-lighter-grey)'};
   color: ${props =>
-    props.current ? 'var(--color-purple)' : 'var(--color-lighter-purple)'};
+    props.current ? 'var(--color-darkest-purple)' : 'var(--color-light-grey)'};
   counter-increment: step-progress;
   white-space: nowrap;
   overflow: hidden;
