@@ -37,7 +37,6 @@ export const Input = styled.input`
   font-weight: bold;
   line-height: 1.25;
   border: 2px solid var(--color-light-grey);
-  border-radius: 4px;
   color: var(--color-darkest-grey);
 
   ::placeholder {
@@ -46,14 +45,14 @@ export const Input = styled.input`
   }
 
   :focus {
-    box-shadow: 0 0 1px 0 var(--color-purple);
-    border-color: var(--color-purple);
+    box-shadow: 0 0 1px 0 var(--color-light-purple);
+    border-color: var(--color-light-purple);
   }
 
   :disabled {
     cursor: not-allowed;
-    background-color: var(--color-lightest-grey);
-    color: var(--color-grey);
+    background-color: var(--color-white);
+    text-decoration: line-through;
   }
 
   :invalid {
