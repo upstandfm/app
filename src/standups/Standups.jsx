@@ -59,11 +59,9 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
         <LoadMoreContainer>
           <Button tertiary disabled={isLoading} onClick={handleLoadMore}>
             {isLoading ? (
-              <>
-                <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Loading..
-              </>
+              <FontAwesomeIcon icon="circle-notch" spin />
             ) : (
-              'Load more'
+              'Load more standups'
             )}
           </Button>
         </LoadMoreContainer>

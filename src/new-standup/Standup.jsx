@@ -45,7 +45,7 @@ function Standup({ standupName, dispatch, handleNextStep }) {
 
       <Actions>
         <Button
-          secondary
+          tertiary
           disabled={standupName.length === 0}
           onClick={handleClickNext}
         >

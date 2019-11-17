@@ -91,7 +91,7 @@ function Confirm({ show, handleCancel, handleConfirm, title, message }) {
           No, cancel
         </ButtonWithSpace>
 
-        <Button secondary onClick={handleConfirm}>
+        <Button tertiary onClick={handleConfirm}>
           Yes, I&apos;m sure
         </Button>
       </Footer>

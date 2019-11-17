@@ -203,7 +203,7 @@ function Invite({
           Previous
         </ButtonSpaceRight>
 
-        <Button secondary onClick={handleNext}>
+        <Button tertiary onClick={handleNext}>
           {standupUsers.length === 0 ? 'Skip for now' : 'Next'}
         </Button>
       </Actions>
