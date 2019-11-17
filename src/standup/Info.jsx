@@ -19,7 +19,9 @@ const Container = styled.div`
 `;
 
 const LoadingContainer = styled(Container)`
-  background-color: var(--color-lighter-grey);
+  background-color: var(--color-white);
+  box-shadow: 6px 6px 0 0 var(--color-light-grey);
+  border-color: var(--color-light-grey);
 
   :hover {
     cursor: wait;
