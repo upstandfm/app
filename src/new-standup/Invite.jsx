@@ -159,7 +159,7 @@ function Invite({
 
         <InlineButton
           disabled={email.length === 0 || Boolean(feedback)}
-          secondary
+          tertiary
           onClick={handleAddUser}
         >
           Add
@@ -203,7 +203,7 @@ function Invite({
           Previous
         </ButtonSpaceRight>
 
-        <Button onClick={handleNext}>
+        <Button secondary onClick={handleNext}>
           {standupUsers.length === 0 ? 'Skip for now' : 'Next'}
         </Button>
       </Actions>

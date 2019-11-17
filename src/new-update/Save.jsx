@@ -15,7 +15,7 @@ function Save({ handlePreviousStep, handleSave, isSaving }) {
           Previous
         </Button>
 
-        <Button secondary disabled={isSaving} onClick={handleSave}>
+        <Button disabled={isSaving} onClick={handleSave}>
           {isSaving ? 'Saving..' : 'Yes, save and publish'}
         </Button>
       </Actions>
