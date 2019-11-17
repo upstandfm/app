@@ -22,42 +22,6 @@ DefaultButton.story = {
   name: 'default'
 };
 
-export const SpecialButton = () => {
-  return (
-    <Button special onClick={handleClick}>
-      Click Me
-    </Button>
-  );
-};
-
-SpecialButton.story = {
-  name: 'special'
-};
-
-export const SecondaryButton = () => {
-  return (
-    <Button secondary onClick={handleClick}>
-      Click Me
-    </Button>
-  );
-};
-
-SecondaryButton.story = {
-  name: 'secondary'
-};
-
-export const TertiaryButton = () => {
-  return (
-    <Button tertiary onClick={handleClick}>
-      Click Me
-    </Button>
-  );
-};
-
-TertiaryButton.story = {
-  name: 'tertiary'
-};
-
 export const IconTextButton = () => {
   return (
     <Button onClick={handleClick}>
@@ -67,7 +31,7 @@ export const IconTextButton = () => {
 };
 
 IconTextButton.story = {
-  name: 'icon + text'
+  name: 'default + icon'
 };
 
 export const DisabledButton = () => {
@@ -82,6 +46,18 @@ DisabledButton.story = {
   name: 'disabled default'
 };
 
+export const SpecialButton = () => {
+  return (
+    <Button special onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+SpecialButton.story = {
+  name: 'special'
+};
+
 export const DisabledSpecialButton = () => {
   return (
     <Button special disabled onClick={handleClick}>
@@ -92,6 +68,18 @@ export const DisabledSpecialButton = () => {
 
 DisabledSpecialButton.story = {
   name: 'disabled special'
+};
+
+export const SecondaryButton = () => {
+  return (
+    <Button secondary onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+SecondaryButton.story = {
+  name: 'secondary'
 };
 
 export const DisabledSecondaryButton = () => {
@@ -106,6 +94,18 @@ DisabledSecondaryButton.story = {
   name: 'disabled secondary'
 };
 
+export const TertiaryButton = () => {
+  return (
+    <Button tertiary onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+TertiaryButton.story = {
+  name: 'tertiary'
+};
+
 export const DisabledTertiaryButton = () => {
   return (
     <Button tertiary disabled onClick={handleClick}>
@@ -116,4 +116,28 @@ export const DisabledTertiaryButton = () => {
 
 DisabledTertiaryButton.story = {
   name: 'disabled tertiary'
+};
+
+export const RoundButton = () => {
+  return (
+    <Button round onClick={handleClick}>
+      add
+    </Button>
+  );
+};
+
+RoundButton.story = {
+  name: 'round'
+};
+
+export const DisabledRoundButton = () => {
+  return (
+    <Button round disabled onClick={handleClick}>
+      add
+    </Button>
+  );
+};
+
+DisabledRoundButton.story = {
+  name: 'disabled round'
 };

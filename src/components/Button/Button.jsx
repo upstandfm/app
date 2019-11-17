@@ -30,7 +30,7 @@ const RootButton = styled.button`
   :disabled,
   :disabled:hover {
     cursor: not-allowed;
-    color: var(--color-dark-grey);
+    color: var(--color-darkest-purple);
     background-color: var(--color-light-grey);
     box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
     text-decoration: line-through;
@@ -59,11 +59,10 @@ const PrimaryButton = styled(RootButton)`
 
 const SecondaryButton = styled(RootButton)`
   background-color: transparent;
-  border-color: var(--color-darkest-purple);
   box-shadow: none;
 
   :hover {
-    background-color: var(--color-lightest-grey);
+    background-color: var(--color-lightest-purple);
   }
 
   :disabled,
@@ -77,14 +76,35 @@ const TertiaryButton = styled(RootButton)`
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
+  color: var(--color-purple);
 
   :hover {
-    color: var(--color-purple);
+    color: var(--color-light-purple);
   }
 
   :disabled,
   :disabled:hover {
     background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+`;
+
+const RoundButton = styled(RootButton)`
+  padding: 0;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: var(--color-lighter-purple);
+
+  :hover {
+    background-color: var(--color-lightest-purple);
+  }
+
+  :disabled,
+  :disabled:hover {
     border-color: transparent;
     box-shadow: none;
   }
@@ -107,7 +127,7 @@ const TertiaryButton = styled(RootButton)`
  * https://www.styled-components.com/docs/basics#extending-styles
  */
 const Button = React.forwardRef((props, ref) => {
-  const { special, secondary, tertiary } = props;
+  const { special, secondary, tertiary, round } = props;
 
   if (special) {
     return (
@@ -133,6 +153,14 @@ const Button = React.forwardRef((props, ref) => {
     );
   }
 
+  if (round) {
+    return (
+      <RoundButton ref={ref} {...props}>
+        {props.children}
+      </RoundButton>
+    );
+  }
+
   return (
     <PrimaryButton ref={ref} {...props}>
       {props.children}
@@ -144,6 +172,7 @@ Button.propTypes = {
   special: PropTypes.bool,
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
+  round: PropTypes.bool,
   disabled: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
