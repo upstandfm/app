@@ -34,7 +34,9 @@ const Image = styled.img`
 `;
 
 export default function Avatar({ title, fullName, avatarUrl, altText }) {
-  const initials = getFullNameInitials(fullName);
+  // API returns "null" by default
+  const initials = getFullNameInitials(fullName || '');
+
   return (
     <AvatarContainer title={title}>
       {initials}
