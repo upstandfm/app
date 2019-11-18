@@ -19,10 +19,6 @@ const RootButton = styled.button`
   box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
   color: var(--color-darkest-purple);
 
-  :focus {
-    outline: 3px solid var(--color-light-mint);
-  }
-
   :hover {
     cursor: pointer;
   }
