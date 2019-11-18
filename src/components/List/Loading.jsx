@@ -1,6 +1,11 @@
 import styled, { keyframes } from 'styled-components';
 
-import { ListItem } from './List';
+import { ListContainer, ListItem } from './List';
+
+export const LoadingListContainer = styled(ListContainer)`
+  box-shadow: 6px 6px 0 0 var(--color-light-grey);
+  border-color: var(--color-light-grey);
+`;
 
 export const LoadingListItem = styled(ListItem)`
   :hover {
@@ -18,7 +23,6 @@ const glimmer = keyframes`
 `;
 
 export const LoadingListItemText = styled.span`
-  border-radius: 33px;
   color: transparent;
   background-color: var(--color-light-grey);
   background-repeat: no-repeat;
