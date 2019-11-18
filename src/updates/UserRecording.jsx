@@ -11,7 +11,9 @@ const RecordingListItem = styled(ListItem)`
 
   .play-state {
     color: ${props =>
-      props.isSelected ? 'var(--color-purple)' : 'var(--color-light-grey)'};
+      props.isSelected
+        ? 'var(--color-darkest-purple)'
+        : 'var(--color-light-grey)'};
   }
 
   :hover {
@@ -28,16 +30,12 @@ const RecordingListItem = styled(ListItem)`
     }};
 
     .play-state {
-      color: var(--color-purple);
+      color: var(--color-light-purple);
     }
   }
 
   :focus {
     background-color: var(--color-lightest-grey);
-
-    .play-state {
-      color: var(--color-dark-purple);
-    }
   }
 `;
 

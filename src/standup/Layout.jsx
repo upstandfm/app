@@ -33,8 +33,7 @@ export const StandupPlayer = styled.div`
   grid-area: standup-player;
   display: grid;
   justify-items: center;
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-lighter-grey);
+  border-bottom: 1px solid var(--color-light-grey);
   margin: 0 0 1em 0;
   padding: 1em 0;
   width: 100%;
