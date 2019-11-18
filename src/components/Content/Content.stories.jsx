@@ -12,7 +12,7 @@ export default {
 
 export const DefaultContent = () => {
   return (
-    <Content title="This is a title" subtitle="This is a subtitle.">
+    <Content title="This is a title" subtitle="And this is a subtitle.">
       <p>Pass the main content as child components.</p>
 
       <p>
