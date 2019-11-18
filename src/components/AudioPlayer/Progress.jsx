@@ -7,7 +7,6 @@ const Outer = styled.div`
   width: 100%;
   height: 8px;
   background-color: var(--color-lightest-purple);
-  border-radius: 3px;
 
   :hover {
     cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
@@ -19,9 +18,8 @@ const Inner = styled.div.attrs(props => ({
     width: props.percent + '%'
   }
 }))`
-  background: var(--color-purple);
+  background: var(--color-darkest-purple);
   height: 100%;
-  border-radius: 3px;
 `;
 
 export const ProgressBar = React.forwardRef((props, ref) => {
