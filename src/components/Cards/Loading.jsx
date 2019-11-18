@@ -10,12 +10,10 @@ const LoadingContainer = styled(Container).attrs(() => ({
   as: 'div'
 }))`
   background-color: var(--color-white);
-  box-shadow: 6px 6px 0 0 var(--color-light-grey);
   border-color: var(--color-light-grey);
 
   :hover {
     cursor: wait;
-    box-shadow: 6px 6px 0 0 var(--color-light-grey);
   }
 `;
 

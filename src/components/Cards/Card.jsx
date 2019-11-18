@@ -8,21 +8,7 @@ export const Container = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
-  box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
   border: 2px solid var(--color-darkest-purple);
-  transition: all 0.1s linear;
-
-  :hover {
-    box-shadow: 8px 8px 0 0 var(--color-darkest-purple);
-  }
-
-  :focus-within {
-    outline: 3px solid var(--color-light-mint);
-
-    a:focus {
-      text-decoration: none;
-    }
-  }
 `;
 
 export const WrapperLink = styled(Link)`
