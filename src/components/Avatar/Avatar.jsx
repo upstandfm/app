@@ -12,7 +12,7 @@ export const AvatarContainer = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--color-lighter-grey);
+  background-color: var(--color-lightest-purple);
   color: var(--color-dark-purple);
   font-weight: bold;
   border: 4px solid var(--color-white);
@@ -33,12 +33,18 @@ const Image = styled.img`
   border-radius: 50%;
 `;
 
-export default function Avatar({ title, fullName, avatarUrl, altText }) {
+export default function Avatar({
+  title,
+  fullName,
+  avatarUrl,
+  altText,
+  ...props
+}) {
   // API returns "null" by default
   const initials = getFullNameInitials(fullName || '');
 
   return (
-    <AvatarContainer title={title}>
+    <AvatarContainer title={title} {...props}>
       {initials}
       <Image src={avatarUrl} alt={altText} />
     </AvatarContainer>

@@ -36,12 +36,11 @@ export const Input = styled.input`
   font-size: 15px;
   font-weight: bold;
   line-height: 1.25;
-  border: 2px solid var(--color-light-grey);
+  border: 2px solid var(--color-grey);
   color: var(--color-darkest-grey);
 
   ::placeholder {
     font-weight: normal;
-    opacity: 0.4;
   }
 
   :focus {

@@ -16,9 +16,7 @@ export const Header = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.h1`
-  font-weight: normal;
-`;
+export const Title = styled.h1``;
 
 export const Main = styled.div`
   margin: 0;

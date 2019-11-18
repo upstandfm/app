@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Empty from '../components/Empty';
-import Avatar from '../components/Avatar';
+import Avatar, { LoadingAvatar } from '../components/Avatar';
 import {
   ListContainer,
   List,
@@ -35,13 +35,17 @@ const RecordingsList = styled(List)`
   }
 `;
 
+const CustomLoadingAvatar = styled(LoadingAvatar)`
+  border-color: var(--color-white);
+`;
+
 export function LoadingUserRecordings() {
   return (
     <LoadingListContainer>
       <List as="div">
         <div>
           <LoadingListItem as="div">
-            <Avatar />
+            <CustomLoadingAvatar />
 
             <div>
               <LoadingListItemText>Loading user name</LoadingListItemText>
@@ -77,7 +81,7 @@ export function LoadingUserRecordings() {
 
         <div>
           <LoadingListItem as="div">
-            <Avatar />
+            <CustomLoadingAvatar />
 
             <div>
               <LoadingListItemText>Loading user name</LoadingListItemText>

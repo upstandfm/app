@@ -25,7 +25,6 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-weight: normal;
   margin: 0;
 `;
 
@@ -54,7 +53,6 @@ const glimmer = keyframes`
 `;
 
 export const LoadingSubtitle = styled(Subtitle)`
-  border-radius: 33px;
   color: transparent;
   background-color: var(--color-light-grey);
   background-repeat: no-repeat;
