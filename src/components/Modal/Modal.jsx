@@ -25,11 +25,11 @@ const Inner = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.3);
   border: 2px solid var(--color-darkest-purple);
 
   :focus {
-    box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
+    outline: 0;
   }
 
   @media (max-width: 470px) {

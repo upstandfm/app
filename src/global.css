@@ -82,13 +82,13 @@ body {
   background-color: var(--color-lightest-grey);
 }
 
-:focus {
-  outline: 2px solid var(--color-light-mint);
+/* For Nav links */
+a,
+a:visited {
+  font-weight: bold;
 }
 
-/**
-* Lock the scroll position by adding this class to the "html" element.
-*/
+/* Lock the scroll position by adding this class to the "html" element. */
 .scroll-lock {
   overflow: hidden !important;
 }

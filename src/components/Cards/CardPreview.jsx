@@ -4,14 +4,6 @@ import styled from 'styled-components';
 
 import { Container, WrapperLink, Title } from './Card';
 
-const PreviewContainer = styled(Container).attrs(() => ({
-  as: 'div'
-}))`
-  :hover {
-    box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
-  }
-`;
-
 const Wrapper = styled(WrapperLink).attrs(() => ({
   as: 'div'
 }))`
@@ -22,11 +14,11 @@ const Wrapper = styled(WrapperLink).attrs(() => ({
 
 function CardPreview({ title }) {
   return (
-    <PreviewContainer>
+    <Container as="div">
       <Wrapper title={title}>
         <Title>{title}</Title>
       </Wrapper>
-    </PreviewContainer>
+    </Container>
   );
 }
 

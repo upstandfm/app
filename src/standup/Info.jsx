@@ -8,9 +8,7 @@ const Container = styled.div`
   width: 235px;
   margin: 1em;
   padding: 0;
-  box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
   border: 2px solid var(--color-darkest-purple);
-  transition: all 0.1s linear;
 
   @media (max-width: 770px) {
     margin-left: auto;
@@ -20,7 +18,6 @@ const Container = styled.div`
 
 const LoadingContainer = styled(Container)`
   background-color: var(--color-white);
-  box-shadow: 6px 6px 0 0 var(--color-light-grey);
   border-color: var(--color-light-grey);
 
   :hover {
