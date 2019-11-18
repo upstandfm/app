@@ -7,7 +7,7 @@ import { ListItem } from '../components/List';
 
 const RecordingListItem = styled(ListItem)`
   background-color: ${props =>
-    props.isSelected ? 'var(--color-lightest-grey)' : 'inherit'};
+    props.isSelected ? 'var(--color-lighter-grey)' : 'inherit'};
 
   .play-state {
     color: ${props =>
@@ -30,12 +30,28 @@ const RecordingListItem = styled(ListItem)`
     }};
 
     .play-state {
-      color: var(--color-light-purple);
+      color: ${props => {
+        if (props.isDownloading) {
+          return 'var(--color-darkest-purple)';
+        }
+
+        return 'var(--color-light-purple)';
+      }};
     }
   }
 
   :focus {
-    background-color: var(--color-lightest-grey);
+    background-color: var(--color-lighter-grey);
+
+    .play-state {
+      color: ${props => {
+        if (props.isDownloading) {
+          return 'var(--color-darkest-purple)';
+        }
+
+        return 'var(--color-light-purple)';
+      }};
+    }
   }
 `;
 
