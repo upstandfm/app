@@ -16,10 +16,14 @@ const MemberContainer = styled.li`
   margin-right: -10px;
 `;
 
+const CustomAvatar = styled(Avatar)`
+  border-color: var(--color-lightest-grey);
+`;
+
 export function Member({ userFullName, avatarUrl }) {
   return (
     <MemberContainer>
-      <Avatar
+      <CustomAvatar
         title={userFullName}
         fullName={userFullName}
         avatarUrl={avatarUrl}
@@ -58,10 +62,15 @@ const LoadingContainer = styled(MemberContainer)`
   }
 `;
 
+const CustomAvatarContainer = styled(AvatarContainer)`
+  border-color: var(--color-lightest-grey);
+  background-color: var(--color-light-grey);
+`;
+
 export function LoadingMember() {
   return (
     <LoadingContainer>
-      <AvatarContainer />
+      <CustomAvatarContainer />
     </LoadingContainer>
   );
 }
