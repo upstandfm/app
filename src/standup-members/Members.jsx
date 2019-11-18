@@ -42,6 +42,7 @@ const Count = styled(AvatarContainer)`
   font-weight: normal;
   background-color: transparent;
   color: var(--color-grey);
+  border-color: var(--color-lightest-grey);
 `;
 
 export function RestCount({ count }) {
