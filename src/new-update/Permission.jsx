@@ -10,8 +10,7 @@ import { UserMediaError } from './Errors';
 
 const Container = styled.div`
   padding: 1em;
-  background-color: var(--color-lightest-purple);
-  border-radius: 8px;
+  background-color: var(--color-lighter-grey);
   text-align: center;
 `;
 

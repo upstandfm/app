@@ -4,8 +4,7 @@ export const Container = styled.div`
   position: relative;
   margin: 2em 0 1em 0;
   padding: 1em;
-  background-color: var(--color-lightest-purple);
-  border-radius: 8px;
+  background-color: var(--color-lighter-grey);
 `;
 
 export const Main = styled.div`
