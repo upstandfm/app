@@ -32,7 +32,7 @@ export const ListItem = styled.li`
   padding: 0.5rem 1rem;
 
   :hover {
-    background-color: var(--color-lightest-grey);
+    background-color: var(--color-lighter-grey);
   }
 `;
 

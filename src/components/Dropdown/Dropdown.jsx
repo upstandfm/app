@@ -48,10 +48,9 @@ export const List = styled.ul`
   margin: 0.25em 0;
   padding: 1em 0;
   min-width: 220px;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
   background-color: var(--color-white);
-  border-radius: 8px;
-  border: 1px solid var(--color-lighter-grey);
+  border: 1px solid var(--color-light-grey);
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
   bottom: ${props => (props.dropDirection === 'up' ? '100%' : '')};
   top: ${props => (props.dropDirection === 'down' ? '100%' : '')};

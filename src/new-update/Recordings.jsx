@@ -13,7 +13,7 @@ const RecordingListItem = styled(ListItem)`
   grid-template-rows: auto auto;
   grid-gap: 0;
   background-color: ${props =>
-    props.isCurrent ? 'var(--color-lightest-grey)' : 'inherit'};
+    props.isCurrent ? 'var(--color-lighter-grey)' : 'inherit'};
 `;
 
 RecordingListItem.propTypes = {

@@ -82,6 +82,10 @@ body {
   background-color: var(--color-lightest-grey);
 }
 
+:focus {
+  outline: 3px solid var(--color-light-mint);
+}
+
 /* For Nav links */
 a,
 a:visited {

@@ -26,7 +26,7 @@ const Inner = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.3);
-  border: 2px solid var(--color-darkest-purple);
+  border: 1px solid var(--color-grey);
 
   :focus {
     outline: 0;
