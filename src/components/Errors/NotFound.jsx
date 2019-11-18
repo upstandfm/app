@@ -8,8 +8,7 @@ import Button from '../Button';
 
 const Container = styled.div`
   display: grid;
-  background-color: var(--color-lightest-grey);
-  border-radius: 8px;
+  background-color: var(--color-lighter-grey);
   margin: 2em;
 `;
 
