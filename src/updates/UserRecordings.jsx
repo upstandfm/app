@@ -9,6 +9,7 @@ import {
   List,
   ListItem,
   ListEmpty,
+  LoadingListContainer,
   LoadingListItem,
   LoadingListItemText
 } from '../components/List';
@@ -24,10 +25,10 @@ const UserListItem = styled(ListItem)`
 `;
 
 const RecordingsList = styled(List)`
-  margin-left: 33px;
+  margin-left: 36px;
   margin-bottom: 2em;
   padding: 0;
-  border-left: 1px solid var(--color-lighter-grey);
+  border-left: 1px solid var(--color-light-grey);
 
   :last-child {
     margin-bottom: 0;
@@ -36,7 +37,7 @@ const RecordingsList = styled(List)`
 
 export function LoadingUserRecordings() {
   return (
-    <ListContainer>
+    <LoadingListContainer>
       <List as="div">
         <div>
           <LoadingListItem as="div">
@@ -110,7 +111,7 @@ export function LoadingUserRecordings() {
           </RecordingsList>
         </div>
       </List>
-    </ListContainer>
+    </LoadingListContainer>
   );
 }
 

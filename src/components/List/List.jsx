@@ -2,13 +2,12 @@ import styled from 'styled-components';
 
 export const ListContainer = styled.div`
   margin: 1em 0;
-  border: 1px solid var(--color-lighter-grey);
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--color-grey);
+  box-shadow: 6px 6px 0 0 var(--color-grey);
+  background-color: var(--color-white);
 `;
 
 export const ListTitle = styled.h3`
-  color: var(--color-grey);
   margin: 0;
   padding: 1rem 1rem 0 1rem;
 `;
