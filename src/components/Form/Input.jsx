@@ -44,6 +44,7 @@ export const Input = styled.input`
   }
 
   :focus {
+    outline: 0;
     box-shadow: 0 0 1px 0 var(--color-light-purple);
     border-color: var(--color-light-purple);
   }
