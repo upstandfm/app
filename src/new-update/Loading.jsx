@@ -3,19 +3,21 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
-  margin: 2em 0 1em 0;
+  padding: 1em 2em;
   text-align: center;
+  background-color: var(--color-lighter-grey);
 `;
 
 const Text = styled.p`
-  margin: 0.25em 0;
+  margin: 1em 0;
 `;
 
 function Loading() {
   return (
     <Container>
-      <FontAwesomeIcon icon="circle-notch" size="lg" spin />
-      <Text>Getting permission..</Text>
+      <Text>
+        <FontAwesomeIcon icon="circle-notch" spin /> Getting permission..
+      </Text>
     </Container>
   );
 }

@@ -9,7 +9,7 @@ import Loading from './Loading';
 import { UserMediaError } from './Errors';
 
 const Container = styled.div`
-  padding: 1em;
+  padding: 1em 2em;
   background-color: var(--color-lighter-grey);
   text-align: center;
 `;
@@ -35,10 +35,12 @@ function Permission({ isLoading, err, handleGetPermission }) {
   return (
     <Container>
       <Title>
-        We need <b>temporary</b> access to your microphone to get started.
+        We need to <b>temporarily</b> access your microphone to get started.
       </Title>
 
-      <p>We&apos;ll use your microphone to record your update.</p>
+      <p>
+        We&apos;ll <b>only</b> use your microphone to record your update.
+      </p>
 
       <Actions>
         <Button primary onClick={handleGetPermission}>

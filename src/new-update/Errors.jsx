@@ -6,15 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSnackbar } from '../components/Snackbar';
 
 const Container = styled.div`
-  margin: 2em 0 1em 0;
-  padding: 1em;
-  background-color: var(--color-lightest-purple);
-  border-radius: 8px;
+  padding: 1em 2em;
+  background-color: var(--color-lighter-grey);
 `;
 
 const Title = styled.h2`
-  margin: 0;
-  color: var(--color-dark-purple);
+  margin: 1em 0;
+  text-align: center;
   font-weight: normal;
 `;
 
