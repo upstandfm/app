@@ -7,7 +7,8 @@ import { useSnackbar } from '../components/Snackbar';
 
 const Container = styled.div`
   padding: 1em 2em;
-  background-color: var(--color-lighter-grey);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-light-grey);
   border-radius: var(--radius-size);
 `;
 
