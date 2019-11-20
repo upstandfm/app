@@ -6,6 +6,7 @@ const Container = styled.div`
   padding: 1em 2em;
   text-align: center;
   background-color: var(--color-lighter-grey);
+  border-radius: var(--radius-size);
 `;
 
 const Text = styled.p`

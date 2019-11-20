@@ -22,8 +22,9 @@ const Section = styled.section`
   margin: 1.5em 0 0 0;
   padding: 1.5em;
   background-color: var(--color-white);
-  border: 2px solid var(--color-grey);
-  box-shadow: 6px 6px 0 0 var(--color-grey);
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
+  box-shadow: 6px 6px 0 0 var(--color-light-grey);
 `;
 
 /**

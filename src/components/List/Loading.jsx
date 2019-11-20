@@ -26,6 +26,7 @@ const glimmer = keyframes`
 export const LoadingListItemText = styled.span`
   color: transparent;
   background-color: var(--color-light-grey);
+  border-radius: var(--radius-size);
   background-repeat: no-repeat;
   background-image: linear-gradient(
     90deg,

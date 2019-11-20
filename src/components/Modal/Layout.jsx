@@ -14,6 +14,7 @@ export const Footer = styled.div`
   justify-content: flex-end;
   margin: 0em 0 0 0;
   background-color: var(--color-lightest-grey);
+  border-radius: 0 0 var(--radius-size) var(--radius-size);
   padding: 1.25em;
 
   @media (max-width: 470px) {

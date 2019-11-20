@@ -9,6 +9,7 @@ import Button from '../Button';
 const Container = styled.div`
   display: grid;
   background-color: var(--color-lighter-grey);
+  border-radius: var(--radius-size);
   margin: 2em;
 `;
 
@@ -20,7 +21,6 @@ const Wrapper = styled.div`
 
 const Title = styled.h2`
   margin: 0.5em 0 0.25em 0;
-  font-weight: normal;
   color: var(--color-dark-grey);
 `;
 

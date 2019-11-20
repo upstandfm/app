@@ -7,6 +7,7 @@ const Outer = styled.div`
   width: 100%;
   height: 8px;
   background-color: var(--color-lightest-purple);
+  border-radius: var(--radius-size);
 
   :hover {
     cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
@@ -19,6 +20,7 @@ const Inner = styled.div.attrs(props => ({
   }
 }))`
   background: var(--color-darkest-purple);
+  border-radius: var(--radius-size);
   height: 100%;
 `;
 

@@ -50,7 +50,7 @@ export const List = styled.ul`
   min-width: 220px;
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
   background-color: var(--color-white);
-  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
   bottom: ${props => (props.dropDirection === 'up' ? '100%' : '')};
   top: ${props => (props.dropDirection === 'down' ? '100%' : '')};

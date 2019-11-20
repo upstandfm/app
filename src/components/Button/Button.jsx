@@ -13,11 +13,11 @@ const RootButton = styled.button`
   box-sizing: border-box;
   margin: 0;
   padding: 8px 20px;
-  box-shadow: none;
   border: 2px solid;
-  transition: all 0.1s linear;
+  border-radius: var(--radius-size);
   box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
   color: var(--color-darkest-purple);
+  transition: all 0.1s linear;
 
   :hover {
     cursor: pointer;

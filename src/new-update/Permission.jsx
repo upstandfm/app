@@ -11,6 +11,7 @@ import { UserMediaError } from './Errors';
 const Container = styled.div`
   padding: 1em 2em;
   background-color: var(--color-lighter-grey);
+  border-radius: var(--radius-size);
   text-align: center;
 `;
 

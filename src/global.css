@@ -62,6 +62,8 @@
   --color-light-green: #68d391;
   --color-lighter-green: #9ae6b4;
   --color-lightest-green: #ebfcf0;
+
+  --radius-size: 4px;
 }
 
 *,

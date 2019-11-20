@@ -8,7 +8,8 @@ const Container = styled.div`
   width: 235px;
   margin: 1em;
   padding: 0;
-  border: 2px solid var(--color-darkest-purple);
+  border: 1px solid var(--color-lighter-coral);
+  border-radius: var(--radius-size);
 
   @media (max-width: 770px) {
     margin-left: auto;
@@ -17,8 +18,8 @@ const Container = styled.div`
 `;
 
 const LoadingContainer = styled(Container)`
-  background-color: var(--color-white);
   border-color: var(--color-light-grey);
+  background-color: var(--color-white);
 
   :hover {
     cursor: wait;
@@ -61,6 +62,7 @@ const glimmer = keyframes`
 const LoadingTitle = styled(Title)`
   color: transparent;
   background-color: var(--color-light-grey);
+  border-radius: var(--radius-size);
   background-repeat: no-repeat;
   background-image: linear-gradient(
     90deg,
