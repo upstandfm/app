@@ -8,6 +8,7 @@ const Outer = styled.div`
   height: 2px;
   width: 100%;
   background-color: var(--color-lightest-purple);
+  border-radius: var(--radius-size);
 `;
 
 const Inner = styled.div`
