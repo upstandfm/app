@@ -47,7 +47,7 @@ export const PreviewText = styled.p`
 `;
 
 export const Subtitle = styled.h2`
-  margin: 0;
+  margin: 0 0 0.5em 0;
   font-weight: normal;
 `;
 

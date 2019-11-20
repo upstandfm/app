@@ -7,15 +7,13 @@ import { useSnackbar } from '../Snackbar';
 const Container = styled.div`
   margin: 2em 0 1em 0;
   padding: 1em;
-  background-color: var(--color-lightest-purple);
-  border-radius: 8px;
+  background-color: var(--color-lighter-grey);
+  border-radius: var(--radius-size);
   text-align: center;
 `;
 
 const Title = styled.h3`
   margin: 0;
-  color: var(--color-dark-purple);
-  font-weight: normal;
 `;
 
 const Text = styled.p`

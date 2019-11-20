@@ -2,14 +2,16 @@ import styled from 'styled-components';
 
 export const ListContainer = styled.div`
   margin: 1em 0;
-  border: 2px solid var(--color-grey);
-  box-shadow: 6px 6px 0 0 var(--color-grey);
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
+  box-shadow: 6px 6px 0 0 var(--color-light-grey);
   background-color: var(--color-white);
 `;
 
 export const ListTitle = styled.h3`
   margin: 0;
   padding: 1rem 1rem 0 1rem;
+  font-weight: normal;
 `;
 
 export const List = styled.ul`

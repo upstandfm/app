@@ -8,12 +8,12 @@ import { useSnackbar } from '../components/Snackbar';
 const Container = styled.div`
   padding: 1em 2em;
   background-color: var(--color-lighter-grey);
+  border-radius: var(--radius-size);
 `;
 
 const Title = styled.h2`
   margin: 1em 0;
   text-align: center;
-  font-weight: normal;
 `;
 
 const List = styled.ol``;

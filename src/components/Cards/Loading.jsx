@@ -10,10 +10,12 @@ const LoadingContainer = styled(Container).attrs(() => ({
   as: 'div'
 }))`
   background-color: var(--color-white);
-  border-color: var(--color-light-grey);
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
 
   :hover {
     cursor: wait;
+    border: 1px solid var(--color-light-grey);
   }
 `;
 
@@ -34,6 +36,7 @@ const glimmer = keyframes`
 const LoadingTitle = styled(Title)`
   color: transparent;
   background-color: var(--color-light-grey);
+  border-radius: var(--radius-size);
   background-repeat: no-repeat;
   background-image: linear-gradient(
     90deg,

@@ -36,7 +36,7 @@ export const MenuLink = props => (
 
       const activeStyle = {
         color: 'var(--color-white)',
-        borderColor: 'var(--color-light-purple)'
+        borderColor: 'var(--color-lighter-purple)'
       };
 
       return {

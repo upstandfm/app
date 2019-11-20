@@ -5,6 +5,7 @@ export const Container = styled.div`
   margin: 2em 0 1em 0;
   padding: 1em;
   background-color: var(--color-lighter-grey);
+  border-radius: var(--radius-size);
 `;
 
 export const Main = styled.div`

@@ -36,7 +36,8 @@ export const Input = styled.input`
   font-size: 15px;
   font-weight: bold;
   line-height: 1.25;
-  border: 2px solid var(--color-grey);
+  border: 2px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
   color: var(--color-darkest-grey);
 
   ::placeholder {

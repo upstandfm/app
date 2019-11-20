@@ -11,6 +11,7 @@ const Container = styled.div`
   margin: 0;
   padding: 0.75em 1em;
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 0 var(--radius-size) var(--radius-size) 0;
   background-color: ${props => {
     const { type } = props;
 

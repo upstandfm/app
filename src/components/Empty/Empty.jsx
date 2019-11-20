@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Container = styled.div`
   display: grid;
   background-color: var(--color-lighter-grey);
+  border-radius: var(--radius-size);
   margin: 1em 0;
 `;
 

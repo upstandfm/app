@@ -25,6 +25,7 @@ const InlineSection = styled(Section)`
     'input        button'
     'description  description';
   align-items: center;
+  margin: 0 0 2em 0;
 
   @media (max-width: 470px) {
     grid-template-columns: 1fr;

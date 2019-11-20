@@ -9,6 +9,7 @@ const Wrapper = styled(WrapperLink).attrs(() => ({
 }))`
   :hover {
     background-color: var(--color-lighter-coral);
+    border: 1px solid var(--color-lighter-coral);
   }
 `;
 

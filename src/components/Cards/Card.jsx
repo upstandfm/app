@@ -8,7 +8,7 @@ export const Container = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 2px solid var(--color-darkest-purple);
+  transition: all 0.1s linear;
 `;
 
 export const WrapperLink = styled(Link)`
@@ -18,15 +18,19 @@ export const WrapperLink = styled(Link)`
   text-decoration: none;
   background-color: var(--color-lighter-coral);
   transition: all 0.1s linear;
+  border: 1px solid var(--color-lighter-coral);
+  border-radius: var(--radius-size);
 
   :hover {
     background-color: var(--color-lightest-coral);
+    border: 1px solid var(--color-lightest-coral);
   }
 `;
 
 export const Title = styled.h2`
   margin: 0.25em 0;
   font-size: 26px;
+  font-weight: normal;
   line-height: 1.2223;
   letter-spacing: 0.022em;
   color: var(--color-darkest-purple);
