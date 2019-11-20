@@ -142,7 +142,7 @@ const StatusBadge = styled.span`
     props.status === 'error'
       ? 'var(--color-dark-red)'
       : 'var(--color-dark-purple)'};
-  border-radius: 4px;
+  border-radius: var(--radius-size);
 `;
 
 StatusBadge.propTypes = {

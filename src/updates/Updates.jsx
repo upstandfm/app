@@ -81,7 +81,9 @@ export function PureUpdates({
 
         return (
           <UpdatesContainer key={epoch}>
-            <Subtitle isToday={isToday}>{formattedDate}</Subtitle>
+            <Subtitle showHelp={isToday} title={isToday ? formattedDate : ''}>
+              {isToday ? 'Today' : formattedDate}
+            </Subtitle>
 
             <UserRecordings
               members={members}

@@ -36,11 +36,14 @@ export const Subtitle = styled.h2`
   display: inline-block;
   margin: 0;
   font-weight: normal;
-  color: ${props => (props.isToday ? 'var(--color-purple)' : 'inherit')};
+
+  :hover {
+    cursor: ${props => (props.showHelp ? 'help' : 'inherit')};
+  }
 `;
 
 Subtitle.propTypes = {
-  isToday: PropTypes.bool
+  showHelp: PropTypes.bool
 };
 
 const glimmer = keyframes`
@@ -68,9 +71,10 @@ export const LoadingSubtitle = styled(Subtitle)`
 `;
 
 export const UpdatesContainer = styled.div`
-  margin: 0 0 2em 0;
+  margin: 0 0 3em 0;
 `;
 export const LoadMoreContainer = styled.div`
   display: grid;
   align-items: center;
+  margin: 0 0 3em 0;
 `;
