@@ -25,7 +25,7 @@ const UserListItem = styled(ListItem)`
 `;
 
 const RecordingsList = styled(List)`
-  margin-left: 36px;
+  margin-left: 32px;
   margin-bottom: 2em;
   padding: 0;
   border-left: 1px solid var(--color-light-grey);
@@ -35,17 +35,13 @@ const RecordingsList = styled(List)`
   }
 `;
 
-const CustomLoadingAvatar = styled(LoadingAvatar)`
-  border-color: var(--color-white);
-`;
-
 export function LoadingUserRecordings() {
   return (
     <LoadingListContainer>
       <List as="div">
         <div>
           <LoadingListItem as="div">
-            <CustomLoadingAvatar />
+            <LoadingAvatar />
 
             <div>
               <LoadingListItemText>Loading user name</LoadingListItemText>
@@ -81,7 +77,7 @@ export function LoadingUserRecordings() {
 
         <div>
           <LoadingListItem as="div">
-            <CustomLoadingAvatar />
+            <LoadingAvatar />
 
             <div>
               <LoadingListItemText>Loading user name</LoadingListItemText>

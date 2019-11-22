@@ -17,7 +17,7 @@ const MemberContainer = styled.li`
 `;
 
 const CustomAvatar = styled(Avatar)`
-  border-color: var(--color-lightest-grey);
+  border: 4px solid var(--color-lightest-grey);
 `;
 
 export function Member({ userFullName, avatarUrl }) {
@@ -42,7 +42,7 @@ const Count = styled(AvatarContainer)`
   font-weight: normal;
   background-color: transparent;
   color: var(--color-grey);
-  border-color: var(--color-lightest-grey);
+  border: 4px solid var(--color-lightest-grey);
 `;
 
 export function RestCount({ count }) {
@@ -57,21 +57,15 @@ RestCount.propTypes = {
   count: PropTypes.number.isRequired
 };
 
-const LoadingContainer = styled(MemberContainer)`
-  :hover {
-    cursor: wait;
-  }
-`;
-
 const CustomAvatarContainer = styled(AvatarContainer)`
-  border-color: var(--color-lightest-grey);
   background-color: var(--color-light-grey);
+  border: 4px solid var(--color-lightest-grey);
 `;
 
 export function LoadingMember() {
   return (
-    <LoadingContainer>
+    <MemberContainer>
       <CustomAvatarContainer />
-    </LoadingContainer>
+    </MemberContainer>
   );
 }

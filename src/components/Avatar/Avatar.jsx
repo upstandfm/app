@@ -15,7 +15,6 @@ export const AvatarContainer = styled.div`
   background-color: var(--color-lightest-purple);
   color: var(--color-dark-purple);
   font-weight: bold;
-  border: 4px solid var(--color-white);
 
   :hover {
     cursor: default;

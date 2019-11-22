@@ -137,7 +137,6 @@ function Updates({ standupId }) {
     fetchUpdates(standupId);
 
     return () => {
-      console.log('abort fetch updates');
       abortFetchUpdates();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
