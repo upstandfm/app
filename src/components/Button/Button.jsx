@@ -112,11 +112,11 @@ const RoundButton = styled(RootButton)`
  * https://www.styled-components.com/docs/basics#extending-styles
  */
 const Button = React.forwardRef((props, ref) => {
-  const { secondary, tertiary, round } = props;
+  const { secondary, tertiary, round, ...restProps } = props;
 
   if (secondary) {
     return (
-      <SecondaryButton ref={ref} {...props}>
+      <SecondaryButton ref={ref} {...restProps}>
         {props.children}
       </SecondaryButton>
     );
@@ -124,7 +124,7 @@ const Button = React.forwardRef((props, ref) => {
 
   if (tertiary) {
     return (
-      <TertiaryButton ref={ref} {...props}>
+      <TertiaryButton ref={ref} {...restProps}>
         {props.children}
       </TertiaryButton>
     );
@@ -132,14 +132,14 @@ const Button = React.forwardRef((props, ref) => {
 
   if (round) {
     return (
-      <RoundButton ref={ref} {...props}>
+      <RoundButton ref={ref} {...restProps}>
         {props.children}
       </RoundButton>
     );
   }
 
   return (
-    <PrimaryButton ref={ref} {...props}>
+    <PrimaryButton ref={ref} {...restProps}>
       {props.children}
     </PrimaryButton>
   );
