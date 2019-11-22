@@ -59,7 +59,7 @@ describe('<AvatarDropdown />', () => {
           </svg>
         </button>
         <ul
-          class="sc-htpNat bFsltM"
+          class="sc-htpNat gVvUCW"
           role="menu"
         >
           <li
