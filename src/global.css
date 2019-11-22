@@ -93,6 +93,8 @@ body {
 a,
 a:visited {
   font-weight: bold;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Lock the scroll position by adding this class to the "html" element. */

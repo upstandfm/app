@@ -10,7 +10,6 @@ export const LoadingListContainer = styled(ListContainer)`
 export const LoadingListItem = styled(ListItem)`
   :hover {
     cursor: wait;
-    background-color: inherit;
   }
 `;
 

@@ -33,6 +33,10 @@ export const ListItem = styled.li`
   align-items: center;
   padding: 0.5rem 1rem;
 
+  :nth-child(2n) {
+    background-color: #fafafa;
+  }
+
   :hover {
     background-color: var(--color-lighter-grey);
   }

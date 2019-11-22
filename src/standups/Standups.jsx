@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { LoadingCards, LoadingCard, Cards, Card } from '../components/Cards';
+import {
+  LoadingListContainer,
+  LoadingListItem,
+  LoadingListItemText,
+  List,
+  ListItem,
+  ListItemText,
+  ListContainer
+} from '../components/List';
+
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 import Empty from '../components/Empty';
@@ -23,11 +32,45 @@ import useFetchStandups from './use-fetch-standups';
 export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
     return (
-      <LoadingCards>
-        <LoadingCard />
-        <LoadingCard />
-        <LoadingCard />
-      </LoadingCards>
+      <LoadingListContainer>
+        <List>
+          <LoadingListItem>
+            <LoadingListItemText>
+              A fake loading standup title
+            </LoadingListItemText>
+
+            <span />
+
+            <Button tertiary disabled title="Not implemented yet">
+              <FontAwesomeIcon icon="trash" />
+            </Button>
+          </LoadingListItem>
+
+          <LoadingListItem>
+            <LoadingListItemText>
+              A fake loading standup title
+            </LoadingListItemText>
+
+            <span />
+
+            <Button tertiary disabled title="Not implemented yet">
+              <FontAwesomeIcon icon="trash" />
+            </Button>
+          </LoadingListItem>
+
+          <LoadingListItem>
+            <LoadingListItemText>
+              A fake loading standup title
+            </LoadingListItemText>
+
+            <span />
+
+            <Button tertiary disabled title="Not implemented yet">
+              <FontAwesomeIcon icon="trash" />
+            </Button>
+          </LoadingListItem>
+        </List>
+      </LoadingListContainer>
     );
   }
 
@@ -41,14 +84,24 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
   return (
     <>
-      <Cards>
-        {standups.map(standup => {
-          const { standupId, standupName } = standup;
-          return (
-            <Card key={standupId} linkTo={standupId} title={standupName} />
-          );
-        })}
-      </Cards>
+      <ListContainer>
+        <List>
+          {standups.map(standup => {
+            const { standupId, standupName } = standup;
+            return (
+              <ListItem key={standupId} as={Link} to={standupId}>
+                <span />
+
+                <ListItemText>{standupName}</ListItemText>
+
+                <Button tertiary disabled title="Not implemented yet">
+                  <FontAwesomeIcon icon="trash" />
+                </Button>
+              </ListItem>
+            );
+          })}
+        </List>
+      </ListContainer>
 
       {cursor && (
         <LoadMoreContainer>
