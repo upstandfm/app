@@ -17,6 +17,7 @@ function useFetchUpdates(dispatch) {
 
   const [isFetching, setIsFetching] = React.useState(true);
   const [err, setErr] = React.useState(null);
+  const [dayOffset, setDayOffset] = React.useState(0);
 
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
@@ -35,6 +36,7 @@ function useFetchUpdates(dispatch) {
       );
 
       setIsFetching(false);
+      setDayOffset(s => s + 1);
 
       dispatch({
         type: 'FETCHED_UPDATES_FOR_DATE',
@@ -55,7 +57,7 @@ function useFetchUpdates(dispatch) {
     }
   };
 
-  return [fetchUpdates, source.cancel, isFetching, err];
+  return [fetchUpdates, source.cancel, isFetching, err, dayOffset];
 }
 
 export default useFetchUpdates;

@@ -124,17 +124,20 @@ PureUpdates.propTypes = {
 
 function Updates({ standupId }) {
   const [updatesState, updatesDispatch] = React.useReducer(updatesReducer, {});
-  const [fetchUpdates, abortFetchUpdates, isFetching, err] = useFetchUpdates(
-    updatesDispatch
-  );
+  const [
+    fetchUpdates,
+    abortFetchUpdates,
+    isFetching,
+    err,
+    dayOffset
+  ] = useFetchUpdates(updatesDispatch);
   const [membersState] = useStandupMembers();
 
-  const [dayOffset, setDayOffset] = React.useState(0);
-
   React.useEffect(() => {
-    fetchUpdates(standupId).then(() => setDayOffset(s => s + 1));
+    fetchUpdates(standupId);
 
     return () => {
+      console.log('abort fetch updates');
       abortFetchUpdates();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -190,7 +193,7 @@ function Updates({ standupId }) {
     const pastDateYear = pastDate.getFullYear();
     const dateKey = `${pastDateDay}-${pastDateMonthIndex + 1}-${pastDateYear}`;
 
-    fetchUpdates(standupId, dateKey).then(() => setDayOffset(s => s + 1));
+    fetchUpdates(standupId, dateKey);
   };
 
   return (
