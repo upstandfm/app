@@ -10,7 +10,7 @@ export default {
   }
 };
 
-const Container = styled.form`
+const Container = styled.div`
   width: 320px;
   border: 1px dashed lightgrey;
   padding: 1em;
