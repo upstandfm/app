@@ -5,10 +5,9 @@ import './global.css';
 import './icons';
 
 import App from './app';
-import theme from './theme';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App theme={theme} />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
