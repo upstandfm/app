@@ -10,18 +10,28 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-  min-height: 100vh;
   background-color: var(--color-lightest-grey);
-  margin: 0 auto;
+  margin: 0em auto;
+  padding: 2em 1em;
 `;
 
 const ErrMessage = styled.pre`
   margin: 1.5em 0;
   padding: 1em;
-  border: 1px solid var(--color-light-grey);
-  border-radius: 4px;
-  background-color: #f0f0f0;
-  color: red;
+  border-radius: var(--radius-size);
+  background-color: var(--color-lightest-red);
+  color: var(--color-dark-red);
+  font-weight: bold;
+`;
+
+const Link = styled.a`
+  color: var(--color-light-purple);
+  text-decoration: underline;
+
+  :visited {
+    color: var(--color-purple);
+    text-decoration: underline;
+  }
 `;
 
 const Actions = styled.div`
@@ -35,13 +45,13 @@ function LoginFailed({ errMessage, handleRetry }) {
       <Main>
         <Content
           title="Login failed"
-          subtitle="Something went wrong on my end when trying to log you in."
+          subtitle="Something went wrong on our end."
         >
-          <p>I encountered this error:</p>
+          <p>We encountered this error:</p>
 
           <ErrMessage data-cy="err-msg">{errMessage}</ErrMessage>
 
-          <p>I have been notified, but please try again:</p>
+          <p>Our developers have been notified, but please try again:</p>
 
           <Actions>
             <Button
@@ -50,25 +60,25 @@ function LoginFailed({ errMessage, handleRetry }) {
               onClick={handleRetry}
               aria-label="login again"
             >
-              Login Again
+              Login again
             </Button>
           </Actions>
 
           <p>
             If retrying didn&apos;t work, please send an email to{' '}
-            <a
+            <Link
               data-cy="support"
               href="mailto:support@upstand.fm?subject=Login error"
               target="_blank"
               rel="noopener noreferrer"
             >
               support@upstand.fm
-            </a>
-            . I&apos;ll do my best to help as you as soon as possible.
+            </Link>
+            . We&apos;ll do our best to help as you as soon as possible.
           </p>
 
           <p>
-            I apologize{' '}
+            We apologize{' '}
             <span role="img" aria-label="hands pressed together">
               🙏
             </span>{' '}

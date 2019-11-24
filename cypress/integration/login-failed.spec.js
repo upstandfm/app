@@ -9,7 +9,7 @@ describe('Login failed', () => {
     cy.get('[data-cy="title"]').should('have.text', 'Login failed');
     cy.get('[data-cy="subtitle"]').should(
       'have.text',
-      'Something went wrong on my end when trying to log you in.'
+      'Something went wrong on our end.'
     );
   });
 
@@ -18,7 +18,7 @@ describe('Login failed', () => {
   });
 
   it('shows "login again" button', () => {
-    cy.get('[data-cy="retry"]').should('have.text', 'Login Again');
+    cy.get('[data-cy="retry"]').should('have.text', 'Login again');
   });
 
   it('shows contact support link', () => {

@@ -17,6 +17,7 @@ export const MenuItem = styled.li`
 const StyledLink = styled(Link)`
   margin: 0 0.5em 0 0;
   padding: 0.25em 0;
+  font-weight: bold;
   text-decoration: none;
   border-bottom: 3px solid var(--color-darkest-purple);
   transition: all 0.2s ease;
