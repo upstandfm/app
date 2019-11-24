@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 
 import { ExitButton } from '../components/Button';
-import { CardPreview } from '../components/Cards';
 import { Confirm } from '../components/Modal';
 import { Steps, Step } from '../components/StepForm';
 
 import standupReducer, { defaultStandupState } from './reducer';
 
-import { Container, Header, Title, Main, Preview, PreviewText } from './Layout';
+import { Container, Wrapper, Header, Title } from './Layout';
 import Standup from './Standup';
 import Invite from './Invite';
 import Final from './Final';
@@ -118,32 +117,32 @@ function NewStandup() {
   return (
     <>
       <Container>
-        <Header>
-          <Title>New standup</Title>
+        <Wrapper>
+          <Header>
+            <Title>New standup</Title>
 
-          <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
-        </Header>
+            <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
+          </Header>
 
-        <Steps total={totalSteps} aria-label="steps to create new standup">
-          {questionsByStepIndex.map((el, i) => {
-            const { id, title } = el;
-            const isDone = i < stepIndex;
-            const isCurrent = i === stepIndex;
+          <Steps total={totalSteps} aria-label="steps to create new standup">
+            {questionsByStepIndex.map((el, i) => {
+              const { id, title } = el;
+              const isDone = i < stepIndex;
+              const isCurrent = i === stepIndex;
 
-            return (
-              <Step
-                key={id}
-                done={isDone}
-                current={isCurrent}
-                aria-current={isCurrent ? `step ${id}` : ''}
-              >
-                {title}
-              </Step>
-            );
-          })}
-        </Steps>
+              return (
+                <Step
+                  key={id}
+                  done={isDone}
+                  current={isCurrent}
+                  aria-current={isCurrent ? `step ${id}` : ''}
+                >
+                  {title}
+                </Step>
+              );
+            })}
+          </Steps>
 
-        <Main>
           <PureNewStandup
             questionsByStepIndex={questionsByStepIndex}
             stepIndex={stepIndex}
@@ -152,12 +151,7 @@ function NewStandup() {
             handleNextStep={handleNextStep}
             handlePreviousStep={handlePreviousStep}
           />
-
-          <Preview>
-            <PreviewText>PREVIEW</PreviewText>
-            <CardPreview title={standup.name} />
-          </Preview>
-        </Main>
+        </Wrapper>
       </Container>
 
       <Confirm

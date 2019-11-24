@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Form = styled.form``;
 
 export const Section = styled.div`
-  margin: 1em 0;
+  margin: 2em 0;
 `;
 
 export const Label = styled.label`

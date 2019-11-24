@@ -14,11 +14,10 @@ import {
 } from '../components/List/List';
 
 import { useSnackbar } from '../components/Snackbar';
-
-import { Form } from '../components/Form';
+import { Form, Section, InlineLabel, Input } from '../components/Form';
 import Button from '../components/Button';
 
-import { Subtitle, Actions } from './Layout';
+import { SizedContainer, Subtitle, Actions, Divider } from './Layout';
 
 import useCreateStandup from './use-create-standup';
 
@@ -27,6 +26,7 @@ const ButtonSpaceRight = styled(Button)`
 `;
 
 export function PureFinal({
+  standupName,
   standupUsers,
   handlePrevious,
   handleCreate,
@@ -36,9 +36,25 @@ export function PureFinal({
     <Form>
       <Subtitle>Looks good?</Subtitle>
 
-      <ListContainer>
-        <ListTitle>Users to invite ({standupUsers.length})</ListTitle>
+      <SizedContainer>
+        <Section>
+          <InlineLabel htmlFor="name">
+            NAME
+            <Input
+              disabled
+              type="text"
+              id="name"
+              value={standupName}
+              maxLength={70}
+            />
+          </InlineLabel>
+        </Section>
+      </SizedContainer>
 
+      <Divider />
+
+      <ListContainer flat>
+        <ListTitle>Users to invite ({standupUsers.length})</ListTitle>
         <List>
           {standupUsers.length === 0 && <ListEmpty>No users yet.</ListEmpty>}
 
@@ -46,13 +62,14 @@ export function PureFinal({
             return (
               <ListItem key={userEmail} title={userEmail}>
                 <FontAwesomeIcon icon="user" size="sm" />
-
                 <ListItemText>{userEmail}</ListItemText>
               </ListItem>
             );
           })}
         </List>
       </ListContainer>
+
+      <Divider />
 
       <Actions>
         <ButtonSpaceRight
@@ -78,6 +95,7 @@ export function PureFinal({
 }
 
 PureFinal.propTypes = {
+  standupName: PropTypes.string.isRequired,
   standupUsers: PropTypes.arrayOf(PropTypes.string),
   handlePrevious: PropTypes.func.isRequired,
   handleCreate: PropTypes.func.isRequired,
@@ -143,6 +161,7 @@ function Final({ standupName, standupUsers, handlePreviousStep }) {
 
   return (
     <PureFinal
+      standupName={standupName}
       standupUsers={standupUsers}
       handlePrevious={handlePrevious}
       handleCreate={handleCreate}

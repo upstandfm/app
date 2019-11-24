@@ -1,12 +1,25 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 50rem;
-  margin: auto;
+  margin: 2em 1em;
   padding: 1em;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
+  box-shadow: 6px 6px 0 0 var(--color-light-grey);
+`;
+
+export const Wrapper = styled.div`
+  width: 50rem;
+  margin: 0 auto;
+  padding: 1em 0;
+
+  @media (max-width: 870px) {
+    width: 100%;
+  }
 `;
 
 export const Header = styled.div`
@@ -18,43 +31,30 @@ export const Header = styled.div`
 
 export const Title = styled.h1``;
 
-export const Main = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 3em;
+export const SizedContainer = styled.div`
+  width: 70%;
 
-  @media (max-width: 760px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-export const Preview = styled.div`
-  justify-self: end;
-
-  @media (max-width: 760px) {
-    justify-self: center;
-  }
-
-  @media (max-width: 350px) {
+  @media (max-width: 570px) {
     width: 100%;
   }
 `;
 
-export const PreviewText = styled.p`
-  color: var(--color-grey);
-  letter-spacing: 1px;
-  margin: 0 0 0.5em 0;
+export const Divider = styled.div`
+  width: 100%;
+  margin: 1em 0;
+  padding: 0;
+  border-top: 1px solid var(--color-lighter-grey);
 `;
 
 export const Subtitle = styled.h2`
-  margin: 0 0 0.5em 0;
+  margin: 0;
   font-weight: normal;
 `;
 
 export const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 3em 0 0 0;
+  margin: 2em 0 0 0;
 
   @media (max-width: 470px) {
     justify-content: center;

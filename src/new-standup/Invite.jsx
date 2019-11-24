@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Form, Section, Input, Description } from '../components/Form';
+import {
+  Form,
+  Section,
+  InlineLabel,
+  Input,
+  Description
+} from '../components/Form';
+
 import Button from '../components/Button';
+
 import {
   ListContainer,
   ListEmpty,
@@ -14,7 +22,7 @@ import {
   ListItemText
 } from '../components/List';
 
-import { Subtitle, Actions } from './Layout';
+import { SizedContainer, Divider, Subtitle, Actions } from './Layout';
 
 const InlineSection = styled(Section)`
   display: grid;
@@ -25,7 +33,6 @@ const InlineSection = styled(Section)`
     'input        button'
     'description  description';
   align-items: center;
-  margin: 0 0 2em 0;
 
   @media (max-width: 470px) {
     grid-template-columns: 1fr;
@@ -37,17 +44,12 @@ const InlineSection = styled(Section)`
   }
 `;
 
-const InlineInput = styled(Input)`
-  grid-area: input;
-`;
-
 const InlineButton = styled(Button)`
   grid-area: button;
 
   @media (max-width: 470px) {
     justify-self: center;
     width: 33%;
-    margin: 0 0 3em 0;
   }
 `;
 
@@ -56,10 +58,10 @@ const InlineDescription = styled(Description)`
   margin: 0;
 `;
 
-const Help = styled.span`
-  :hover {
-    cursor: help;
-  }
+const Help = styled.p`
+  margin: 0.5em 0;
+  color: var(--color-dark-grey);
+  font-size: 1.1em;
 `;
 
 const ButtonSpaceRight = styled(Button)`
@@ -136,42 +138,47 @@ function Invite({
 
   return (
     <Form>
-      <Subtitle>
-        Who are your team members?{' '}
-        <Help>
-          <FontAwesomeIcon
-            icon="info-circle"
-            size="sm"
-            title="you can also skip this step, and invite your team after you create the standup"
-          />
-        </Help>
-      </Subtitle>
+      <Subtitle>Who are your team members?</Subtitle>
 
-      <InlineSection>
-        <InlineInput
-          aria-label="email"
-          type="email"
-          id="email"
-          placeholder="user@domain.com"
-          ref={emailInput}
-          value={email}
-          onChange={handleInput}
-        />
+      <Help>
+        <FontAwesomeIcon icon="info-circle" size="sm" title="" /> You can skip
+        this step, and invite team members <b>after</b> creating the standup.
+      </Help>
 
-        <InlineButton
-          disabled={email.length === 0 || Boolean(feedback)}
-          tertiary
-          onClick={handleAddUser}
-        >
-          Add
-        </InlineButton>
+      <SizedContainer>
+        <InlineSection>
+          <InlineLabel htmlFor="email">
+            EMAIL
+            <Input
+              aria-label="email"
+              type="email"
+              id="email"
+              placeholder="user@domain.com"
+              ref={emailInput}
+              value={email}
+              onChange={handleInput}
+            />
+          </InlineLabel>
 
-        <InlineDescription error={Boolean(feedback)}>
-          {feedback ? feedback : 'Added users will receive an invite by email.'}
-        </InlineDescription>
-      </InlineSection>
+          <InlineButton
+            disabled={email.length === 0 || Boolean(feedback)}
+            tertiary
+            onClick={handleAddUser}
+          >
+            Add
+          </InlineButton>
 
-      <ListContainer>
+          <InlineDescription error={Boolean(feedback)}>
+            {feedback
+              ? feedback
+              : 'Added users will receive an invite by email.'}
+          </InlineDescription>
+        </InlineSection>
+      </SizedContainer>
+
+      <Divider />
+
+      <ListContainer flat>
         <ListTitle>Users to invite ({standupUsers.length})</ListTitle>
 
         <List>
@@ -199,13 +206,15 @@ function Invite({
         </List>
       </ListContainer>
 
+      <Divider />
+
       <Actions>
         <ButtonSpaceRight tertiary onClick={handlePrevious}>
           Previous
         </ButtonSpaceRight>
 
         <Button tertiary onClick={handleNext}>
-          {standupUsers.length === 0 ? 'Skip for now' : 'Next'}
+          {standupUsers.length === 0 ? 'Skip' : 'Next'}
         </Button>
       </Actions>
     </Form>
