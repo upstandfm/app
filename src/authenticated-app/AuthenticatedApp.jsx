@@ -1,5 +1,7 @@
 import React from 'react';
 import { Router } from '@reach/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
 
 import { useAuth0, useUser } from '../auth0';
 import useMatchMediaQuery from '../hooks/use-match-media-query';
@@ -7,6 +9,7 @@ import useMatchMediaQuery from '../hooks/use-match-media-query';
 import { AvatarDropdown } from '../components/Dropdown';
 import { NotFound } from '../components/Errors';
 import Snackbar from '../components/Snackbar';
+import Button from '../components/Button';
 
 import Standups from '../standups';
 import NewStandup from '../new-standup';
@@ -24,6 +27,11 @@ import {
 } from './Layout';
 
 import { Menu, MenuItem, MenuLink } from './Menu';
+
+const ToggleButton = styled(Button)`
+  padding: 0.5em;
+  color: ${props => (props.active ? 'var(--color-light-purple)' : 'inherit')};
+`;
 
 function AuthenticatedApp() {
   const { logout } = useAuth0();
@@ -63,7 +71,15 @@ function AuthenticatedApp() {
 
         <Main sidebarIsOpen={isOpen}>
           <Header>
-            <button onClick={handleOpenCloseSidebar}>+</button>
+            <ToggleButton
+              tertiary
+              onClick={handleOpenCloseSidebar}
+              active={isOpen}
+              aria-label={isOpen ? 'close sidebar' : 'open sidebar'}
+              title={isOpen ? 'close sidebar' : 'open sidebar'}
+            >
+              <FontAwesomeIcon icon="bars" size="lg" />
+            </ToggleButton>
 
             <span />
 
