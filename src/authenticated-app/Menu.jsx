@@ -6,13 +6,10 @@ export const Menu = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
 `;
 
-export const MenuItem = styled.li`
-  display: inline-block;
-  margin: 0 2em 0 0;
-  padding: 0;
-`;
+export const MenuItem = styled.li``;
 
 const StyledLink = styled(Link)`
   margin: 0 0.5em 0 0;

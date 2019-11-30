@@ -100,3 +100,8 @@ a:visited {
 .scroll-lock {
   overflow: hidden !important;
 }
+
+#app {
+  height: 100vh;
+  display: grid;
+}
