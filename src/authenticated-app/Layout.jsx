@@ -1,63 +1,71 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const AppContainer = styled.div`
-  height: 100vh;
   display: grid;
-  grid-template-areas:
-    'header'
-    'main';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-`;
+  grid-template-columns: auto 1fr;
+  overflow: hidden;
 
-export const Header = styled.header`
-  grid-area: header;
-  padding: 16px;
-  background-color: var(--color-darkest-purple);
-`;
-
-export const HeaderContainer = styled.div`
-  max-width: 75rem;
-  height: 40px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-areas: 'brand nav profile';
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr;
-  grid-gap: 8em;
-  align-items: center;
-
-  @media (max-width: 570px) {
-    grid-template-areas:
-      'brand profile'
-      'nav   nav';
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    grid-gap: 1em;
-    height: 80px;
+  @media (max-width: 980px) {
+    display: block;
   }
 `;
 
-export const Brand = styled.div`
-  grid-area: brand;
+export const Sidebar = styled.div`
+  width: 260px;
+  height: 100%;
+  margin: ${props => (props.show ? 0 : '0 0 0 -260px')};
+  background-color: var(--color-darkest-purple);
+  display: grid;
+  grid-template-areas:
+    'nav'
+    'standups';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  transition: all 0.1s ease;
+  z-index: 1;
+
+  @media (max-width: 980px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 `;
+
+Sidebar.propTypes = {
+  show: PropTypes.bool.isRequired
+};
 
 export const Nav = styled.nav`
   grid-area: nav;
-  display: grid;
-  align-items: center;
-`;
-
-export const Profile = styled.div`
-  grid-area: profile;
 `;
 
 export const Main = styled.main`
-  grid-area: main;
-  overflow: auto;
+  transition: all 0.1s ease;
+  z-index: 0;
+
+  @media (max-width: 980px) {
+    transform: ${props =>
+      props.sidebarIsOpen ? 'translate3d(260px, 0, 0)' : 'translate3d(0)'};
+  }
 `;
+
+Main.propTypes = {
+  sidebarIsOpen: PropTypes.bool.isRequired
+};
 
 export const MainContainer = styled.div`
   max-width: 75rem;
   margin: 0 auto;
+`;
+
+export const Header = styled.header`
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding: 1em;
+`;
+
+export const Profile = styled.div`
+  display: grid;
+  justify-self: end;
 `;
