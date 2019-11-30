@@ -38,6 +38,7 @@ export const ListItem = styled.li`
   grid-gap: 0.5em;
   align-items: center;
   padding: 0.5rem 1rem;
+  transition: all 0.1s linear;
 
   :nth-child(2n) {
     background-color: #fafafa;
@@ -51,4 +52,5 @@ export const ListItem = styled.li`
 export const ListItemText = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;

@@ -1,10 +1,17 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+import styled from 'styled-components';
 
 import mockData from './mock-data';
 import { PureStandups } from './Standups';
 
 const fetchNextPage = action('fetchNextPage');
+
+const Container = styled.div`
+  background-color: var(--color-darkest-purple);
+  width: 260px;
+  padding: 1em 0;
+`;
 
 export default {
   title: 'screens|Standups',
@@ -15,7 +22,11 @@ export default {
 };
 
 export const DefaultStandups = () => {
-  return <PureStandups isLoading={false} standups={mockData} />;
+  return (
+    <Container>
+      <PureStandups isLoading={false} standups={mockData} />
+    </Container>
+  );
 };
 
 DefaultStandups.story = {
@@ -23,7 +34,11 @@ DefaultStandups.story = {
 };
 
 export const LoadingStandups = () => {
-  return <PureStandups isLoading={true} />;
+  return (
+    <Container>
+      <PureStandups isLoading={true} />
+    </Container>
+  );
 };
 
 LoadingStandups.story = {
@@ -32,12 +47,14 @@ LoadingStandups.story = {
 
 export const LoadMoreStandups = () => {
   return (
-    <PureStandups
-      isLoading={false}
-      cursor="1q2w3e4r5t6y="
-      standups={mockData}
-      fetchNextPage={fetchNextPage}
-    />
+    <Container>
+      <PureStandups
+        isLoading={false}
+        cursor="1q2w3e4r5t6y="
+        standups={mockData}
+        fetchNextPage={fetchNextPage}
+      />
+    </Container>
   );
 };
 
@@ -47,12 +64,14 @@ LoadMoreStandups.story = {
 
 export const FetchingMoreStandups = () => {
   return (
-    <PureStandups
-      isLoading={true}
-      cursor="1q2w3e4r5t6y="
-      standups={mockData}
-      fetchNextPage={fetchNextPage}
-    />
+    <Container>
+      <PureStandups
+        isLoading={true}
+        cursor="1q2w3e4r5t6y="
+        standups={mockData}
+        fetchNextPage={fetchNextPage}
+      />
+    </Container>
   );
 };
 
@@ -61,7 +80,11 @@ FetchingMoreStandups.story = {
 };
 
 export const EmptyStandups = () => {
-  return <PureStandups isLoading={false} standups={[]} />;
+  return (
+    <Container>
+      <PureStandups isLoading={false} standups={[]} />
+    </Container>
+  );
 };
 
 EmptyStandups.story = {
