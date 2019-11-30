@@ -26,7 +26,7 @@ import {
   MainContainer
 } from './Layout';
 
-import { Menu, MenuItem, MenuLink } from './Menu';
+import { Menu } from './Menu';
 
 const ToggleButton = styled(Button)`
   padding: 0.5em;
@@ -59,14 +59,10 @@ function AuthenticatedApp() {
       <AppContainer>
         <Sidebar show={isOpen}>
           <Nav>
-            <Menu>
-              <MenuItem>
-                <MenuLink to="/">Standups</MenuLink>
-              </MenuItem>
-            </Menu>
+            <Menu />
           </Nav>
 
-          <div />
+          <Standups />
         </Sidebar>
 
         <Main sidebarIsOpen={isOpen}>
@@ -96,7 +92,6 @@ function AuthenticatedApp() {
 
           <MainContainer>
             <Router>
-              <Standups path="/" />
               <NewStandup path="/new" />
               <Standup path="/:standupId" />
               <NewUpdate path="/:standupId/new-update" />

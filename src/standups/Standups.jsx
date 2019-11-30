@@ -2,80 +2,94 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import {
-  LoadingListContainer,
-  LoadingListItem,
-  LoadingListItemText,
-  List,
-  ListItem,
-  ListItemText,
-  ListContainer
-} from '../components/List';
+import styled from 'styled-components';
 
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
-import Empty from '../components/Empty';
+
+import { LoadMoreContainer } from './Layout';
 
 import {
-  Container,
-  Header,
-  Title,
-  Actions,
-  Main,
-  LoadMoreContainer
-} from './Layout';
+  ListContainer,
+  ListTitle,
+  List,
+  LoadingListItem,
+  ListItem,
+  LoadingListItemText,
+  ListItemText,
+  ListEmpty
+} from './StandupList';
 
 import standupsReducer from './reducer';
 import useFetchStandups from './use-fetch-standups';
 
+const MenuButton = styled(Button)`
+  padding: 0.25em;
+`;
+
+const LoadMoreButton = styled(Button)`
+  color: var(--color-lighter-purple);
+
+  :hover {
+    color: var(--color-lightest-purple);
+  }
+
+  :disabled {
+    color: var(--color-grey) !important;
+  }
+`;
+
 export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
     return (
-      <LoadingListContainer>
+      <ListContainer>
+        <ListTitle>MY STANDUPS</ListTitle>
+
         <List>
           <LoadingListItem>
-            <LoadingListItemText>
-              A fake loading standup title
-            </LoadingListItemText>
+            <LoadingListItemText>Standup loading title</LoadingListItemText>
 
             <span />
 
-            <Button tertiary disabled title="Not implemented yet">
-              <FontAwesomeIcon icon="trash" />
-            </Button>
+            <MenuButton tertiary disabled title="Not implemented yet">
+              <FontAwesomeIcon icon="ellipsis-h" />
+            </MenuButton>
           </LoadingListItem>
 
           <LoadingListItem>
-            <LoadingListItemText>
-              A fake loading standup title
-            </LoadingListItemText>
+            <LoadingListItemText>Standup loading title</LoadingListItemText>
 
             <span />
 
-            <Button tertiary disabled title="Not implemented yet">
-              <FontAwesomeIcon icon="trash" />
-            </Button>
+            <MenuButton tertiary disabled title="Not implemented yet">
+              <FontAwesomeIcon icon="ellipsis-h" />
+            </MenuButton>
           </LoadingListItem>
 
           <LoadingListItem>
-            <LoadingListItemText>
-              A fake loading standup title
-            </LoadingListItemText>
+            <LoadingListItemText>Standup loading title</LoadingListItemText>
 
             <span />
 
-            <Button tertiary disabled title="Not implemented yet">
-              <FontAwesomeIcon icon="trash" />
-            </Button>
+            <MenuButton tertiary disabled title="Not implemented yet">
+              <FontAwesomeIcon icon="ellipsis-h" />
+            </MenuButton>
           </LoadingListItem>
         </List>
-      </LoadingListContainer>
+      </ListContainer>
     );
   }
 
   if (standups.length === 0) {
-    return <Empty title="No standups" />;
+    return (
+      <ListContainer>
+        <ListTitle>MY STANDUPS</ListTitle>
+
+        <List>
+          <ListEmpty>No standups yet..</ListEmpty>
+        </List>
+      </ListContainer>
+    );
   }
 
   const handleLoadMore = () => {
@@ -83,8 +97,10 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   };
 
   return (
-    <>
+    <div>
       <ListContainer>
+        <ListTitle>MY STANDUPS</ListTitle>
+
         <List>
           {standups.map(standup => {
             const { standupId, standupName } = standup;
@@ -94,9 +110,9 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
                 <ListItemText>{standupName}</ListItemText>
 
-                <Button tertiary disabled title="Not implemented yet">
-                  <FontAwesomeIcon icon="trash" />
-                </Button>
+                <MenuButton tertiary disabled title="Not implemented yet">
+                  <FontAwesomeIcon icon="ellipsis-h" />
+                </MenuButton>
               </ListItem>
             );
           })}
@@ -105,16 +121,20 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
       {cursor && (
         <LoadMoreContainer>
-          <Button tertiary disabled={isLoading} onClick={handleLoadMore}>
+          <LoadMoreButton
+            tertiary
+            disabled={isLoading}
+            onClick={handleLoadMore}
+          >
             {isLoading ? (
               <FontAwesomeIcon icon="circle-notch" spin />
             ) : (
-              'Load more standups'
+              'Load more'
             )}
-          </Button>
+          </LoadMoreButton>
         </LoadMoreContainer>
       )}
-    </>
+    </div>
   );
 }
 
@@ -130,7 +150,7 @@ PureStandups.propTypes = {
   )
 };
 
-const PAGE_LIMIT = 12;
+const PAGE_LIMIT = 10;
 
 function Standups() {
   const [standupsState, standupsDispatch] = React.useReducer(
@@ -178,26 +198,12 @@ function Standups() {
   };
 
   return (
-    <Container>
-      <Header>
-        <Title />
-
-        <Actions>
-          <Button as={Link} to="/new">
-            New standup
-          </Button>
-        </Actions>
-      </Header>
-
-      <Main>
-        <PureStandups
-          isLoading={isFetching}
-          cursor={nextPageCursor}
-          fetchNextPage={fetchNextPage}
-          standups={standupsState}
-        />
-      </Main>
-    </Container>
+    <PureStandups
+      isLoading={isFetching}
+      cursor={nextPageCursor}
+      fetchNextPage={fetchNextPage}
+      standups={standupsState}
+    />
   );
 }
 

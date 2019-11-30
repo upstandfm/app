@@ -21,7 +21,7 @@ export const Sidebar = styled.div`
     'nav'
     'standups';
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto 1fr;
   transition: all 0.1s ease;
   z-index: 1;
 
