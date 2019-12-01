@@ -15,6 +15,7 @@ import {
   List,
   LoadingListItem,
   ListItem,
+  ListItemLink,
   LoadingListItemText,
   ListItemText,
   ListEmpty
@@ -105,7 +106,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
           {standups.map(standup => {
             const { standupId, standupName } = standup;
             return (
-              <ListItem key={standupId} as={Link} to={standupId}>
+              <ListItemLink key={standupId} to={standupId}>
                 <span />
 
                 <ListItemText>{standupName}</ListItemText>
@@ -113,7 +114,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
                 <MenuButton tertiary disabled title="Not implemented yet">
                   <FontAwesomeIcon icon="ellipsis-h" />
                 </MenuButton>
-              </ListItem>
+              </ListItemLink>
             );
           })}
         </List>
