@@ -123,7 +123,7 @@ function NewUpdate({ standupId }) {
   const [isSaving, setIsSaving] = React.useState(false);
 
   const navigateToStandup = () => {
-    navigate(`/${standupId}`);
+    navigate(`/standups/${standupId}`);
   };
 
   const updateIdsWithRecording = Object.keys(updatesState).filter(id =>
