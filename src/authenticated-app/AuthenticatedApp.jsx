@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from '@reach/router';
+import { Router, Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
@@ -19,14 +19,31 @@ import NewUpdate from '../new-update';
 import {
   AppContainer,
   Sidebar,
-  Header,
   Nav,
+  Actions,
+  Header,
   Profile,
   Main,
   MainContainer
 } from './Layout';
 
-import { Menu } from './Menu';
+import { Menu, MenuLink } from './Menu';
+
+const NewStandupButton = styled(Link)`
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 20px;
+  color: var(--color-lighter-purple) !important;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 1px;
+  transition: all 0.1s linear;
+
+  :hover {
+    color: var(--color-lightest-purple) !important;
+  }
+`;
 
 const ToggleButton = styled(Button)`
   padding: 0.5em;
@@ -59,10 +76,20 @@ function AuthenticatedApp() {
       <AppContainer>
         <Sidebar show={isOpen}>
           <Nav>
-            <Menu />
+            <Menu>
+              <MenuLink to="/inbox">
+                <FontAwesomeIcon icon="inbox" /> Inbox
+              </MenuLink>
+            </Menu>
           </Nav>
 
           <Standups />
+
+          <Actions>
+            <NewStandupButton to="/new">
+              <FontAwesomeIcon icon="plus" /> New standup
+            </NewStandupButton>
+          </Actions>
         </Sidebar>
 
         <Main sidebarIsOpen={isOpen}>

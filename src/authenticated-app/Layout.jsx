@@ -19,9 +19,11 @@ export const Sidebar = styled.div`
   display: grid;
   grid-template-areas:
     'nav'
-    'standups';
+    'standups'
+    'actions';
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 1em;
   transition: all 0.1s ease;
   z-index: 1;
 
@@ -38,6 +40,10 @@ Sidebar.propTypes = {
 
 export const Nav = styled.nav`
   grid-area: nav;
+`;
+
+export const Actions = styled.div`
+  padding: 2em 0;
 `;
 
 export const Main = styled.main`

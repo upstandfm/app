@@ -31,6 +31,7 @@ export const ListItem = styled.li`
   padding: 0.1em 1em 0.1em 1.5em;
   color: var(--color-lighter-grey) !important;
   font-weight: bold;
+  min-height: 27px;
   transition: all 0.1s linear;
 
   :hover {
