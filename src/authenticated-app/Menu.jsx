@@ -2,14 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
 
-export const Menu = styled.ul`
-  list-style: none;
+export const Menu = styled.div`
   margin: 2em 0;
-  padding: 0;
-  list-style: none;
 `;
-
-export const MenuItem = styled.li``;
 
 const StyledLink = styled(Link)`
   display: grid;
