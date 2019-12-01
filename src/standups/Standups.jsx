@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
@@ -14,7 +13,6 @@ import {
   ListTitle,
   List,
   LoadingListItem,
-  ListItem,
   ListItemLink,
   LoadingListItemText,
   ListItemText,
@@ -52,7 +50,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
             <span />
 
-            <MenuButton tertiary disabled title="Not implemented yet">
+            <MenuButton tertiary disabled title="not implemented yet">
               <FontAwesomeIcon icon="ellipsis-h" />
             </MenuButton>
           </LoadingListItem>
@@ -62,7 +60,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
             <span />
 
-            <MenuButton tertiary disabled title="Not implemented yet">
+            <MenuButton tertiary disabled title="not implemented yet">
               <FontAwesomeIcon icon="ellipsis-h" />
             </MenuButton>
           </LoadingListItem>
@@ -72,7 +70,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
             <span />
 
-            <MenuButton tertiary disabled title="Not implemented yet">
+            <MenuButton tertiary disabled title="not implemented yet">
               <FontAwesomeIcon icon="ellipsis-h" />
             </MenuButton>
           </LoadingListItem>
@@ -111,7 +109,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
                 <ListItemText>{standupName}</ListItemText>
 
-                <MenuButton tertiary disabled title="Not implemented yet">
+                <MenuButton tertiary disabled title="not implemented yet">
                   <FontAwesomeIcon icon="ellipsis-h" />
                 </MenuButton>
               </ListItemLink>

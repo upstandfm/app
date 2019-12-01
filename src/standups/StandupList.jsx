@@ -10,28 +10,25 @@ export const ListTitle = styled.p`
   margin: 0;
   padding: 1em 1em 0.25em 1em;
   font-weight: normal;
+  letter-spacing: 1px;
   color: var(--color-light-grey);
 `;
 
-export const List = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
+export const List = styled.div``;
 
-export const ListEmpty = styled.li`
+export const ListEmpty = styled.div`
   padding: 0.5em;
   text-align: center;
   color: var(--color-grey);
 `;
 
-export const ListItem = styled.li`
+const ListItem = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-gap: 0.25em;
   align-items: center;
   padding: 0.1em 1em 0.1em 1.5em;
-  color: var(--color-lighter-grey) !important;
+  color: var(--color-lighter-grey);
   font-weight: bold;
   min-height: 27px;
   transition: all 0.1s linear;
@@ -42,33 +39,18 @@ export const ListItem = styled.li`
   }
 `;
 
-const StyledLink = styled(Link)`
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-gap: 0.25em;
-  align-items: center;
-  padding: 0.1em 1em 0.1em 1.5em;
-  color: var(--color-lighter-grey);
-  font-weight: bold;
-  text-decoration: none;
-  min-height: 27px;
-  transition: all 0.1s linear;
-
-  :hover {
-    background-color: var(--color-lighter-purple);
-    color: var(--color-darkest-purple);
-  }
-`;
-
 export const ListItemLink = props => (
-  <StyledLink
+  <ListItem
+    as={Link}
     {...props}
     getProps={({ isCurrent }) => {
       const normalStyles = {
-        //
+        textDecoration: 'none',
+        color: 'var(--color-lighter-grey)'
       };
 
       const activeStyles = {
+        textDecoration: 'none',
         color: 'var(--color-darkest-purple)',
         backgroundColor: 'var(--color-lighter-purple)'
       };
@@ -83,6 +65,7 @@ export const ListItemLink = props => (
 export const LoadingListItem = styled(ListItem)`
   :hover {
     cursor: wait;
+    background-color: transparent;
   }
 `;
 
