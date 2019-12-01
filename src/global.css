@@ -89,13 +89,6 @@ body {
   outline: 3px solid var(--color-light-mint);
 }
 
-a,
-a:visited {
-  font-weight: bold;
-  color: inherit;
-  text-decoration: none;
-}
-
 /* Lock the scroll position by adding this class to the "html" element. */
 .scroll-lock {
   overflow: hidden !important;

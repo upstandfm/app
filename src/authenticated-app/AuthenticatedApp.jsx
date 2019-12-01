@@ -38,6 +38,8 @@ const NewStandupButton = styled(Link)`
   width: 100%;
   text-align: center;
   letter-spacing: 1px;
+  font-weight: bold;
+  text-decoration: none;
   transition: all 0.1s linear;
 
   :hover {
@@ -77,7 +79,7 @@ function AuthenticatedApp() {
         <Sidebar show={isOpen}>
           <Nav>
             <Menu>
-              <MenuLink to="/inbox">
+              <MenuLink to="/">
                 <FontAwesomeIcon icon="inbox" /> Inbox
               </MenuLink>
             </Menu>
