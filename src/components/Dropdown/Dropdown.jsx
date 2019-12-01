@@ -12,7 +12,7 @@ export const Trigger = styled.button`
   border: 0;
   border-radius: 4px;
   background: none;
-  color: var(--color-light-grey);
+  color: var(--color-grey);
   font-size: 1em;
   line-height: 1;
   transition: all 0.2s ease;
