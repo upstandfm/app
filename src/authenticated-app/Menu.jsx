@@ -27,17 +27,17 @@ export const MenuLink = props => (
   <StyledLink
     {...props}
     getProps={({ isCurrent }) => {
-      const normalStyle = {
+      const normalStyles = {
         color: 'var(--color-light-grey)'
       };
 
-      const activeStyle = {
+      const activeStyles = {
         color: 'var(--color-darkest-purple)',
         backgroundColor: 'var(--color-lighter-purple)'
       };
 
       return {
-        style: isCurrent ? activeStyle : normalStyle
+        style: isCurrent ? activeStyles : normalStyles
       };
     }}
   />
