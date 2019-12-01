@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   position: absolute;
   bottom: 1em;
-  left: 1em;
+  right: 1em;
   max-width: 440px;
   box-sizing: border-box;
   margin: 0;
@@ -58,7 +58,7 @@ const Container = styled.div`
   transform: translateZ(0);
 
   &.snackbar-msg-enter {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
   }
   &.snackbar-msg-enter-active {
@@ -70,13 +70,11 @@ const Container = styled.div`
     opacity: 1;
   }
   &.snackbar-msg-exit-active {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
   }
 
-  @media (max-width: 470px) {
-    right: 1em;
-  }
+  z-index: 2;
 `;
 
 const Meta = styled.span`
