@@ -104,7 +104,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
           {standups.map(standup => {
             const { standupId, standupName } = standup;
             return (
-              <ListItemLink key={standupId} to={standupId}>
+              <ListItemLink key={standupId} to={`standups/${standupId}`}>
                 <span />
 
                 <ListItemText>{standupName}</ListItemText>

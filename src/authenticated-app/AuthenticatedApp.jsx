@@ -122,8 +122,8 @@ function AuthenticatedApp() {
           <MainContainer>
             <Router>
               <NewStandup path="/new" />
-              <Standup path="/:standupId" />
-              <NewUpdate path="/:standupId/new-update" />
+              <Standup path="/standups/:standupId" />
+              <NewUpdate path="/standups/:standupId/new-update" />
 
               <NotFound
                 default
