@@ -24,7 +24,7 @@ import standupsReducer from './reducer';
 import useFetchStandups from './use-fetch-standups';
 
 const MenuButton = styled(Button)`
-  padding: 0.25em;
+  padding: 0.1em 0.2em;
 `;
 
 const LoadMoreButton = styled(Button)`
