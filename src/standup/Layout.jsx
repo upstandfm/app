@@ -4,9 +4,10 @@ export const Container = styled.div`
   display: grid;
   height: calc(100vh - 55px);
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   grid-template-areas:
     'standup-info'
+    'standup-actions'
     'standup-updates'
     'standup-player';
 `;
@@ -22,6 +23,12 @@ export const StandupInfo = styled.div`
     align-items: center;
     justify-items: center;
   }
+`;
+
+export const StandupActions = styled.div`
+  grid-area: standup-actions;
+  text-align: center;
+  margin: 1em;
 `;
 
 export const StandupUpdates = styled.div`

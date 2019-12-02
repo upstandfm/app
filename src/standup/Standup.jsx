@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from '@reach/router';
 
 import AudioPlayer, {
   AudioPlayerProvider,
@@ -8,6 +9,7 @@ import AudioPlayer, {
 
 import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
+import Button from '../components/Button';
 
 import Updates, { LoadingUpdates } from '../updates';
 import StandupMembers, {
@@ -18,6 +20,7 @@ import StandupMembers, {
 import {
   Container,
   StandupInfo,
+  StandupActions,
   StandupUpdates,
   StandupPlayer
 } from './Layout';
@@ -34,6 +37,12 @@ export function PureStandup({ isLoading, standup }) {
           <LoadingInfo />
           <LoadingStandupMembers />
         </StandupInfo>
+
+        <StandupActions>
+          <Button as={Link} to="new-update">
+            New update
+          </Button>
+        </StandupActions>
 
         <StandupUpdates>
           <LoadingUpdates />
@@ -61,6 +70,12 @@ export function PureStandup({ isLoading, standup }) {
         <Info standup={standup} />
         <StandupMembers standupId={standup.standupId} />
       </StandupInfo>
+
+      <StandupActions>
+        <Button as={Link} to="new-update">
+          New update
+        </Button>
+      </StandupActions>
 
       <StandupUpdates>
         <Updates standupId={standup.standupId} />
