@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { useSnackbar } from '../components/Snackbar';
 
-import { Container, Title } from './Layout';
 import { Members, Member, LoadingMember, RestCount } from './Members';
 
 import { useStandupMembers } from './StandupMembersContext';
@@ -11,15 +10,11 @@ import useFetchStandupMembers from './use-fetch-standup-members';
 
 export function LoadingStandupMembers() {
   return (
-    <Container>
-      <Title>MEMBERS</Title>
-
-      <Members>
-        <LoadingMember />
-        <LoadingMember />
-        <LoadingMember />
-      </Members>
-    </Container>
+    <Members>
+      <LoadingMember />
+      <LoadingMember />
+      <LoadingMember />
+    </Members>
   );
 }
 
@@ -31,17 +26,13 @@ export function PureStandupMembers({ isLoading, members, maxCount }) {
   const membersToShow = members.slice(0, maxCount);
   const restCount = members.length - maxCount;
   return (
-    <Container>
-      <Title>MEMBERS</Title>
+    <Members>
+      {restCount > 0 && <RestCount count={restCount} />}
 
-      <Members>
-        {restCount > 0 && <RestCount count={restCount} />}
-
-        {membersToShow.map(member => {
-          return <Member key={member.userId} {...member} />;
-        })}
-      </Members>
-    </Container>
+      {membersToShow.map(member => {
+        return <Member key={member.userId} {...member} />;
+      })}
+    </Members>
   );
 }
 
