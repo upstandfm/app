@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
@@ -10,10 +9,6 @@ import { useStandupMembers } from '../standup-members';
 
 import {
   Container,
-  Header,
-  Title,
-  Actions,
-  Main,
   Subtitle,
   LoadingSubtitle,
   UpdatesContainer,
@@ -29,20 +24,8 @@ import { sortDateKeysDescending, formatDate, isDateToday } from './utils';
 export function LoadingUpdates() {
   return (
     <Container>
-      <Header>
-        <Title>Updates</Title>
-
-        <Actions>
-          <Button as={Link} to="new-update">
-            New update
-          </Button>
-        </Actions>
-      </Header>
-
-      <Main>
-        <LoadingSubtitle>Loading date</LoadingSubtitle>
-        <LoadingUserRecordings />
-      </Main>
+      <LoadingSubtitle>Loading date</LoadingSubtitle>
+      <LoadingUserRecordings />
     </Container>
   );
 }
@@ -100,7 +83,7 @@ export function PureUpdates({
           {isLoadingMore ? (
             <FontAwesomeIcon icon="circle-notch" spin />
           ) : (
-            'Load older updates'
+            'Load older'
           )}
         </Button>
       </LoadMoreContainer>
@@ -197,27 +180,15 @@ function Updates({ standupId }) {
 
   return (
     <Container>
-      <Header>
-        <Title>Updates</Title>
-
-        <Actions>
-          <Button as={Link} to="new-update">
-            New update
-          </Button>
-        </Actions>
-      </Header>
-
-      <Main>
-        <PureUpdates
-          isLoading={isFetching}
-          isLoadingMore={isFetching && dayOffset > 0}
-          updates={updatesState}
-          members={membersState}
-          audioPlayerState={audioPlayerState}
-          playPauseAudio={playPauseAudio}
-          fetchMoreUpdates={fetchMoreUpdates}
-        />
-      </Main>
+      <PureUpdates
+        isLoading={isFetching}
+        isLoadingMore={isFetching && dayOffset > 0}
+        updates={updatesState}
+        members={membersState}
+        audioPlayerState={audioPlayerState}
+        playPauseAudio={playPauseAudio}
+        fetchMoreUpdates={fetchMoreUpdates}
+      />
     </Container>
   );
 }
