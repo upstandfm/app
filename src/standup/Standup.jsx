@@ -18,8 +18,8 @@ import StandupMembers, {
 import {
   Container,
   StandupInfo,
-  StandupPlayer,
-  StandupUpdates
+  StandupUpdates,
+  StandupPlayer
 } from './Layout';
 
 import Info, { LoadingInfo } from './Info';
@@ -30,10 +30,6 @@ export function PureStandup({ isLoading, standup }) {
   if (isLoading) {
     return (
       <Container>
-        <StandupPlayer>
-          <LoadingAudioPlayer />
-        </StandupPlayer>
-
         <StandupInfo>
           <LoadingInfo />
           <LoadingStandupMembers />
@@ -42,6 +38,10 @@ export function PureStandup({ isLoading, standup }) {
         <StandupUpdates>
           <LoadingUpdates />
         </StandupUpdates>
+
+        <StandupPlayer>
+          <LoadingAudioPlayer />
+        </StandupPlayer>
       </Container>
     );
   }
@@ -57,10 +57,6 @@ export function PureStandup({ isLoading, standup }) {
 
   return (
     <Container>
-      <StandupPlayer>
-        <AudioPlayer />
-      </StandupPlayer>
-
       <StandupInfo>
         <Info standup={standup} />
         <StandupMembers standupId={standup.standupId} />
@@ -69,6 +65,10 @@ export function PureStandup({ isLoading, standup }) {
       <StandupUpdates>
         <Updates standupId={standup.standupId} />
       </StandupUpdates>
+
+      <StandupPlayer>
+        <AudioPlayer />
+      </StandupPlayer>
     </Container>
   );
 }
