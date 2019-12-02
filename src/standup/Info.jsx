@@ -1,18 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { Link } from '@reach/router';
-
-import Button from '../components/Button';
-
-const Container = styled.div`
-  margin: 1em;
-  padding: 0;
-
-  @media (max-width: 770px) {
-    text-align: center;
-  }
-`;
 
 const Title = styled.h2`
   margin: 0 0 0.5em 0;
@@ -50,33 +38,11 @@ const LoadingTitle = styled(Title)`
 `;
 
 export function LoadingInfo() {
-  return (
-    <Container>
-      <LoadingTitle>A loading tite</LoadingTitle>
-
-      <Settings>
-        <Button secondary as={Link} data-testid="link" to="settings">
-          Settings
-        </Button>
-      </Settings>
-    </Container>
-  );
+  return <LoadingTitle>A loading tite</LoadingTitle>;
 }
 
-const Settings = styled.div``;
-
 function Info({ standup }) {
-  return (
-    <Container>
-      <Title>{standup.standupName}</Title>
-
-      <Settings>
-        <Button secondary as={Link} data-testid="link" to="settings">
-          Settings
-        </Button>
-      </Settings>
-    </Container>
-  );
+  return <Title>{standup.standupName}</Title>;
 }
 
 Info.propTypes = {
