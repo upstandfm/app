@@ -3,8 +3,14 @@ import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const Title = styled.h2`
-  margin: 0 0 0.5em 0;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.5em 0 0;
   color: var(--color-darkest-purple);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const glimmer = keyframes`
@@ -28,13 +34,7 @@ const LoadingTitle = styled(Title)`
     var(--color-light-grey)
   );
   background-size: 100% 100%;
-  max-width: 220px;
   animation: ${glimmer} 1s ease-in-out infinite;
-
-  @media (max-width: 770px) {
-    margin-left: auto;
-    margin-right: auto;
-  }
 `;
 
 export function LoadingInfo() {
