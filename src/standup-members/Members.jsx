@@ -7,6 +7,7 @@ import Avatar, { AvatarContainer } from '../components/Avatar';
 export const Members = styled.ul`
   display: inline-flex;
   flex-direction: row-reverse;
+  vertical-align: middle;
   margin: 0;
   padding: 0;
 `;

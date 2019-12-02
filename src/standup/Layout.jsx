@@ -13,11 +13,15 @@ export const Container = styled.div`
 
 export const StandupInfo = styled.div`
   grid-area: standup-info;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 1em;
-  align-items: center;
-  justify-items: center;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 0.5em;
+    align-items: center;
+    justify-items: center;
+  }
 `;
 
 export const StandupUpdates = styled.div`
