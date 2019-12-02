@@ -23,8 +23,7 @@ import {
   Actions,
   Header,
   Profile,
-  Main,
-  MainContainer
+  Main
 } from './Layout';
 
 import { Menu, MenuLink } from './Menu';
@@ -119,19 +118,17 @@ function AuthenticatedApp() {
             </Profile>
           </Header>
 
-          <MainContainer>
-            <Router>
-              <NewStandup path="/new" />
-              <Standup path="/standups/:standupId" />
-              <NewUpdate path="/standups/:standupId/new-update" />
+          <Router>
+            <NewStandup path="/new" />
+            <Standup path="/standups/:standupId" />
+            <NewUpdate path="/standups/:standupId/new-update" />
 
-              <NotFound
-                default
-                title="Page not found"
-                info="Sorry! This page doesn't exist."
-              />
-            </Router>
-          </MainContainer>
+            <NotFound
+              default
+              title="Page not found"
+              info="Sorry! This page doesn't exist."
+            />
+          </Router>
         </Main>
       </AppContainer>
 

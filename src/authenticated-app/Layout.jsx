@@ -60,15 +60,12 @@ Main.propTypes = {
   sidebarIsOpen: PropTypes.bool.isRequired
 };
 
-export const MainContainer = styled.div`
-  max-width: 75rem;
-  margin: 0 auto;
-`;
-
 export const Header = styled.header`
   display: grid;
   grid-template-columns: auto 1fr auto;
-  padding: 1em;
+  align-items: center;
+  padding: 0 0.5em;
+  height: 55px;
 `;
 
 export const Profile = styled.div`
