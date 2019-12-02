@@ -13,11 +13,8 @@ describe('<Info />', () => {
       updatedAt: now
     };
 
-    const { getByText, getByTestId } = render(<Info standup={standup} />);
+    const { getByText } = render(<Info standup={standup} />);
 
     expect(getByText(standup.standupName)).toBeInTheDocument();
-
-    // Reach Router supports relative links
-    expect(getByTestId('link')).toHaveAttribute('href', '/settings');
   });
 });
