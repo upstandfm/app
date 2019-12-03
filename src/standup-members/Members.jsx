@@ -8,7 +8,7 @@ export const Members = styled.ul`
   display: inline-flex;
   flex-direction: row-reverse;
   vertical-align: middle;
-  margin: 0;
+  margin: 0 0 0 -4px;
   padding: 0;
 `;
 
