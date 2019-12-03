@@ -46,7 +46,8 @@ export function LoadingInfo() {
 }
 
 function Info({ standup }) {
-  return <Title>{standup.standupName}</Title>;
+  const { standupName } = standup;
+  return <Title title={standupName}>{standupName}</Title>;
 }
 
 Info.propTypes = {

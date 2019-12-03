@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const Dropdown = styled.div`
   position: relative;
+  z-index: 1;
 `;
 
 export const Trigger = styled.button`

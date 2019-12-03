@@ -16,12 +16,19 @@ export const StandupInfo = styled.div`
   grid-area: standup-info;
   text-align: center;
 
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  right: 0;
+
   @media (max-width: 480px) {
     display: grid;
     grid-template-rows: auto auto;
     grid-gap: 0.5em;
     align-items: center;
     justify-items: center;
+
+    position: static;
   }
 `;
 
