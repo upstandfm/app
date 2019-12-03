@@ -49,6 +49,7 @@ const NewStandupButton = styled(Link)`
 const ToggleButton = styled(Button)`
   padding: 0.5em;
   color: ${props => (props.active ? 'var(--color-light-purple)' : 'inherit')};
+  z-index: 1;
 `;
 
 function AuthenticatedApp() {

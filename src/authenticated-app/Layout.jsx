@@ -47,6 +47,7 @@ export const Actions = styled.div`
 `;
 
 export const Main = styled.main`
+  position: relative;
   transition: all 0.1s ease;
   z-index: 0;
 
