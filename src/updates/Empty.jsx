@@ -5,18 +5,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   display: grid;
+  margin: 1em 0;
 `;
 
 const Wrapper = styled.div`
-  margin: 1em auto;
-  padding: 1em;
+  margin: 0 auto;
+  padding: 1em 2em;
   text-align: center;
+  background-color: var(--color-lightest-purple);
+  border-radius: var(--radius-size);
 `;
 
-const Title = styled.h3`
+const Title = styled.h4`
   margin: 0.5em 0 0.25em 0;
   font-weight: normal;
-  color: var(--color-grey);
+  color: var(--color-dark-grey);
 `;
 
 function Empty({ title }) {
