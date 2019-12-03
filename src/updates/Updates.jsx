@@ -9,7 +9,8 @@ import { useStandupMembers } from '../standup-members';
 
 import {
   Container,
-  Subtitle,
+  DayDivider,
+  Day,
   LoadingSubtitle,
   UpdatesContainer,
   LoadMoreContainer
@@ -64,9 +65,13 @@ export function PureUpdates({
 
         return (
           <UpdatesContainer key={epoch}>
-            <Subtitle showHelp={isToday} title={isToday ? formattedDate : ''}>
-              {isToday ? 'Today' : formattedDate}
-            </Subtitle>
+            <DayDivider>
+              <Day
+                formattedDate={isToday ? 'Today' : formattedDate}
+                showHelp={isToday}
+                title={isToday ? formattedDate : ''}
+              />
+            </DayDivider>
 
             <UserRecordings
               members={members}
