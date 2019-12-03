@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Empty from '../components/Empty';
+import Empty from './Empty';
 import Avatar, { LoadingAvatar } from '../components/Avatar';
 import {
   ListContainer,
@@ -122,7 +122,7 @@ function UserRecordings({
   playPauseAudio
 }) {
   if (recordings.length === 0) {
-    return <Empty title="No updates" />;
+    return <Empty title="No updates from your team." />;
   }
 
   const recordingsByUserId = recordings.reduce((mapping, recording) => {
@@ -156,7 +156,7 @@ function UserRecordings({
 
               <RecordingsList>
                 {userRecordings.length === 0 ? (
-                  <ListEmpty>No update</ListEmpty>
+                  <ListEmpty>No updates.</ListEmpty>
                 ) : (
                   userRecordings.map(recording => {
                     return (
