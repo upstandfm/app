@@ -11,6 +11,10 @@ const Title = styled.h2`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 480px) {
+    margin: 0;
+  }
 `;
 
 const glimmer = keyframes`
