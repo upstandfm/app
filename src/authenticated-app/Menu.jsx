@@ -15,7 +15,7 @@ const StyledLink = styled(Link)`
   padding: 0.1em 1em 0.1em 1.5em;
   text-decoration: none;
   min-height: 27px;
-  transition: all 0.2s ease;
+  transition: all 0.1s linear;
 
   :hover {
     background-color: var(--color-lighter-purple);
@@ -28,12 +28,13 @@ export const MenuLink = props => (
     {...props}
     getProps={({ isCurrent }) => {
       const normalStyles = {
-        color: 'var(--color-light-grey)'
+        color: 'var(--color-lightest-purple)'
       };
 
       const activeStyles = {
         color: 'var(--color-darkest-purple)',
-        backgroundColor: 'var(--color-lighter-purple)'
+        backgroundColor: 'var(--color-lighter-purple)',
+        fontWeight: 'bold'
       };
 
       return {
