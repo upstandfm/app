@@ -9,12 +9,16 @@ import {
   List,
   ListItem,
   ListEmpty,
-  LoadingListContainer,
   LoadingListItem,
   LoadingListItemText
 } from '../components/List';
 
 import UserRecording, { RecordingPlayState } from './UserRecording';
+
+const CustomListContainer = styled(ListContainer)`
+  margin: 3em 1em 2em 1em;
+  box-shadow: none;
+`;
 
 const UserListItem = styled(ListItem)`
   font-weight: bold;
@@ -37,7 +41,7 @@ const RecordingsList = styled(List)`
 
 export function LoadingUserRecordings() {
   return (
-    <LoadingListContainer>
+    <CustomListContainer>
       <List as="div">
         <div>
           <LoadingListItem as="div">
@@ -64,14 +68,6 @@ export function LoadingUserRecordings() {
                 <LoadingListItemText>Loading recording</LoadingListItemText>
               </div>
             </LoadingListItem>
-
-            <LoadingListItem>
-              <RecordingPlayState />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
           </RecordingsList>
         </div>
 
@@ -100,18 +96,10 @@ export function LoadingUserRecordings() {
                 <LoadingListItemText>Loading recording</LoadingListItemText>
               </div>
             </LoadingListItem>
-
-            <LoadingListItem>
-              <RecordingPlayState />
-
-              <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
-              </div>
-            </LoadingListItem>
           </RecordingsList>
         </div>
       </List>
-    </LoadingListContainer>
+    </CustomListContainer>
   );
 }
 
@@ -135,7 +123,7 @@ function UserRecordings({
   }, {});
 
   return (
-    <ListContainer>
+    <CustomListContainer>
       <List as="div">
         {members.map(member => {
           const { userId, userFullName } = member;
@@ -174,7 +162,7 @@ function UserRecordings({
           );
         })}
       </List>
-    </ListContainer>
+    </CustomListContainer>
   );
 }
 
