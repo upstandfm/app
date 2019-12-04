@@ -28,7 +28,7 @@ describe('<AvatarDropdown />', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="sc-bdVaJa fmHohv"
+        class="sc-bdVaJa cuZnVf"
       >
         <button
           aria-expanded="false"
