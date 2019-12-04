@@ -35,7 +35,7 @@ export const StandupInfo = styled.div`
 export const StandupActions = styled.div`
   grid-area: standup-actions;
   text-align: center;
-  margin: 1em;
+  margin: 1em 0 2em 0;
 `;
 
 export const StandupUpdates = styled.div`
