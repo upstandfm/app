@@ -20,7 +20,7 @@ export const List = styled.div``;
 export const ListEmpty = styled.div`
   padding: 0.5em;
   text-align: center;
-  color: var(--color-grey);
+  color: var(--color-lightest-purple);
 `;
 
 const ListItem = styled.div`
