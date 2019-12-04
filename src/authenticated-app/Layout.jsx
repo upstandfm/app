@@ -44,6 +44,7 @@ export const Nav = styled.nav`
 
 export const Actions = styled.div`
   padding: 2em 0;
+  text-align: center;
 `;
 
 export const Main = styled.main`

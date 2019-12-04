@@ -31,10 +31,11 @@ import { Menu, MenuLink } from './Menu';
 const NewStandupButton = styled(Link)`
   display: inline-block;
   box-sizing: border-box;
-  margin: 0;
+  margin: 0 auto;
   padding: 8px 20px;
-  color: var(--color-lighter-purple) !important;
-  width: 100%;
+  color: var(--color-lightest-purple) !important;
+  border: 2px solid var(--color-lightest-purple);
+  border-radius: var(--radius-size);
   text-align: center;
   letter-spacing: 1px;
   font-weight: bold;
@@ -42,7 +43,8 @@ const NewStandupButton = styled(Link)`
   transition: all 0.1s linear;
 
   :hover {
-    color: var(--color-lightest-purple) !important;
+    color: var(--color-darkest-purple) !important;
+    background-color: var(--color-lightest-purple);
   }
 `;
 
