@@ -28,7 +28,7 @@ export const MenuLink = props => (
     {...props}
     getProps={({ isCurrent }) => {
       const normalStyles = {
-        color: 'var(--color-lightest-purple)'
+        color: 'var(--color-white)'
       };
 
       const activeStyles = {

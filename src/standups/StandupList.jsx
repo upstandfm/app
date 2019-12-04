@@ -47,7 +47,7 @@ export const ListItemLink = props => (
     getProps={({ isCurrent, isPartiallyCurrent }) => {
       const normalStyles = {
         textDecoration: 'none',
-        color: 'var(--color-lightest-purple)'
+        color: 'var(--color-white)'
       };
 
       const activeStyles = {
