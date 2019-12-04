@@ -9,11 +9,7 @@ import {
   ListItemText
 } from './List';
 
-import {
-  LoadingListContainer,
-  LoadingListItem,
-  LoadingListItemText
-} from './Loading';
+import { LoadingListItem, LoadingListItemText } from './Loading';
 
 export default {
   title: 'components/List',
@@ -78,7 +74,7 @@ EmptyList.story = {
 
 export const LoadingList = () => {
   return (
-    <LoadingListContainer>
+    <ListContainer>
       <ListTitle>List title</ListTitle>
 
       <List>
@@ -94,7 +90,7 @@ export const LoadingList = () => {
           <LoadingListItemText>Loading something important</LoadingListItemText>
         </LoadingListItem>
       </List>
-    </LoadingListContainer>
+    </ListContainer>
   );
 };
 

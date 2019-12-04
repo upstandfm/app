@@ -1,11 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { ListContainer, ListItem } from './List';
-
-export const LoadingListContainer = styled(ListContainer)`
-  box-shadow: 6px 6px 0 0 var(--color-light-grey);
-  border-color: var(--color-light-grey);
-`;
+import { ListItem } from './List';
 
 export const LoadingListItem = styled(ListItem)`
   :hover {
