@@ -85,7 +85,9 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
         <ListTitle>MY STANDUPS</ListTitle>
 
         <List>
-          <ListEmpty>No standups yet..</ListEmpty>
+          <ListEmpty>
+            <FontAwesomeIcon icon="lightbulb" size="sm" /> No standups yet.
+          </ListEmpty>
         </List>
       </ListContainer>
     );
