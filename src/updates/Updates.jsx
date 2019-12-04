@@ -41,10 +41,10 @@ export function PureUpdates({
 }) {
   if (isLoading && !isLoadingMore) {
     return (
-      <>
+      <Container>
         <LoadingDayDivider />
         <LoadingUserRecordings />
-      </>
+      </Container>
     );
   }
 
@@ -56,7 +56,7 @@ export function PureUpdates({
   const sortedDateKeys = sortDateKeysDescending(dateKeys);
 
   return (
-    <>
+    <Container>
       {sortedDateKeys.map(data => {
         const { epoch, dateKey } = data;
         const formattedDate = formatDate(epoch);
@@ -89,7 +89,7 @@ export function PureUpdates({
           )}
         </Button>
       </LoadMoreContainer>
-    </>
+    </Container>
   );
 }
 
@@ -181,17 +181,15 @@ function Updates({ standupId }) {
   };
 
   return (
-    <Container>
-      <PureUpdates
-        isLoading={isFetching}
-        isLoadingMore={isFetching && dayOffset > 0}
-        updates={updatesState}
-        members={membersState}
-        audioPlayerState={audioPlayerState}
-        playPauseAudio={playPauseAudio}
-        fetchMoreUpdates={fetchMoreUpdates}
-      />
-    </Container>
+    <PureUpdates
+      isLoading={isFetching}
+      isLoadingMore={isFetching && dayOffset > 0}
+      updates={updatesState}
+      members={membersState}
+      audioPlayerState={audioPlayerState}
+      playPauseAudio={playPauseAudio}
+      fetchMoreUpdates={fetchMoreUpdates}
+    />
   );
 }
 
