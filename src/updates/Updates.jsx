@@ -10,8 +10,7 @@ import { useStandupMembers } from '../standup-members';
 import {
   Container,
   DayDivider,
-  Day,
-  LoadingSubtitle,
+  LoadingDayDivider,
   UpdatesContainer,
   LoadMoreContainer
 } from './Layout';
@@ -25,7 +24,7 @@ import { sortDateKeysDescending, formatDate, isDateToday } from './utils';
 export function LoadingUpdates() {
   return (
     <Container>
-      <LoadingSubtitle>Loading date</LoadingSubtitle>
+      <LoadingDayDivider />
       <LoadingUserRecordings />
     </Container>
   );
@@ -43,7 +42,7 @@ export function PureUpdates({
   if (isLoading && !isLoadingMore) {
     return (
       <>
-        <LoadingSubtitle>Loading date</LoadingSubtitle>
+        <LoadingDayDivider />
         <LoadingUserRecordings />
       </>
     );
@@ -65,13 +64,11 @@ export function PureUpdates({
 
         return (
           <UpdatesContainer key={epoch}>
-            <DayDivider>
-              <Day
-                formattedDate={isToday ? 'Today' : formattedDate}
-                showHelp={isToday}
-                title={isToday ? formattedDate : ''}
-              />
-            </DayDivider>
+            <DayDivider
+              formattedDate={isToday ? 'Today' : formattedDate}
+              showHelp={isToday}
+              title={isToday ? formattedDate : ''}
+            />
 
             <UserRecordings
               members={members}
