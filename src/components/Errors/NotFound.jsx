@@ -7,17 +7,17 @@ import styled from 'styled-components';
 import Button from '../Button';
 
 const Container = styled.div`
-  display: grid;
-  background-color: var(--color-white);
-  border: 1px solid var(--color-light-grey);
-  border-radius: var(--radius-size);
-  margin: 2em;
+  max-width: 50rem;
+  margin: 2em auto;
 `;
 
 const Wrapper = styled.div`
-  margin: 1em auto;
+  margin: 1em;
   padding: 1em;
   text-align: center;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
 `;
 
 const Title = styled.h2`
@@ -26,7 +26,7 @@ const Title = styled.h2`
 `;
 
 const Actions = styled.div`
-  margin: 2em 0 0 0;
+  margin: 2em 0 1em 0;
 `;
 
 const NotFound = function({ title, info }) {
@@ -41,7 +41,7 @@ const NotFound = function({ title, info }) {
 
         <Actions>
           <Button as={Link} to="/">
-            Go back home
+            Back home
           </Button>
         </Actions>
       </Wrapper>
