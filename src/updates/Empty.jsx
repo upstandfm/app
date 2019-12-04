@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   display: grid;
-  margin: 1em 0;
+  margin: 3em 0 2em 0;
 `;
 
 const Wrapper = styled.div`
