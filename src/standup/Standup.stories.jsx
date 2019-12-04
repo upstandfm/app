@@ -1,6 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { PureStandup } from './Standup';
+
+const Header = styled.div`
+  height: 55px;
+`;
 
 export default {
   title: 'screens|Standup',
@@ -11,7 +16,12 @@ export default {
 };
 
 export const LoadingStandups = () => {
-  return <PureStandup isLoading={true} standup={{}} />;
+  return (
+    <>
+      <Header />
+      <PureStandup isLoading={true} standup={{}} />
+    </>
+  );
 };
 
 LoadingStandups.story = {
