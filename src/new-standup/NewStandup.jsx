@@ -5,7 +5,6 @@ import { navigate } from '@reach/router';
 
 import { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
-import { Steps, Step } from '../components/StepForm';
 
 import standupReducer, { defaultStandupState } from './reducer';
 
@@ -117,25 +116,6 @@ function NewStandup() {
           <Header>
             <Title>New standup</Title>
           </Header>
-
-          <Steps total={totalSteps} aria-label="steps to create new standup">
-            {questionsByStepIndex.map((el, i) => {
-              const { id, title } = el;
-              const isDone = i < stepIndex;
-              const isCurrent = i === stepIndex;
-
-              return (
-                <Step
-                  key={id}
-                  done={isDone}
-                  current={isCurrent}
-                  aria-current={isCurrent ? `step ${id}` : ''}
-                >
-                  {title}
-                </Step>
-              );
-            })}
-          </Steps>
 
           <PureNewStandup
             questionsByStepIndex={questionsByStepIndex}
