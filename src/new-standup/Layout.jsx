@@ -22,15 +22,6 @@ export const ExitContainer = styled.div`
   right: 1em;
 `;
 
-export const Header = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: 2em;
-  align-items: center;
-`;
-
-export const Title = styled.h1``;
-
 export const SizedContainer = styled.div`
   width: 70%;
 
