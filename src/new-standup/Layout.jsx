@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   margin: auto;
   padding: 1em;
   box-sizing: border-box;
-  width: 40%;
+  width: 60%;
 
   @media (max-width: 780px) {
     width: 70%;

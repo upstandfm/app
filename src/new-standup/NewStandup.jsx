@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FocusTrap from 'focus-trap-react';
+import styled from 'styled-components';
 
 import { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
@@ -15,6 +16,29 @@ import useCreateStandup from './use-create-standup';
 import standupReducer, { defaultStandupState } from './reducer';
 
 import { Container, Wrapper, ExitContainer, Subtitle } from './Layout';
+
+const CustomSection = styled(Section)`
+  margin: 0 0 2em 0;
+`;
+
+const CustomInput = styled(Input)`
+  font-size: 2em;
+  border: none;
+  padding: 0.5em 0;
+  font-weight: bold;
+
+  :focus {
+    box-shadow: none;
+  }
+
+  @media (max-width: 780px) {
+    font-size: 1.6em;
+  }
+
+  @media (max-width: 380px) {
+    font-size: 1.2em;
+  }
+`;
 
 function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
   const nameInput = React.createRef();
@@ -36,9 +60,9 @@ function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
     <Form>
       <Subtitle>Create a new standup</Subtitle>
 
-      <Section>
+      <CustomSection>
         <Label htmlFor="name">
-          <Input
+          <CustomInput
             type="text"
             id="name"
             placeholder="What name describes your team best?"
@@ -48,7 +72,7 @@ function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
             maxLength={70}
           />
         </Label>
-      </Section>
+      </CustomSection>
 
       <Button onClick={handleCreate} disabled={name.length === 0 || isCreating}>
         {isCreating ? (
