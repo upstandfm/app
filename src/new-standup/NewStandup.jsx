@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 
@@ -8,7 +9,7 @@ import { Steps, Step } from '../components/StepForm';
 
 import standupReducer, { defaultStandupState } from './reducer';
 
-import { Container, Wrapper, Header, Title } from './Layout';
+import { Container, Wrapper, ExitContainer, Header, Title } from './Layout';
 import Standup from './Standup';
 import Invite from './Invite';
 import Final from './Final';
@@ -114,14 +115,16 @@ function NewStandup() {
     setStepIndex(i => i - 1);
   };
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <Container>
+        <ExitContainer>
+          <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
+        </ExitContainer>
+
         <Wrapper>
           <Header>
             <Title>New standup</Title>
-
-            <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
           </Header>
 
           <Steps total={totalSteps} aria-label="steps to create new standup">
@@ -165,7 +168,8 @@ function NewStandup() {
           </>
         }
       />
-    </>
+    </>,
+    document.body
   );
 }
 
