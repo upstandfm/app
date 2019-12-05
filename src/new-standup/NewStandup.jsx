@@ -2,74 +2,135 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
+import { Form, Section, InlineLabel, Input } from '../components/Form';
+import { useSnackbar } from '../components/Snackbar';
+import Button from '../components/Button';
 
+import useCreateStandup from './use-create-standup';
 import standupReducer, { defaultStandupState } from './reducer';
 
-import { Container, Wrapper, ExitContainer } from './Layout';
-import Standup from './Standup';
-import Final from './Final';
+import {
+  Container,
+  Wrapper,
+  ExitContainer,
+  SizedContainer,
+  Subtitle,
+  Actions
+} from './Layout';
 
-export const questionsByStepIndex = [
-  {
-    id: 'name',
-    title: 'Name',
-    Component: Standup
-  },
+function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
+  const nameInput = React.createRef();
 
-  {
-    id: 'create',
-    title: 'Create',
-    Component: Final
-  }
-];
+  React.useEffect(() => {
+    nameInput.current.focus();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-function PureNewStandup({
-  questionsByStepIndex,
-  stepIndex,
-  standup,
-  dispatch,
-  handleNextStep,
-  handlePreviousStep
-}) {
-  const { Component } = questionsByStepIndex[stepIndex] || {};
+  const handleInput = e => {
+    dispatch({
+      type: 'SET_NAME',
+      data: e.target.value
+    });
+  };
 
-  if (!Component) {
-    return null;
-  }
+  const { name } = standup;
 
   return (
-    <Component
-      standupName={standup.name}
-      dispatch={dispatch}
-      handlePreviousStep={handlePreviousStep}
-      handleNextStep={handleNextStep}
-    />
+    <Form>
+      <Subtitle>What describes your team best?</Subtitle>
+
+      <SizedContainer>
+        <Section>
+          <InlineLabel htmlFor="name">
+            NAME
+            <Input
+              type="text"
+              id="name"
+              placeholder="Team ship it 🚀"
+              ref={nameInput}
+              value={name}
+              onChange={handleInput}
+              maxLength={70}
+            />
+          </InlineLabel>
+        </Section>
+      </SizedContainer>
+
+      <Actions>
+        <Button
+          onClick={handleCreate}
+          disabled={name.length === 0 || isCreating}
+        >
+          {isCreating ? (
+            <>
+              <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Creating..
+            </>
+          ) : (
+            'Yes, create'
+          )}
+        </Button>
+      </Actions>
+    </Form>
   );
 }
 
 PureNewStandup.propTypes = {
-  questionsByStepIndex: PropTypes.arrayOf(PropTypes.object),
-  stepIndex: PropTypes.number.isRequired,
   standup: PropTypes.shape({
     name: PropTypes.string
   }),
   dispatch: PropTypes.func.isRequired,
-  handleNextStep: PropTypes.func.isRequired,
-  handlePreviousStep: PropTypes.func.isRequired
+  handleCreate: PropTypes.func.isRequired,
+  isCreating: PropTypes.bool.isRequired
 };
 
 function NewStandup() {
+  const [
+    createStandup,
+    abortCreateStandup,
+    isCreating,
+    err
+  ] = useCreateStandup();
+
   const [showConfirm, setShowConfirm] = React.useState(false);
-  const [stepIndex, setStepIndex] = React.useState(0);
   const [standup, dispatch] = React.useReducer(
     standupReducer,
     defaultStandupState
   );
 
-  const totalSteps = questionsByStepIndex.length;
+  const [, snackbarDispatch] = useSnackbar();
+
+  React.useEffect(() => {
+    return () => {
+      abortCreateStandup();
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect(() => {
+    if (!err) {
+      return;
+    }
+
+    let text;
+    if (err.details) {
+      text = Array.isArray(err.details)
+        ? `${err.message}: ${err.details.join(', ')}.`
+        : err.details + '.';
+    } else {
+      text = err.message + '.';
+    }
+
+    snackbarDispatch({
+      type: 'ENQUEUE_SNACKBAR_MSG',
+      data: {
+        type: 'error',
+        title: 'Failed to create standup',
+        text
+      }
+    });
+  }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const navigateHome = () => {
     navigate('/');
@@ -89,20 +150,16 @@ function NewStandup() {
     setShowConfirm(false);
   };
 
-  const handleNextStep = () => {
-    if (stepIndex >= totalSteps - 1) {
-      return;
+  const handleCreate = async e => {
+    e.preventDefault();
+
+    const data = {
+      standupName: standup.name
+    };
+    const res = await createStandup(data);
+    if (res && res.standupId) {
+      navigate(`/${res.standupId}`);
     }
-
-    setStepIndex(i => i + 1);
-  };
-
-  const handlePreviousStep = () => {
-    if (stepIndex <= 0) {
-      return;
-    }
-
-    setStepIndex(i => i - 1);
   };
 
   return ReactDOM.createPortal(
@@ -114,12 +171,10 @@ function NewStandup() {
 
         <Wrapper>
           <PureNewStandup
-            questionsByStepIndex={questionsByStepIndex}
-            stepIndex={stepIndex}
             standup={standup}
             dispatch={dispatch}
-            handleNextStep={handleNextStep}
-            handlePreviousStep={handlePreviousStep}
+            handleCreate={handleCreate}
+            isCreating={isCreating}
           />
         </Wrapper>
       </Container>
