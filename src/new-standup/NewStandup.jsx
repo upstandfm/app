@@ -11,7 +11,6 @@ import standupReducer, { defaultStandupState } from './reducer';
 
 import { Container, Wrapper, ExitContainer, Header, Title } from './Layout';
 import Standup from './Standup';
-import Invite from './Invite';
 import Final from './Final';
 
 export const questionsByStepIndex = [
@@ -19,12 +18,6 @@ export const questionsByStepIndex = [
     id: 'name',
     title: 'Name',
     Component: Standup
-  },
-
-  {
-    id: 'invite',
-    title: 'Invite',
-    Component: Invite
   },
 
   {
@@ -51,7 +44,6 @@ function PureNewStandup({
   return (
     <Component
       standupName={standup.name}
-      standupUsers={standup.users}
       dispatch={dispatch}
       handlePreviousStep={handlePreviousStep}
       handleNextStep={handleNextStep}
@@ -63,8 +55,7 @@ PureNewStandup.propTypes = {
   questionsByStepIndex: PropTypes.arrayOf(PropTypes.object),
   stepIndex: PropTypes.number.isRequired,
   standup: PropTypes.shape({
-    name: PropTypes.string,
-    users: PropTypes.arrayOf(PropTypes.string)
+    name: PropTypes.string
   }),
   dispatch: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,

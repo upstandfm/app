@@ -39,13 +39,6 @@ export const SizedContainer = styled.div`
   }
 `;
 
-export const Divider = styled.div`
-  width: 100%;
-  margin: 1em 0;
-  padding: 0;
-  border-top: 1px solid var(--color-lighter-grey);
-`;
-
 export const Subtitle = styled.h2`
   margin: 0;
   font-weight: normal;

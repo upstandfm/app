@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, Section, InlineLabel, Input } from '../components/Form';
 import Button from '../components/Button';
 
-import { SizedContainer, Divider, Subtitle, Actions } from './Layout';
+import { SizedContainer, Subtitle, Actions } from './Layout';
 
 function Standup({ standupName, dispatch, handleNextStep }) {
   const nameInput = React.createRef();
@@ -45,8 +45,6 @@ function Standup({ standupName, dispatch, handleNextStep }) {
           </InlineLabel>
         </Section>
       </SizedContainer>
-
-      <Divider />
 
       <Actions>
         <Button
