@@ -21,18 +21,22 @@ export const Wrapper = styled.div`
     width: 70%;
   }
 
-  @media (max-width: 380px) {
+  @media (max-width: 480px) {
     width: 100%;
   }
 `;
 
 export const ExitContainer = styled.div`
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: 2em;
+  right: 2em;
+
+  @media (max-width: 480px) {
+    top: 0.5em;
+    right: 0.5em;
+  }
 `;
 
-export const Subtitle = styled.h2`
+export const Title = styled.h1`
   margin: 0;
-  font-weight: normal;
 `;
