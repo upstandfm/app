@@ -45,12 +45,9 @@ export const StandupUpdates = styled.div`
 
 export const StandupPlayer = styled.div`
   grid-area: standup-player;
-  display: grid;
-  justify-items: center;
   box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, 0.2);
   background-color: var(--color-white);
   margin: 0;
   padding: 1em 0;
-  width: 100%;
   z-index: 1;
 `;
