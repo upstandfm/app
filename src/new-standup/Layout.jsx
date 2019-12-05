@@ -14,6 +14,16 @@ export const Container = styled.aside`
 export const Wrapper = styled.div`
   margin: auto;
   padding: 1em;
+  box-sizing: border-box;
+  width: 40%;
+
+  @media (max-width: 780px) {
+    width: 70%;
+  }
+
+  @media (max-width: 380px) {
+    width: 100%;
+  }
 `;
 
 export const ExitContainer = styled.div`
@@ -22,25 +32,7 @@ export const ExitContainer = styled.div`
   right: 1em;
 `;
 
-export const SizedContainer = styled.div`
-  width: 70%;
-
-  @media (max-width: 570px) {
-    width: 100%;
-  }
-`;
-
 export const Subtitle = styled.h2`
   margin: 0;
   font-weight: normal;
-`;
-
-export const Actions = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin: 2em 0 0 0;
-
-  @media (max-width: 470px) {
-    justify-content: center;
-  }
 `;
