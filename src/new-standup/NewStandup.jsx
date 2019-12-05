@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FocusTrap from 'focus-trap-react';
 
 import { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
@@ -164,20 +165,22 @@ function NewStandup() {
 
   return ReactDOM.createPortal(
     <>
-      <Container>
-        <ExitContainer>
-          <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
-        </ExitContainer>
+      <FocusTrap>
+        <Container>
+          <ExitContainer>
+            <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
+          </ExitContainer>
 
-        <Wrapper>
-          <PureNewStandup
-            standup={standup}
-            dispatch={dispatch}
-            handleCreate={handleCreate}
-            isCreating={isCreating}
-          />
-        </Wrapper>
-      </Container>
+          <Wrapper>
+            <PureNewStandup
+              standup={standup}
+              dispatch={dispatch}
+              handleCreate={handleCreate}
+              isCreating={isCreating}
+            />
+          </Wrapper>
+        </Container>
+      </FocusTrap>
 
       <Confirm
         show={showConfirm}
