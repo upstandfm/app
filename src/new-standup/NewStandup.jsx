@@ -15,14 +15,14 @@ import Button from '../components/Button';
 import useCreateStandup from './use-create-standup';
 import standupReducer, { defaultStandupState } from './reducer';
 
-import { Container, Wrapper, ExitContainer, Subtitle } from './Layout';
+import { Container, Wrapper, ExitContainer, Title } from './Layout';
 
 const CustomSection = styled(Section)`
   margin: 0 0 2em 0;
 `;
 
 const CustomInput = styled(Input)`
-  font-size: 2em;
+  font-size: 2.6em;
   border: none;
   padding: 0.5em 0;
   font-weight: bold;
@@ -31,11 +31,15 @@ const CustomInput = styled(Input)`
     box-shadow: none;
   }
 
+  @media (max-width: 1130px) {
+    font-size: 2em;
+  }
+
   @media (max-width: 780px) {
     font-size: 1.6em;
   }
 
-  @media (max-width: 380px) {
+  @media (max-width: 480px) {
     font-size: 1.2em;
   }
 `;
@@ -58,7 +62,7 @@ function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
 
   return (
     <Form>
-      <Subtitle>Create a new standup</Subtitle>
+      <Title>Create a new standup</Title>
 
       <CustomSection>
         <Label htmlFor="name">
@@ -168,7 +172,7 @@ function NewStandup() {
     };
     const res = await createStandup(data);
     if (res && res.standupId) {
-      navigate(`/${res.standupId}`);
+      navigate(`/standups/${res.standupId}`);
     }
   };
 
