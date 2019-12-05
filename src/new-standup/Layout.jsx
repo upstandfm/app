@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  margin: 2em 1em;
-  padding: 1em;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
+export const Container = styled.aside`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   background-color: var(--color-white);
-  border: 1px solid var(--color-light-grey);
-  border-radius: var(--radius-size);
-  box-shadow: 6px 6px 0 0 var(--color-light-grey);
+  display: grid;
+  z-index: 1;
 `;
 
 export const Wrapper = styled.div`
-  width: 50rem;
-  margin: 0 auto;
-  padding: 1em 0;
+  margin: auto;
+  padding: 1em;
+`;
 
-  @media (max-width: 870px) {
-    width: 100%;
-  }
+export const ExitContainer = styled.div`
+  position: absolute;
+  top: 1em;
+  right: 1em;
 `;
 
 export const Header = styled.div`
