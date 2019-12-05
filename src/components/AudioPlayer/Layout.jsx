@@ -7,7 +7,8 @@ export const Container = styled.div`
   grid-gap: 1em;
   align-items: center;
   justify-items: center;
-  width: 70%;
+  max-width: 50rem;
+  margin: 0 auto;
 `;
 
 export const Controls = styled.div`
