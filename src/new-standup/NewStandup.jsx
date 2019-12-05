@@ -7,21 +7,14 @@ import FocusTrap from 'focus-trap-react';
 
 import { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
-import { Form, Section, InlineLabel, Input } from '../components/Form';
+import { Form, Section, Label, Input } from '../components/Form';
 import { useSnackbar } from '../components/Snackbar';
 import Button from '../components/Button';
 
 import useCreateStandup from './use-create-standup';
 import standupReducer, { defaultStandupState } from './reducer';
 
-import {
-  Container,
-  Wrapper,
-  ExitContainer,
-  SizedContainer,
-  Subtitle,
-  Actions
-} from './Layout';
+import { Container, Wrapper, ExitContainer, Subtitle } from './Layout';
 
 function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
   const nameInput = React.createRef();
@@ -41,39 +34,31 @@ function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
 
   return (
     <Form>
-      <Subtitle>What describes your team best?</Subtitle>
+      <Subtitle>Create a new standup</Subtitle>
 
-      <SizedContainer>
-        <Section>
-          <InlineLabel htmlFor="name">
-            NAME
-            <Input
-              type="text"
-              id="name"
-              placeholder="Team ship it 🚀"
-              ref={nameInput}
-              value={name}
-              onChange={handleInput}
-              maxLength={70}
-            />
-          </InlineLabel>
-        </Section>
-      </SizedContainer>
+      <Section>
+        <Label htmlFor="name">
+          <Input
+            type="text"
+            id="name"
+            placeholder="What name describes your team best?"
+            ref={nameInput}
+            value={name}
+            onChange={handleInput}
+            maxLength={70}
+          />
+        </Label>
+      </Section>
 
-      <Actions>
-        <Button
-          onClick={handleCreate}
-          disabled={name.length === 0 || isCreating}
-        >
-          {isCreating ? (
-            <>
-              <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Creating..
-            </>
-          ) : (
-            'Yes, create'
-          )}
-        </Button>
-      </Actions>
+      <Button onClick={handleCreate} disabled={name.length === 0 || isCreating}>
+        {isCreating ? (
+          <>
+            <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Creating..
+          </>
+        ) : (
+          'Create'
+        )}
+      </Button>
     </Form>
   );
 }
