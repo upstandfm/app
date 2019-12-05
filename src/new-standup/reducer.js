@@ -1,6 +1,5 @@
 export const defaultStandupState = {
-  name: '',
-  users: []
+  name: ''
 };
 
 /**
@@ -17,20 +16,6 @@ function standupReducer(state, action) {
       return {
         ...state,
         name: action.data
-      };
-    }
-
-    case 'ADD_USER': {
-      return {
-        ...state,
-        users: [...state.users, action.data]
-      };
-    }
-
-    case 'REMOVE_USER': {
-      return {
-        ...state,
-        users: state.users.filter(email => email !== action.data)
       };
     }
 
