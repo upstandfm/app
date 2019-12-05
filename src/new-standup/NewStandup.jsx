@@ -8,7 +8,7 @@ import { Confirm } from '../components/Modal';
 
 import standupReducer, { defaultStandupState } from './reducer';
 
-import { Container, Wrapper, ExitContainer, Header, Title } from './Layout';
+import { Container, Wrapper, ExitContainer } from './Layout';
 import Standup from './Standup';
 import Final from './Final';
 
@@ -113,10 +113,6 @@ function NewStandup() {
         </ExitContainer>
 
         <Wrapper>
-          <Header>
-            <Title>New standup</Title>
-          </Header>
-
           <PureNewStandup
             questionsByStepIndex={questionsByStepIndex}
             stepIndex={stepIndex}
