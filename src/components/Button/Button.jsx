@@ -44,11 +44,13 @@ const PrimaryButton = styled(RootButton)`
 `;
 
 const SecondaryButton = styled(RootButton)`
+  border-color: var(--color-darkest-purple);
   background-color: transparent;
   box-shadow: none;
 
   :hover {
-    background-color: var(--color-lightest-purple);
+    background-color: var(--color-darkest-purple);
+    color: var(--color-lightest-purple);
   }
 
   :disabled,
