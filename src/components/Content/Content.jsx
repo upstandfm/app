@@ -35,8 +35,8 @@ function Content(props) {
 
   return (
     <Container>
-      <Title data-cy="title">{title}</Title>
-      <Subtitle data-cy="subtitle">{subtitle}</Subtitle>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
       <Section>{props.children}</Section>
     </Container>
   );

@@ -49,17 +49,12 @@ function LoginFailed({ errMessage, handleRetry }) {
         >
           <p>We encountered this error:</p>
 
-          <ErrMessage data-cy="err-msg">{errMessage}</ErrMessage>
+          <ErrMessage data-testid="login-failed-err">{errMessage}</ErrMessage>
 
           <p>Our developers have been notified, but please try again:</p>
 
           <Actions>
-            <Button
-              data-cy="retry"
-              invertTextColor
-              onClick={handleRetry}
-              aria-label="login again"
-            >
+            <Button onClick={handleRetry} aria-label="login again">
               Login again
             </Button>
           </Actions>
@@ -67,7 +62,6 @@ function LoginFailed({ errMessage, handleRetry }) {
           <p>
             If retrying didn&apos;t work, please send an email to{' '}
             <Link
-              data-cy="support"
               href="mailto:support@upstand.fm?subject=Login error"
               target="_blank"
               rel="noopener noreferrer"
