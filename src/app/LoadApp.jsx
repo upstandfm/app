@@ -10,6 +10,16 @@ const AuthenticatedApp = React.lazy(() => import('../authenticated-app'));
 function LoadApp() {
   const { isLoading, authErr, isAuthenticated, login } = useAuth0();
 
+  React.useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    if (!isAuthenticated) {
+      login();
+    }
+  }, [isLoading, isAuthenticated]); // eslint-disable-line react-hooks/exhaustive-deps
+
   if (isLoading) {
     return <SplashScreen />;
   }
@@ -19,7 +29,6 @@ function LoadApp() {
   }
 
   if (!isAuthenticated) {
-    login();
     return <SplashScreen />;
   }
 
