@@ -13,7 +13,6 @@ import { useSnackbar } from '../components/Snackbar';
 import Button from '../components/Button';
 
 import useCreateStandup from './use-create-standup';
-import standupReducer, { defaultStandupState } from './reducer';
 
 import { Container, Wrapper, ExitContainer, Title } from './Layout';
 
@@ -44,7 +43,12 @@ const CustomInput = styled(Input)`
   }
 `;
 
-function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
+function PureNewStandup({
+  standupName,
+  setStandupName,
+  handleCreate,
+  isCreating
+}) {
   const nameInput = React.createRef();
 
   React.useEffect(() => {
@@ -52,13 +56,8 @@ function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleInput = e => {
-    dispatch({
-      type: 'SET_NAME',
-      data: e.target.value
-    });
+    setStandupName(e.target.value);
   };
-
-  const { name } = standup;
 
   return (
     <Form>
@@ -71,14 +70,17 @@ function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
             id="name"
             placeholder="What name describes your team best?"
             ref={nameInput}
-            value={name}
+            value={standupName}
             onChange={handleInput}
             maxLength={70}
           />
         </Label>
       </CustomSection>
 
-      <Button onClick={handleCreate} disabled={name.length === 0 || isCreating}>
+      <Button
+        onClick={handleCreate}
+        disabled={standupName.length === 0 || isCreating}
+      >
         {isCreating ? (
           <>
             <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Creating..
@@ -92,10 +94,8 @@ function PureNewStandup({ standup, dispatch, handleCreate, isCreating }) {
 }
 
 PureNewStandup.propTypes = {
-  standup: PropTypes.shape({
-    name: PropTypes.string
-  }),
-  dispatch: PropTypes.func.isRequired,
+  standupName: PropTypes.string,
+  setStandupName: PropTypes.func.isRequired,
   handleCreate: PropTypes.func.isRequired,
   isCreating: PropTypes.bool.isRequired
 };
@@ -108,13 +108,10 @@ function NewStandup() {
     err
   ] = useCreateStandup();
 
-  const [showConfirm, setShowConfirm] = React.useState(false);
-  const [standup, dispatch] = React.useReducer(
-    standupReducer,
-    defaultStandupState
-  );
-
   const [, snackbarDispatch] = useSnackbar();
+
+  const [showConfirm, setShowConfirm] = React.useState(false);
+  const [standupName, setStandupName] = React.useState('');
 
   React.useEffect(() => {
     return () => {
@@ -151,7 +148,7 @@ function NewStandup() {
   };
 
   const handleExit = () => {
-    const hasProgress = Boolean(standup.name);
+    const hasProgress = Boolean(standupName);
     if (hasProgress) {
       setShowConfirm(true);
       return;
@@ -168,7 +165,7 @@ function NewStandup() {
     e.preventDefault();
 
     const data = {
-      standupName: standup.name
+      standupName
     };
     const res = await createStandup(data);
     if (res && res.standupId) {
@@ -186,8 +183,8 @@ function NewStandup() {
 
           <Wrapper>
             <PureNewStandup
-              standup={standup}
-              dispatch={dispatch}
+              standupName={standupName}
+              setStandupName={setStandupName}
               handleCreate={handleCreate}
               isCreating={isCreating}
             />
