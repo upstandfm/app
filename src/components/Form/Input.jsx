@@ -13,6 +13,7 @@ export const Label = styled.label`
   align-items: center;
   text-transform: none;
   font-weight: bold;
+  font-size: 13px;
   letter-spacing: 0.035rem;
   line-height: 1.5;
   color: var(--color-grey);
@@ -64,7 +65,7 @@ export const Input = styled.input`
 
 export const Description = styled.p`
   margin: 0.5rem 0 0 0;
-  font-size: 0.8rem;
+  font-size: 13px;
   font-style: italic;
   line-height: 1.5;
   color: ${props =>
