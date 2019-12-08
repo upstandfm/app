@@ -20,16 +20,12 @@ function LoadApp() {
     }
   }, [isLoading, isAuthenticated]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isLoading) {
+  if (isLoading || !isAuthenticated) {
     return <SplashScreen />;
   }
 
   if (authErr) {
     return <LoginFailed errMessage={authErr} handleRetry={login} />;
-  }
-
-  if (!isAuthenticated) {
-    return <SplashScreen />;
   }
 
   return (
