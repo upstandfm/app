@@ -12,6 +12,8 @@ import { Form, Section, Label, Input } from '../components/Form';
 import { useSnackbar } from '../components/Snackbar';
 import Button from '../components/Button';
 
+import { useStandups } from '../standups';
+
 import useCreateStandup from './use-create-standup';
 
 import { Container, Wrapper, ExitContainer, Title } from './Layout';
@@ -101,6 +103,7 @@ PureNewStandup.propTypes = {
 };
 
 function NewStandup() {
+  const [, standupsDispatch] = useStandups();
   const [
     createStandup,
     abortCreateStandup,
@@ -167,9 +170,18 @@ function NewStandup() {
     const data = {
       standupName
     };
-    const res = await createStandup(data);
-    if (res && res.standupId) {
-      navigate(`/standups/${res.standupId}`);
+
+    const { standupId } = await createStandup(data);
+    if (standupId) {
+      standupsDispatch({
+        type: 'CREATED_STANDUP',
+        data: {
+          standupId,
+          standupName
+        }
+      });
+
+      navigate(`/standups/${standupId}`);
     }
   };
 

@@ -31,6 +31,23 @@ describe('standups reducer', () => {
     expect(newState).toContain(standups[0]);
   });
 
+  it('adds a created standup', () => {
+    const state = [];
+
+    const createdStandup = {
+      standupId: '1',
+      standupName: 'My standup'
+    };
+
+    const action = {
+      type: 'CREATED_STANDUP',
+      data: createdStandup
+    };
+
+    const newState = reducer(state, action);
+    expect(newState).toContain(createdStandup);
+  });
+
   it('returns default state', () => {
     const state = [{ standupId: '1', standupName: 'One' }];
 

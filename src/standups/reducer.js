@@ -18,6 +18,10 @@ function standupsReducer(state, action) {
       return [...state, ...action.data];
     }
 
+    case 'CREATED_STANDUP': {
+      return [...state, action.data];
+    }
+
     default: {
       return state;
     }
