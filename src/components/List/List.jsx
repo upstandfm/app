@@ -1,18 +1,12 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const ListContainer = styled.div`
   margin: 1em 0;
-  border: ${props => (props.flat ? 0 : '1px solid var(--color-light-grey)')};
-  border-radius: ${props => (props.flat ? 0 : 'var(--radius-size)')};
-  box-shadow: ${props =>
-    props.flat ? 'none' : '6px 6px 0 0 var(--color-light-grey)'};
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-size);
+  box-shadow: 6px 6px 0 0 var(--color-light-grey);
   background-color: var(--color-white);
 `;
-
-ListContainer.propTypes = {
-  flat: PropTypes.bool
-};
 
 export const ListTitle = styled.h3`
   margin: 0;
