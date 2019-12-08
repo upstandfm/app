@@ -287,11 +287,11 @@ workflows:
           requires:
             - audit
             - deps
-      - e2e:
-          requires:
-            - audit
-            - deps
-            - test
+      # - e2e:
+      #     requires:
+      #       - audit
+      #       - deps
+      #       - test
 
       # The builds are run in parallel
       - build:
@@ -300,14 +300,14 @@ workflows:
             - audit
             - deps
             - test
-            - e2e
+            # - e2e
       - build-storybook:
           <<: *all_branches_except_master
           requires:
             - audit
             - deps
             - test
-            - e2e
+            # - e2e
 
       # Storybook must be built in order to run snapshots with Percy
       - snapshots:
@@ -316,7 +316,7 @@ workflows:
             - audit
             - deps
             - test
-            - e2e
+            # - e2e
             - build-storybook
 
   release_master:
@@ -332,11 +332,11 @@ workflows:
           requires:
             - audit
             - deps
-      - e2e-record:
-          requires:
-            - audit
-            - deps
-            - test
+      # - e2e-record:
+      #     requires:
+      #       - audit
+      #       - deps
+      #       - test
 
       # The builds are run in parallel
       - build:
@@ -345,14 +345,14 @@ workflows:
             - audit
             - deps
             - test
-            - e2e-record
+            # - e2e-record
       - build-storybook:
           <<: *only_master
           requires:
             - audit
             - deps
             - test
-            - e2e-record
+            # - e2e-record
 
       # The releases are run in parallel
       - release:
@@ -361,7 +361,7 @@ workflows:
             - audit
             - deps
             - test
-            - e2e-record
+            # - e2e-record
             - build
       - release-storybook:
           <<: *only_master
@@ -369,5 +369,5 @@ workflows:
             - audit
             - deps
             - test
-            - e2e-record
+            # - e2e-record
             - build-storybook
