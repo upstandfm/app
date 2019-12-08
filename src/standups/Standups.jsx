@@ -19,7 +19,7 @@ import {
   ListEmpty
 } from './StandupList';
 
-import standupsReducer from './reducer';
+import { useStandups } from './StandupsContext';
 import useFetchStandups from './use-fetch-standups';
 
 const MenuButton = styled(Button)`
@@ -154,10 +154,7 @@ PureStandups.propTypes = {
 const PAGE_LIMIT = 10;
 
 function Standups() {
-  const [standupsState, standupsDispatch] = React.useReducer(
-    standupsReducer,
-    []
-  );
+  const [standupsState, standupsDispatch] = useStandups();
 
   const [
     fetchStandups,

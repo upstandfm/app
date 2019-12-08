@@ -1,3 +1,5 @@
+export const defaultStandupsState = [];
+
 /**
  * Standups reducer.
  *
