@@ -4,12 +4,13 @@ import React from 'react';
  * Custom hook to create a media recorder from a media stream.
  *
  * @param {Object} stream - MediaStream
+ * @param {Function} onNewRecording - Callback that's called whenever there's a new recording
  *
  * For more info see:
  * - https://developer.mozilla.org/en-US/docs/Web/API/MediaStream
  * - https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
  */
-function useRecordAudio(id, stream, dispatch) {
+function useRecordAudio(stream, onNewRecording) {
   const [mediaRecorder, setMediaRecorder] = React.useState(null);
   const [recorderErr, setRecorderErr] = React.useState(null);
   const [isRecording, setIsRecording] = React.useState(false);
@@ -55,13 +56,9 @@ function useRecordAudio(id, stream, dispatch) {
 
     const onStop = () => {
       const blob = new Blob(chunks.current);
-      dispatch({
-        type: 'NEW_UPDATE_RECORDING',
-        data: {
-          id,
-          blob
-        }
-      });
+      if (onNewRecording && typeof onNewRecording === 'function') {
+        onNewRecording(blob);
+      }
 
       chunks.current = [];
 
@@ -83,7 +80,7 @@ function useRecordAudio(id, stream, dispatch) {
       recorder.removeEventListener('start', onStart);
       recorder.removeEventListener('stop', onStop);
     };
-  }, [id, stream.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [stream.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const startRecording = () => {
     try {

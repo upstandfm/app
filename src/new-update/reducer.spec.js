@@ -4,22 +4,22 @@ describe('updates reducer', () => {
   it('adds a new recording', () => {
     const state = defaultUpdatesState;
 
-    const newUpdate = {
-      id: 'yesterday',
-      blob: {}
-    };
-
     const action = {
       type: 'NEW_UPDATE_RECORDING',
-      data: newUpdate
+      data: {
+        blob: {}
+      }
     };
 
     const newState = reducer(state, action);
-    expect(newState[newUpdate.id].blob).toEqual(newUpdate.blob);
+    const id = Object.keys(newState)[0];
+    expect(id).toBeDefined();
+    expect(newState[id].blob).toEqual(action.data.blob);
+    expect(newState[id].isUploaded).toBe(false);
   });
 
   it('deletes a recording', () => {
-    const id = 'yesterday';
+    const id = '123xyz';
     const state = {
       [id]: {
         id,
@@ -36,17 +36,16 @@ describe('updates reducer', () => {
     };
 
     const newState = reducer(state, action);
-    expect(newState[id].blob).toEqual(null);
+    expect(newState[id]).not.toBeDefined();
   });
 
   it('updates upload state', () => {
     const state = defaultUpdatesState;
-    const id = 'yesterday';
+    const id = '123xyz';
     const action = {
       type: 'UPLOADED_UPDATE_RECORDING',
       data: {
-        id,
-        isUploaded: true
+        id
       }
     };
 
