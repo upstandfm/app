@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
-  margin: 2em 0 1em 0;
   padding: 1em;
   background-color: var(--color-white);
   border: 1px solid var(--color-light-grey);

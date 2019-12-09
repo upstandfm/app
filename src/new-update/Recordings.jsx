@@ -4,35 +4,23 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
-import { ListContainer, List, ListItem } from '../components/List';
+import { ListContainer, List, ListEmpty, ListItem } from '../components/List';
 import { Confirm } from '../components/Modal';
+
+const RecordingsList = styled(List)`
+  overflow: auto;
+  height: 250px;
+`;
 
 const RecordingListItem = styled(ListItem)`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
   grid-gap: 0;
-  background-color: ${props =>
-    props.isCurrent ? 'var(--color-lighter-grey)' : 'inherit'};
 `;
-
-RecordingListItem.propTypes = {
-  isCurrent: PropTypes.bool.isRequired
-};
 
 const RecordingTitle = styled.h4`
   margin: 0;
-  text-transform: capitalize;
-  color: ${props =>
-    props.isCurrent ? 'var(--color-dark-purple)' : 'var(--color-grey)'};
-`;
-
-RecordingTitle.propTypes = {
-  isCurrent: PropTypes.bool.isRequired
-};
-
-const InfoText = styled.span`
-  color: var(--color-grey);
 `;
 
 const RecordingAudio = styled.div`
@@ -47,7 +35,7 @@ const RecordingAudio = styled.div`
   }
 `;
 
-function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
+function Recordings({ updatesState, onDeleteUpdate }) {
   const [idToDelete, setIdToDelete] = React.useState(null);
   const [showConfirm, setShowConfirm] = React.useState(false);
 
@@ -61,50 +49,36 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
   };
 
   const deleteUpdate = () => {
-    dispatch({
-      type: 'DELETE_UPDATE_RECORDING',
-      data: {
-        id: idToDelete
-      }
-    });
-
+    onDeleteUpdate(idToDelete);
     setShowConfirm(false);
     setIdToDelete(null);
   };
 
+  const updateIds = Object.keys(updatesState);
+
   return (
     <>
       <ListContainer>
-        <List>
-          {Object.keys(updatesByQuestionId).map(id => {
-            const update = updatesByQuestionId[id];
-            const isCurrent = currentQuestionId === id;
-            const hasRecording = Boolean(update.blob);
+        <RecordingsList>
+          {updateIds.length === 0 && <ListEmpty>No recordings yet.</ListEmpty>}
+
+          {updateIds.map(id => {
+            const update = updatesState[id];
 
             return (
-              <RecordingListItem
-                key={`preview-${update.id}`}
-                isCurrent={isCurrent}
-              >
-                <RecordingTitle isCurrent={isCurrent}>
-                  {update.id}
-                </RecordingTitle>
+              <RecordingListItem key={`preview-${update.id}`}>
+                <RecordingTitle>{update.id}</RecordingTitle>
 
                 <RecordingAudio>
-                  {hasRecording ? (
-                    // eslint-disable-next-line jsx-a11y/media-has-caption
-                    <audio
-                      controls
-                      src={window.URL.createObjectURL(update.blob)}
-                    ></audio>
-                  ) : (
-                    <InfoText>No recording.</InfoText>
-                  )}
+                  {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                  <audio
+                    controls
+                    src={window.URL.createObjectURL(update.blob)}
+                  ></audio>
 
                   <Button
                     tertiary
                     data-id={update.id}
-                    disabled={!isCurrent || !hasRecording}
                     onClick={handleDelete}
                     aria-label="delete recording"
                     title="delete recording"
@@ -115,7 +89,7 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
               </RecordingListItem>
             );
           })}
-        </List>
+        </RecordingsList>
       </ListContainer>
 
       <Confirm
@@ -135,22 +109,8 @@ function Recordings({ updatesByQuestionId, dispatch, currentQuestionId }) {
 }
 
 Recordings.propTypes = {
-  updatesByQuestionId: PropTypes.shape({
-    yesterday: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      blob: PropTypes.object
-    }),
-    today: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      blob: PropTypes.object
-    }),
-    blockers: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      blob: PropTypes.object
-    })
-  }),
-  dispatch: PropTypes.func.isRequired,
-  currentQuestionId: PropTypes.string.isRequired
+  updatesState: PropTypes.object.isRequired,
+  onDeleteUpdate: PropTypes.func.isRequired
 };
 
 export default Recordings;

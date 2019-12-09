@@ -32,13 +32,13 @@ const StopRecordButton = styled(Button)`
   }
 `;
 
-function AudioRecorder({ id, stream, dispatch, hasRecording }) {
+function AudioRecorder({ stream, onNewRecording }) {
   const [
     startRecording,
     stopRecording,
     recorderErr,
     isRecording
-  ] = useRecordAudio(id, stream, dispatch);
+  ] = useRecordAudio(stream, onNewRecording);
 
   const [isPreparing, setIsPreparing] = React.useState(false);
 
@@ -72,11 +72,9 @@ function AudioRecorder({ id, stream, dispatch, hasRecording }) {
               intervalMs={1e3}
               onDone={stopRecording}
             />
-          ) : hasRecording ? (
-            'Recording added to preview!'
           ) : (
             <>
-              Hit <b>rec</b> to start your update.
+              Hit <b>rec</b> to start recording.
             </>
           )}
         </Subtitle>
@@ -95,7 +93,7 @@ function AudioRecorder({ id, stream, dispatch, hasRecording }) {
             round
             title="start recording"
             aria-label="start recording"
-            disabled={isPreparing || hasRecording}
+            disabled={isPreparing}
             onClick={handleStartCountDown}
           >
             rec
@@ -103,10 +101,8 @@ function AudioRecorder({ id, stream, dispatch, hasRecording }) {
         )}
 
         <Info>
-          <FontAwesomeIcon icon="lightbulb" size="sm" />{' '}
-          {hasRecording
-            ? 'Delete the preview to record again.'
-            : 'You can preview your update before saving.'}
+          <FontAwesomeIcon icon="lightbulb" size="sm" /> You can preview
+          recordings before publishing your update.
         </Info>
       </Main>
     </Container>
@@ -114,10 +110,8 @@ function AudioRecorder({ id, stream, dispatch, hasRecording }) {
 }
 
 AudioRecorder.propTypes = {
-  id: PropTypes.oneOf(['yesterday', 'today', 'blockers']).isRequired,
   stream: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  hasRecording: PropTypes.bool.isRequired
+  onNewRecording: PropTypes.func.isRequired
 };
 
 export default AudioRecorder;

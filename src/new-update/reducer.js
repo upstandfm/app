@@ -1,19 +1,11 @@
+import shortid from 'shortid';
+
 export const defaultUpdatesState = {
-  yesterday: {
-    id: 'yesterday',
-    blob: null,
-    isUploaded: false
-  },
-  today: {
-    id: 'today',
-    blob: null,
-    isUploaded: false
-  },
-  blockers: {
-    id: 'blockers',
-    blob: null,
-    isUploaded: false
-  }
+  // 'x9f4hj5k68': {
+  //    id: 'x9f4hj5k68',
+  //    blob: new Blob(),
+  //    isUploaded: false
+  // }
 };
 
 /**
@@ -27,30 +19,22 @@ export const defaultUpdatesState = {
 function updatesReducer(state, action) {
   switch (action.type) {
     case 'NEW_UPDATE_RECORDING': {
-      const { id } = action.data;
-      const oldUpdateState = state[id];
+      const id = shortid.generate();
 
       return {
         ...state,
         [id]: {
-          ...oldUpdateState,
-          ...action.data
+          id,
+          blob: action.data.blob,
+          isUploaded: false
         }
       };
     }
 
     case 'DELETE_UPDATE_RECORDING': {
-      const { id } = action.data;
-      const oldUpdateState = state[id];
-
-      return {
-        ...state,
-        [action.data.id]: {
-          ...oldUpdateState,
-          ...action.data,
-          blob: null
-        }
-      };
+      const newState = { ...state };
+      delete newState[action.data.id];
+      return newState;
     }
 
     case 'UPLOADED_UPDATE_RECORDING': {
@@ -61,7 +45,7 @@ function updatesReducer(state, action) {
         ...state,
         [id]: {
           ...oldUpdateState,
-          ...action.data
+          isUploaded: true
         }
       };
     }

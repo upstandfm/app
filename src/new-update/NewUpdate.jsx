@@ -1,26 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
+import styled from 'styled-components';
 
 import Button, { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
 import AudioRecorder from '../components/AudioRecorder';
 
-import {
-  Container,
-  Header,
-  Main,
-  Actions,
-  Preview,
-  PreviewText
-} from './Layout';
-
+import { Container, Header, Main, Actions, Preview } from './Layout';
 import Permission from './Permission';
 import Recordings from './Recordings';
 import UploadRecordings from './UploadRecordings';
 
 import updatesReducer, { defaultUpdatesState } from './reducer';
 import useGetUserMedia from './use-get-user-media';
+
+const Title = styled.h1`
+  font-size: 1.5em;
+`;
+
+const Subtitle = styled.p`
+  color: var(--color-grey);
+  letter-spacing: 1px;
+  margin: 0 0 0.5em 0;
+  text-transform: uppercase;
+`;
 
 function NewUpdate({ standupId }) {
   const [updatesState, updatesDispatch] = React.useReducer(
@@ -63,6 +67,26 @@ function NewUpdate({ standupId }) {
     [isSaving, isDoneUploading] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
+  // Helpers
+
+  const onNewRecording = blob => {
+    updatesDispatch({
+      type: 'NEW_UPDATE_RECORDING',
+      data: {
+        blob
+      }
+    });
+  };
+
+  const onDeleteUpdate = id => {
+    updatesDispatch({
+      type: 'DELETE_UPDATE_RECORDING',
+      data: {
+        id
+      }
+    });
+  };
+
   // Event handlers
 
   const handleExit = () => {
@@ -93,7 +117,7 @@ function NewUpdate({ standupId }) {
     <>
       <Container>
         <Header>
-          <h1>New update</h1>
+          <Title>Record a new update</Title>
 
           <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
         </Header>
@@ -108,13 +132,12 @@ function NewUpdate({ standupId }) {
           <>
             <Main>
               <AudioRecorder
-                id={''}
                 stream={userMediaStream}
-                dispatch={updatesDispatch}
+                onNewRecording={onNewRecording}
               />
 
               <Preview>
-                <PreviewText>PREVIEW</PreviewText>
+                <Subtitle>Preview</Subtitle>
 
                 {isSaving ? (
                   <UploadRecordings
@@ -124,16 +147,17 @@ function NewUpdate({ standupId }) {
                   />
                 ) : (
                   <Recordings
-                    updatesByQuestionId={updatesState}
-                    dispatch={updatesDispatch}
-                    currentQuestionId={''}
+                    updatesState={updatesState}
+                    onDeleteUpdate={onDeleteUpdate}
                   />
                 )}
               </Preview>
             </Main>
 
             <Actions>
-              <Button disabled>Publish</Button>
+              <Button disabled onClick={handleSave}>
+                Publish
+              </Button>
             </Actions>
           </>
         )}
