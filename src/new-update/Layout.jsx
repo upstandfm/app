@@ -6,7 +6,7 @@ export const Container = styled.div`
   padding: 1em;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
 `;
 
 export const Header = styled.div`
@@ -15,8 +15,6 @@ export const Header = styled.div`
   grid-gap: 2em;
   align-items: center;
 `;
-
-export const Title = styled.h1``;
 
 export const Main = styled.div`
   margin: 0;
@@ -30,18 +28,13 @@ export const Main = styled.div`
   }
 `;
 
-export const Subtitle = styled.h2`
-  margin: 0;
-  font-weight: normal;
-`;
-
 export const Actions = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin: 3em 0 0 0;
+  display: grid;
+  justify-items: left;
+  margin: 1em 0 0 0;
 
   @media (max-width: 470px) {
-    justify-content: center;
+    justify-items: center;
   }
 `;
 
