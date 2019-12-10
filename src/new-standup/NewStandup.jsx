@@ -208,7 +208,11 @@ function NewStandup() {
         show={showConfirm}
         handleCancel={handleCancel}
         handleConfirm={navigateHome}
-        title="Are you sure you want to exit?"
+        title={
+          <>
+            Are you sure you want to <b>exit</b>?
+          </>
+        }
         message={
           <>
             Your progress will be <b>lost</b> if you exit now.
