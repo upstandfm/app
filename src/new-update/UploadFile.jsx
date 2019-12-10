@@ -18,7 +18,7 @@ const Text = styled.p`
   color: var(--color-grey);
 `;
 
-function UploadFile({ standupId, update, dispatch }) {
+function UploadFile({ standupId, update, onUploadedFile }) {
   const [, snackbarDispatch] = useSnackbar();
 
   const [retryId, setRetryId] = React.useState(0);
@@ -26,17 +26,13 @@ function UploadFile({ standupId, update, dispatch }) {
   const [uploadFile, abortUploadFile, uploadProgress, err] = useUploadFile(
     standupId,
     update.id,
-    dispatch
+    onUploadedFile
   );
 
   React.useEffect(() => {
-    const { blob } = update;
-
-    if (!blob) {
-      return;
-    }
-
-    const file = new File([blob], `${update.id}.webm`, { type: 'audio/webm' });
+    const file = new File([update.blob], `${update.id}.webm`, {
+      type: 'audio/webm'
+    });
     uploadFile(file);
 
     return () => {
@@ -96,7 +92,7 @@ UploadFile.propTypes = {
     blob: PropTypes.object,
     isUploaded: PropTypes.bool.isRequired
   }),
-  dispatch: PropTypes.func.isRequired
+  onUploadedFile: PropTypes.func.isRequired
 };
 
 export default UploadFile;
