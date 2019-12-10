@@ -6,6 +6,7 @@ import { withA11y } from '@storybook/addon-a11y';
 import '../src/global.css';
 import '../src/icons';
 
+import './override.css';
 import sbTheme from './theme';
 
 const Container = styled.div`

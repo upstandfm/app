@@ -83,6 +83,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-darkest-grey);
   background-color: var(--color-lightest-grey);
+
+  /* Required for the snackbar messages */
+  overflow: hidden;
 }
 
 :focus {
