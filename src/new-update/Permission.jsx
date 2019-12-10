@@ -16,13 +16,18 @@ const Container = styled.div`
   text-align: center;
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   margin: 1em 0 0 0;
   font-weight: normal;
 `;
 
 const Actions = styled.div`
-  margin: 2em 0 1em 0;
+  margin: 2em 0;
+`;
+
+const Info = styled.p`
+  margin: 0;
+  color: var(--color-grey);
 `;
 
 function Permission({ isLoading, err, handleGetPermission }) {
@@ -40,15 +45,16 @@ function Permission({ isLoading, err, handleGetPermission }) {
         We need to <b>temporarily</b> access your microphone to get started.
       </Title>
 
-      <p>
-        We&apos;ll <b>only</b> use your microphone to record your update.
-      </p>
-
       <Actions>
         <Button primary onClick={handleGetPermission}>
           <FontAwesomeIcon icon="microphone" /> Give microphone access
         </Button>
       </Actions>
+
+      <Info>
+        <FontAwesomeIcon icon="lightbulb" size="sm" /> We&apos;ll <b>only</b>{' '}
+        use your microphone to record your update.
+      </Info>
     </Container>
   );
 }

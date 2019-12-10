@@ -74,7 +74,7 @@ function AudioRecorder({ stream, onNewRecording }) {
             />
           ) : (
             <>
-              Hit <b>rec</b> to start recording.
+              Hit <b>rec</b> to start recording your update.
             </>
           )}
         </Subtitle>
@@ -102,7 +102,7 @@ function AudioRecorder({ stream, onNewRecording }) {
 
         <Info>
           <FontAwesomeIcon icon="lightbulb" size="sm" /> You can preview
-          recordings before publishing your update.
+          recordings before publishing.
         </Info>
       </Main>
     </Container>
