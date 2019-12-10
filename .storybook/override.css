@@ -1,0 +1,4 @@
+body {
+  /* Makes sure we can scroll the main storybook container */
+  overflow: scroll !important;
+}
