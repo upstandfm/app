@@ -10,11 +10,11 @@ import api from './api';
  *
  * @param {String} standupId
  * @param {String} updateId
- * @param {Function} dispatch - Reducer dispatch function
+ * @param {Function} onUploadedFile - Callback that's called when a file has been uploaded
  *
  * @return {Array}
  */
-function useUploadFile(standupId, updateId, dispatch) {
+function useUploadFile(standupId, updateId, onUploadedFile) {
   const { getToken } = useAuth0();
 
   const [err, setErr] = React.useState(null);
@@ -45,13 +45,9 @@ function useUploadFile(standupId, updateId, dispatch) {
       const { url: signedUrl } = res.data;
       await api.uploadFile(signedUrl, source.token, file, _onUpdateProgress);
 
-      dispatch({
-        type: 'UPLOADED_UPDATE_RECORDING',
-        data: {
-          id: updateId,
-          isUploaded: true
-        }
-      });
+      if (onUploadedFile && typeof onUploadedFile === 'function') {
+        onUploadedFile(updateId);
+      }
     } catch (err) {
       if (axios.isCancel(err)) {
         return;

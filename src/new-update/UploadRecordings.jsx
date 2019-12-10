@@ -24,33 +24,24 @@ const Wrapper = styled.div`
   height: 45px;
 `;
 
-const InfoText = styled.span`
-  color: var(--color-grey);
-`;
-
-function UploadRecordings({ standupId, updatesByQuestionId, dispatch }) {
+function UploadRecordings({ standupId, updatesState, onUploadedFile }) {
   return (
     <ListContainer>
       <List>
-        {Object.keys(updatesByQuestionId).map(id => {
-          const update = updatesByQuestionId[id];
-          const hasRecording = Boolean(update.blob);
+        {Object.keys(updatesState).map(id => {
+          const update = updatesState[id];
 
           return (
             <UploadListItem key={`upload-${update.id}`}>
               <UploadTitle>{update.id}</UploadTitle>
 
               <Wrapper>
-                {hasRecording ? (
-                  <UploadFile
-                    key={`upload-${id}`}
-                    standupId={standupId}
-                    update={update}
-                    dispatch={dispatch}
-                  />
-                ) : (
-                  <InfoText>No recording.</InfoText>
-                )}
+                <UploadFile
+                  key={`upload-${id}`}
+                  standupId={standupId}
+                  update={update}
+                  onUploadedFile={onUploadedFile}
+                />
               </Wrapper>
             </UploadListItem>
           );
@@ -62,24 +53,8 @@ function UploadRecordings({ standupId, updatesByQuestionId, dispatch }) {
 
 UploadRecordings.propTypes = {
   standupId: PropTypes.string.isRequired,
-  updatesByQuestionId: PropTypes.shape({
-    yesterday: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      blob: PropTypes.object,
-      isUploaded: PropTypes.bool.isRequired
-    }),
-    today: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      blob: PropTypes.object,
-      isUploaded: PropTypes.bool.isRequired
-    }),
-    blockers: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      blob: PropTypes.object,
-      isUploaded: PropTypes.bool.isRequired
-    })
-  }),
-  dispatch: PropTypes.func.isRequired
+  updatesState: PropTypes.object.isRequired,
+  onUploadedFile: PropTypes.func.isRequired
 };
 
 export default UploadRecordings;

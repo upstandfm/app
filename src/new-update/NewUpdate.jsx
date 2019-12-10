@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button, { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
@@ -40,31 +41,29 @@ function NewUpdate({ standupId }) {
   ] = useGetUserMedia();
 
   const [showConfirm, setShowConfirm] = React.useState(false);
-  const [isSaving, setIsSaving] = React.useState(false);
+  const [isPublishing, setIsPublishing] = React.useState(false);
 
   const navigateToStandup = () => {
     navigate(`/standups/${standupId}`);
   };
 
-  const updateIdsWithRecording = Object.keys(updatesState).filter(id =>
-    Boolean(updatesState[id].blob)
-  );
-  const isDoneUploading = updateIdsWithRecording.every(
+  const hasUploadedAllFiles = Object.keys(updatesState).every(
     id => updatesState[id].isUploaded
   );
 
   React.useEffect(
     function redirectWhenDoneUploading() {
-      if (!isSaving) {
+      if (!isPublishing) {
         return;
       }
 
-      if (isDoneUploading) {
+      if (hasUploadedAllFiles) {
+        // FIXME: is this the best way to do this?
         // Give some time for the progress animation(s) to finish
-        setTimeout(navigateToStandup, 500);
+        // setTimeout(navigateToStandup, 500);
       }
     },
-    [isSaving, isDoneUploading] // eslint-disable-line react-hooks/exhaustive-deps
+    [isPublishing, hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Helpers
@@ -81,6 +80,15 @@ function NewUpdate({ standupId }) {
   const onDeleteUpdate = id => {
     updatesDispatch({
       type: 'DELETE_UPDATE_RECORDING',
+      data: {
+        id
+      }
+    });
+  };
+
+  const onUploadedFile = id => {
+    updatesDispatch({
+      type: 'UPLOADED_UPDATE_RECORDING',
       data: {
         id
       }
@@ -109,8 +117,8 @@ function NewUpdate({ standupId }) {
     getUserMedia({ audio: true });
   };
 
-  const handleSave = () => {
-    setIsSaving(true);
+  const handlePublish = () => {
+    setIsPublishing(true);
   };
 
   return (
@@ -139,11 +147,11 @@ function NewUpdate({ standupId }) {
               <Preview>
                 <Subtitle>Preview</Subtitle>
 
-                {isSaving ? (
+                {isPublishing ? (
                   <UploadRecordings
                     standupId={standupId}
-                    updatesByQuestionId={updatesState}
-                    dispatch={updatesDispatch}
+                    updatesState={updatesState}
+                    onUploadedFile={onUploadedFile}
                   />
                 ) : (
                   <Recordings
@@ -155,8 +163,20 @@ function NewUpdate({ standupId }) {
             </Main>
 
             <Actions>
-              <Button disabled onClick={handleSave}>
-                Publish
+              <Button
+                disabled={
+                  Object.keys(updatesState).length === 0 || isPublishing
+                }
+                onClick={handlePublish}
+              >
+                {isPublishing ? (
+                  <>
+                    <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
+                    Publishing..
+                  </>
+                ) : (
+                  'Publish'
+                )}
               </Button>
             </Actions>
           </>
@@ -167,7 +187,11 @@ function NewUpdate({ standupId }) {
         show={showConfirm}
         handleCancel={handleCancel}
         handleConfirm={navigateToStandup}
-        title="Are you sure you want to exit?"
+        title={
+          <>
+            Are you sure you want to <b>exit</b>?
+          </>
+        }
         message={
           <>
             Your progress will be <b>lost</b> if you exit now.
