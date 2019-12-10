@@ -103,8 +103,8 @@ Confirm.propTypes = {
   show: PropTypes.bool.isRequired,
   handleCancel: PropTypes.func.isRequired,
   handleConfirm: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
 export default Confirm;
