@@ -103,11 +103,10 @@ function Recordings({ updatesState, onDeleteUpdate }) {
         show={showConfirm}
         handleCancel={handleCancel}
         handleConfirm={deleteUpdate}
-        title="Are you sure you want to delete this recording?"
-        message={
+        title={
           <>
-            You&apos;ll have to record a new update for <b>{idToDelete}</b>{' '}
-            after deleting it.
+            Are you sure you want to <b>delete</b> this recording{' '}
+            <b>permanently</b>?
           </>
         }
       />
