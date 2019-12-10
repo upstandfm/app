@@ -4,7 +4,13 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
-import { ListContainer, List, ListEmpty, ListItem } from '../components/List';
+import {
+  ListContainer,
+  ListTitle,
+  List,
+  ListEmpty,
+  ListItem
+} from '../components/List';
 import { Confirm } from '../components/Modal';
 
 const RecordingsList = styled(List)`
@@ -59,6 +65,7 @@ function Recordings({ updatesState, onDeleteUpdate }) {
   return (
     <>
       <ListContainer>
+        <ListTitle>Recordings ({updateIds.length})</ListTitle>
         <RecordingsList>
           {updateIds.length === 0 && <ListEmpty>No recordings yet.</ListEmpty>}
 
@@ -67,7 +74,7 @@ function Recordings({ updatesState, onDeleteUpdate }) {
 
             return (
               <RecordingListItem key={`preview-${update.id}`}>
-                <RecordingTitle>{update.id}</RecordingTitle>
+                <RecordingTitle>{update.filename || 'Untitled'}</RecordingTitle>
 
                 <RecordingAudio>
                   {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
