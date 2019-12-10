@@ -23,11 +23,13 @@ const StartRecordButton = styled(Button)`
 `;
 
 const StopRecordButton = styled(Button)`
-  background-color: var(--color-light-grey);
+  background-color: transparent;
+  border-color: var(--color-dark-red);
   color: var(--color-dark-red);
 
   :hover {
-    background-color: var(--color-light-grey);
+    background-color: transparent;
+    border-color: var(--color-red);
     color: var(--color-red);
   }
 `;
