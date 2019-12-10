@@ -117,7 +117,7 @@ function NewUpdate({ standupId }) {
     <>
       <Container>
         <Header>
-          <Title>Record a new update</Title>
+          <Title>Publish a new update</Title>
 
           <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
         </Header>

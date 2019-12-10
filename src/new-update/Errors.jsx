@@ -12,9 +12,9 @@ const Container = styled.div`
   border-radius: var(--radius-size);
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   margin: 1em 0;
-  text-align: center;
+  font-weight: normal;
 `;
 
 const List = styled.ol``;
@@ -47,10 +47,7 @@ export function UserMediaError({ err }) {
 
   return (
     <Container>
-      <Title>
-        <FontAwesomeIcon icon="lightbulb" size="sm" /> We couldn&apos;t access
-        your microphone
-      </Title>
+      <Title>We couldn&apos;t access your microphone.</Title>
 
       <Text>This might be because:</Text>
 
