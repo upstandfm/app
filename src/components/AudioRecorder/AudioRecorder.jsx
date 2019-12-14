@@ -34,7 +34,7 @@ const StopRecordButton = styled(Button)`
   }
 `;
 
-function AudioRecorder({ stream, onNewRecording }) {
+function AudioRecorder({ stream, onNewRecording, isDisabled }) {
   const [
     startRecording,
     stopRecording,
@@ -95,7 +95,7 @@ function AudioRecorder({ stream, onNewRecording }) {
             round
             title="start recording"
             aria-label="start recording"
-            disabled={isPreparing}
+            disabled={isDisabled || isPreparing}
             onClick={handleStartCountDown}
           >
             rec
@@ -113,7 +113,8 @@ function AudioRecorder({ stream, onNewRecording }) {
 
 AudioRecorder.propTypes = {
   stream: PropTypes.object.isRequired,
-  onNewRecording: PropTypes.func.isRequired
+  onNewRecording: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired
 };
 
 export default AudioRecorder;

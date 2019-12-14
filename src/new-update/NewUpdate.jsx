@@ -142,6 +142,7 @@ function NewUpdate({ standupId }) {
               <AudioRecorder
                 stream={userMediaStream}
                 onNewRecording={onNewRecording}
+                isDisabled={isPublishing}
               />
 
               <Preview>
