@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button, { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
 import AudioRecorder from '../components/AudioRecorder';
+import { useSnackbar } from '../components/Snackbar';
 
 import { Container, Header, Main, Actions, Preview } from './Layout';
 import Permission from './Permission';
@@ -40,6 +41,8 @@ function NewUpdate({ standupId }) {
     userMediaStream
   ] = useGetUserMedia();
 
+  const [, snackbarDispatch] = useSnackbar();
+
   const [showConfirm, setShowConfirm] = React.useState(false);
   const [isPublishing, setIsPublishing] = React.useState(false);
 
@@ -47,23 +50,41 @@ function NewUpdate({ standupId }) {
     navigate(`/standups/${standupId}`);
   };
 
-  const hasUploadedAllFiles = Object.keys(updatesState).every(
-    id => updatesState[id].isUploaded
+  const recordingIds = Object.keys(updatesState);
+  const hasRecordings = Boolean(recordingIds.length);
+  const hasUploadedAllFiles = hasRecordings
+    ? recordingIds.every(id => updatesState[id].isUploaded)
+    : false;
+
+  React.useEffect(
+    function showSuccessMessage() {
+      if (!hasUploadedAllFiles) {
+        return;
+      }
+
+      snackbarDispatch({
+        type: 'ENQUEUE_SNACKBAR_MSG',
+        data: {
+          type: 'success',
+          title: 'Published update',
+          text:
+            'Your recording(s) are being processed, and will be available shortly.'
+        }
+      });
+    },
+    [hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   React.useEffect(
     function redirectWhenDoneUploading() {
-      if (!isPublishing) {
+      if (!hasUploadedAllFiles) {
         return;
       }
 
-      if (hasUploadedAllFiles) {
-        // FIXME: is this the best way to do this?
-        // Give some time for the progress animation(s) to finish
-        // setTimeout(navigateToStandup, 500);
-      }
+      // Give some time for the progress animation(s) to finish
+      setTimeout(navigateToStandup, 750);
     },
-    [isPublishing, hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
+    [hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Helpers

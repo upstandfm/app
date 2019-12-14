@@ -93,22 +93,13 @@ export function UploadStatus({ err, progress }) {
     );
   }
 
-  if (isDone) {
-    return (
-      <>
-        <StatusIcon status="done">
-          <FontAwesomeIcon icon="check" />
-        </StatusIcon>
-
-        <span>Upload complete</span>
-      </>
-    );
-  }
-
   return (
     <>
-      <StatusIcon status="uploading">
-        <FontAwesomeIcon icon="circle-notch" spin />
+      <StatusIcon status={isDone ? 'done' : 'uploading'}>
+        <FontAwesomeIcon
+          icon={isDone ? 'check' : 'circle-notch'}
+          spin={!isDone}
+        />
       </StatusIcon>
 
       <span>Uploaded: {progress}%</span>
