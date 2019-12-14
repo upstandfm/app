@@ -56,6 +56,44 @@ DefaultList.story = {
   name: 'default'
 };
 
+export const RaisedList = () => {
+  return (
+    <ListContainer raised>
+      <ListTitle>List title</ListTitle>
+
+      <List>
+        <ListItem>
+          <span>img</span>
+
+          <ListItemText>Main text.</ListItemText>
+
+          <span>meta</span>
+        </ListItem>
+
+        <ListItem>
+          <span>img</span>
+
+          <ListItemText>Main text.</ListItemText>
+
+          <span>meta</span>
+        </ListItem>
+
+        <ListItem>
+          <span>img</span>
+
+          <ListItemText>Main text.</ListItemText>
+
+          <span>meta</span>
+        </ListItem>
+      </List>
+    </ListContainer>
+  );
+};
+
+RaisedList.story = {
+  name: 'raised'
+};
+
 export const EmptyList = () => {
   return (
     <ListContainer>

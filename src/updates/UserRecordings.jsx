@@ -17,7 +17,6 @@ import UserRecording, { RecordingPlayState } from './UserRecording';
 
 const CustomListContainer = styled(ListContainer)`
   margin: 3em 1em 2em 1em;
-  box-shadow: none;
 `;
 
 const UserListItem = styled(ListItem)`
