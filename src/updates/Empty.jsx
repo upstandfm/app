@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   display: grid;
@@ -17,7 +16,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h4`
-  margin: 0.5em 0 0.25em 0;
+  margin: 0;
   font-weight: normal;
   color: var(--color-dark-grey);
 `;
@@ -26,9 +25,7 @@ function Empty({ title }) {
   return (
     <Container>
       <Wrapper>
-        <Title>
-          <FontAwesomeIcon icon="lightbulb" size="sm" /> {title}
-        </Title>
+        <Title>{title}</Title>
       </Wrapper>
     </Container>
   );
