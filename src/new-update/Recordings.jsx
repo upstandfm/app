@@ -67,7 +67,7 @@ function Recordings({ updatesState, onDeleteUpdate }) {
       <ListContainer>
         <ListTitle>Recordings ({updateIds.length})</ListTitle>
         <RecordingsList>
-          {updateIds.length === 0 && <ListEmpty>No recordings yet.</ListEmpty>}
+          {updateIds.length === 0 && <ListEmpty>No recordings.</ListEmpty>}
 
           {updateIds.map(id => {
             const update = updatesState[id];

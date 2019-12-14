@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 import Button from '../Button';
@@ -33,9 +32,7 @@ const NotFound = function({ title, info }) {
   return (
     <Container>
       <Wrapper>
-        <Title>
-          <FontAwesomeIcon icon="lightbulb" size="sm" /> {title}
-        </Title>
+        <Title>{title}</Title>
 
         {info && <p>{info}</p>}
 

@@ -15,8 +15,7 @@ import {
   LoadingListItem,
   ListItemLink,
   LoadingListItemText,
-  ListItemText,
-  ListEmpty
+  ListItemText
 } from './StandupList';
 
 import { useStandups } from './StandupsContext';
@@ -74,20 +73,6 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
               <FontAwesomeIcon icon="ellipsis-h" />
             </MenuButton>
           </LoadingListItem>
-        </List>
-      </ListContainer>
-    );
-  }
-
-  if (standups.length === 0) {
-    return (
-      <ListContainer>
-        <ListTitle>MY STANDUPS</ListTitle>
-
-        <List>
-          <ListEmpty>
-            <FontAwesomeIcon icon="lightbulb" size="sm" /> No standups yet.
-          </ListEmpty>
         </List>
       </ListContainer>
     );

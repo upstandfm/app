@@ -103,7 +103,7 @@ function AudioRecorder({ stream, onNewRecording, isDisabled }) {
         )}
 
         <Info>
-          <FontAwesomeIcon icon="lightbulb" size="sm" /> You can preview
+          <FontAwesomeIcon icon="info-circle" size="sm" /> You can preview
           recordings before publishing.
         </Info>
       </Main>

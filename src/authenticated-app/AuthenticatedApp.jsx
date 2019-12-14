@@ -90,9 +90,7 @@ function AuthenticatedApp() {
           <Standups />
 
           <Actions>
-            <NewStandupButton to="/new">
-              <FontAwesomeIcon icon="plus" /> New standup
-            </NewStandupButton>
+            <NewStandupButton to="/new">New standup</NewStandupButton>
           </Actions>
         </Sidebar>
 

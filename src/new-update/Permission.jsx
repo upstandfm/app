@@ -52,7 +52,7 @@ function Permission({ isLoading, err, handleGetPermission }) {
       </Actions>
 
       <Info>
-        <FontAwesomeIcon icon="lightbulb" size="sm" /> We&apos;ll <b>only</b>{' '}
+        <FontAwesomeIcon icon="info-circle" size="sm" /> We&apos;ll <b>only</b>{' '}
         use your microphone to record your update.
       </Info>
     </Container>
