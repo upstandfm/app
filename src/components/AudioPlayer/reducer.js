@@ -1,16 +1,9 @@
 export const defaultAudioPlayerState = {
   playingFile: {
-    fileId: null,
-    fileKey: null,
-    fileTitle: ''
+    id: null,
+    title: ''
   },
   isPlaying: false,
-
-  // Maps a "fileId" to a progress Object with "isDownloading" and "progress"
-  // props
-  downloadProgress: {},
-
-  // Maps a "fileId" to a file "ObjectURL"
   files: {}
 };
 
@@ -24,17 +17,20 @@ export const defaultAudioPlayerState = {
  */
 function audioPlayerReducer(state, action) {
   switch (action.type) {
-    case 'LOAD_AND_PLAY_AUDIO_FILE': {
+    case 'LOAD_AUDIO_FILE': {
       return {
         ...state,
-        playingFile: action.data,
-        isPlaying: true
+        files: {
+          ...state.files,
+          [action.data.id]: action.data.url
+        }
       };
     }
 
     case 'PLAY_AUDIO': {
       return {
         ...state,
+        playingFile: action.data,
         isPlaying: true
       };
     }
@@ -43,29 +39,6 @@ function audioPlayerReducer(state, action) {
       return {
         ...state,
         isPlaying: false
-      };
-    }
-
-    case 'DOWNLOADING_AUDIO_FILE': {
-      return {
-        ...state,
-        downloadProgress: {
-          ...state.downloadProgress,
-          [action.data.fileId]: {
-            isDownloading: action.data.progress !== 100,
-            progress: action.data.progress
-          }
-        }
-      };
-    }
-
-    case 'DOWNLOADED_AUDIO_FILE': {
-      return {
-        ...state,
-        files: {
-          ...state.files,
-          [action.data.fileId]: action.data.fileUrl
-        }
       };
     }
 

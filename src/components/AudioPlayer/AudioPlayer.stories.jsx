@@ -22,7 +22,6 @@ export const DefaultAudioPlayer = () => {
     <PureAudioPlayer
       fileTitle={''}
       isPlaying={false}
-      isDownloading={false}
       playAudio={playAudio}
       pauseAudio={pauseAudio}
       canPlay={false}
@@ -42,37 +41,11 @@ DefaultAudioPlayer.story = {
   name: 'default'
 };
 
-export const DownloadingAudioPlayer = () => {
-  return (
-    <PureAudioPlayer
-      fileTitle={''}
-      isPlaying={false}
-      isDownloading={true}
-      playAudio={playAudio}
-      pauseAudio={pauseAudio}
-      canPlay={false}
-      isSeeking={false}
-      hasEnded={false}
-      totalTimeSeconds={0}
-      playedTimeSeconds={0}
-      playProgressPercent={0}
-      play={play}
-      pause={pause}
-      seek={seek}
-    />
-  );
-};
-
-DownloadingAudioPlayer.story = {
-  name: 'downloading'
-};
-
 export const PlayingAudioPlayer = () => {
   return (
     <PureAudioPlayer
       fileTitle={'My audio file'}
       isPlaying={true}
-      isDownloading={false}
       playAudio={playAudio}
       pauseAudio={pauseAudio}
       canPlay={true}
@@ -97,7 +70,6 @@ export const PausedAudioPlayer = () => {
     <PureAudioPlayer
       fileTitle={'My audio file'}
       isPlaying={false}
-      isDownloading={false}
       playAudio={playAudio}
       pauseAudio={pauseAudio}
       canPlay={true}

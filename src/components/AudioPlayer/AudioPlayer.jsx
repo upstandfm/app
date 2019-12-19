@@ -6,7 +6,6 @@ import { useSnackbar } from '../Snackbar';
 import Button from '../Button';
 
 import { useAudioPlayer } from './AudioPlayerContext';
-import useDownloadFile from './use-download-file';
 import usePlayAudio from './use-play-audio';
 import { formatTime } from './utils';
 
@@ -47,7 +46,6 @@ export function LoadingAudioPlayer() {
 export function PureAudioPlayer({
   fileTitle,
   isPlaying,
-  isDownloading,
   playAudio,
   pauseAudio,
   canPlay,
@@ -107,11 +105,7 @@ export function PureAudioPlayer({
       <Controls>
         <Button tertiary disabled={!canPlay} onClick={handlePlayPause}>
           <PlayState>
-            {isDownloading ? (
-              <FontAwesomeIcon icon="circle-notch" size="2x" spin />
-            ) : (
-              <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="2x" />
-            )}
+            <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="2x" />
           </PlayState>
         </Button>
       </Controls>
@@ -145,7 +139,6 @@ export function PureAudioPlayer({
 PureAudioPlayer.propTypes = {
   fileTitle: PropTypes.string,
   isPlaying: PropTypes.bool.isRequired,
-  isDownloading: PropTypes.bool,
   playAudio: PropTypes.func.isRequired,
   pauseAudio: PropTypes.func.isRequired,
   canPlay: PropTypes.bool.isRequired,
@@ -164,49 +157,12 @@ PureAudioPlayer.defaultProps = {
 };
 
 function AudioPlayer() {
-  const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
-  const [downloadFile, abortDownloadFile, downloadErr] = useDownloadFile(
-    audioPlayerDispatch
-  );
   const [, snackbarDispatch] = useSnackbar();
+  const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
 
   const { isPlaying, playingFile, files } = audioPlayerState;
+  const fileUrl = files[playingFile.id];
 
-  const { fileId, fileKey, fileTitle } = playingFile;
-  const hasFile = Boolean(files[fileId]);
-
-  React.useEffect(() => {
-    if (!fileId || !fileKey) {
-      return;
-    }
-
-    if (!hasFile) {
-      downloadFile(fileId, fileKey);
-    }
-
-    return () => {
-      abortDownloadFile();
-    };
-  }, [fileId, fileKey, hasFile]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  React.useEffect(() => {
-    if (!downloadErr) {
-      return;
-    }
-
-    snackbarDispatch({
-      type: 'ENQUEUE_SNACKBAR_MSG',
-      data: {
-        type: 'error',
-        title: 'Failed to download audio',
-        text: downloadErr.details
-          ? `${downloadErr.message}: ${downloadErr.details}.`
-          : downloadErr.message + '.'
-      }
-    });
-  }, [downloadErr]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const fileUrl = files[fileId];
   const [
     audio,
     playAudioErrMsg,
@@ -238,15 +194,17 @@ function AudioPlayer() {
     });
   }, [playAudioErrMsg]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const { isDownloading } = audioPlayerState.downloadProgress[fileId] || {};
   const memoizedDispatch = React.useCallback(audioPlayerDispatch, []);
 
   const playAudio = React.useCallback(() => {
     memoizedDispatch({
       type: 'PLAY_AUDIO',
-      data: {}
+      data: {
+        id: playingFile.id,
+        title: playingFile.title
+      }
     });
-  }, [memoizedDispatch]);
+  }, [memoizedDispatch, playingFile.id, playingFile.title]);
 
   const pauseAudio = React.useCallback(() => {
     memoizedDispatch({
@@ -260,9 +218,8 @@ function AudioPlayer() {
 
   return (
     <PureAudioPlayer
-      fileTitle={fileTitle}
+      fileTitle={playingFile.title}
       isPlaying={isPlaying}
-      isDownloading={isDownloading}
       playAudio={playAudio}
       pauseAudio={pauseAudio}
       canPlay={canPlay}
