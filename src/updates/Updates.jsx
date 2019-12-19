@@ -4,8 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
-import { useAudioPlayer } from '../components/AudioPlayer';
 import { useStandupMembers } from '../standup-members';
+
+import UpdateRecordings, {
+  LoadingUpdateRecordings
+} from '../update-recordings';
 
 import {
   Container,
@@ -15,9 +18,7 @@ import {
   LoadMoreContainer
 } from './Layout';
 
-import UserRecordings, { LoadingUserRecordings } from './UserRecordings';
-
-import updatesReducer from './reducer';
+import updatesReducer, { defaultUpdatesState } from './reducer';
 import useFetchUpdates from './use-fetch-updates';
 import { sortDateKeysDescending, formatDate, isDateToday } from './utils';
 
@@ -25,7 +26,7 @@ export function LoadingUpdates() {
   return (
     <Container>
       <LoadingDayDivider />
-      <LoadingUserRecordings />
+      <LoadingUpdateRecordings />
     </Container>
   );
 }
@@ -35,15 +36,13 @@ export function PureUpdates({
   isLoadingMore,
   updates,
   members,
-  audioPlayerState,
-  playPauseAudio,
   fetchMoreUpdates
 }) {
   if (isLoading && !isLoadingMore) {
     return (
       <Container>
         <LoadingDayDivider />
-        <LoadingUserRecordings />
+        <LoadingUpdateRecordings />
       </Container>
     );
   }
@@ -57,8 +56,7 @@ export function PureUpdates({
 
   return (
     <Container>
-      {sortedDateKeys.map(data => {
-        const { epoch, dateKey } = data;
+      {sortedDateKeys.map(({ epoch, dateKey }) => {
         const formattedDate = formatDate(epoch);
         const isToday = isDateToday(epoch);
 
@@ -70,12 +68,7 @@ export function PureUpdates({
               title={isToday ? formattedDate : ''}
             />
 
-            <UserRecordings
-              members={members}
-              recordings={updates[dateKey]}
-              playPauseAudio={playPauseAudio}
-              audioPlayerState={audioPlayerState}
-            />
+            <UpdateRecordings members={members} recordings={updates[dateKey]} />
           </UpdatesContainer>
         );
       })}
@@ -102,13 +95,15 @@ PureUpdates.propTypes = {
       userFullName: PropTypes.string,
       avatarUrl: PropTypes.string
     })
-  ),
-  audioPlayerState: PropTypes.object.isRequired,
-  playPauseAudio: PropTypes.func.isRequired
+  )
 };
 
 function Updates({ standupId }) {
-  const [updatesState, updatesDispatch] = React.useReducer(updatesReducer, {});
+  const [updatesState, updatesDispatch] = React.useReducer(
+    updatesReducer,
+    defaultUpdatesState
+  );
+
   const [
     fetchUpdates,
     abortFetchUpdates,
@@ -116,6 +111,7 @@ function Updates({ standupId }) {
     err,
     dayOffset
   ] = useFetchUpdates(updatesDispatch);
+
   const [membersState] = useStandupMembers();
 
   React.useEffect(() => {
@@ -144,39 +140,16 @@ function Updates({ standupId }) {
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
-
-  const playPauseAudio = (recordingId, fileKey, fileTitle) => {
-    const loadedFile = recordingId === audioPlayerState.playingFile.fileId;
-    if (!loadedFile) {
-      audioPlayerDispatch({
-        type: 'LOAD_AND_PLAY_AUDIO_FILE',
-        data: {
-          fileId: recordingId,
-          fileKey,
-          fileTitle
-        }
-      });
-    } else {
-      audioPlayerDispatch({
-        type: audioPlayerState.isPlaying ? 'PAUSE_AUDIO' : 'PLAY_AUDIO',
-        data: {}
-      });
-    }
-  };
-
   const fetchMoreUpdates = () => {
     const today = new Date();
     const year = today.getFullYear();
     const monthIndex = today.getMonth();
     const day = today.getDate();
-
     const pastDate = new Date(year, monthIndex, day - dayOffset);
     const pastDateDay = pastDate.getDate();
     const pastDateMonthIndex = pastDate.getMonth();
     const pastDateYear = pastDate.getFullYear();
     const dateKey = `${pastDateDay}-${pastDateMonthIndex + 1}-${pastDateYear}`;
-
     fetchUpdates(standupId, dateKey);
   };
 
@@ -186,8 +159,6 @@ function Updates({ standupId }) {
       isLoadingMore={isFetching && dayOffset > 0}
       updates={updatesState}
       members={membersState}
-      audioPlayerState={audioPlayerState}
-      playPauseAudio={playPauseAudio}
       fetchMoreUpdates={fetchMoreUpdates}
     />
   );
