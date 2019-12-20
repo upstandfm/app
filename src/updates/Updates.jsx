@@ -39,12 +39,7 @@ export function PureUpdates({
   fetchMoreUpdates
 }) {
   if (isLoading && !isLoadingMore) {
-    return (
-      <Container>
-        <LoadingDayDivider />
-        <LoadingUpdateRecordings />
-      </Container>
-    );
+    return <LoadingUpdates />;
   }
 
   const handleLoadMore = () => {

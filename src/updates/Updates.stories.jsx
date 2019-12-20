@@ -1,7 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { updatesMockData, membersMockData } from './mock-data';
 import { PureUpdates } from './Updates';
 
 const fetchMoreUpdates = action('fetchMoreUpdates');
@@ -19,8 +18,8 @@ export const LoadingUpdates = () => {
     <PureUpdates
       isLoading={true}
       isLoadingMore={false}
-      updates={updatesMockData}
-      members={membersMockData}
+      updates={{}}
+      members={[]}
       fetchMoreUpdates={fetchMoreUpdates}
     />
   );
@@ -28,20 +27,4 @@ export const LoadingUpdates = () => {
 
 LoadingUpdates.story = {
   name: 'loading'
-};
-
-export const EmptyUpdates = () => {
-  return (
-    <PureUpdates
-      isLoading={false}
-      isLoadingMore={false}
-      updates={{ '01-01-2020': [] }}
-      members={membersMockData}
-      fetchMoreUpdates={fetchMoreUpdates}
-    />
-  );
-};
-
-EmptyUpdates.story = {
-  name: 'empty'
 };
