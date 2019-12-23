@@ -8,8 +8,18 @@ import Button, { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
 import AudioRecorder from '../components/AudioRecorder';
 import { useSnackbar } from '../components/Snackbar';
+import AudioPlayer, { AudioPlayerProvider } from '../components/AudioPlayer';
 
-import { Container, Header, Main, Actions, Preview } from './Layout';
+import {
+  Container,
+  Header,
+  Main,
+  Wrapper,
+  Player,
+  Actions,
+  Preview
+} from './Layout';
+
 import Permission from './Permission';
 import Recordings from './Recordings';
 import UploadRecordings from './UploadRecordings';
@@ -17,14 +27,25 @@ import UploadRecordings from './UploadRecordings';
 import updatesReducer, { defaultUpdatesState } from './reducer';
 import useGetUserMedia from './use-get-user-media';
 
-const Title = styled.h1`
-  font-size: 1.5em;
+const Title = styled.h2`
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.5em 0 0;
+  color: var(--color-darkest-purple);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @media (max-width: 480px) {
+    margin: 0;
+  }
 `;
 
 const Subtitle = styled.p`
   color: var(--color-grey);
   letter-spacing: 1px;
-  margin: 0 0 0.5em 0;
+  margin: 2em 0 0 0;
   text-transform: uppercase;
 `;
 
@@ -143,7 +164,7 @@ function NewUpdate({ standupId }) {
   };
 
   return (
-    <>
+    <AudioPlayerProvider>
       <Container>
         <Header>
           <Title>Publish a new update</Title>
@@ -151,58 +172,64 @@ function NewUpdate({ standupId }) {
           <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
         </Header>
 
-        {!userMediaStream ? (
-          <Permission
-            isLoading={isGettingPermission}
-            err={permissionErr}
-            handleGetPermission={handleGetPermission}
-          />
-        ) : (
-          <>
-            <Main>
-              <AudioRecorder
-                stream={userMediaStream}
-                onNewRecording={onNewRecording}
-                isDisabled={isPublishing}
+        <Main>
+          <Wrapper>
+            {!userMediaStream ? (
+              <Permission
+                isLoading={isGettingPermission}
+                err={permissionErr}
+                handleGetPermission={handleGetPermission}
               />
+            ) : (
+              <>
+                <AudioRecorder
+                  stream={userMediaStream}
+                  onNewRecording={onNewRecording}
+                  isDisabled={isPublishing}
+                />
 
-              <Preview>
-                <Subtitle>Preview</Subtitle>
+                <Preview>
+                  <Subtitle>Preview</Subtitle>
 
-                {isPublishing ? (
-                  <UploadRecordings
-                    standupId={standupId}
-                    updatesState={updatesState}
-                    onUploadedFile={onUploadedFile}
-                  />
-                ) : (
-                  <Recordings
-                    updatesState={updatesState}
-                    onDeleteUpdate={onDeleteUpdate}
-                  />
-                )}
-              </Preview>
-            </Main>
+                  {isPublishing ? (
+                    <UploadRecordings
+                      standupId={standupId}
+                      updatesState={updatesState}
+                      onUploadedFile={onUploadedFile}
+                    />
+                  ) : (
+                    <Recordings
+                      updatesState={updatesState}
+                      onDeleteUpdate={onDeleteUpdate}
+                    />
+                  )}
+                </Preview>
 
-            <Actions>
-              <Button
-                disabled={
-                  Object.keys(updatesState).length === 0 || isPublishing
-                }
-                onClick={handlePublish}
-              >
-                {isPublishing ? (
-                  <>
-                    <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
-                    Publishing..
-                  </>
-                ) : (
-                  'Publish'
-                )}
-              </Button>
-            </Actions>
-          </>
-        )}
+                <Actions>
+                  <Button
+                    disabled={
+                      Object.keys(updatesState).length === 0 || isPublishing
+                    }
+                    onClick={handlePublish}
+                  >
+                    {isPublishing ? (
+                      <>
+                        <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
+                        Publishing..
+                      </>
+                    ) : (
+                      'Publish'
+                    )}
+                  </Button>
+                </Actions>
+              </>
+            )}
+          </Wrapper>
+        </Main>
+
+        <Player>
+          <AudioPlayer />
+        </Player>
       </Container>
 
       <Confirm
@@ -220,7 +247,7 @@ function NewUpdate({ standupId }) {
           </>
         }
       />
-    </>
+    </AudioPlayerProvider>
   );
 }
 
