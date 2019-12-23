@@ -4,7 +4,7 @@ import { navigate } from '@reach/router';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Button, { ExitButton } from '../components/Button';
+import Button, { BackButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
 import AudioRecorder from '../components/AudioRecorder';
 import { useSnackbar } from '../components/Snackbar';
@@ -30,7 +30,7 @@ import useGetUserMedia from './use-get-user-media';
 const Title = styled.h2`
   display: inline-block;
   vertical-align: middle;
-  margin: 0 0.5em 0 0;
+  margin: 0 0 0 0.25em;
   color: var(--color-darkest-purple);
   max-width: 220px;
   overflow: hidden;
@@ -167,9 +167,13 @@ function NewUpdate({ standupId }) {
     <AudioPlayerProvider>
       <Container>
         <Header>
-          <Title>Publish a new update</Title>
+          <BackButton
+            aria-label="go back to standup"
+            title="go back to standup"
+            onClick={handleExit}
+          />
 
-          <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
+          <Title>Publish a new update</Title>
         </Header>
 
         <Main>
