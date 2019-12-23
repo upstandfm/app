@@ -20,11 +20,6 @@ export const Header = styled.div`
   right: 0;
 
   @media (max-width: 480px) {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-gap: 0.5em;
-    align-items: center;
-    justify-items: center;
     position: static;
   }
 `;
@@ -36,6 +31,7 @@ export const Main = styled.div`
 
 export const Wrapper = styled.div`
   margin: auto;
+  padding: 1em;
 `;
 
 export const Player = styled.div`
