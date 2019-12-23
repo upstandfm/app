@@ -49,7 +49,7 @@ const NewStandupButton = styled(Link)`
 `;
 
 const ToggleButton = styled(Button)`
-  padding: 0.5em;
+  padding: 0;
   color: ${props => (props.active ? 'var(--color-light-purple)' : 'inherit')};
   z-index: 1;
 `;
