@@ -4,41 +4,19 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
-import {
-  ListContainer,
-  ListTitle,
-  List,
-  ListEmpty,
-  ListItem
-} from '../components/List';
+import { ListContainer, ListTitle, List, ListEmpty } from '../components/List';
 import { Confirm } from '../components/Modal';
+
+import { Recording, PlayState, Title } from './Recording';
 
 const RecordingsList = styled(List)`
   overflow: auto;
-  height: 250px;
+  height: 265px;
 `;
 
-const RecordingListItem = styled(ListItem)`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-  grid-gap: 0;
-`;
-
-const RecordingTitle = styled.h4`
-  margin: 0;
-`;
-
-const RecordingAudio = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: 0.5em;
-  align-items: center;
-  height: 45px;
-
-  audio {
-    width: 100%;
-  }
+const DeleteButton = styled(Button)`
+  padding: 0.25em 0.5em;
+  color: var(--color-grey);
 `;
 
 function Recordings({
@@ -55,7 +33,10 @@ function Recordings({
   };
 
   const handleDelete = e => {
-    setIdToDelete(e.currentTarget.getAttribute('data-id'));
+    e.stopPropagation();
+
+    const id = e.currentTarget.getAttribute('data-id');
+    setIdToDelete(id);
     setShowConfirm(true);
   };
 
@@ -67,7 +48,7 @@ function Recordings({
 
   const updateIds = Object.keys(updatesState);
 
-  const handlePlayPauseAudio = e => {
+  const handlePlayPauseRecording = e => {
     const id = e.currentTarget.getAttribute('data-id');
 
     const recording = {
@@ -80,6 +61,14 @@ function Recordings({
     playPauseAudio(recording, isPlaying);
   };
 
+  const handleKeyPress = e => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    handlePlayPauseRecording(e);
+  };
+
   return (
     <>
       <ListContainer>
@@ -88,35 +77,38 @@ function Recordings({
         <RecordingsList>
           {updateIds.length === 0 && <ListEmpty>No recordings yet.</ListEmpty>}
 
-          {updateIds.map(_id => {
-            const { id } = updatesState[_id];
-
+          {updateIds.map(id => {
             const isSelected = id === audioPlayerState.playingFile.id;
             const isPlaying = isSelected && audioPlayerState.isPlaying;
+            const helpText = `${isPlaying ? 'pause' : 'play'} recording ${id}`;
+            const helpTextDelete = `delete recording ${id}`;
 
             return (
-              <RecordingListItem
+              <Recording
+                tabIndex="0"
                 key={`preview-${id}`}
                 data-id={id}
                 data-is-playing={isPlaying ? true : ''}
-                onClick={handlePlayPauseAudio}
+                aria-label={helpText}
+                title={helpText}
+                isSelected={isSelected}
+                onClick={handlePlayPauseRecording}
+                onKeyDown={handleKeyPress}
               >
-                <RecordingTitle>{id}</RecordingTitle>
+                <PlayState isPlaying={isPlaying} />
 
-                <RecordingAudio>
-                  <div>{isPlaying ? 'playing' : 'paused'}</div>
+                <Title>{id}</Title>
 
-                  <Button
-                    tertiary
-                    data-id={id}
-                    onClick={handleDelete}
-                    aria-label="delete recording"
-                    title="delete recording"
-                  >
-                    <FontAwesomeIcon icon="trash" />
-                  </Button>
-                </RecordingAudio>
-              </RecordingListItem>
+                <DeleteButton
+                  tertiary
+                  data-id={id}
+                  onClick={handleDelete}
+                  aria-label={helpTextDelete}
+                  title={helpTextDelete}
+                >
+                  <FontAwesomeIcon icon="trash" />
+                </DeleteButton>
+              </Recording>
             );
           })}
         </RecordingsList>
