@@ -17,7 +17,9 @@ const Title = styled.h3`
   font-weight: normal;
 `;
 
-const List = styled.ol``;
+const List = styled.ol`
+  max-width: 35rem;
+`;
 
 const ListItem = styled.li`
   margin: 0 0 0.5em 0;

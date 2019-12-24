@@ -27,6 +27,87 @@ import UploadRecordings from './UploadRecordings';
 import updatesReducer, { defaultUpdatesState } from './reducer';
 import useGetUserMedia from './use-get-user-media';
 
+export function PureNewUpdate({
+  userMediaStream,
+  isGettingPermission,
+  permissionErr,
+  handleGetPermission,
+  standupId,
+  updatesState,
+  isPublishing,
+  onNewRecording,
+  onDeleteUpdate,
+  handlePublish,
+  onUploadedFile
+}) {
+  if (!userMediaStream) {
+    return (
+      <Permission
+        isLoading={isGettingPermission}
+        err={permissionErr}
+        handleGetPermission={handleGetPermission}
+      />
+    );
+  }
+
+  return (
+    <>
+      <AudioRecorder
+        isDisabled={isPublishing}
+        stream={userMediaStream}
+        onNewRecording={onNewRecording}
+      />
+
+      <Preview>
+        <Subtitle>Preview</Subtitle>
+
+        {isPublishing ? (
+          <UploadRecordings
+            standupId={standupId}
+            updatesState={updatesState}
+            onUploadedFile={onUploadedFile}
+          />
+        ) : (
+          <Recordings
+            updatesState={updatesState}
+            onDeleteUpdate={onDeleteUpdate}
+          />
+        )}
+      </Preview>
+
+      <Actions>
+        <Button
+          disabled={Object.keys(updatesState).length === 0 || isPublishing}
+          onClick={handlePublish}
+        >
+          {isPublishing ? (
+            <>
+              <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
+              Publishing..
+            </>
+          ) : (
+            'Publish'
+          )}
+        </Button>
+      </Actions>
+    </>
+  );
+}
+
+PureNewUpdate.propTypes = {
+  userMediaStream: PropTypes.object,
+  isGettingPermission: PropTypes.bool.isRequired,
+  permissionErr: PropTypes.object,
+  handleGetPermission: PropTypes.func.isRequired,
+  standupId: PropTypes.string.isRequired,
+  updatesState: PropTypes.object.isRequired,
+  isPublishing: PropTypes.bool.isRequired,
+  onNewRecording: PropTypes.func.isRequired,
+  onDeleteUpdate: PropTypes.func.isRequired,
+  handlePublish: PropTypes.func.isRequired,
+  onUploadedFile: PropTypes.func.isRequired
+};
+
 const Title = styled.h2`
   display: inline-block;
   vertical-align: middle;
@@ -178,56 +259,19 @@ function NewUpdate({ standupId }) {
 
         <Main>
           <Wrapper>
-            {!userMediaStream ? (
-              <Permission
-                isLoading={isGettingPermission}
-                err={permissionErr}
-                handleGetPermission={handleGetPermission}
-              />
-            ) : (
-              <>
-                <AudioRecorder
-                  stream={userMediaStream}
-                  onNewRecording={onNewRecording}
-                  isDisabled={isPublishing}
-                />
-
-                <Preview>
-                  <Subtitle>Preview</Subtitle>
-
-                  {isPublishing ? (
-                    <UploadRecordings
-                      standupId={standupId}
-                      updatesState={updatesState}
-                      onUploadedFile={onUploadedFile}
-                    />
-                  ) : (
-                    <Recordings
-                      updatesState={updatesState}
-                      onDeleteUpdate={onDeleteUpdate}
-                    />
-                  )}
-                </Preview>
-
-                <Actions>
-                  <Button
-                    disabled={
-                      Object.keys(updatesState).length === 0 || isPublishing
-                    }
-                    onClick={handlePublish}
-                  >
-                    {isPublishing ? (
-                      <>
-                        <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
-                        Publishing..
-                      </>
-                    ) : (
-                      'Publish'
-                    )}
-                  </Button>
-                </Actions>
-              </>
-            )}
+            <PureNewUpdate
+              userMediaStream={userMediaStream}
+              isGettingPermission={isGettingPermission}
+              permissionErr={permissionErr}
+              handleGetPermission={handleGetPermission}
+              standupId={standupId}
+              updatesState={updatesState}
+              isPublishing={isPublishing}
+              onNewRecording={onNewRecording}
+              onDeleteUpdate={onDeleteUpdate}
+              handlePublish={handlePublish}
+              onUploadedFile={onUploadedFile}
+            />
           </Wrapper>
         </Main>
 
