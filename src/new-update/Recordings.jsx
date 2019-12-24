@@ -41,7 +41,12 @@ const RecordingAudio = styled.div`
   }
 `;
 
-function Recordings({ updatesState, onDeleteUpdate }) {
+function Recordings({
+  updatesState,
+  audioPlayerState,
+  playPauseAudio,
+  onDeleteUpdate
+}) {
   const [idToDelete, setIdToDelete] = React.useState(null);
   const [showConfirm, setShowConfirm] = React.useState(false);
 
@@ -62,30 +67,48 @@ function Recordings({ updatesState, onDeleteUpdate }) {
 
   const updateIds = Object.keys(updatesState);
 
+  const handlePlayPauseAudio = e => {
+    const id = e.currentTarget.getAttribute('data-id');
+
+    const recording = {
+      id,
+      name: id
+    };
+
+    const isPlaying = Boolean(e.currentTarget.getAttribute('data-is-playing'));
+
+    playPauseAudio(recording, isPlaying);
+  };
+
   return (
     <>
       <ListContainer>
         <ListTitle>Recordings ({updateIds.length})</ListTitle>
+
         <RecordingsList>
           {updateIds.length === 0 && <ListEmpty>No recordings yet.</ListEmpty>}
 
-          {updateIds.map(id => {
-            const update = updatesState[id];
+          {updateIds.map(_id => {
+            const { id } = updatesState[_id];
+
+            const isSelected = id === audioPlayerState.playingFile.id;
+            const isPlaying = isSelected && audioPlayerState.isPlaying;
 
             return (
-              <RecordingListItem key={`preview-${update.id}`}>
-                <RecordingTitle>{update.filename || 'Untitled'}</RecordingTitle>
+              <RecordingListItem
+                key={`preview-${id}`}
+                data-id={id}
+                data-is-playing={isPlaying ? true : ''}
+                onClick={handlePlayPauseAudio}
+              >
+                <RecordingTitle>{id}</RecordingTitle>
 
                 <RecordingAudio>
-                  {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                  <audio
-                    controls
-                    src={window.URL.createObjectURL(update.blob)}
-                  ></audio>
+                  <div>{isPlaying ? 'playing' : 'paused'}</div>
 
                   <Button
                     tertiary
-                    data-id={update.id}
+                    data-id={id}
                     onClick={handleDelete}
                     aria-label="delete recording"
                     title="delete recording"
@@ -116,6 +139,15 @@ function Recordings({ updatesState, onDeleteUpdate }) {
 
 Recordings.propTypes = {
   updatesState: PropTypes.object.isRequired,
+  audioPlayerState: PropTypes.shape({
+    playingFile: PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string
+    }),
+    isPlaying: PropTypes.bool.isRequired,
+    files: PropTypes.object.isRequired
+  }),
+  playPauseAudio: PropTypes.func.isRequired,
   onDeleteUpdate: PropTypes.func.isRequired
 };
 

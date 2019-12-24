@@ -1,5 +1,3 @@
-import shortid from 'shortid';
-
 export const defaultUpdatesState = {
   // 'x9f4hj5k68': {
   //    id: 'x9f4hj5k68',
@@ -19,13 +17,13 @@ export const defaultUpdatesState = {
 function updatesReducer(state, action) {
   switch (action.type) {
     case 'NEW_UPDATE_RECORDING': {
-      const id = shortid.generate();
+      const { id, blob } = action.data;
 
       return {
         ...state,
         [id]: {
           id,
-          blob: action.data.blob,
+          blob,
           isUploaded: false
         }
       };
