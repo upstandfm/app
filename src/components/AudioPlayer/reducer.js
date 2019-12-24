@@ -27,10 +27,29 @@ function audioPlayerReducer(state, action) {
       };
     }
 
+    case 'UNLOAD_AUDIO_FILE': {
+      const { id } = action.data;
+
+      const newState = { ...state };
+
+      delete newState.files[id];
+
+      if (id === state.playingFile.id) {
+        newState.isPlaying = false;
+        newState.playingFile.id = null;
+        newState.playingFile.title = '';
+      }
+
+      return newState;
+    }
+
     case 'PLAY_AUDIO': {
       return {
         ...state,
-        playingFile: action.data,
+        playingFile: {
+          id: action.data.id,
+          title: action.data.title
+        },
         isPlaying: true
       };
     }
