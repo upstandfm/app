@@ -6,13 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListItem } from '../components/List';
 
 export const Recording = styled(ListItem)`
-  background-color: ${props =>
-    props.isSelected ? 'var(--color-lighter-grey)' : 'inherit'};
-
   .play-state {
     color: ${props =>
       props.isSelected
-        ? 'var(--color-darkest-purple)'
+        ? 'var(--color-light-purple)'
         : 'var(--color-light-grey)'};
   }
 
@@ -41,8 +38,6 @@ export const Recording = styled(ListItem)`
   }
 
   :focus {
-    background-color: var(--color-lighter-grey);
-
     .play-state {
       color: ${props => {
         if (props.isDownloading) {
