@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 
-import AudioPlayer, {
-  AudioPlayerProvider,
-  LoadingAudioPlayer
-} from '../components/AudioPlayer';
-
+import AudioPlayer, { LoadingAudioPlayer } from '../components/AudioPlayer';
 import { useSnackbar } from '../components/Snackbar';
 import { NotFound } from '../components/Errors';
 import Button from '../components/Button';
@@ -127,11 +123,9 @@ function Standup({ standupId }) {
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <AudioPlayerProvider>
-      <StandupMembersProvider>
-        <PureStandup isLoading={isFetching} standup={standupState} />
-      </StandupMembersProvider>
-    </AudioPlayerProvider>
+    <StandupMembersProvider>
+      <PureStandup isLoading={isFetching} standup={standupState} />
+    </StandupMembersProvider>
   );
 }
 
