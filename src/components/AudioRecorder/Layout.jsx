@@ -6,6 +6,7 @@ export const Container = styled.div`
   background-color: var(--color-white);
   border: 1px solid var(--color-light-grey);
   border-radius: var(--radius-size);
+  min-height: 135px;
 `;
 
 export const Main = styled.div`

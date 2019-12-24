@@ -11,7 +11,7 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   display: grid;
-  background-color: rgba(229, 62, 62, 0.8);
+  background-color: rgba(229, 62, 62, 0.75);
   border-radius: var(--radius-size);
   text-align: center;
 `;
