@@ -10,6 +10,7 @@ const onNewRecording = action('onNewRecording');
 const onDeleteUpdate = action('onDeleteUpdate');
 const handlePublish = action('handlePublish');
 const onUploadedFile = action('onUploadedFile');
+const playPauseAudio = action('playPauseAudio');
 
 export default {
   title: 'screens|NewUpdate',
@@ -28,6 +29,12 @@ export const DefaultNewUpdate = () => {
       handleGetPermission={handleGetPermission}
       standupId={'1a2z3x'}
       updatesState={{}}
+      audioPlayerState={{
+        playingFile: {},
+        isPlaying: false,
+        files: {}
+      }}
+      playPauseAudio={playPauseAudio}
       isPublishing={false}
       onNewRecording={onNewRecording}
       onDeleteUpdate={onDeleteUpdate}
@@ -50,6 +57,12 @@ export const NewUpdatePermission = () => {
       handleGetPermission={handleGetPermission}
       standupId={'1a2z3x'}
       updatesState={{}}
+      audioPlayerState={{
+        playingFile: {},
+        isPlaying: false,
+        files: {}
+      }}
+      playPauseAudio={playPauseAudio}
       isPublishing={false}
       onNewRecording={onNewRecording}
       onDeleteUpdate={onDeleteUpdate}
@@ -60,7 +73,7 @@ export const NewUpdatePermission = () => {
 };
 
 NewUpdatePermission.story = {
-  name: 'get permission'
+  name: 'getting permission'
 };
 
 export const NewUpdatePermissionErr = () => {
@@ -73,6 +86,12 @@ export const NewUpdatePermissionErr = () => {
         handleGetPermission={handleGetPermission}
         standupId={'1a2z3x'}
         updatesState={{}}
+        audioPlayerState={{
+          playingFile: {},
+          isPlaying: false,
+          files: {}
+        }}
+        playPauseAudio={playPauseAudio}
         isPublishing={false}
         onNewRecording={onNewRecording}
         onDeleteUpdate={onDeleteUpdate}
@@ -97,6 +116,12 @@ export const NewUpdateMediaStream = () => {
         handleGetPermission={handleGetPermission}
         standupId={'1a2z3x'}
         updatesState={{}}
+        audioPlayerState={{
+          playingFile: {},
+          isPlaying: false,
+          files: {}
+        }}
+        playPauseAudio={playPauseAudio}
         isPublishing={false}
         onNewRecording={onNewRecording}
         onDeleteUpdate={onDeleteUpdate}

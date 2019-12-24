@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import shortid from 'shortid';
 
 import Button, { BackButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
 import AudioRecorder from '../components/AudioRecorder';
 import { useSnackbar } from '../components/Snackbar';
-import AudioPlayer from '../components/AudioPlayer';
+import AudioPlayer, { useAudioPlayer } from '../components/AudioPlayer';
 
 import {
   Container,
@@ -34,6 +35,8 @@ export function PureNewUpdate({
   handleGetPermission,
   standupId,
   updatesState,
+  audioPlayerState,
+  playPauseAudio,
   isPublishing,
   onNewRecording,
   onDeleteUpdate,
@@ -70,6 +73,8 @@ export function PureNewUpdate({
         ) : (
           <Recordings
             updatesState={updatesState}
+            audioPlayerState={audioPlayerState}
+            playPauseAudio={playPauseAudio}
             onDeleteUpdate={onDeleteUpdate}
           />
         )}
@@ -101,6 +106,8 @@ PureNewUpdate.propTypes = {
   handleGetPermission: PropTypes.func.isRequired,
   standupId: PropTypes.string.isRequired,
   updatesState: PropTypes.object.isRequired,
+  audioPlayerState: PropTypes.object.isRequired,
+  playPauseAudio: PropTypes.func.isRequired,
   isPublishing: PropTypes.bool.isRequired,
   onNewRecording: PropTypes.func.isRequired,
   onDeleteUpdate: PropTypes.func.isRequired,
@@ -131,6 +138,8 @@ const Subtitle = styled.p`
 `;
 
 function NewUpdate({ standupId }) {
+  const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
+
   const [updatesState, updatesDispatch] = React.useReducer(
     updatesReducer,
     defaultUpdatesState
@@ -192,9 +201,20 @@ function NewUpdate({ standupId }) {
   // Helpers
 
   const onNewRecording = blob => {
+    const id = shortid.generate();
+
+    audioPlayerDispatch({
+      type: 'LOAD_AUDIO_FILE',
+      data: {
+        id,
+        url: URL.createObjectURL(blob)
+      }
+    });
+
     updatesDispatch({
       type: 'NEW_UPDATE_RECORDING',
       data: {
+        id,
         blob
       }
     });
@@ -244,6 +264,16 @@ function NewUpdate({ standupId }) {
     setIsPublishing(true);
   };
 
+  const playPauseAudio = (recording, isPlaying) => {
+    audioPlayerDispatch({
+      type: isPlaying ? 'PAUSE_AUDIO' : 'PLAY_AUDIO',
+      data: {
+        id: recording.id,
+        title: recording.name
+      }
+    });
+  };
+
   return (
     <>
       <Container>
@@ -266,6 +296,8 @@ function NewUpdate({ standupId }) {
               handleGetPermission={handleGetPermission}
               standupId={standupId}
               updatesState={updatesState}
+              audioPlayerState={audioPlayerState}
+              playPauseAudio={playPauseAudio}
               isPublishing={isPublishing}
               onNewRecording={onNewRecording}
               onDeleteUpdate={onDeleteUpdate}
