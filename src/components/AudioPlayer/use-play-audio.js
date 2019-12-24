@@ -31,6 +31,9 @@ function usePlayAudio(src) {
     setCanPlay(false);
     setIsSeeking(false);
     setHasEnded(false);
+    setProgressPercent(0);
+    setTotalTimeSeconds(0);
+    setPlayedTimeSeconds(0);
 
     const audio = new Audio(src);
     setAudio(audio);
