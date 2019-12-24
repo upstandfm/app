@@ -8,7 +8,7 @@ import Button, { BackButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
 import AudioRecorder from '../components/AudioRecorder';
 import { useSnackbar } from '../components/Snackbar';
-import AudioPlayer, { AudioPlayerProvider } from '../components/AudioPlayer';
+import AudioPlayer from '../components/AudioPlayer';
 
 import {
   Container,
@@ -245,7 +245,7 @@ function NewUpdate({ standupId }) {
   };
 
   return (
-    <AudioPlayerProvider>
+    <>
       <Container>
         <Header>
           <BackButton
@@ -295,7 +295,7 @@ function NewUpdate({ standupId }) {
           </>
         }
       />
-    </AudioPlayerProvider>
+    </>
   );
 }
 
