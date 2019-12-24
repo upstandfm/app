@@ -221,6 +221,13 @@ function NewUpdate({ standupId }) {
   };
 
   const onDeleteUpdate = id => {
+    audioPlayerDispatch({
+      type: 'UNLOAD_AUDIO_FILE',
+      data: {
+        id
+      }
+    });
+
     updatesDispatch({
       type: 'DELETE_UPDATE_RECORDING',
       data: {

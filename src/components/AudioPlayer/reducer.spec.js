@@ -19,6 +19,35 @@ describe('audio player reducer', () => {
     expect(newState.files[loadedFile.id]).toEqual(loadedFile.url);
   });
 
+  it('unloads audio files', () => {
+    const loadedFile = {
+      id: 1,
+      url: 'blob:http://localhost:3000/111549dd-f6c2-8e3d-9b16-fb81214bd367',
+      title: 'My audio file'
+    };
+
+    const state = {
+      playingFile: {
+        id: loadedFile.id,
+        title: loadedFile.title
+      },
+      isPlaying: true,
+      files: {
+        [loadedFile.id]: loadedFile.url
+      }
+    };
+
+    const action = {
+      type: 'UNLOAD_AUDIO_FILE',
+      data: {
+        id: loadedFile.id
+      }
+    };
+
+    const newState = reducer(state, action);
+    expect(newState).toEqual(defaultAudioPlayerState);
+  });
+
   it('plays audio', () => {
     const state = defaultAudioPlayerState;
     const playingFile = {
