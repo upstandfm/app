@@ -9,7 +9,7 @@ export default {
   title: 'screens|NewUpdate/UploadRecording',
   component: PureUploadRecording,
   parameters: {
-    componentSubtitle: 'New update recording component'
+    componentSubtitle: 'New update upload recording component'
   }
 };
 
