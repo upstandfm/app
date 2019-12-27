@@ -16,7 +16,7 @@ export default {
 export const DefaultUploadRecording = () => {
   return (
     <PureUploadRecording
-      name="My awesome recording"
+      displayName="My awesome recording"
       err={undefined}
       progress={0}
       handleRetry={handleRetry}
@@ -31,7 +31,7 @@ DefaultUploadRecording.story = {
 export const UntitledUploadRecording = () => {
   return (
     <PureUploadRecording
-      name=""
+      displayName=""
       err={undefined}
       progress={0}
       handleRetry={handleRetry}
@@ -46,7 +46,7 @@ UntitledUploadRecording.story = {
 export const LongNameUploadRecording = () => {
   return (
     <PureUploadRecording
-      name="A recording with a very long name that is very descriptive"
+      displayName="A recording with a very long name that is very descriptive"
       err={undefined}
       progress={0}
       handleRetry={handleRetry}
@@ -61,7 +61,7 @@ LongNameUploadRecording.story = {
 export const ProgressUploadRecording = () => {
   return (
     <PureUploadRecording
-      name="My awesome recording"
+      displayName="My awesome recording"
       err={undefined}
       progress={63}
       handleRetry={handleRetry}
@@ -76,7 +76,7 @@ ProgressUploadRecording.story = {
 export const DoneUploadRecording = () => {
   return (
     <PureUploadRecording
-      name="My awesome recording"
+      displayName="My awesome recording"
       err={undefined}
       progress={100}
       handleRetry={handleRetry}
@@ -91,7 +91,7 @@ DoneUploadRecording.story = {
 export const ErrorUploadRecording = () => {
   return (
     <PureUploadRecording
-      name="My awesome recording"
+      displayName="My awesome recording"
       err={new Error('Server exploded')}
       progress={63}
       handleRetry={handleRetry}
