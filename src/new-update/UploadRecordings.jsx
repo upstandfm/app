@@ -32,12 +32,11 @@ function UploadRecordings({ standupId, updatesState, onUploadedFile }) {
           const update = updatesState[id];
 
           return (
-            <UploadListItem key={`upload-${update.id}`}>
-              <UploadTitle>{update.id}</UploadTitle>
+            <UploadListItem key={id}>
+              <UploadTitle>{update.name || 'Untitled'}</UploadTitle>
 
               <Wrapper>
                 <UploadFile
-                  key={`upload-${id}`}
                   standupId={standupId}
                   update={update}
                   onUploadedFile={onUploadedFile}

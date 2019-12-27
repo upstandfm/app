@@ -2,6 +2,7 @@ export const defaultUpdatesState = {
   // 'x9f4hj5k68': {
   //    id: 'x9f4hj5k68',
   //    blob: new Blob(),
+  //    name: '',
   //    isUploaded: false
   // }
 };
@@ -24,7 +25,20 @@ function updatesReducer(state, action) {
         [id]: {
           id,
           blob,
+          name: '',
           isUploaded: false
+        }
+      };
+    }
+
+    case 'UPDATE_RECORDING_NAME': {
+      const { id, name } = action.data;
+
+      return {
+        ...state,
+        [id]: {
+          ...state[id],
+          name
         }
       };
     }

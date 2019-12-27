@@ -15,7 +15,26 @@ describe('updates reducer', () => {
     const id = Object.keys(newState)[0];
     expect(id).toBeDefined();
     expect(newState[id].blob).toEqual(action.data.blob);
+    expect(newState[id].name).toEqual('');
     expect(newState[id].isUploaded).toBe(false);
+  });
+
+  it('updates a recording name', () => {
+    const state = defaultUpdatesState;
+
+    const id = '123xyz';
+    const name = 'My awesome recording';
+
+    const action = {
+      type: 'UPDATE_RECORDING_NAME',
+      data: {
+        id,
+        name
+      }
+    };
+
+    const newState = reducer(state, action);
+    expect(newState[id].name).toEqual(name);
   });
 
   it('deletes a recording', () => {
@@ -24,6 +43,7 @@ describe('updates reducer', () => {
       [id]: {
         id,
         blob: {},
+        name: '',
         isUploaded: false
       }
     };

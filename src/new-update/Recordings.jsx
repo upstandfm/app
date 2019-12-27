@@ -4,15 +4,38 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
-import { ListContainer, ListTitle, List, ListEmpty } from '../components/List';
+
+import {
+  ListContainer,
+  ListTitle,
+  List,
+  ListEmpty,
+  ListItem
+} from '../components/List';
+
 import { Confirm } from '../components/Modal';
 
-import { Recording, PlayState, Title } from './Recording';
+import { Name, NameInput } from './Recording';
 
 const RecordingsList = styled(List)`
+  padding: 0;
   overflow: auto;
-  height: 265px;
+  height: 240px;
 `;
+
+const RecordingListTitle = styled(ListTitle)`
+  padding: 1em;
+`;
+
+const PlayPauseButton = styled(Button)`
+  padding: 0.25em 0.5em;
+  color: ${props =>
+    props.isSelected ? 'var(--color-light-purple)' : 'var(--color-grey)'};
+`;
+
+PlayPauseButton.propTypes = {
+  isSelected: PropTypes.bool
+};
 
 const DeleteButton = styled(Button)`
   padding: 0.25em 0.5em;
@@ -22,6 +45,7 @@ const DeleteButton = styled(Button)`
 function Recordings({
   updatesState,
   audioPlayerState,
+  onUpdateRecordingName,
   playPauseAudio,
   onDeleteUpdate
 }) {
@@ -50,54 +74,63 @@ function Recordings({
 
   const handlePlayPauseRecording = e => {
     const id = e.currentTarget.getAttribute('data-id');
-
     const recording = {
       id,
       name: id
     };
-
     const isPlaying = Boolean(e.currentTarget.getAttribute('data-is-playing'));
-
     playPauseAudio(recording, isPlaying);
   };
 
-  const handleKeyPress = e => {
-    if (e.key !== 'Enter') {
-      return;
-    }
-
-    handlePlayPauseRecording(e);
+  const handleChangeName = e => {
+    const id = e.currentTarget.getAttribute('data-id');
+    const name = e.target.value;
+    onUpdateRecordingName(id, name);
   };
 
   return (
     <>
       <ListContainer>
-        <ListTitle>Recordings ({updateIds.length})</ListTitle>
+        <RecordingListTitle>Recordings ({updateIds.length})</RecordingListTitle>
 
         <RecordingsList>
           {updateIds.length === 0 && <ListEmpty>No recordings yet.</ListEmpty>}
 
           {updateIds.map(id => {
+            const { name } = updatesState[id];
             const isSelected = id === audioPlayerState.playingFile.id;
             const isPlaying = isSelected && audioPlayerState.isPlaying;
-            const helpText = `${isPlaying ? 'pause' : 'play'} recording ${id}`;
-            const helpTextDelete = `delete recording ${id}`;
+            const helpText = `${
+              isPlaying ? 'pause' : 'play'
+            } recording ${name}`;
+            const helpTextDelete = `delete recording ${name}`;
 
             return (
-              <Recording
-                tabIndex="0"
-                key={`preview-${id}`}
-                data-id={id}
-                data-is-playing={isPlaying ? true : ''}
-                aria-label={helpText}
-                title={helpText}
-                isSelected={isSelected}
-                onClick={handlePlayPauseRecording}
-                onKeyDown={handleKeyPress}
-              >
-                <PlayState isPlaying={isPlaying} />
+              <ListItem key={id}>
+                <PlayPauseButton
+                  tertiary
+                  data-id={id}
+                  data-is-playing={isPlaying ? true : ''}
+                  aria-label={helpText}
+                  title={helpText}
+                  isSelected={isSelected}
+                  onClick={handlePlayPauseRecording}
+                >
+                  <FontAwesomeIcon
+                    icon={isPlaying ? 'pause' : 'play'}
+                    size="lg"
+                  />
+                </PlayPauseButton>
 
-                <Title>{id}</Title>
+                <Name>
+                  <NameInput
+                    type="text"
+                    placeholder="What's this recording about?"
+                    data-id={id}
+                    value={name}
+                    onChange={handleChangeName}
+                  />
+                </Name>
 
                 <DeleteButton
                   tertiary
@@ -108,7 +141,7 @@ function Recordings({
                 >
                   <FontAwesomeIcon icon="trash" />
                 </DeleteButton>
-              </Recording>
+              </ListItem>
             );
           })}
         </RecordingsList>
@@ -139,6 +172,7 @@ Recordings.propTypes = {
     isPlaying: PropTypes.bool.isRequired,
     files: PropTypes.object.isRequired
   }),
+  onUpdateRecordingName: PropTypes.func.isRequired,
   playPauseAudio: PropTypes.func.isRequired,
   onDeleteUpdate: PropTypes.func.isRequired
 };

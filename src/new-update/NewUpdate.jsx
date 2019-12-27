@@ -39,6 +39,7 @@ export function PureNewUpdate({
   playPauseAudio,
   isPublishing,
   onNewRecording,
+  onUpdateRecordingName,
   onDeleteUpdate,
   handlePublish,
   onUploadedFile
@@ -74,6 +75,7 @@ export function PureNewUpdate({
           <Recordings
             updatesState={updatesState}
             audioPlayerState={audioPlayerState}
+            onUpdateRecordingName={onUpdateRecordingName}
             playPauseAudio={playPauseAudio}
             onDeleteUpdate={onDeleteUpdate}
           />
@@ -110,6 +112,7 @@ PureNewUpdate.propTypes = {
   playPauseAudio: PropTypes.func.isRequired,
   isPublishing: PropTypes.bool.isRequired,
   onNewRecording: PropTypes.func.isRequired,
+  onUpdateRecordingName: PropTypes.func.isRequired,
   onDeleteUpdate: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
   onUploadedFile: PropTypes.func.isRequired
@@ -220,6 +223,16 @@ function NewUpdate({ standupId }) {
     });
   };
 
+  const onUpdateRecordingName = (id, name) => {
+    updatesDispatch({
+      type: 'UPDATE_RECORDING_NAME',
+      data: {
+        id,
+        name
+      }
+    });
+  };
+
   const onDeleteUpdate = id => {
     audioPlayerDispatch({
       type: 'UNLOAD_AUDIO_FILE',
@@ -307,6 +320,7 @@ function NewUpdate({ standupId }) {
               playPauseAudio={playPauseAudio}
               isPublishing={isPublishing}
               onNewRecording={onNewRecording}
+              onUpdateRecordingName={onUpdateRecordingName}
               onDeleteUpdate={onDeleteUpdate}
               handlePublish={handlePublish}
               onUploadedFile={onUploadedFile}
