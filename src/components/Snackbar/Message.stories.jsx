@@ -18,10 +18,11 @@ export const DefaultMessage = () => {
     <PureMessage
       index={0}
       message={{
+        id: '1a2z3x',
         title: 'Default title',
         text: 'This is a default message.'
       }}
-      handleDismissMessage={handleDismissMessage}
+      queuedCount={0}
     />
   );
 };
@@ -35,11 +36,12 @@ export const SuccessMessage = () => {
     <PureMessage
       index={0}
       message={{
+        id: '1a2z3x',
         type: 'success',
         title: 'Success title',
         text: 'This is a success message with medium sized text.'
       }}
-      handleDismissMessage={handleDismissMessage}
+      queuedCount={0}
     />
   );
 };
@@ -53,12 +55,13 @@ export const ErrorMessage = () => {
     <PureMessage
       index={0}
       message={{
+        id: '1a2z3x',
         type: 'error',
         title: 'Error title',
         text:
           'This is an error message with long text that describes something without describing it.'
       }}
-      handleDismissMessage={handleDismissMessage}
+      queuedCount={0}
     />
   );
 };
@@ -72,11 +75,11 @@ export const QueuedMessages = () => {
     <PureMessage
       index={0}
       message={{
+        id: '1a2z3x',
         title: 'Message',
         text: 'Message text with 2 more messages queued up.'
       }}
       queuedCount={2}
-      handleDismissMessage={handleDismissMessage}
     />
   );
 };
