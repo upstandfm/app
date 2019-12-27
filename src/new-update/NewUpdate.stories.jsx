@@ -7,6 +7,7 @@ import { PureNewUpdate } from './NewUpdate';
 
 const handleGetPermission = action('handleGetPermission');
 const onNewRecording = action('onNewRecording');
+const onUpdateRecordingName = action('onUpdateRecordingName');
 const onDeleteUpdate = action('onDeleteUpdate');
 const handlePublish = action('handlePublish');
 const onUploadedFile = action('onUploadedFile');
@@ -37,6 +38,7 @@ export const DefaultNewUpdate = () => {
       playPauseAudio={playPauseAudio}
       isPublishing={false}
       onNewRecording={onNewRecording}
+      onUpdateRecordingName={onUpdateRecordingName}
       onDeleteUpdate={onDeleteUpdate}
       handlePublish={handlePublish}
       onUploadedFile={onUploadedFile}
@@ -65,6 +67,7 @@ export const NewUpdatePermission = () => {
       playPauseAudio={playPauseAudio}
       isPublishing={false}
       onNewRecording={onNewRecording}
+      onUpdateRecordingName={onUpdateRecordingName}
       onDeleteUpdate={onDeleteUpdate}
       handlePublish={handlePublish}
       onUploadedFile={onUploadedFile}
@@ -94,6 +97,7 @@ export const NewUpdatePermissionErr = () => {
         playPauseAudio={playPauseAudio}
         isPublishing={false}
         onNewRecording={onNewRecording}
+        onUpdateRecordingName={onUpdateRecordingName}
         onDeleteUpdate={onDeleteUpdate}
         handlePublish={handlePublish}
         onUploadedFile={onUploadedFile}
@@ -124,6 +128,7 @@ export const NewUpdateMediaStream = () => {
         playPauseAudio={playPauseAudio}
         isPublishing={false}
         onNewRecording={onNewRecording}
+        onUpdateRecordingName={onUpdateRecordingName}
         onDeleteUpdate={onDeleteUpdate}
         handlePublish={handlePublish}
         onUploadedFile={onUploadedFile}
