@@ -36,11 +36,16 @@ const RetryButton = styled(Button)`
   padding: 0;
 `;
 
-export function PureUploadRecording({ name, err, progress, handleRetry }) {
+export function PureUploadRecording({
+  displayName,
+  err,
+  progress,
+  handleRetry
+}) {
   return (
     <UploadListItem>
-      <UploadRecordingName title={name}>
-        {name || 'Untitled'}
+      <UploadRecordingName title={displayName}>
+        {displayName || 'Untitled'}
       </UploadRecordingName>
 
       <Wrapper>
@@ -61,7 +66,7 @@ export function PureUploadRecording({ name, err, progress, handleRetry }) {
 }
 
 PureUploadRecording.propTypes = {
-  name: PropTypes.string,
+  displayName: PropTypes.string,
   err: PropTypes.object,
   progress: PropTypes.number.isRequired,
   handleRetry: PropTypes.func.isRequired
@@ -69,6 +74,7 @@ PureUploadRecording.propTypes = {
 
 function UploadRecording({ standupId, update, onUploadedFile }) {
   const { id, blob, name } = update;
+  const displayName = name.trim();
 
   const [uploadFile, abortUploadFile, err, progress] = useUploadFile(
     standupId,
@@ -121,7 +127,7 @@ function UploadRecording({ standupId, update, onUploadedFile }) {
 
   return (
     <PureUploadRecording
-      name={name}
+      displayName={displayName}
       err={err}
       progress={progress}
       handleRetry={handleRetry}
