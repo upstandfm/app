@@ -9,6 +9,7 @@ const Outer = styled.div`
   width: 100%;
   background-color: var(--color-lightest-purple);
   border-radius: var(--radius-size);
+  margin: 0.25em 0;
 `;
 
 const Inner = styled.div`
@@ -67,7 +68,7 @@ const StatusIcon = styled.span`
       }
 
       default: {
-        return 'var(--color-purple)';
+        return 'inherit';
       }
     }
   }};
@@ -85,7 +86,7 @@ export function UploadStatus({ err, progress }) {
     return (
       <>
         <StatusIcon status="error">
-          <FontAwesomeIcon icon="exclamation-triangle" />
+          <FontAwesomeIcon icon="exclamation-triangle" size="sm" />
         </StatusIcon>
 
         <span>Upload failed</span>
@@ -99,6 +100,7 @@ export function UploadStatus({ err, progress }) {
         <FontAwesomeIcon
           icon={isDone ? 'check' : 'circle-notch'}
           spin={!isDone}
+          size="sm"
         />
       </StatusIcon>
 

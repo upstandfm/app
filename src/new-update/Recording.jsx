@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
-import { ListItem, ListItemText } from '../components/List';
+import { ListItem } from '../components/List';
 import { Input } from '../components/Form';
+
+import { RecordingName } from './Layout';
 
 const PlayPauseButton = styled(Button)`
   padding: 0.25em 0.5em;
@@ -20,14 +22,6 @@ PlayPauseButton.propTypes = {
 const DeleteButton = styled(Button)`
   padding: 0.25em 0.5em;
   color: var(--color-grey);
-`;
-
-const Name = styled(ListItemText)`
-  text-transform: capitalize;
-  font-weight: normal;
-  max-width: 240px;
-  display: inline-block;
-  box-sizing: border-box;
 `;
 
 const NameInput = styled(Input)`
@@ -77,7 +71,7 @@ function Recording({
         <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="lg" />
       </PlayPauseButton>
 
-      <Name>
+      <RecordingName title={name}>
         <NameInput
           type="text"
           placeholder="What's this recording about?"
@@ -85,7 +79,7 @@ function Recording({
           value={name}
           onChange={handleChangeName}
         />
-      </Name>
+      </RecordingName>
 
       <DeleteButton
         tertiary

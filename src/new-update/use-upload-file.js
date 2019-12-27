@@ -18,15 +18,15 @@ function useUploadFile(standupId, updateId, onUploadedFile) {
   const { getToken } = useAuth0();
 
   const [err, setErr] = React.useState(null);
-  const [uploadProgress, setUploadProgress] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
 
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
   const _onUpdateProgress = e => {
     const percentage = Math.round((100 * e.loaded) / e.total);
-    if (uploadProgress !== percentage) {
-      setUploadProgress(percentage);
+    if (progress !== percentage) {
+      setProgress(percentage);
     }
   };
 
@@ -59,7 +59,7 @@ function useUploadFile(standupId, updateId, onUploadedFile) {
     }
   };
 
-  return [uploadFile, source.cancel, uploadProgress, err];
+  return [uploadFile, source.cancel, err, progress];
 }
 
 export default useUploadFile;

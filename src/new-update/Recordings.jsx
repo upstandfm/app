@@ -1,21 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-import { ListContainer, ListTitle, List, ListEmpty } from '../components/List';
+import { ListContainer, ListEmpty } from '../components/List';
 import { Confirm } from '../components/Modal';
 
+import { RecordingsList, RecordingListTitle } from './Layout';
 import Recording from './Recording';
-
-const RecordingsList = styled(List)`
-  padding: 0;
-  overflow: auto;
-  height: 240px;
-`;
-
-const RecordingListTitle = styled(ListTitle)`
-  padding: 1em;
-`;
 
 function Recordings({
   updatesState,
