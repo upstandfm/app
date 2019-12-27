@@ -1,4 +1,4 @@
-export const defaultUpdatesState = {
+export const defaultRecordingsState = {
   // 'x9f4hj5k68': {
   //    id: 'x9f4hj5k68',
   //    blob: new Blob(),
@@ -8,14 +8,14 @@ export const defaultUpdatesState = {
 };
 
 /**
- * Updates reducer that manages standup updates state.
+ * Recordings reducer that manages new standup update recordings state.
  *
- * @param {Object} state - Updates
+ * @param {Object} state - Recordings
  * @param {Object} action - Reducer action with "type" and "data" props
  *
- * @returns {Object} Updates state
+ * @returns {Object} Recordings state
  */
-function updatesReducer(state, action) {
+function recordingsReducer(state, action) {
   switch (action.type) {
     case 'NEW_UPDATE_RECORDING': {
       const { id, blob } = action.data;
@@ -68,4 +68,4 @@ function updatesReducer(state, action) {
   }
 }
 
-export default updatesReducer;
+export default recordingsReducer;

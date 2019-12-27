@@ -8,7 +8,7 @@ import { RecordingsList, RecordingListTitle } from './Layout';
 import Recording from './Recording';
 
 function Recordings({
-  updatesState,
+  recordingsState,
   audioPlayerState,
   onUpdateRecordingName,
   playPauseAudio,
@@ -32,24 +32,28 @@ function Recordings({
     setIdToDelete(null);
   };
 
-  const updateIds = Object.keys(updatesState);
+  const recordingIds = Object.keys(recordingsState);
 
   return (
     <>
       <ListContainer>
-        <RecordingListTitle>Recordings ({updateIds.length})</RecordingListTitle>
+        <RecordingListTitle>
+          Recordings ({recordingIds.length})
+        </RecordingListTitle>
 
         <RecordingsList>
-          {updateIds.length === 0 && <ListEmpty>No recordings yet.</ListEmpty>}
+          {recordingIds.length === 0 && (
+            <ListEmpty>No recordings yet.</ListEmpty>
+          )}
 
-          {updateIds.map(id => {
+          {recordingIds.map(id => {
             const isSelected = id === audioPlayerState.playingFile.id;
             const isPlaying = isSelected && audioPlayerState.isPlaying;
 
             return (
               <Recording
                 key={id}
-                recording={updatesState[id]}
+                recording={recordingsState[id]}
                 isSelected={isSelected}
                 isPlaying={isPlaying}
                 onUpdateRecordingName={onUpdateRecordingName}
@@ -77,7 +81,7 @@ function Recordings({
 }
 
 Recordings.propTypes = {
-  updatesState: PropTypes.object.isRequired,
+  recordingsState: PropTypes.object.isRequired,
   audioPlayerState: PropTypes.shape({
     playingFile: PropTypes.shape({
       id: PropTypes.string,

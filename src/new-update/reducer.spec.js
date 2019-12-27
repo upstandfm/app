@@ -1,8 +1,8 @@
-import reducer, { defaultUpdatesState } from './reducer';
+import reducer, { defaultRecordingsState } from './reducer';
 
-describe('updates reducer', () => {
+describe('recordings reducer', () => {
   it('adds a new recording', () => {
-    const state = defaultUpdatesState;
+    const state = defaultRecordingsState;
 
     const action = {
       type: 'NEW_UPDATE_RECORDING',
@@ -20,7 +20,7 @@ describe('updates reducer', () => {
   });
 
   it('updates a recording name', () => {
-    const state = defaultUpdatesState;
+    const state = defaultRecordingsState;
 
     const id = '123xyz';
     const name = 'My awesome recording';
@@ -59,8 +59,8 @@ describe('updates reducer', () => {
     expect(newState[id]).not.toBeDefined();
   });
 
-  it('updates upload state', () => {
-    const state = defaultUpdatesState;
+  it('updates recording upload state', () => {
+    const state = defaultRecordingsState;
     const id = '123xyz';
     const action = {
       type: 'UPLOADED_UPDATE_RECORDING',
@@ -74,7 +74,7 @@ describe('updates reducer', () => {
   });
 
   it('returns default state', () => {
-    const state = defaultUpdatesState;
+    const state = defaultRecordingsState;
 
     const action = {
       type: 'DOES_NOT_EXIST',
