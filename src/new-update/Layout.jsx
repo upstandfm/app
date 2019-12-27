@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { List, ListTitle, ListItemText } from '../components/List';
+
 export const Container = styled.div`
   display: grid;
   height: calc(100vh - 55px);
@@ -64,4 +66,25 @@ export const Preview = styled.div`
   @media (max-width: 350px) {
     width: 100%;
   }
+`;
+
+export const RecordingsList = styled(List)`
+  padding: 0;
+  overflow: auto;
+  height: 240px;
+`;
+
+export const RecordingListTitle = styled(ListTitle)`
+  padding: 1em;
+`;
+
+export const RecordingName = styled(ListItemText)`
+  font-weight: bold;
+  max-width: 240px;
+  display: inline-block;
+  box-sizing: border-box;
+`;
+
+export const UploadRecordingName = styled(RecordingName)`
+  max-width: 325px;
 `;

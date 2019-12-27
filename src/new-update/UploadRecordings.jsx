@@ -1,51 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-import { ListContainer, List, ListItem } from '../components/List';
+import { ListContainer } from '../components/List';
 
+import { RecordingsList, RecordingListTitle } from './Layout';
 import UploadRecording from './UploadRecording';
 
-const UploadListItem = styled(ListItem)`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-  grid-gap: 0;
-`;
-
-const UploadTitle = styled.h4`
-  margin: 0;
-  text-transform: capitalize;
-`;
-
-const Wrapper = styled.div`
-  display: grid;
-  align-items: center;
-  height: 45px;
-`;
-
 function UploadRecordings({ standupId, updatesState, onUploadedFile }) {
+  const updateIds = Object.keys(updatesState);
+
   return (
     <ListContainer>
-      <List>
-        {Object.keys(updatesState).map(id => {
-          const update = updatesState[id];
+      <RecordingListTitle>Uploading ({updateIds.length})</RecordingListTitle>
 
+      <RecordingsList>
+        {updateIds.map(id => {
           return (
-            <UploadListItem key={id}>
-              <UploadTitle>{update.name || 'Untitled'}</UploadTitle>
-
-              <Wrapper>
-                <UploadRecording
-                  standupId={standupId}
-                  update={update}
-                  onUploadedFile={onUploadedFile}
-                />
-              </Wrapper>
-            </UploadListItem>
+            <UploadRecording
+              key={id}
+              standupId={standupId}
+              update={updatesState[id]}
+              onUploadedFile={onUploadedFile}
+            />
           );
         })}
-      </List>
+      </RecordingsList>
     </ListContainer>
   );
 }
