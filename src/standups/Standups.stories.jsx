@@ -24,7 +24,11 @@ export default {
 export const DefaultStandups = () => {
   return (
     <Container>
-      <PureStandups isLoading={false} standups={mockData} />
+      <PureStandups
+        isLoading={false}
+        standups={mockData}
+        fetchNextPage={fetchNextPage}
+      />
     </Container>
   );
 };
@@ -36,7 +40,7 @@ DefaultStandups.story = {
 export const LoadingStandups = () => {
   return (
     <Container>
-      <PureStandups isLoading={true} />
+      <PureStandups isLoading={true} fetchNextPage={fetchNextPage} />
     </Container>
   );
 };
@@ -82,7 +86,11 @@ FetchingMoreStandups.story = {
 export const EmptyStandups = () => {
   return (
     <Container>
-      <PureStandups isLoading={false} standups={[]} />
+      <PureStandups
+        isLoading={false}
+        standups={[]}
+        fetchNextPage={fetchNextPage}
+      />
     </Container>
   );
 };
