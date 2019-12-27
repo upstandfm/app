@@ -18,7 +18,7 @@ const Text = styled.p`
   color: var(--color-grey);
 `;
 
-function UploadFile({ standupId, update, onUploadedFile }) {
+function UploadRecording({ standupId, update, onUploadedFile }) {
   const [, snackbarDispatch] = useSnackbar();
 
   const [retryId, setRetryId] = React.useState(0);
@@ -85,7 +85,7 @@ function UploadFile({ standupId, update, onUploadedFile }) {
   );
 }
 
-UploadFile.propTypes = {
+UploadRecording.propTypes = {
   standupId: PropTypes.string.isRequired,
   update: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -95,4 +95,4 @@ UploadFile.propTypes = {
   onUploadedFile: PropTypes.func.isRequired
 };
 
-export default UploadFile;
+export default UploadRecording;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { ListContainer, List, ListItem } from '../components/List';
 
-import UploadFile from './UploadFile';
+import UploadRecording from './UploadRecording';
 
 const UploadListItem = styled(ListItem)`
   display: grid;
@@ -36,7 +36,7 @@ function UploadRecordings({ standupId, updatesState, onUploadedFile }) {
               <UploadTitle>{update.name || 'Untitled'}</UploadTitle>
 
               <Wrapper>
-                <UploadFile
+                <UploadRecording
                   standupId={standupId}
                   update={update}
                   onUploadedFile={onUploadedFile}
