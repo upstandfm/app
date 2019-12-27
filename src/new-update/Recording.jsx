@@ -62,8 +62,6 @@ function Recording({
     <ListItem key={id}>
       <PlayPauseButton
         tertiary
-        data-id={id}
-        data-is-playing={isPlaying ? true : ''}
         aria-label={helpText}
         title={helpText}
         isSelected={isSelected}
@@ -84,7 +82,6 @@ function Recording({
 
       <DeleteButton
         tertiary
-        data-id={id}
         onClick={handleDelete}
         aria-label={helpTextDelete}
         title={helpTextDelete}
