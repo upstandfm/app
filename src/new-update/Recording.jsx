@@ -1,9 +1,28 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { ListItemText } from '../components/List';
+import Button from '../components/Button';
+import { ListItem, ListItemText } from '../components/List';
 import { Input } from '../components/Form';
 
-export const Name = styled(ListItemText)`
+const PlayPauseButton = styled(Button)`
+  padding: 0.25em 0.5em;
+  color: ${props =>
+    props.isSelected ? 'var(--color-light-purple)' : 'var(--color-grey)'};
+`;
+
+PlayPauseButton.propTypes = {
+  isSelected: PropTypes.bool
+};
+
+const DeleteButton = styled(Button)`
+  padding: 0.25em 0.5em;
+  color: var(--color-grey);
+`;
+
+const Name = styled(ListItemText)`
   text-transform: capitalize;
   font-weight: normal;
   max-width: 240px;
@@ -11,8 +30,88 @@ export const Name = styled(ListItemText)`
   box-sizing: border-box;
 `;
 
-export const NameInput = styled(Input)`
+const NameInput = styled(Input)`
   width: 100%;
 `;
 
 export const Actions = styled.div``;
+
+function Recording({
+  recording,
+  isSelected,
+  isPlaying,
+  onUpdateRecordingName,
+  playPauseAudio,
+  onHandleDelete
+}) {
+  const handlePlayPauseRecording = () => {
+    playPauseAudio(recording, isPlaying);
+  };
+
+  const handleChangeName = e => {
+    const name = e.target.value;
+    onUpdateRecordingName(recording.id, name);
+  };
+
+  const handleDelete = e => {
+    e.stopPropagation();
+    onHandleDelete(recording.id);
+  };
+
+  const { id, name } = recording;
+
+  const helpText = `${isPlaying ? 'pause' : 'play'} recording ${name}`;
+  const helpTextDelete = `delete recording ${name}`;
+
+  return (
+    <ListItem key={id}>
+      <PlayPauseButton
+        tertiary
+        data-id={id}
+        data-is-playing={isPlaying ? true : ''}
+        aria-label={helpText}
+        title={helpText}
+        isSelected={isSelected}
+        onClick={handlePlayPauseRecording}
+      >
+        <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="lg" />
+      </PlayPauseButton>
+
+      <Name>
+        <NameInput
+          type="text"
+          placeholder="What's this recording about?"
+          data-id={id}
+          value={name}
+          onChange={handleChangeName}
+        />
+      </Name>
+
+      <DeleteButton
+        tertiary
+        data-id={id}
+        onClick={handleDelete}
+        aria-label={helpTextDelete}
+        title={helpTextDelete}
+      >
+        <FontAwesomeIcon icon="trash" />
+      </DeleteButton>
+    </ListItem>
+  );
+}
+
+Recording.propTypes = {
+  recording: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    blob: PropTypes.object.isRequired,
+    name: PropTypes.string,
+    isUploaded: PropTypes.bool.isRequired
+  }),
+  isSelected: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onUpdateRecordingName: PropTypes.func.isRequired,
+  playPauseAudio: PropTypes.func.isRequired,
+  onHandleDelete: PropTypes.func.isRequired
+};
+
+export default Recording;
