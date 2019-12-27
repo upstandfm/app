@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { action } from '@storybook/addon-actions';
 
 import { Form, Section, Label, InlineLabel, Input, Description } from './Input';
+
+const onChange = action('onChange');
 
 export default {
   title: 'components|Form/Input',
@@ -107,7 +110,7 @@ export const ErroredInput = () => {
         <Section>
           <Label htmlFor="email">
             NAME
-            <Input type="email" id="email" value="abc" />
+            <Input type="email" id="email" value="abc" onChange={onChange} />
           </Label>
 
           <Description error>Invalid email.</Description>
