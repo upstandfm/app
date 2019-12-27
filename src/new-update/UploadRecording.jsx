@@ -72,8 +72,8 @@ PureUploadRecording.propTypes = {
   handleRetry: PropTypes.func.isRequired
 };
 
-function UploadRecording({ standupId, update, onUploadedFile }) {
-  const { id, blob, name } = update;
+function UploadRecording({ standupId, recording, onUploadedFile }) {
+  const { id, blob, name } = recording;
   const displayName = name.trim();
 
   const [uploadFile, abortUploadFile, err, progress] = useUploadFile(
@@ -137,7 +137,7 @@ function UploadRecording({ standupId, update, onUploadedFile }) {
 
 UploadRecording.propTypes = {
   standupId: PropTypes.string.isRequired,
-  update: PropTypes.shape({
+  recording: PropTypes.shape({
     id: PropTypes.string.isRequired,
     blob: PropTypes.object,
     name: PropTypes.string,

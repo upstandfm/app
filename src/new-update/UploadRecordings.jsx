@@ -6,20 +6,20 @@ import { ListContainer } from '../components/List';
 import { RecordingsList, RecordingListTitle } from './Layout';
 import UploadRecording from './UploadRecording';
 
-function UploadRecordings({ standupId, updatesState, onUploadedFile }) {
-  const updateIds = Object.keys(updatesState);
+function UploadRecordings({ standupId, recordingsState, onUploadedFile }) {
+  const recordingIds = Object.keys(recordingsState);
 
   return (
     <ListContainer>
-      <RecordingListTitle>Uploading ({updateIds.length})</RecordingListTitle>
+      <RecordingListTitle>Uploading ({recordingIds.length})</RecordingListTitle>
 
       <RecordingsList>
-        {updateIds.map(id => {
+        {recordingIds.map(id => {
           return (
             <UploadRecording
               key={id}
               standupId={standupId}
-              update={updatesState[id]}
+              recording={recordingsState[id]}
               onUploadedFile={onUploadedFile}
             />
           );
@@ -31,7 +31,7 @@ function UploadRecordings({ standupId, updatesState, onUploadedFile }) {
 
 UploadRecordings.propTypes = {
   standupId: PropTypes.string.isRequired,
-  updatesState: PropTypes.object.isRequired,
+  recordingsState: PropTypes.object.isRequired,
   onUploadedFile: PropTypes.func.isRequired
 };
 

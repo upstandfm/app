@@ -25,7 +25,7 @@ import Permission from './Permission';
 import Recordings from './Recordings';
 import UploadRecordings from './UploadRecordings';
 
-import updatesReducer, { defaultUpdatesState } from './reducer';
+import recordingsReducer, { defaultRecordingsState } from './reducer';
 import useGetUserMedia from './use-get-user-media';
 
 export function PureNewUpdate({
@@ -34,7 +34,7 @@ export function PureNewUpdate({
   permissionErr,
   handleGetPermission,
   standupId,
-  updatesState,
+  recordingsState,
   audioPlayerState,
   playPauseAudio,
   isPublishing,
@@ -68,12 +68,12 @@ export function PureNewUpdate({
         {isPublishing ? (
           <UploadRecordings
             standupId={standupId}
-            updatesState={updatesState}
+            recordingsState={recordingsState}
             onUploadedFile={onUploadedFile}
           />
         ) : (
           <Recordings
-            updatesState={updatesState}
+            recordingsState={recordingsState}
             audioPlayerState={audioPlayerState}
             onUpdateRecordingName={onUpdateRecordingName}
             playPauseAudio={playPauseAudio}
@@ -84,7 +84,7 @@ export function PureNewUpdate({
 
       <Actions>
         <Button
-          disabled={Object.keys(updatesState).length === 0 || isPublishing}
+          disabled={Object.keys(recordingsState).length === 0 || isPublishing}
           onClick={handlePublish}
         >
           {isPublishing ? (
@@ -107,7 +107,7 @@ PureNewUpdate.propTypes = {
   permissionErr: PropTypes.object,
   handleGetPermission: PropTypes.func.isRequired,
   standupId: PropTypes.string.isRequired,
-  updatesState: PropTypes.object.isRequired,
+  recordingsState: PropTypes.object.isRequired,
   audioPlayerState: PropTypes.object.isRequired,
   playPauseAudio: PropTypes.func.isRequired,
   isPublishing: PropTypes.bool.isRequired,
@@ -143,9 +143,9 @@ const Subtitle = styled.p`
 function NewUpdate({ standupId }) {
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
 
-  const [updatesState, updatesDispatch] = React.useReducer(
-    updatesReducer,
-    defaultUpdatesState
+  const [recordingsState, recordingsDispatch] = React.useReducer(
+    recordingsReducer,
+    defaultRecordingsState
   );
 
   const [
@@ -164,10 +164,10 @@ function NewUpdate({ standupId }) {
     navigate(`/standups/${standupId}`);
   };
 
-  const recordingIds = Object.keys(updatesState);
+  const recordingIds = Object.keys(recordingsState);
   const hasRecordings = Boolean(recordingIds.length);
   const hasUploadedAllFiles = hasRecordings
-    ? recordingIds.every(id => updatesState[id].isUploaded)
+    ? recordingIds.every(id => recordingsState[id].isUploaded)
     : false;
 
   React.useEffect(
@@ -214,7 +214,7 @@ function NewUpdate({ standupId }) {
       }
     });
 
-    updatesDispatch({
+    recordingsDispatch({
       type: 'NEW_UPDATE_RECORDING',
       data: {
         id,
@@ -224,7 +224,7 @@ function NewUpdate({ standupId }) {
   };
 
   const onUpdateRecordingName = (id, name) => {
-    updatesDispatch({
+    recordingsDispatch({
       type: 'UPDATE_RECORDING_NAME',
       data: {
         id,
@@ -241,7 +241,7 @@ function NewUpdate({ standupId }) {
       }
     });
 
-    updatesDispatch({
+    recordingsDispatch({
       type: 'DELETE_UPDATE_RECORDING',
       data: {
         id
@@ -250,7 +250,7 @@ function NewUpdate({ standupId }) {
   };
 
   const onUploadedFile = id => {
-    updatesDispatch({
+    recordingsDispatch({
       type: 'UPLOADED_UPDATE_RECORDING',
       data: {
         id
@@ -261,7 +261,7 @@ function NewUpdate({ standupId }) {
   // Event handlers
 
   const handleExit = () => {
-    const hasProgress = Object.values(updatesState).some(update =>
+    const hasProgress = Object.values(recordingsState).some(update =>
       Boolean(update.blob)
     );
     if (hasProgress) {
@@ -315,7 +315,7 @@ function NewUpdate({ standupId }) {
               permissionErr={permissionErr}
               handleGetPermission={handleGetPermission}
               standupId={standupId}
-              updatesState={updatesState}
+              recordingsState={recordingsState}
               audioPlayerState={audioPlayerState}
               playPauseAudio={playPauseAudio}
               isPublishing={isPublishing}
