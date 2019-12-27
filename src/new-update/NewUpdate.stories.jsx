@@ -28,7 +28,7 @@ export const DefaultNewUpdate = () => {
       permissionErr={undefined}
       handleGetPermission={handleGetPermission}
       standupId={'1a2z3x'}
-      updatesState={{}}
+      recordingsState={{}}
       audioPlayerState={{
         playingFile: {},
         isPlaying: false,
@@ -56,7 +56,7 @@ export const NewUpdatePermission = () => {
       permissionErr={undefined}
       handleGetPermission={handleGetPermission}
       standupId={'1a2z3x'}
-      updatesState={{}}
+      recordingsState={{}}
       audioPlayerState={{
         playingFile: {},
         isPlaying: false,
@@ -85,7 +85,7 @@ export const NewUpdatePermissionErr = () => {
         permissionErr={new Error()}
         handleGetPermission={handleGetPermission}
         standupId={'1a2z3x'}
-        updatesState={{}}
+        recordingsState={{}}
         audioPlayerState={{
           playingFile: {},
           isPlaying: false,
@@ -115,7 +115,7 @@ export const NewUpdateMediaStream = () => {
         permissionErr={undefined}
         handleGetPermission={handleGetPermission}
         standupId={'1a2z3x'}
-        updatesState={{}}
+        recordingsState={{}}
         audioPlayerState={{
           playingFile: {},
           isPlaying: false,
