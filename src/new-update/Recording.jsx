@@ -54,8 +54,9 @@ function Recording({
 
   const { id, name } = recording;
 
-  const helpText = `${isPlaying ? 'pause' : 'play'} recording ${name}`;
-  const helpTextDelete = `delete recording ${name}`;
+  const displayName = name.trim();
+  const helpText = `${isPlaying ? 'pause' : 'play'} recording ${displayName}`;
+  const helpTextDelete = `delete recording ${displayName}`;
 
   return (
     <ListItem key={id}>
@@ -71,7 +72,7 @@ function Recording({
         <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="lg" />
       </PlayPauseButton>
 
-      <RecordingName title={name}>
+      <RecordingName title={displayName}>
         <NameInput
           type="text"
           placeholder="What's this recording about?"
