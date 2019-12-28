@@ -10,12 +10,13 @@ const api = {
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
    * @param {String} standupId
    * @param {Object} file - File
+   * @param {String} name - Display name metadata
    *
    * @return {Promise} Axios res with pre-signed URL
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  createPreSignedUploadUrl(token, cancelToken, standupId, file) {
+  createPreSignedUploadUrl(token, cancelToken, standupId, file, name) {
     return axios({
       cancelToken,
       method: 'post',
@@ -27,7 +28,8 @@ const api = {
       data: {
         standupId,
         mimeType: file.type,
-        filename: file.name
+        filename: file.name,
+        name
       }
     });
   },
@@ -38,19 +40,21 @@ const api = {
    * @param {String} preSignedUrl - Pre-signed upload URL
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
    * @param {Object} file - File
+   * @param {String} name - Display name metadata
    * @param {Function} onUploadProgress - Callback
    *
    * @return {Promise} Axios res
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  uploadFile(preSignedUrl, cancelToken, file, onUploadProgress) {
+  uploadFile(preSignedUrl, cancelToken, file, name, onUploadProgress) {
     return axios({
       cancelToken,
       method: 'put',
       url: preSignedUrl,
       headers: {
-        'Content-Type': file.type
+        'Content-Type': file.type,
+        'x-amz-meta-name': name
       },
       data: file,
       onUploadProgress

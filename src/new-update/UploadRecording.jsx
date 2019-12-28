@@ -90,7 +90,7 @@ function UploadRecording({ standupId, recording, onUploadedFile }) {
     const file = new File([blob], `${id}.webm`, {
       type: 'audio/webm'
     });
-    uploadFile(file);
+    uploadFile(file, displayName);
 
     return () => {
       abortUploadFile();
