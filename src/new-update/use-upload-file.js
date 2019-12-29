@@ -30,7 +30,7 @@ function useUploadFile(standupId, updateId, onUploadedFile) {
     }
   };
 
-  const uploadFile = async (file, name) => {
+  const uploadFile = async (file, metadata) => {
     try {
       setErr(null);
 
@@ -40,7 +40,7 @@ function useUploadFile(standupId, updateId, onUploadedFile) {
         source.token,
         standupId,
         file,
-        name
+        metadata
       );
 
       const { url: signedUrl } = res.data;
@@ -48,7 +48,7 @@ function useUploadFile(standupId, updateId, onUploadedFile) {
         signedUrl,
         source.token,
         file,
-        name,
+        metadata,
         _onUpdateProgress
       );
 

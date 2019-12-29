@@ -10,13 +10,13 @@ const api = {
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
    * @param {String} standupId
    * @param {Object} file - File
-   * @param {String} name - Display name metadata
+   * @param {String} metadata - File metadata
    *
    * @return {Promise} Axios res with pre-signed URL
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  createPreSignedUploadUrl(token, cancelToken, standupId, file, name) {
+  createPreSignedUploadUrl(token, cancelToken, standupId, file, metadata) {
     return axios({
       cancelToken,
       method: 'post',
@@ -29,7 +29,7 @@ const api = {
         standupId,
         mimeType: file.type,
         filename: file.name,
-        name
+        metadata
       }
     });
   },
@@ -40,21 +40,31 @@ const api = {
    * @param {String} preSignedUrl - Pre-signed upload URL
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
    * @param {Object} file - File
-   * @param {String} name - Display name metadata
+   * @param {String} metadata - File metadata
    * @param {Function} onUploadProgress - Callback
    *
    * @return {Promise} Axios res
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  uploadFile(preSignedUrl, cancelToken, file, name, onUploadProgress) {
+  uploadFile(preSignedUrl, cancelToken, file, metadata, onUploadProgress) {
+    // Any user defined metadata needs to be sent as a custom header
+    // in the request using the signed URL to upload data.
+    // This header must "match" the metadata "key" itself, i.e.
+    // "x-amz-meta-:key".
+    // For more info see: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
+    const metadataHeaders = Object.keys(metadata).reduce((headers, key) => {
+      headers[`x-amz-meta-${key}`] = metadata[key];
+      return headers;
+    }, {});
+
     return axios({
       cancelToken,
       method: 'put',
       url: preSignedUrl,
       headers: {
         'Content-Type': file.type,
-        'x-amz-meta-name': name
+        ...metadataHeaders
       },
       data: file,
       onUploadProgress
