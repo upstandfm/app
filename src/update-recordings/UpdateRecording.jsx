@@ -74,7 +74,7 @@ function UpdateRecording({
       />
 
       <Content>
-        <Title>{recording.filename}</Title>
+        <Title>{recording.name || 'Untitled'}</Title>
 
         <Status>
           {!isReady && (
@@ -93,7 +93,7 @@ function UpdateRecording({
 UpdateRecording.propTypes = {
   recording: PropTypes.shape({
     recordingId: PropTypes.string.isRequired,
-    filename: PropTypes.string.isRequired,
+    name: PropTypes.string,
     standupId: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     status: PropTypes.oneOf(['transcoding', 'error', 'completed']),

@@ -119,7 +119,6 @@ export const Content = styled.div`
 
 export const Title = styled.h4`
   margin: 0;
-  text-transform: capitalize;
   font-weight: normal;
 `;
 

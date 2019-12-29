@@ -14,18 +14,18 @@ export default {
   }
 };
 
-export const DefaultUserRecording = () => {
+export const DefaultUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
         recordingId: 'rec1',
-        filename: 'yesterday',
+        name: 'Yesterday',
         standupId: 'standup1',
         userId: 'auth0|user1',
         status: 'completed',
         createdAt: 1571999306858,
         updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/yesterday.mp3`
+        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -37,22 +37,22 @@ export const DefaultUserRecording = () => {
   );
 };
 
-DefaultUserRecording.story = {
+DefaultUpdateRecording.story = {
   name: 'default'
 };
 
-export const TranscodingUserRecording = () => {
+export const TranscodingUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
         recordingId: 'rec1',
-        filename: 'yesterday',
+        name: 'Yesterday',
         standupId: 'standup1',
         userId: 'auth0|user1',
         status: 'transcoding',
         createdAt: 1571999306858,
         updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/yesterday.mp3`
+        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -64,22 +64,22 @@ export const TranscodingUserRecording = () => {
   );
 };
 
-TranscodingUserRecording.story = {
+TranscodingUpdateRecording.story = {
   name: 'transcoding'
 };
 
-export const ErrorUserRecording = () => {
+export const ErrorUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
         recordingId: 'rec1',
-        filename: 'yesterday',
+        name: 'Yesterday',
         standupId: 'standup1',
         userId: 'auth0|user1',
         status: 'error',
         createdAt: 1571999306858,
         updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/yesterday.mp3`
+        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -91,22 +91,49 @@ export const ErrorUserRecording = () => {
   );
 };
 
-ErrorUserRecording.story = {
+ErrorUpdateRecording.story = {
   name: 'error'
 };
 
-export const DownloadingUserRecording = () => {
+export const UntitledUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
         recordingId: 'rec1',
-        filename: 'yesterday',
+        name: undefined,
         standupId: 'standup1',
         userId: 'auth0|user1',
         status: 'completed',
         createdAt: 1571999306858,
         updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/yesterday.mp3`
+        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+      }}
+      isSelected={false}
+      hasFile={false}
+      downloadFile={downloadFile}
+      downloadProgress={undefined}
+      playPauseAudio={playPauseAudio}
+      isPlaying={false}
+    />
+  );
+};
+
+UntitledUpdateRecording.story = {
+  name: 'untitled'
+};
+
+export const DownloadingUpdateRecording = () => {
+  return (
+    <UpdateRecording
+      recording={{
+        recordingId: 'rec1',
+        name: 'Yesterday',
+        standupId: 'standup1',
+        userId: 'auth0|user1',
+        status: 'completed',
+        createdAt: 1571999306858,
+        updatedAt: 1571999306858,
+        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -118,22 +145,22 @@ export const DownloadingUserRecording = () => {
   );
 };
 
-DownloadingUserRecording.story = {
+DownloadingUpdateRecording.story = {
   name: 'downloading'
 };
 
-export const PlayingUserRecording = () => {
+export const PlayingUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
         recordingId: 'rec1',
-        filename: 'yesterday',
+        name: 'Yesterday',
         standupId: 'standup1',
         userId: 'auth0|user1',
         status: 'completed',
         createdAt: 1571999306858,
         updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/yesterday.mp3`
+        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
       }}
       isSelected={true}
       hasFile={true}
@@ -145,22 +172,22 @@ export const PlayingUserRecording = () => {
   );
 };
 
-PlayingUserRecording.story = {
+PlayingUpdateRecording.story = {
   name: 'playing'
 };
 
-export const PausedUserRecording = () => {
+export const PausedUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
         recordingId: 'rec1',
-        filename: 'yesterday',
+        name: 'Yesterday',
         standupId: 'standup1',
         userId: 'auth0|user1',
         status: 'completed',
         createdAt: 1571999306858,
         updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/yesterday.mp3`
+        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
       }}
       isSelected={true}
       hasFile={true}
@@ -172,6 +199,6 @@ export const PausedUserRecording = () => {
   );
 };
 
-PausedUserRecording.story = {
+PausedUpdateRecording.story = {
   name: 'paused'
 };

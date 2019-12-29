@@ -30,7 +30,7 @@ const todayDateKey = `${today.getDate()}-${todayMonth}-${todayYear}`;
 export const recordingsMockData = [
   {
     recordingId: 'rec1',
-    filename: 'yesterday',
+    name: 'Yesterday',
     standupId: 'standup1',
     userId: 'auth0|user1',
     status: 'transcoding',
@@ -41,7 +41,7 @@ export const recordingsMockData = [
 
   {
     recordingId: 'rec2',
-    filename: 'today',
+    name: 'Today',
     standupId: 'standup1',
     userId: 'auth0|user1',
     status: 'completed',
@@ -52,7 +52,7 @@ export const recordingsMockData = [
 
   {
     recordingId: 'rec3',
-    filename: 'blockers',
+    name: 'Blockers',
     standupId: 'standup1',
     userId: 'auth0|user1',
     status: 'error',
@@ -63,7 +63,7 @@ export const recordingsMockData = [
 
   {
     recordingId: 'rec4',
-    filename: 'yesterday',
+    name: 'Yesterday',
     standupId: 'standup1',
     userId: 'auth0|user2',
     status: 'transcoding',
@@ -74,7 +74,7 @@ export const recordingsMockData = [
 
   {
     recordingId: 'rec5',
-    filename: 'today',
+    name: 'Today',
     standupId: 'standup1',
     userId: 'auth0|user2',
     status: 'completed',
@@ -85,7 +85,7 @@ export const recordingsMockData = [
 
   {
     recordingId: 'rec6',
-    filename: 'blockers',
+    name: undefined,
     standupId: 'standup1',
     userId: 'auth0|user2',
     status: 'error',
