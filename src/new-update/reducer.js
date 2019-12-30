@@ -3,6 +3,7 @@ export const defaultRecordingsState = {
   //    id: 'x9f4hj5k68',
   //    blob: new Blob(),
   //    name: '',
+  //    isValid: true
   //    isUploaded: false
   // }
 };
@@ -26,19 +27,21 @@ function recordingsReducer(state, action) {
           id,
           blob,
           name: '',
+          isValid: true,
           isUploaded: false
         }
       };
     }
 
     case 'UPDATE_RECORDING_NAME': {
-      const { id, name } = action.data;
+      const { id, name, isValid } = action.data;
 
       return {
         ...state,
         [id]: {
           ...state[id],
-          name
+          name,
+          isValid
         }
       };
     }

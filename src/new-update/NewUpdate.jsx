@@ -54,6 +54,12 @@ export function PureNewUpdate({
     );
   }
 
+  const recordingIds = Object.keys(recordingsState);
+  const hasNoRecordings = recordingIds.length === 0;
+  const hasInvalidRecording = recordingIds.some(
+    id => recordingsState[id].isValid === false
+  );
+
   return (
     <>
       <AudioRecorder
@@ -84,7 +90,7 @@ export function PureNewUpdate({
 
       <Actions>
         <Button
-          disabled={Object.keys(recordingsState).length === 0 || isPublishing}
+          disabled={hasNoRecordings || hasInvalidRecording || isPublishing}
           onClick={handlePublish}
         >
           {isPublishing ? (
@@ -223,12 +229,13 @@ function NewUpdate({ standupId }) {
     });
   };
 
-  const onUpdateRecordingName = (id, name) => {
+  const onUpdateRecordingName = (id, name, isValid) => {
     recordingsDispatch({
       type: 'UPDATE_RECORDING_NAME',
       data: {
         id,
-        name
+        name,
+        isValid
       }
     });
   };

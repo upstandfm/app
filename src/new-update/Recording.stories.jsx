@@ -22,6 +22,7 @@ export const DefaultRecording = () => {
         id: '1a2z3x',
         blob: {},
         name: '',
+        isValid: true,
         isUploaded: false
       }}
       isSelected={false}
@@ -44,6 +45,7 @@ export const NamedRecording = () => {
         id: '1a2z3x',
         blob: {},
         name: 'My awesome recording',
+        isValid: true,
         isUploaded: false
       }}
       isSelected={false}
@@ -59,6 +61,29 @@ NamedRecording.story = {
   name: 'named'
 };
 
+export const InvalidNameRecording = () => {
+  return (
+    <Recording
+      recording={{
+        id: '1a2z3x',
+        blob: {},
+        name: '!@#$%^&*()-_=+{}[];:",.<±/?>',
+        isValid: false,
+        isUploaded: false
+      }}
+      isSelected={false}
+      isPlaying={false}
+      onUpdateRecordingName={onUpdateRecordingName}
+      playPauseAudio={playPauseAudio}
+      onHandleDelete={onHandleDelete}
+    />
+  );
+};
+
+InvalidNameRecording.story = {
+  name: 'invalid name'
+};
+
 export const PlayingRecording = () => {
   return (
     <Recording
@@ -66,6 +91,7 @@ export const PlayingRecording = () => {
         id: '1a2z3x',
         blob: {},
         name: 'My awesome recording',
+        isValid: true,
         isUploaded: false
       }}
       isSelected={true}
@@ -88,6 +114,7 @@ export const PausedRecording = () => {
         id: '1a2z3x',
         blob: {},
         name: 'My awesome recording',
+        isValid: true,
         isUploaded: false
       }}
       isSelected={true}

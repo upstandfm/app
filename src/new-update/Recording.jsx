@@ -28,7 +28,12 @@ const NameInput = styled(Input)`
   width: 100%;
 `;
 
-export const Actions = styled.div``;
+const RecordingDescription = styled(Description)`
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 
 function Recording({
   recording,
@@ -38,13 +43,34 @@ function Recording({
   playPauseAudio,
   onHandleDelete
 }) {
+  const nameInput = React.createRef();
+  const [feedbackText, setFeedbackText] = React.useState('');
+
+  const _validateNameInput = () => {
+    const isValid = nameInput.current.checkValidity();
+
+    if (!isValid) {
+      setFeedbackText('Invalid character. Use a-z, A-Z, 0-9.');
+    } else {
+      setFeedbackText('');
+    }
+
+    return isValid;
+  };
+
+  React.useEffect(() => {
+    _validateNameInput();
+    nameInput.current.focus();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handlePlayPauseRecording = () => {
     playPauseAudio(recording, isPlaying);
   };
 
   const handleChangeName = e => {
     const name = e.target.value;
-    onUpdateRecordingName(recording.id, name);
+    const isValid = _validateNameInput();
+    onUpdateRecordingName(recording.id, name, isValid);
   };
 
   const handleDelete = e => {
@@ -54,9 +80,11 @@ function Recording({
 
   const { id, name } = recording;
 
-  const displayName = name.trim();
-  const helpText = `${isPlaying ? 'pause' : 'play'} recording ${displayName}`;
-  const helpTextDelete = `delete recording ${displayName}`;
+  const displayName = name.trim() || 'Untitled';
+  const helpText = `${isPlaying ? 'pause' : 'play'} recording "${displayName}"`;
+  const helpTextDelete = `delete recording "${displayName}"`;
+  const descriptionText = 'Max. 70 characters (a-z, A-Z, 0-9).';
+  const hasFeedback = Boolean(feedbackText);
 
   return (
     <ListItem>
@@ -72,6 +100,8 @@ function Recording({
 
       <RecordingName title={displayName}>
         <NameInput
+          ref={nameInput}
+          aria-label={displayName}
           type="text"
           placeholder="What's this recording about?"
           data-id={id}
@@ -81,7 +111,12 @@ function Recording({
           pattern="[a-zA-Z0-9 ]*"
         />
 
-        <Description>Max. 70 characters (a-z, A-Z, 0-9)</Description>
+        <RecordingDescription
+          error={hasFeedback}
+          title={hasFeedback ? feedbackText : descriptionText}
+        >
+          {hasFeedback ? feedbackText : descriptionText}
+        </RecordingDescription>
       </RecordingName>
 
       <DeleteButton

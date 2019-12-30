@@ -79,7 +79,7 @@ export const RecordingListTitle = styled(ListTitle)`
 `;
 
 export const RecordingName = styled(ListItemText)`
-  max-width: 258px;
+  max-width: 240px;
   display: inline-block;
   box-sizing: border-box;
 `;
