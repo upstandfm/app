@@ -54,7 +54,14 @@ const api = {
     // "x-amz-meta-:key".
     // For more info see: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
     const metadataHeaders = Object.keys(metadata).reduce((headers, key) => {
-      headers[`x-amz-meta-${key}`] = metadata[key];
+      // Only set a metadata header when it has a value
+      // AWS strips out "empty" metadata and if we set the header regardless,
+      // there'll be a signature mismatch, preventing the upload request to
+      // succeed
+      const hasValue = Boolean(metadata[key]);
+      if (hasValue) {
+        headers[`x-amz-meta-${key}`] = metadata[key];
+      }
       return headers;
     }, {});
 
