@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../components/Button';
 import { ListItem } from '../components/List';
-import { Input } from '../components/Form';
+import { Input, Description } from '../components/Form';
 
 import { RecordingName } from './Layout';
 
 const PlayPauseButton = styled(Button)`
-  padding: 0.25em 0.5em;
+  padding: 0.25em 0.75em;
   color: ${props =>
     props.isSelected ? 'var(--color-light-purple)' : 'var(--color-grey)'};
 `;
@@ -20,7 +20,7 @@ PlayPauseButton.propTypes = {
 };
 
 const DeleteButton = styled(Button)`
-  padding: 0.25em 0.5em;
+  padding: 0.25em 0.75em;
   color: var(--color-grey);
 `;
 
@@ -59,7 +59,7 @@ function Recording({
   const helpTextDelete = `delete recording ${displayName}`;
 
   return (
-    <ListItem key={id}>
+    <ListItem>
       <PlayPauseButton
         tertiary
         aria-label={helpText}
@@ -77,7 +77,11 @@ function Recording({
           data-id={id}
           value={name}
           onChange={handleChangeName}
+          maxLength="70"
+          pattern="[a-zA-Z0-9 ]*"
         />
+
+        <Description>Max. 70 characters (a-z, A-Z, 0-9)</Description>
       </RecordingName>
 
       <DeleteButton

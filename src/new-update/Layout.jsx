@@ -71,7 +71,7 @@ export const Preview = styled.div`
 export const RecordingsList = styled(List)`
   padding: 0;
   overflow: auto;
-  height: 240px;
+  height: 258px;
 `;
 
 export const RecordingListTitle = styled(ListTitle)`
@@ -79,12 +79,12 @@ export const RecordingListTitle = styled(ListTitle)`
 `;
 
 export const RecordingName = styled(ListItemText)`
-  font-weight: bold;
-  max-width: 240px;
+  max-width: 258px;
   display: inline-block;
   box-sizing: border-box;
 `;
 
 export const UploadRecordingName = styled(RecordingName)`
+  font-weight: bold;
   max-width: 325px;
 `;
