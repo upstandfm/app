@@ -8,8 +8,7 @@ export const ListContainer = styled.div``;
 
 export const ListTitle = styled.p`
   margin: 0;
-  padding: 1em 1em 0.5em 1em;
-  font-size: 0.8em;
+  padding: 0.1em 1em 0.5em 1em;
   font-weight: bold;
   letter-spacing: 1px;
   color: var(--color-lightest-purple);
@@ -25,17 +24,17 @@ export const ListEmpty = styled.div`
 
 const ListItem = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
   grid-gap: 0.25em;
   align-items: center;
-  padding: 0.1em 1em 0.1em 1.5em;
+  padding: 0.1em 1em;
   font-weight: normal;
   min-height: 27px;
   font-weight: normal;
   transition: all 0.1s linear;
 
   :hover {
-    background-color: var(--color-lighter-purple);
+    background-color: var(--color-lightest-purple);
     color: var(--color-darkest-purple) !important;
   }
 `;
@@ -53,8 +52,7 @@ export const ListItemLink = props => (
       const activeStyles = {
         textDecoration: 'none',
         color: 'var(--color-darkest-purple)',
-        backgroundColor: 'var(--color-lighter-purple)',
-        fontWeight: 'bold'
+        backgroundColor: 'var(--color-lighter-purple)'
       };
 
       const isActive = isCurrent || isPartiallyCurrent;

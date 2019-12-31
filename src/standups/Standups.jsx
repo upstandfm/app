@@ -41,14 +41,12 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
     return (
       <ListContainer>
-        <ListTitle>MY STANDUPS</ListTitle>
+        <ListTitle>Standups</ListTitle>
 
         <List>
           <LoadingListItem>
             <LoadingListItemText>Standup loading title</LoadingListItemText>
 
-            <span />
-
             <MenuButton tertiary disabled title="not implemented yet">
               <FontAwesomeIcon icon="ellipsis-h" />
             </MenuButton>
@@ -57,8 +55,6 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
           <LoadingListItem>
             <LoadingListItemText>Standup loading title</LoadingListItemText>
 
-            <span />
-
             <MenuButton tertiary disabled title="not implemented yet">
               <FontAwesomeIcon icon="ellipsis-h" />
             </MenuButton>
@@ -66,8 +62,6 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
           <LoadingListItem>
             <LoadingListItemText>Standup loading title</LoadingListItemText>
-
-            <span />
 
             <MenuButton tertiary disabled title="not implemented yet">
               <FontAwesomeIcon icon="ellipsis-h" />
@@ -85,15 +79,13 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   return (
     <div>
       <ListContainer>
-        <ListTitle>MY STANDUPS</ListTitle>
+        <ListTitle>Standups</ListTitle>
 
         <List>
           {standups.map(standup => {
             const { standupId, standupName } = standup;
             return (
               <ListItemLink key={standupId} to={`standups/${standupId}`}>
-                <span />
-
                 <ListItemText>{standupName}</ListItemText>
 
                 <MenuButton tertiary disabled title="not implemented yet">
