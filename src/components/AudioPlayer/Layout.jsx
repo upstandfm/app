@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
-  grid-template-areas: 'player-controls player-main player-meta';
-  grid-template-columns: auto 1fr auto;
-  grid-gap: 1em;
+  grid-template-areas: 'player-controls player-main';
+  grid-template-columns: auto 1fr;
   align-items: center;
   justify-items: center;
   max-width: 50rem;
@@ -25,14 +24,6 @@ export const Main = styled.div`
   width: 100%;
 `;
 
-export const PlayState = styled.div`
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  width: 40px;
-  height: 40px;
-`;
-
 export const Title = styled.h4`
   margin: 0;
   text-align: center;
@@ -41,8 +32,4 @@ export const Title = styled.h4`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
-
-export const Meta = styled.div`
-  grid-area: player-meta;
 `;

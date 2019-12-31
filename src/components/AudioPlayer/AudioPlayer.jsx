@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
 
 import { useSnackbar } from '../Snackbar';
 import Button from '../Button';
@@ -9,18 +10,23 @@ import { useAudioPlayer } from './AudioPlayerContext';
 import usePlayAudio from './use-play-audio';
 import { formatTime } from './utils';
 
-import { Container, Controls, Main, PlayState, Title, Meta } from './Layout';
+import { Container, Controls, Main, Title } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
+
+const PlayPauseButton = styled(Button)`
+  :disabled,
+  :disabled:hover {
+    color: var(--color-light-grey);
+  }
+`;
 
 export function LoadingAudioPlayer() {
   return (
     <Container>
       <Controls>
-        <Button tertiary disabled>
-          <PlayState>
-            <FontAwesomeIcon icon="play" size="2x" />
-          </PlayState>
-        </Button>
+        <PlayPauseButton tertiary disabled>
+          <FontAwesomeIcon icon="play" size="2x" />
+        </PlayPauseButton>
       </Controls>
 
       <Main>
@@ -37,8 +43,6 @@ export function LoadingAudioPlayer() {
           <TotalTime />
         </Timing>
       </Main>
-
-      <Meta />
     </Container>
   );
 }
@@ -104,11 +108,11 @@ export function PureAudioPlayer({
   return (
     <Container>
       <Controls>
-        <Button tertiary disabled={!canPlay} onClick={handlePlayPause}>
-          <PlayState>
-            <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="2x" />
-          </PlayState>
-        </Button>
+        <PlayPauseButton tertiary disabled={!canPlay} onClick={handlePlayPause}>
+          {/* <PlayState> */}
+          <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="2x" />
+          {/* </PlayState> */}
+        </PlayPauseButton>
       </Controls>
 
       <Main>
@@ -131,8 +135,6 @@ export function PureAudioPlayer({
           </TotalTime>
         </Timing>
       </Main>
-
-      <Meta />
     </Container>
   );
 }

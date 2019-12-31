@@ -6,7 +6,10 @@ const Outer = styled.div`
   position: relative;
   width: 100%;
   height: 8px;
-  background-color: var(--color-lightest-purple);
+  background-color: ${props =>
+    props.isDisabled
+      ? 'var(--color-light-grey)'
+      : 'var(--color-lightest-purple)'};
   border-radius: var(--radius-size);
 
   :hover {

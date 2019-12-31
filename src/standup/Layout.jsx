@@ -48,6 +48,6 @@ export const StandupPlayer = styled.div`
   box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, 0.2);
   background-color: var(--color-white);
   margin: 0;
-  padding: 1em 0;
+  padding: 1em;
   z-index: 1;
 `;
