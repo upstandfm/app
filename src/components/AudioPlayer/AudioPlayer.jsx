@@ -96,6 +96,7 @@ export function PureAudioPlayer({
     seek(offsetX / layoutWidth);
   };
 
+  const displayTitle = fileTitle || 'Untitled';
   const playedTime = formatTime(playedTimeSeconds);
   const totalTime = formatTime(totalTimeSeconds);
   const hasTimeData = Boolean(totalTimeSeconds);
@@ -111,7 +112,7 @@ export function PureAudioPlayer({
       </Controls>
 
       <Main>
-        <Title>{canPlay ? fileTitle || 'Untitled' : ''}</Title>
+        <Title title={displayTitle}>{canPlay ? displayTitle : undefined}</Title>
 
         <ProgressBar
           ref={progressBarEl}

@@ -35,9 +35,12 @@ export const PlayState = styled.div`
 
 export const Title = styled.h4`
   margin: 0;
-  height: 22px;
   text-align: center;
-  text-transform: capitalize;
+  height: 22px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const Meta = styled.div`
