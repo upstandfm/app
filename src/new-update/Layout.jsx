@@ -4,7 +4,7 @@ import { List, ListTitle, ListItemText } from '../components/List';
 
 export const Container = styled.div`
   display: grid;
-  height: calc(100vh - 55px);
+  height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
@@ -15,15 +15,8 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   grid-area: new-standup-header;
+  padding: 0.25em 0;
   text-align: center;
-  position: absolute;
-  top: 0.5em;
-  left: 0;
-  right: 0;
-
-  @media (max-width: 480px) {
-    position: static;
-  }
 `;
 
 export const Main = styled.div`

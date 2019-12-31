@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
-  height: calc(100vh - 55px);
+  height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr auto;
   grid-template-areas:
@@ -14,12 +14,8 @@ export const Container = styled.div`
 
 export const StandupInfo = styled.div`
   grid-area: standup-info;
+  padding: 0.25em 0;
   text-align: center;
-
-  position: absolute;
-  top: 0.5em;
-  left: 0;
-  right: 0;
 
   @media (max-width: 480px) {
     display: grid;
@@ -27,15 +23,13 @@ export const StandupInfo = styled.div`
     grid-gap: 0.5em;
     align-items: center;
     justify-items: center;
-
-    position: static;
   }
 `;
 
 export const StandupActions = styled.div`
   grid-area: standup-actions;
   text-align: center;
-  margin: 1em 0 2em 0;
+  margin: 0.5em 0 1em 0;
 `;
 
 export const StandupUpdates = styled.div`
