@@ -9,11 +9,11 @@ export const Dropdown = styled.div`
 export const Trigger = styled.button`
   display: block;
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   border: 0;
   border-radius: 4px;
   background: none;
-  color: var(--color-grey);
+  color: ${props => (props.isLight ? 'var(--color-white)' : 'inherit')};
   font-size: 1em;
   line-height: 1;
   transition: all 0.2s ease;
@@ -22,6 +22,10 @@ export const Trigger = styled.button`
     cursor: pointer;
   }
 `;
+
+Trigger.propTypes = {
+  isLight: PropTypes.bool
+};
 
 /**
  * Show list:

@@ -19,7 +19,6 @@ describe('<AvatarDropdown />', () => {
     expect(avatar).toHaveAttribute('src', data.avatarUrl);
     expect(avatar).toHaveAttribute('alt', 'user avatar');
 
-    expect(getByTestId('full-name')).toHaveTextContent(data.fullName);
     expect(getByTestId('email')).toHaveTextContent(data.email);
 
     const logout = getByText('Logout');
@@ -33,30 +32,40 @@ describe('<AvatarDropdown />', () => {
         <button
           aria-expanded="false"
           aria-haspopup="true"
-          class="sc-bwzfXH dgTVay"
+          class="sc-bwzfXH jJYceq"
         >
-          <img
-            alt="user avatar"
-            class="sc-bZQynM fBZhpA"
-            data-testid="avatar"
-            src="https://media.upstand.fm/avatars/1w4fg6y9o.png"
-          />
-           
-          <svg
-            aria-hidden="true"
-            class="svg-inline--fa fa-chevron-down fa-w-14 fa-sm "
-            data-icon="chevron-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="sc-bZQynM gZakXn"
           >
-            <path
-              d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
-              fill="currentColor"
+            <img
+              alt="user avatar"
+              class="sc-gzVnrw kGNuGC"
+              data-testid="avatar"
+              src="https://media.upstand.fm/avatars/1w4fg6y9o.png"
             />
-          </svg>
+            <span
+              class="sc-htoDjs bUoPjD"
+              title="Test User"
+            >
+              Test User
+               
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-chevron-down fa-w-14 fa-sm sc-dnqmqq kdVNVx"
+                data-icon="chevron-down"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
         </button>
         <ul
           class="sc-htpNat gVvUCW"
@@ -65,12 +74,6 @@ describe('<AvatarDropdown />', () => {
           <li
             class="sc-bxivhb eqXfcB"
           >
-            <span
-              class="sc-ifAKCX leGXiY"
-              data-testid="full-name"
-            >
-              Test User
-            </span>
             <span
               class="sc-ifAKCX dJomen"
               data-testid="email"
@@ -85,7 +88,7 @@ describe('<AvatarDropdown />', () => {
             class="sc-bxivhb eqXfcB"
           >
             <button
-              class="sc-gzVnrw gqnRcH"
+              class="sc-iwsKbI jFpRxK"
               role="menuitem"
               tabindex="-1"
             >

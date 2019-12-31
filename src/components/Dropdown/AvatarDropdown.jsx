@@ -14,12 +14,27 @@ import {
   Divider
 } from './Dropdown';
 
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 0.5em;
+  align-items: center;
+`;
+
 const Avatar = styled.img`
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  padding: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-size);
+`;
+
+const Name = styled.span`
+  font-size: 1.1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
   vertical-align: middle;
 `;
 
@@ -86,7 +101,8 @@ function AvatarDropdown({
   fullName,
   email,
   dropDirection,
-  alignSelf
+  alignSelf,
+  isLight
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [timeoutId, setTimeoutId] = React.useState();
@@ -217,9 +233,19 @@ function AvatarDropdown({
       onBlur={handleBlur}
       onKeyDown={handleListKeyNav}
     >
-      <Trigger onClick={toggleList} aria-haspopup="true" aria-expanded={isOpen}>
-        <Avatar data-testid="avatar" src={avatarUrl} alt="user avatar" />{' '}
-        <FontAwesomeIcon icon="chevron-down" size="sm" />
+      <Trigger
+        onClick={toggleList}
+        isLight={isLight}
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+      >
+        <Wrapper>
+          <Avatar data-testid="avatar" src={avatarUrl} alt="user avatar" />
+
+          <Name title={fullName}>
+            {fullName} <Icon icon="chevron-down" size="sm" />
+          </Name>
+        </Wrapper>
       </Trigger>
 
       <List
@@ -229,10 +255,6 @@ function AvatarDropdown({
         role="menu"
       >
         <ListItem viewOnly tabindex="-1">
-          <ListItemText data-testid="full-name" primary>
-            {fullName}
-          </ListItemText>
-
           <ListItemText data-testid="email" secondary>
             {email}
           </ListItemText>
@@ -261,7 +283,8 @@ AvatarDropdown.propTypes = {
   fullName: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   dropDirection: PropTypes.oneOf(['up', 'down']),
-  alignSelf: PropTypes.oneOf(['left', 'right'])
+  alignSelf: PropTypes.oneOf(['left', 'right']),
+  isLight: PropTypes.bool
 };
 
 AvatarDropdown.defaultProps = {

@@ -77,6 +77,7 @@ function AuthenticatedApp() {
               avatarUrl={avatarUrl}
               fullName={fullName}
               email={email}
+              isLight
             />
           </Profile>
 
