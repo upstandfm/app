@@ -111,7 +111,7 @@ export function PureAudioPlayer({
       </Controls>
 
       <Main>
-        <Title>{fileTitle}</Title>
+        <Title>{canPlay ? fileTitle || 'Untitled' : ''}</Title>
 
         <ProgressBar
           ref={progressBarEl}
