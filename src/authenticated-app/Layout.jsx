@@ -18,11 +18,12 @@ export const Sidebar = styled.div`
   background-color: var(--color-darkest-purple);
   display: grid;
   grid-template-areas:
+    'profile'
     'nav'
     'standups'
     'actions';
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   grid-gap: 1em;
   transition: all 0.1s ease;
   z-index: 1;
@@ -38,12 +39,19 @@ Sidebar.propTypes = {
   show: PropTypes.bool.isRequired
 };
 
+export const Profile = styled.div`
+  grid-area: profile;
+  margin: 1em 0;
+  padding: 0 1em;
+`;
+
 export const Nav = styled.nav`
   grid-area: nav;
+  margin: 1em 0;
 `;
 
 export const Actions = styled.div`
-  padding: 2em 0;
+  margin: 2em 0;
   text-align: center;
 `;
 
@@ -61,16 +69,3 @@ export const Main = styled.main`
 Main.propTypes = {
   sidebarIsOpen: PropTypes.bool.isRequired
 };
-
-export const Header = styled.header`
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  padding: 0 0.5em;
-  height: 55px;
-`;
-
-export const Profile = styled.div`
-  display: grid;
-  justify-self: end;
-`;

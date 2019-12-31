@@ -16,16 +16,7 @@ import NewStandup from '../new-standup';
 import Standup from '../standup';
 import NewUpdate from '../new-update';
 
-import {
-  AppContainer,
-  Sidebar,
-  Nav,
-  Actions,
-  Header,
-  Profile,
-  Main
-} from './Layout';
-
+import { AppContainer, Sidebar, Nav, Actions, Profile, Main } from './Layout';
 import { Menu, MenuLink } from './Menu';
 
 const NewStandupButton = styled(Link)`
@@ -49,7 +40,8 @@ const NewStandupButton = styled(Link)`
 `;
 
 const ToggleButton = styled(Button)`
-  padding: 0;
+  position: absolute;
+  padding: 0.5em;
   color: ${props => (props.active ? 'var(--color-light-purple)' : 'inherit')};
   z-index: 1;
 `;
@@ -79,6 +71,15 @@ function AuthenticatedApp() {
     <>
       <AppContainer>
         <Sidebar show={isOpen}>
+          <Profile>
+            <AvatarDropdown
+              logout={logout}
+              avatarUrl={avatarUrl}
+              fullName={fullName}
+              email={email}
+            />
+          </Profile>
+
           <Nav>
             <Menu>
               <MenuLink to="/">
@@ -95,29 +96,15 @@ function AuthenticatedApp() {
         </Sidebar>
 
         <Main sidebarIsOpen={isOpen}>
-          <Header>
-            <ToggleButton
-              tertiary
-              onClick={handleOpenCloseSidebar}
-              active={isOpen}
-              aria-label={isOpen ? 'close sidebar' : 'open sidebar'}
-              title={isOpen ? 'close sidebar' : 'open sidebar'}
-            >
-              <FontAwesomeIcon icon="bars" size="lg" />
-            </ToggleButton>
-
-            <span />
-
-            <Profile>
-              <AvatarDropdown
-                alignSelf="right"
-                logout={logout}
-                avatarUrl={avatarUrl}
-                fullName={fullName}
-                email={email}
-              />
-            </Profile>
-          </Header>
+          <ToggleButton
+            tertiary
+            onClick={handleOpenCloseSidebar}
+            active={isOpen}
+            aria-label={isOpen ? 'close sidebar' : 'open sidebar'}
+            title={isOpen ? 'close sidebar' : 'open sidebar'}
+          >
+            <FontAwesomeIcon icon="bars" size="lg" />
+          </ToggleButton>
 
           <Router>
             <NewStandup path="/new" />
