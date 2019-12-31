@@ -155,7 +155,7 @@ function UpdateRecordings({ members, recordings }) {
       type: 'PLAY_AUDIO',
       data: {
         id: recording.recordingId,
-        title: recording.filename
+        title: recording.name
       }
     });
   };
@@ -195,7 +195,7 @@ function UpdateRecordings({ members, recordings }) {
       type: isPlaying ? 'PAUSE_AUDIO' : 'PLAY_AUDIO',
       data: {
         id: recording.recordingId,
-        title: recording.filename
+        title: recording.name
       }
     });
   };
