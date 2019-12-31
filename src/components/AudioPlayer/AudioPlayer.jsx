@@ -101,6 +101,9 @@ export function PureAudioPlayer({
   };
 
   const displayTitle = fileTitle || 'Untitled';
+  const helpText = `${
+    isPlaying ? 'pause' : 'play'
+  } recording "${displayTitle}"`;
   const playedTime = formatTime(playedTimeSeconds);
   const totalTime = formatTime(totalTimeSeconds);
   const hasTimeData = Boolean(totalTimeSeconds);
@@ -108,10 +111,14 @@ export function PureAudioPlayer({
   return (
     <Container>
       <Controls>
-        <PlayPauseButton tertiary disabled={!canPlay} onClick={handlePlayPause}>
-          {/* <PlayState> */}
+        <PlayPauseButton
+          tertiary
+          aria-label={helpText}
+          title={helpText}
+          disabled={!canPlay}
+          onClick={handlePlayPause}
+        >
           <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="2x" />
-          {/* </PlayState> */}
         </PlayPauseButton>
       </Controls>
 

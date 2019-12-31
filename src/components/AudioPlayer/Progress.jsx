@@ -29,7 +29,12 @@ const Inner = styled.div.attrs(props => ({
 
 export const ProgressBar = React.forwardRef((props, ref) => {
   return (
-    <Outer ref={ref} isDisabled={props.isDisabled} onClick={props.handleSeek}>
+    <Outer
+      title={props.isDisabled ? '' : 'seek'}
+      ref={ref}
+      isDisabled={props.isDisabled}
+      onClick={props.handleSeek}
+    >
       <Inner percent={props.percent} />
     </Outer>
   );
