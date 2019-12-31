@@ -190,6 +190,15 @@ function AudioPlayer() {
   ] = usePlayAudio(fileUrl);
 
   React.useEffect(() => {
+    return () => {
+      audioPlayerDispatch({
+        type: 'RESET_AUDIO_PLAYER',
+        data: {}
+      });
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect(() => {
     if (!playAudioErrMsg) {
       return;
     }

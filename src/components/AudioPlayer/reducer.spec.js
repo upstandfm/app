@@ -78,6 +78,32 @@ describe('audio player reducer', () => {
     expect(newState.isPlaying).toEqual(false);
   });
 
+  it('resets audio player', () => {
+    const id = 1;
+
+    const state = {
+      playingFile: {
+        id,
+        title: 'My audio file'
+      },
+      isPlaying: true,
+      files: {
+        [id]: 'blob:http://localhost:3000/111549dd-f6c2-8e3d-9b16-fb81214bd367'
+      }
+    };
+
+    const action = {
+      type: 'RESET_AUDIO_PLAYER',
+      data: {}
+    };
+
+    const newState = reducer(state, action);
+    expect(newState.playingFile.id).toEqual(null);
+    expect(newState.playingFile.title).toEqual('');
+    expect(newState.isPlaying).toEqual(false);
+    expect(newState.files[id]).toBeUndefined();
+  });
+
   it('returns default state', () => {
     const state = defaultAudioPlayerState;
     const action = {

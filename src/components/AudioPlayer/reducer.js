@@ -61,6 +61,18 @@ function audioPlayerReducer(state, action) {
       };
     }
 
+    case 'RESET_AUDIO_PLAYER': {
+      return {
+        ...state,
+        playingFile: {
+          id: null,
+          title: ''
+        },
+        isPlaying: false,
+        files: {}
+      };
+    }
+
     default: {
       return state;
     }
