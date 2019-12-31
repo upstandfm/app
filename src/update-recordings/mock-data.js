@@ -30,7 +30,8 @@ const todayDateKey = `${today.getDate()}-${todayMonth}-${todayYear}`;
 export const recordingsMockData = [
   {
     recordingId: 'rec1',
-    name: 'Yesterday',
+    name:
+      'This recording has a very very loooong name with exactly 70 characters',
     standupId: 'standup1',
     userId: 'auth0|user1',
     status: 'transcoding',

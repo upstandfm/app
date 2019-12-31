@@ -1,15 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import {
-  Recording,
-  PlayState,
-  Content,
-  Title,
-  Status,
-  Badge,
-  Meta
-} from './Recording';
+import { ListItem } from '../components/List';
+import Button from '../components/Button';
+
+const PlayPauseButton = styled(Button)`
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: ${props =>
+    props.isSelected ? 'var(--color-light-purple)' : 'var(--color-grey)'};
+
+  :disabled {
+    visibility: hidden;
+  }
+`;
+
+PlayPauseButton.propTypes = {
+  isSelected: PropTypes.bool
+};
+
+const DeleteButton = styled(Button)`
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--color-grey);
+
+  :disabled {
+    visibility: hidden;
+  }
+`;
+
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 1em;
+  align-items: center;
+`;
+
+const RecordingName = styled.h4`
+  margin: 0;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const Badge = styled.span`
+  padding: 0.25em 0.5em;
+  background-color: ${props =>
+    props.status === 'error'
+      ? 'var(--color-lightest-red)'
+      : 'var(--color-lightest-purple)'};
+  color: ${props =>
+    props.status === 'error'
+      ? 'var(--color-dark-red)'
+      : 'var(--color-dark-purple)'};
+  border-radius: var(--radius-size);
+`;
+
+Badge.propTypes = {
+  status: PropTypes.oneOf(['transcoding', 'error', 'completed'])
+};
 
 function UpdateRecording({
   recording,
@@ -30,7 +84,8 @@ function UpdateRecording({
     downloadFile(recording);
   }, [triggerDownload]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const helpText = `${isPlaying ? 'pause' : 'play'} recording`;
+  const displayName = recording.name || 'Untitled';
+  const helpText = `${isPlaying ? 'pause' : 'play'} recording "${displayName}"`;
   const { status } = recording;
   const isReady = status === 'completed';
   const isDownloading = downloadProgress > 0 && downloadProgress < 100;
@@ -48,45 +103,37 @@ function UpdateRecording({
     playPauseAudio(recording, isPlaying);
   };
 
-  const handleKeyPress = e => {
-    if (e.key !== 'Enter') {
-      return;
-    }
-
-    handlePlayPauseRecording(e);
-  };
-
   return (
-    <Recording
-      tabIndex={isReady ? '0' : '-1'}
-      aria-label={isReady && !isDownloading ? helpText : ''}
-      title={isReady && !isDownloading ? helpText : ''}
-      isReady={isReady}
-      isDownloading={isDownloading}
-      isSelected={isSelected}
-      onClick={handlePlayPauseRecording}
-      onKeyDown={handleKeyPress}
-    >
-      <PlayState
-        isReady={isReady}
-        isDownloading={isDownloading}
-        isPlaying={isPlaying}
-      />
+    <ListItem title={displayName}>
+      <PlayPauseButton
+        tertiary
+        aria-label={isReady && !isDownloading ? helpText : ''}
+        title={isReady && !isDownloading ? helpText : ''}
+        isSelected={isSelected}
+        onClick={handlePlayPauseRecording}
+        disabled={!isReady}
+      >
+        {isDownloading ? (
+          <FontAwesomeIcon icon="circle-notch" size="lg" spin />
+        ) : (
+          <FontAwesomeIcon icon={isPlaying ? 'pause' : 'play'} size="lg" />
+        )}
+      </PlayPauseButton>
 
       <Content>
-        <Title>{recording.name || 'Untitled'}</Title>
+        <RecordingName>{displayName}</RecordingName>
 
-        <Status>
-          {!isReady && (
-            <Badge status={status}>
-              {status === 'transcoding' ? 'processing' : status}
-            </Badge>
-          )}
-        </Status>
-
-        <Meta />
+        {!isReady && (
+          <Badge status={status}>
+            {status === 'transcoding' ? 'processing' : status}
+          </Badge>
+        )}
       </Content>
-    </Recording>
+
+      <DeleteButton tertiary title="not implemented yet" disabled>
+        <FontAwesomeIcon icon="trash" />
+      </DeleteButton>
+    </ListItem>
   );
 }
 

@@ -10,7 +10,9 @@ import { Input, Description } from '../components/Form';
 import { RecordingName } from './Layout';
 
 const PlayPauseButton = styled(Button)`
-  padding: 0.25em 0.75em;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   color: ${props =>
     props.isSelected ? 'var(--color-light-purple)' : 'var(--color-grey)'};
 `;
@@ -20,7 +22,9 @@ PlayPauseButton.propTypes = {
 };
 
 const DeleteButton = styled(Button)`
-  padding: 0.25em 0.75em;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   color: var(--color-grey);
 `;
 

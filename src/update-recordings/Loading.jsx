@@ -1,10 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { LoadingAvatar } from '../components/Avatar';
 import { List, LoadingListItem, LoadingListItemText } from '../components/List';
 
 import { Container, RecordingsList } from './Layout';
-import { PlayState } from './Recording';
+
+const PlayPause = styled.div`
+  width: 40px;
+  height: 40px;
+`;
 
 export function LoadingUpdateRecordings() {
   return (
@@ -21,7 +26,7 @@ export function LoadingUpdateRecordings() {
 
           <RecordingsList>
             <LoadingListItem>
-              <PlayState />
+              <PlayPause />
 
               <div>
                 <LoadingListItemText>Loading recording</LoadingListItemText>
@@ -29,7 +34,7 @@ export function LoadingUpdateRecordings() {
             </LoadingListItem>
 
             <LoadingListItem>
-              <PlayState />
+              <PlayPause />
 
               <div>
                 <LoadingListItemText>Loading recording</LoadingListItemText>
@@ -49,7 +54,7 @@ export function LoadingUpdateRecordings() {
 
           <RecordingsList>
             <LoadingListItem>
-              <PlayState />
+              <PlayPause />
 
               <div>
                 <LoadingListItemText>Loading recording</LoadingListItemText>
@@ -57,7 +62,7 @@ export function LoadingUpdateRecordings() {
             </LoadingListItem>
 
             <LoadingListItem>
-              <PlayState />
+              <PlayPause />
 
               <div>
                 <LoadingListItemText>Loading recording</LoadingListItemText>
