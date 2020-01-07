@@ -4,41 +4,36 @@ export const Container = styled.div`
   display: grid;
   height: 100vh;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    'standup-info'
-    'standup-actions'
-    'standup-updates'
-    'standup-player';
+    'standup-header'
+    'standup-main'
+    'standup-footer';
 `;
 
-export const StandupInfo = styled.div`
-  grid-area: standup-info;
-  padding: 0.25em 0;
-  text-align: center;
+export const Header = styled.div`
+  grid-area: standup-header;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 1em;
+  align-items: center;
+  padding: 0.5em 1em;
+  margin: 0 0 1.5em 0;
 
-  @media (max-width: 480px) {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-gap: 0.5em;
-    align-items: center;
+  @media (max-width: 680px) {
+    grid-template-columns: auto;
     justify-items: center;
+    grid-gap: 0.5em;
   }
 `;
 
-export const StandupActions = styled.div`
-  grid-area: standup-actions;
-  text-align: center;
-  margin: 0.5em 0 1em 0;
-`;
-
-export const StandupUpdates = styled.div`
-  grid-area: standup-updates;
+export const Main = styled.div`
+  grid-area: standup-main;
   overflow: auto;
 `;
 
-export const StandupPlayer = styled.div`
-  grid-area: standup-player;
+export const Footer = styled.div`
+  grid-area: standup-footer;
   box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, 0.2);
   background-color: var(--color-white);
   margin: 0;
