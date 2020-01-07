@@ -101,7 +101,7 @@ export const LoadingBreadcrumbs = () => {
     <Breadcrumbs>
       <Breadcrumb>Standups</Breadcrumb>
 
-      <LoadingBreadcrumb>A loading title</LoadingBreadcrumb>
+      <LoadingBreadcrumb />
     </Breadcrumbs>
   );
 };
