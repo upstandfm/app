@@ -1,27 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import AudioPlayer, { LoadingAudioPlayer } from '../components/AudioPlayer';
-import { useSnackbar } from '../components/Snackbar';
-import { NotFound } from '../components/Errors';
 import Button from '../components/Button';
+import { NotFound } from '../components/Errors';
+import { useSnackbar } from '../components/Snackbar';
 
-import Updates, { LoadingUpdates } from '../updates';
+import {
+  Breadcrumbs,
+  Breadcrumb,
+  LoadingBreadcrumb
+} from '../components/Breadcrumbs';
+
 import StandupMembers, {
   LoadingStandupMembers,
   StandupMembersProvider
 } from '../standup-members';
 
-import {
-  Container,
-  StandupInfo,
-  StandupActions,
-  StandupUpdates,
-  StandupPlayer
-} from './Layout';
-
-import Info, { LoadingInfo } from './Info';
+import Updates, { LoadingUpdates } from '../updates';
+import { Container, Footer, Header, Main } from './Layout';
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
 
@@ -29,24 +28,32 @@ export function PureStandup({ isLoading, standup }) {
   if (isLoading) {
     return (
       <Container>
-        <StandupInfo>
-          <LoadingInfo />
+        <Header>
+          <Breadcrumbs>
+            <Breadcrumb>Standups</Breadcrumb>
+            <LoadingBreadcrumb />
+          </Breadcrumbs>
+
           <LoadingStandupMembers />
-        </StandupInfo>
 
-        <StandupActions>
-          <Button as={Link} to="new-update">
-            New update
-          </Button>
-        </StandupActions>
+          <div>
+            <Button tertiary as={Link} to="new-update">
+              New update
+            </Button>
 
-        <StandupUpdates>
+            <Button tertiary disabled title="not implemented yet">
+              <FontAwesomeIcon icon="ellipsis-h" />
+            </Button>
+          </div>
+        </Header>
+
+        <Main>
           <LoadingUpdates />
-        </StandupUpdates>
+        </Main>
 
-        <StandupPlayer>
+        <Footer>
           <LoadingAudioPlayer />
-        </StandupPlayer>
+        </Footer>
       </Container>
     );
   }
@@ -60,26 +67,36 @@ export function PureStandup({ isLoading, standup }) {
     );
   }
 
+  const { standupName } = standup;
+
   return (
     <Container>
-      <StandupInfo>
-        <Info standup={standup} />
+      <Header>
+        <Breadcrumbs>
+          <Breadcrumb title="Standups">Standups</Breadcrumb>
+          <Breadcrumb title={standupName}>{standupName}</Breadcrumb>
+        </Breadcrumbs>
+
         <StandupMembers standupId={standup.standupId} />
-      </StandupInfo>
 
-      <StandupActions>
-        <Button as={Link} to="new-update">
-          New update
-        </Button>
-      </StandupActions>
+        <div>
+          <Button tertiary as={Link} to="new-update">
+            New update
+          </Button>
 
-      <StandupUpdates>
+          <Button tertiary disabled title="not implemented yet">
+            <FontAwesomeIcon icon="ellipsis-h" />
+          </Button>
+        </div>
+      </Header>
+
+      <Main>
         <Updates standupId={standup.standupId} />
-      </StandupUpdates>
+      </Main>
 
-      <StandupPlayer>
+      <Footer>
         <AudioPlayer />
-      </StandupPlayer>
+      </Footer>
     </Container>
   );
 }
