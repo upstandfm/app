@@ -50,7 +50,7 @@ const SecondaryButton = styled(RootButton)`
 
   :hover {
     background-color: var(--color-darkest-purple);
-    color: var(--color-lightest-purple);
+    color: var(--color-white);
   }
 
   :disabled,
@@ -64,6 +64,7 @@ const TertiaryButton = styled(RootButton)`
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
+  padding: 4px 8px;
 
   :hover {
     color: var(--color-light-purple);
