@@ -4,12 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { LoadingAudioPlayer } from '../components/AudioPlayer';
 import Button from '../components/Button';
-
-import {
-  Breadcrumbs,
-  Breadcrumb,
-  LoadingBreadcrumb
-} from '../components/Breadcrumbs';
+import { Breadcrumbs, LoadingBreadcrumb } from '../components/Breadcrumbs';
 
 import { LoadingStandupMembers } from '../standup-members';
 
@@ -20,7 +15,6 @@ function Loading({ children }) {
     <Container>
       <Header>
         <Breadcrumbs>
-          <Breadcrumb>Standups</Breadcrumb>
           <LoadingBreadcrumb />
         </Breadcrumbs>
 

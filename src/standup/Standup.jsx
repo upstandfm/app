@@ -17,7 +17,7 @@ import Loading from './Loading';
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
 
-export function PureStandup({ isLoading, standup, children }) {
+export function PureStandup({ standupId, isLoading, standup, children }) {
   if (isLoading) {
     return <Loading>{children}</Loading>;
   }
@@ -31,16 +31,46 @@ export function PureStandup({ isLoading, standup, children }) {
     );
   }
 
-  const { standupName } = standup;
+  const breadcrumbConfigByPathFragment = {
+    standups: {
+      displayName: 'Standups',
+      asLink: false,
+      linkTo: undefined
+    },
+    [standupId]: {
+      displayName: standup.standupName,
+      asLink: true,
+
+      // Empty string links to the "parents root"
+      // In this case: "/standups/:standupId"
+      linkTo: ''
+    },
+    'new-update': {
+      displayName: 'New Update',
+      asLink: false,
+      linkTo: undefined
+    }
+  };
+
+  const pathFragments = window.location.pathname.split('/').filter(Boolean);
 
   return (
     <Container>
       <Header>
         <Breadcrumbs>
-          <Breadcrumb title="Standups">Standups</Breadcrumb>
-          <Breadcrumb title={standupName}>
-            <Link to="">{standupName}</Link>
-          </Breadcrumb>
+          {pathFragments.map(fragment => {
+            const {
+              displayName,
+              asLink,
+              linkTo
+            } = breadcrumbConfigByPathFragment[fragment];
+
+            return (
+              <Breadcrumb key={`breadcrumb-${fragment}`} title={displayName}>
+                {asLink ? <Link to={linkTo}>{displayName}</Link> : displayName}
+              </Breadcrumb>
+            );
+          })}
         </Breadcrumbs>
 
         <StandupMembers standupId={standup.standupId} />
@@ -66,6 +96,7 @@ export function PureStandup({ isLoading, standup, children }) {
 }
 
 PureStandup.propTypes = {
+  standupId: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   standup: PropTypes.object.isRequired
 };
@@ -105,7 +136,11 @@ function Standup({ standupId, children }) {
 
   return (
     <StandupMembersProvider>
-      <PureStandup isLoading={isFetching} standup={standupState}>
+      <PureStandup
+        standupId={standupId}
+        isLoading={isFetching}
+        standup={standupState}
+      >
         {children}
       </PureStandup>
     </StandupMembersProvider>

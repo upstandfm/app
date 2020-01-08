@@ -160,7 +160,7 @@ function Updates({ standupId }) {
 }
 
 Updates.propTypes = {
-  standupId: PropTypes.string.isRequired
+  standupId: PropTypes.string
 };
 
 export default Updates;
