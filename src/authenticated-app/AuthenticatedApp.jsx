@@ -15,6 +15,7 @@ import Standups from '../standups';
 import NewStandup from '../new-standup';
 import Standup from '../standup';
 import NewUpdate from '../new-update';
+import Updates from '../updates';
 
 import { AppContainer, Sidebar, Nav, Actions, Profile, Main } from './Layout';
 import { Menu, MenuLink } from './Menu';
@@ -41,9 +42,9 @@ const NewStandupButton = styled(Link)`
 
 const ToggleButton = styled(Button)`
   position: absolute;
-  padding: 0.5em;
+  top: 12px;
+  left: 12px;
   color: ${props => (props.active ? 'var(--color-light-purple)' : 'inherit')};
-  z-index: 1;
 `;
 
 function AuthenticatedApp() {
@@ -109,8 +110,11 @@ function AuthenticatedApp() {
 
           <Router>
             <NewStandup path="/new" />
-            <Standup path="/standups/:standupId" />
-            <NewUpdate path="/standups/:standupId/new-update" />
+
+            <Standup path="/standups/:standupId">
+              <Updates path="/" />
+              <NewUpdate path="/new-update" />
+            </Standup>
 
             <NotFound
               default
