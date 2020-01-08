@@ -11,7 +11,7 @@ import { Breadcrumbs, Breadcrumb } from '../components/Breadcrumbs';
 
 import StandupMembers, { StandupMembersProvider } from '../standup-members';
 
-import { Container, Footer, Header, Main } from './Layout';
+import { Container, Header, NavContainer, Main, Footer } from './Layout';
 import Loading from './Loading';
 
 import standupReducer from './reducer';
@@ -57,21 +57,27 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
   return (
     <Container>
       <Header>
-        <Breadcrumbs>
-          {pathFragments.map(fragment => {
-            const {
-              displayName,
-              asLink,
-              linkTo
-            } = breadcrumbConfigByPathFragment[fragment];
+        <NavContainer>
+          <Breadcrumbs>
+            {pathFragments.map(fragment => {
+              const {
+                displayName,
+                asLink,
+                linkTo
+              } = breadcrumbConfigByPathFragment[fragment];
 
-            return (
-              <Breadcrumb key={`breadcrumb-${fragment}`} title={displayName}>
-                {asLink ? <Link to={linkTo}>{displayName}</Link> : displayName}
-              </Breadcrumb>
-            );
-          })}
-        </Breadcrumbs>
+              return (
+                <Breadcrumb key={`breadcrumb-${fragment}`} title={displayName}>
+                  {asLink ? (
+                    <Link to={linkTo}>{displayName}</Link>
+                  ) : (
+                    displayName
+                  )}
+                </Breadcrumb>
+              );
+            })}
+          </Breadcrumbs>
+        </NavContainer>
 
         <StandupMembers standupId={standup.standupId} />
 

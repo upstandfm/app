@@ -27,6 +27,17 @@ export const Header = styled.div`
   }
 `;
 
+export const NavContainer = styled.div`
+  display: grid;
+  align-items: center;
+  height: 40px;
+  margin-left: 3em;
+
+  @media (max-width: 680px) {
+    justify-self: left;
+  }
+`;
+
 export const Main = styled.div`
   grid-area: standup-main;
   overflow: auto;

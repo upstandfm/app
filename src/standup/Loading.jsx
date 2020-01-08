@@ -8,15 +8,17 @@ import { Breadcrumbs, LoadingBreadcrumb } from '../components/Breadcrumbs';
 
 import { LoadingStandupMembers } from '../standup-members';
 
-import { Container, Footer, Header, Main } from './Layout';
+import { Container, Header, NavContainer, Main, Footer } from './Layout';
 
 function Loading({ children }) {
   return (
     <Container>
       <Header>
-        <Breadcrumbs>
-          <LoadingBreadcrumb />
-        </Breadcrumbs>
+        <NavContainer>
+          <Breadcrumbs>
+            <LoadingBreadcrumb />
+          </Breadcrumbs>
+        </NavContainer>
 
         <LoadingStandupMembers />
 
