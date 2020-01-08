@@ -5,22 +5,12 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import shortid from 'shortid';
 
-import Button, { BackButton } from '../components/Button';
-import { Confirm } from '../components/Modal';
+import Button from '../components/Button';
 import AudioRecorder from '../components/AudioRecorder';
 import { useSnackbar } from '../components/Snackbar';
-import AudioPlayer, { useAudioPlayer } from '../components/AudioPlayer';
+import { useAudioPlayer } from '../components/AudioPlayer';
 
-import {
-  Container,
-  Header,
-  Main,
-  Wrapper,
-  Player,
-  Actions,
-  Preview
-} from './Layout';
-
+import { Container, Wrapper, Preview, Actions } from './Layout';
 import Permission from './Permission';
 import Recordings from './Recordings';
 import UploadRecordings from './UploadRecordings';
@@ -46,11 +36,15 @@ export function PureNewUpdate({
 }) {
   if (!userMediaStream) {
     return (
-      <Permission
-        isLoading={isGettingPermission}
-        err={permissionErr}
-        handleGetPermission={handleGetPermission}
-      />
+      <Container>
+        <Wrapper>
+          <Permission
+            isLoading={isGettingPermission}
+            err={permissionErr}
+            handleGetPermission={handleGetPermission}
+          />
+        </Wrapper>
+      </Container>
     );
   }
 
@@ -61,49 +55,51 @@ export function PureNewUpdate({
   );
 
   return (
-    <>
-      <AudioRecorder
-        isDisabled={isPublishing}
-        stream={userMediaStream}
-        onNewRecording={onNewRecording}
-      />
+    <Container>
+      <Wrapper>
+        <AudioRecorder
+          isDisabled={isPublishing}
+          stream={userMediaStream}
+          onNewRecording={onNewRecording}
+        />
 
-      <Preview>
-        <Subtitle>Preview</Subtitle>
+        <Preview>
+          <Subtitle>Preview</Subtitle>
 
-        {isPublishing ? (
-          <UploadRecordings
-            standupId={standupId}
-            recordingsState={recordingsState}
-            onUploadedFile={onUploadedFile}
-          />
-        ) : (
-          <Recordings
-            recordingsState={recordingsState}
-            audioPlayerState={audioPlayerState}
-            onUpdateRecordingName={onUpdateRecordingName}
-            playPauseAudio={playPauseAudio}
-            onDeleteUpdate={onDeleteUpdate}
-          />
-        )}
-      </Preview>
-
-      <Actions>
-        <Button
-          disabled={hasNoRecordings || hasInvalidRecording || isPublishing}
-          onClick={handlePublish}
-        >
           {isPublishing ? (
-            <>
-              <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
-              Publishing..
-            </>
+            <UploadRecordings
+              standupId={standupId}
+              recordingsState={recordingsState}
+              onUploadedFile={onUploadedFile}
+            />
           ) : (
-            'Publish'
+            <Recordings
+              recordingsState={recordingsState}
+              audioPlayerState={audioPlayerState}
+              onUpdateRecordingName={onUpdateRecordingName}
+              playPauseAudio={playPauseAudio}
+              onDeleteUpdate={onDeleteUpdate}
+            />
           )}
-        </Button>
-      </Actions>
-    </>
+        </Preview>
+
+        <Actions>
+          <Button
+            disabled={hasNoRecordings || hasInvalidRecording || isPublishing}
+            onClick={handlePublish}
+          >
+            {isPublishing ? (
+              <>
+                <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
+                Publishing..
+              </>
+            ) : (
+              'Publish'
+            )}
+          </Button>
+        </Actions>
+      </Wrapper>
+    </Container>
   );
 }
 
@@ -123,21 +119,6 @@ PureNewUpdate.propTypes = {
   handlePublish: PropTypes.func.isRequired,
   onUploadedFile: PropTypes.func.isRequired
 };
-
-const Title = styled.h2`
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 0 0 0.25em;
-  color: var(--color-darkest-purple);
-  max-width: 220px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  @media (max-width: 480px) {
-    margin: 0;
-  }
-`;
 
 const Subtitle = styled.p`
   color: var(--color-grey);
@@ -163,12 +144,7 @@ function NewUpdate({ standupId }) {
 
   const [, snackbarDispatch] = useSnackbar();
 
-  const [showConfirm, setShowConfirm] = React.useState(false);
   const [isPublishing, setIsPublishing] = React.useState(false);
-
-  const navigateToStandup = () => {
-    navigate(`/standups/${standupId}`);
-  };
 
   const recordingIds = Object.keys(recordingsState);
   const hasRecordings = Boolean(recordingIds.length);
@@ -202,7 +178,9 @@ function NewUpdate({ standupId }) {
       }
 
       // Give some time for the progress animation(s) to finish
-      setTimeout(navigateToStandup, 750);
+      setTimeout(() => {
+        navigate(`/standups/${standupId}`);
+      }, 750);
     },
     [hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
   );
@@ -267,22 +245,6 @@ function NewUpdate({ standupId }) {
 
   // Event handlers
 
-  const handleExit = () => {
-    const hasProgress = Object.values(recordingsState).some(update =>
-      Boolean(update.blob)
-    );
-    if (hasProgress) {
-      setShowConfirm(true);
-      return;
-    }
-
-    navigateToStandup();
-  };
-
-  const handleCancel = () => {
-    setShowConfirm(false);
-  };
-
   const handleGetPermission = () => {
     getUserMedia({ audio: true });
   };
@@ -302,60 +264,22 @@ function NewUpdate({ standupId }) {
   };
 
   return (
-    <>
-      <Container>
-        <Header>
-          <BackButton
-            aria-label="go back to standup"
-            title="go back to standup"
-            onClick={handleExit}
-          />
-
-          <Title>Publish a new update</Title>
-        </Header>
-
-        <Main>
-          <Wrapper>
-            <PureNewUpdate
-              userMediaStream={userMediaStream}
-              isGettingPermission={isGettingPermission}
-              permissionErr={permissionErr}
-              handleGetPermission={handleGetPermission}
-              standupId={standupId}
-              recordingsState={recordingsState}
-              audioPlayerState={audioPlayerState}
-              playPauseAudio={playPauseAudio}
-              isPublishing={isPublishing}
-              onNewRecording={onNewRecording}
-              onUpdateRecordingName={onUpdateRecordingName}
-              onDeleteUpdate={onDeleteUpdate}
-              handlePublish={handlePublish}
-              onUploadedFile={onUploadedFile}
-            />
-          </Wrapper>
-        </Main>
-
-        <Player>
-          <AudioPlayer />
-        </Player>
-      </Container>
-
-      <Confirm
-        show={showConfirm}
-        handleCancel={handleCancel}
-        handleConfirm={navigateToStandup}
-        title={
-          <>
-            Are you sure you want to <b>exit</b>?
-          </>
-        }
-        message={
-          <>
-            Your progress will be <b>lost</b> if you exit now.
-          </>
-        }
-      />
-    </>
+    <PureNewUpdate
+      userMediaStream={userMediaStream}
+      isGettingPermission={isGettingPermission}
+      permissionErr={permissionErr}
+      handleGetPermission={handleGetPermission}
+      standupId={standupId}
+      recordingsState={recordingsState}
+      audioPlayerState={audioPlayerState}
+      playPauseAudio={playPauseAudio}
+      isPublishing={isPublishing}
+      onNewRecording={onNewRecording}
+      onUpdateRecordingName={onUpdateRecordingName}
+      onDeleteUpdate={onDeleteUpdate}
+      handlePublish={handlePublish}
+      onUploadedFile={onUploadedFile}
+    />
   );
 }
 
