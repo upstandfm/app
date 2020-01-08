@@ -19,12 +19,11 @@ import StandupMembers, {
   StandupMembersProvider
 } from '../standup-members';
 
-import Updates, { LoadingUpdates } from '../updates';
 import { Container, Footer, Header, Main } from './Layout';
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
 
-export function PureStandup({ isLoading, standup }) {
+export function PureStandup({ isLoading, standup, children }) {
   if (isLoading) {
     return (
       <Container>
@@ -47,9 +46,7 @@ export function PureStandup({ isLoading, standup }) {
           </div>
         </Header>
 
-        <Main>
-          <LoadingUpdates />
-        </Main>
+        <Main>{children}</Main>
 
         <Footer>
           <LoadingAudioPlayer />
@@ -74,7 +71,9 @@ export function PureStandup({ isLoading, standup }) {
       <Header>
         <Breadcrumbs>
           <Breadcrumb title="Standups">Standups</Breadcrumb>
-          <Breadcrumb title={standupName}>{standupName}</Breadcrumb>
+          <Breadcrumb title={standupName}>
+            <Link to="">{standupName}</Link>
+          </Breadcrumb>
         </Breadcrumbs>
 
         <StandupMembers standupId={standup.standupId} />
@@ -90,9 +89,7 @@ export function PureStandup({ isLoading, standup }) {
         </div>
       </Header>
 
-      <Main>
-        <Updates standupId={standup.standupId} />
-      </Main>
+      <Main>{children}</Main>
 
       <Footer>
         <AudioPlayer />
@@ -106,7 +103,7 @@ PureStandup.propTypes = {
   standup: PropTypes.object.isRequired
 };
 
-function Standup({ standupId }) {
+function Standup({ standupId, children }) {
   const [standupState, standupDispatch] = React.useReducer(standupReducer, {});
   const [fetchStandup, abortFetchStandup, isFetching, err] = useFetchStandup(
     standupDispatch
@@ -141,7 +138,9 @@ function Standup({ standupId }) {
 
   return (
     <StandupMembersProvider>
-      <PureStandup isLoading={isFetching} standup={standupState} />
+      <PureStandup isLoading={isFetching} standup={standupState}>
+        {children}
+      </PureStandup>
     </StandupMembersProvider>
   );
 }
