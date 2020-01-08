@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-areas: 'player-controls player-main';
   grid-template-columns: auto 1fr;
+  grid-gap: 0.75em;
   align-items: center;
   justify-items: center;
   max-width: 50rem;
