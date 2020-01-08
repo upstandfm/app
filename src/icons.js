@@ -23,8 +23,7 @@ import {
   faPause,
   faBars,
   faEllipsisH,
-  faInbox,
-  faArrowLeft
+  faInbox
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -44,6 +43,5 @@ library.add(
   faPause,
   faBars,
   faEllipsisH,
-  faInbox,
-  faArrowLeft
+  faInbox
 );
