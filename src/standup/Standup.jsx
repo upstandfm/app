@@ -3,56 +3,23 @@ import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import AudioPlayer, { LoadingAudioPlayer } from '../components/AudioPlayer';
+import AudioPlayer from '../components/AudioPlayer';
 import Button from '../components/Button';
 import { NotFound } from '../components/Errors';
 import { useSnackbar } from '../components/Snackbar';
+import { Breadcrumbs, Breadcrumb } from '../components/Breadcrumbs';
 
-import {
-  Breadcrumbs,
-  Breadcrumb,
-  LoadingBreadcrumb
-} from '../components/Breadcrumbs';
-
-import StandupMembers, {
-  LoadingStandupMembers,
-  StandupMembersProvider
-} from '../standup-members';
+import StandupMembers, { StandupMembersProvider } from '../standup-members';
 
 import { Container, Footer, Header, Main } from './Layout';
+import Loading from './Loading';
+
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
 
 export function PureStandup({ isLoading, standup, children }) {
   if (isLoading) {
-    return (
-      <Container>
-        <Header>
-          <Breadcrumbs>
-            <Breadcrumb>Standups</Breadcrumb>
-            <LoadingBreadcrumb />
-          </Breadcrumbs>
-
-          <LoadingStandupMembers />
-
-          <div>
-            <Button tertiary as={Link} to="new-update">
-              New update
-            </Button>
-
-            <Button tertiary disabled title="not implemented yet">
-              <FontAwesomeIcon icon="ellipsis-h" />
-            </Button>
-          </div>
-        </Header>
-
-        <Main>{children}</Main>
-
-        <Footer>
-          <LoadingAudioPlayer />
-        </Footer>
-      </Container>
-    );
+    return <Loading>{children}</Loading>;
   }
 
   if (Object.keys(standup).length === 0) {
