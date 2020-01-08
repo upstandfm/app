@@ -45,7 +45,7 @@ export const Main = styled.div`
 
 export const Footer = styled.div`
   grid-area: standup-footer;
-  box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--color-light-grey);
   background-color: var(--color-white);
   margin: 0;
   padding: 1em;
