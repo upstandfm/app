@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ListContainer, List } from '../components/List';
 
 export const Container = styled(ListContainer)`
-  margin: 3em 1em 2em 1em;
+  margin: 2em 0.25em 3em 0.25em;
 `;
 
 export const RecordingsList = styled(List)`

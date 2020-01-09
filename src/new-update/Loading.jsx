@@ -6,7 +6,7 @@ const Container = styled.div`
   padding: 1em 2em;
   text-align: center;
   background-color: var(--color-white);
-  border: 1px solid var(--color-light-grey);
+  box-shadow: 0px 2px 4px rgba(25, 18, 56, 0.18);
   border-radius: var(--radius-size);
 `;
 
