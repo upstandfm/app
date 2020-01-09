@@ -113,8 +113,8 @@ export function PureAudioPlayer({
       <Controls>
         <PlayPauseButton
           tertiary
-          aria-label={helpText}
-          title={helpText}
+          aria-label={canPlay ? helpText : ''}
+          title={canPlay ? helpText : ''}
           disabled={!canPlay}
           onClick={handlePlayPause}
         >
