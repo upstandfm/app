@@ -38,9 +38,9 @@ describe('audio player reducer', () => {
     };
 
     const action = {
-      type: 'UNLOAD_AUDIO_FILE',
+      type: 'UNLOAD_AUDIO_FILES',
       data: {
-        id: loadedFile.id
+        ids: [loadedFile.id]
       }
     };
 
@@ -102,6 +102,32 @@ describe('audio player reducer', () => {
     expect(newState.playingFile.title).toEqual('');
     expect(newState.isPlaying).toEqual(false);
     expect(newState.files[id]).toBeUndefined();
+  });
+
+  it('resets playing file', () => {
+    const id = 1;
+
+    const state = {
+      playingFile: {
+        id,
+        title: 'My audio file'
+      },
+      isPlaying: true,
+      files: {
+        [id]: 'blob:http://localhost:3000/111549dd-f6c2-8e3d-9b16-fb81214bd367'
+      }
+    };
+
+    const action = {
+      type: 'RESET_PLAYING_FILE',
+      data: {}
+    };
+
+    const newState = reducer(state, action);
+    expect(newState.playingFile.id).toEqual(null);
+    expect(newState.playingFile.title).toEqual('');
+    expect(newState.isPlaying).toEqual(false);
+    expect(newState.files[id]).toEqual(state.files[id]);
   });
 
   it('returns default state', () => {

@@ -185,6 +185,38 @@ function NewUpdate({ standupId }) {
     [hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
+  // Because we need the latest recording IDs in the unmount phase, we store
+  // them on every render
+  const latestRecordingIds = React.useRef(recordingIds);
+  React.useEffect(() => {
+    latestRecordingIds.current = recordingIds;
+  });
+
+  React.useEffect(() => {
+    // Provide a "blank" audio player on mount
+    const { id } = audioPlayerState.playingFile;
+    const hasPlayingFile = Boolean(id);
+    if (hasPlayingFile) {
+      audioPlayerDispatch({
+        type: 'RESET_PLAYING_FILE',
+        data: {}
+      });
+    }
+
+    return () => {
+      // "Clean up" file resources on unmount
+      audioPlayerDispatch({
+        type: 'UNLOAD_AUDIO_FILES',
+        data: {
+          // Access the "ref" to get the latest values, because we don't pass
+          // any dependencies to "sync" the state with (this prevents stale
+          // values from the "initial" render when the component mounts)
+          ids: latestRecordingIds.current
+        }
+      });
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Helpers
 
   const onNewRecording = blob => {
@@ -220,9 +252,9 @@ function NewUpdate({ standupId }) {
 
   const onDeleteUpdate = id => {
     audioPlayerDispatch({
-      type: 'UNLOAD_AUDIO_FILE',
+      type: 'UNLOAD_AUDIO_FILES',
       data: {
-        id
+        ids: [id]
       }
     });
 

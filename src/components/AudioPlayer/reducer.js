@@ -27,17 +27,19 @@ function audioPlayerReducer(state, action) {
       };
     }
 
-    case 'UNLOAD_AUDIO_FILE': {
-      const { id } = action.data;
+    case 'UNLOAD_AUDIO_FILES': {
+      const { ids } = action.data;
 
       const newState = { ...state };
 
-      delete newState.files[id];
+      for (const id of ids) {
+        delete newState.files[id];
 
-      if (id === state.playingFile.id) {
-        newState.isPlaying = false;
-        newState.playingFile.id = null;
-        newState.playingFile.title = '';
+        if (id === state.playingFile.id) {
+          newState.isPlaying = false;
+          newState.playingFile.id = null;
+          newState.playingFile.title = '';
+        }
       }
 
       return newState;
@@ -70,6 +72,17 @@ function audioPlayerReducer(state, action) {
         },
         isPlaying: false,
         files: {}
+      };
+    }
+
+    case 'RESET_PLAYING_FILE': {
+      return {
+        ...state,
+        playingFile: {
+          id: null,
+          title: ''
+        },
+        isPlaying: false
       };
     }
 
