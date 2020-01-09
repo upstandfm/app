@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../Button';
 
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
   padding: 1em;
   text-align: center;
   background-color: var(--color-white);
-  border: 1px solid var(--color-light-grey);
+  box-shadow: 0px 2px 4px rgba(25, 18, 56, 0.18);
   border-radius: var(--radius-size);
 `;
 
@@ -38,7 +39,7 @@ const NotFound = function({ title, info }) {
 
         <Actions>
           <Button as={Link} to="/">
-            Back home
+            <FontAwesomeIcon icon="home" size="sm" /> Back home
           </Button>
         </Actions>
       </Wrapper>
