@@ -1,18 +1,11 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const ListContainer = styled.div`
   margin: 1em 0;
-  border: 1px solid var(--color-light-grey);
   border-radius: var(--radius-size);
-  box-shadow: ${props =>
-    props.raised ? '6px 6px 0 0 var(--color-light-grey)' : 'none'};
+  box-shadow: 0px 2px 4px rgba(25, 18, 56, 0.14);
   background-color: var(--color-white);
 `;
-
-ListContainer.propTypes = {
-  raised: PropTypes.bool
-};
 
 export const ListTitle = styled.h3`
   margin: 0;
