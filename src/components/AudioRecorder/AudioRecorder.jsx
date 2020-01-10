@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from '../Button';
+import { useSnackbar } from '../Snackbar';
 
 import useRecordAudio from './use-record-audio';
 
-import { RecorderError } from './Errors';
 import { Container, Main, Subtitle, Info } from './Layout';
 import PreparingTimer from './PreparingTimer';
 import ProgressTimer from './ProgressTimer';
@@ -42,6 +42,23 @@ function AudioRecorder({ stream, onNewRecording, isDisabled }) {
     isRecording
   ] = useRecordAudio(stream, onNewRecording);
 
+  const [, snackbarDispatch] = useSnackbar();
+
+  React.useEffect(() => {
+    if (!recorderErr) {
+      return;
+    }
+
+    snackbarDispatch({
+      type: 'ENQUEUE_SNACKBAR_MSG',
+      data: {
+        type: 'error',
+        title: 'Failed to record update',
+        text: recorderErr.message
+      }
+    });
+  }, [recorderErr]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const [isPreparing, setIsPreparing] = React.useState(false);
 
   const handleStartCountDown = () => {
@@ -52,10 +69,6 @@ function AudioRecorder({ stream, onNewRecording, isDisabled }) {
     setIsPreparing(false);
     startRecording();
   };
-
-  if (recorderErr) {
-    return <RecorderError err={recorderErr} />;
-  }
 
   return (
     <Container>
