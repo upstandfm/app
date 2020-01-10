@@ -43,7 +43,7 @@ const Count = styled(AvatarContainer)`
   font-weight: normal;
   background-color: transparent;
   color: var(--color-grey);
-  border: 4px solid var(--color-lightest-grey);
+  border: 4px solid var(--color-white);
 `;
 
 export function RestCount({ count }) {
@@ -60,7 +60,7 @@ RestCount.propTypes = {
 
 const CustomAvatarContainer = styled(AvatarContainer)`
   background-color: var(--color-light-grey);
-  border: 4px solid var(--color-lightest-grey);
+  border: 4px solid var(--color-white);
 `;
 
 export function LoadingMember() {
