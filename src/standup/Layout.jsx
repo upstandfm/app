@@ -18,6 +18,8 @@ export const Header = styled.div`
   grid-gap: 1em;
   align-items: center;
   padding: 0.5em 1em;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-light-grey);
 
   @media (max-width: 680px) {
     grid-template-columns: auto;
