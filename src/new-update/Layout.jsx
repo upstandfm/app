@@ -4,6 +4,7 @@ import { List, ListTitle, ListItemText } from '../components/List';
 
 export const Container = styled.div`
   display: grid;
+  height: calc(100vh - 56px - 98px);
 `;
 
 export const Wrapper = styled.div`
