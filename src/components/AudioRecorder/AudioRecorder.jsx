@@ -19,6 +19,7 @@ const StartRecordButton = styled(Button)`
   :hover {
     background-color: var(--color-red);
     border-color: var(--color-red);
+    transform: none;
   }
 `;
 
@@ -31,6 +32,7 @@ const StopRecordButton = styled(Button)`
     background-color: transparent;
     border-color: var(--color-red);
     color: var(--color-red);
+    transform: none;
   }
 `;
 
