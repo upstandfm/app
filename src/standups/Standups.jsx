@@ -21,6 +21,10 @@ import {
 import { useStandups } from './StandupsContext';
 import useFetchStandups from './use-fetch-standups';
 
+const CustomListTitle = styled(ListTitle)`
+  color: var(--color-white);
+`;
+
 const MenuButton = styled(Button)`
   padding: 0.1em 0.2em;
 `;
@@ -41,7 +45,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
     return (
       <ListContainer>
-        <ListTitle>Standups</ListTitle>
+        <CustomListTitle>Standups</CustomListTitle>
 
         <List>
           <LoadingListItem>
@@ -79,7 +83,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   return (
     <div>
       <ListContainer>
-        <ListTitle>Standups</ListTitle>
+        <CustomListTitle>Standups</CustomListTitle>
 
         <List>
           {standups.map(standup => {
