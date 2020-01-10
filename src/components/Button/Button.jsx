@@ -12,15 +12,16 @@ const RootButton = styled.button`
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
-  padding: 8px 20px;
+  padding: 8px 16px;
   border: 2px solid;
   border-radius: var(--radius-size);
-  box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
+  box-shadow: 0 4px 6px rgba(25, 18, 56, 0.14), 0 1px 3px rgba(0, 0, 0, 0.08);
   color: var(--color-darkest-purple);
   transition: all 0.1s linear;
 
   :hover {
     cursor: pointer;
+    transform: perspective(1000px) translateZ(50px);
   }
 
   :disabled,
@@ -28,18 +29,22 @@ const RootButton = styled.button`
     cursor: not-allowed;
     color: var(--color-darkest-purple);
     background-color: var(--color-light-grey);
-    box-shadow: 6px 6px 0 0 var(--color-darkest-purple);
+    border-color: var(--color-light-grey);
+    box-shadow: none;
     text-decoration: line-through;
+    transform: none;
   }
 `;
 
 const PrimaryButton = styled(RootButton)`
-  background-color: var(--color-lighter-purple);
-  border-color: var(--color-darkest-purple);
+  background-color: var(--color-purple);
+  border-color: var(--color-purple);
+  color: var(--color-white);
+  text-shadow: 0 1px 3px rgba(25, 18, 56, 0.4);
 
-  :hover {
-    background-color: var(--color-lightest-purple);
-    box-shadow: 8px 8px 0 0 var(--color-darkest-purple);
+  :disabled,
+  :disabled:hover {
+    text-shadow: none;
   }
 `;
 
@@ -55,6 +60,7 @@ const SecondaryButton = styled(RootButton)`
 
   :disabled,
   :disabled:hover {
+    border-color: var(--color-darkest-purple);
     background-color: transparent;
     box-shadow: none;
   }
@@ -68,6 +74,7 @@ const TertiaryButton = styled(RootButton)`
 
   :hover {
     color: var(--color-light-purple);
+    transform: none;
   }
 
   :disabled,
@@ -85,16 +92,15 @@ const RoundButton = styled(RootButton)`
   height: 56px;
   box-shadow: none;
   border-color: transparent;
-  background-color: var(--color-lighter-purple);
-
-  :hover {
-    background-color: var(--color-lightest-purple);
-  }
+  background-color: var(--color-purple);
+  text-shadow: 0 1px 3px rgba(25, 18, 56, 0.4);
+  color: var(--color-white);
 
   :disabled,
   :disabled:hover {
     border-color: transparent;
     box-shadow: none;
+    text-shadow: none;
   }
 `;
 
