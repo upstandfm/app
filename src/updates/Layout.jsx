@@ -7,27 +7,21 @@ export const Container = styled.div`
   padding: 0 1em;
 `;
 
-export const DayDivider = styled.hr`
+export const DayDivider = styled.span`
+  display: block;
   position: sticky;
-  top: 0;
+  top: 4px;
   z-index: 1;
-  height: 1em;
   margin: 0;
   padding: 0;
-  border: none;
-  border-bottom: 1px solid var(--color-light-grey);
-  overflow: visible;
   text-align: center;
-  background-color: var(--color-lightest-grey);
 
   :after {
-    position: relative;
-    top: 0.25em;
-    background-color: var(--color-lightest-grey);
-    color: var(--color-grey);
+    background-color: var(--color-lightest-purple);
+    color: var(--color-dark-purple);
     border-radius: 33px;
-    padding: 0.25em 0.75em;
-    font-weight: bold;
+    padding: 0.3em 0.9em;
+    font-size: 13px;
 
     /* The content value MUST be within quotes! */
     content: '${props => props.formattedDate}';
