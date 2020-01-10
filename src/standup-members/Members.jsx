@@ -18,7 +18,7 @@ const MemberContainer = styled.li`
 `;
 
 const CustomAvatar = styled(Avatar)`
-  border: 4px solid var(--color-lightest-grey);
+  border: 4px solid var(--color-white);
 `;
 
 export function Member({ userFullName, avatarUrl }) {
