@@ -4,14 +4,15 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: grid;
-  margin: 3em 0 2em 0;
+  margin: 1.5em 0;
 `;
 
 const Wrapper = styled.div`
   margin: 0 auto;
   padding: 1em 2em;
   text-align: center;
-  background-color: var(--color-lightest-purple);
+  box-shadow: 0px 2px 4px rgba(25, 18, 56, 0.14);
+  background-color: var(--color-white);
   border-radius: var(--radius-size);
 `;
 

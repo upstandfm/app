@@ -17,8 +17,6 @@ import Empty from './Empty';
 import UpdateRecording from './UpdateRecording';
 
 const UserListItem = styled(ListItem)`
-  font-weight: bold;
-
   :hover {
     background-color: inherit;
   }
