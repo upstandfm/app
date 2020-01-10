@@ -7,12 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../Button';
 
 const Container = styled.div`
-  max-width: 50rem;
-  margin: 2em auto;
+  display: grid;
+  height: 100vh;
+  padding: 0 1em;
 `;
 
 const Wrapper = styled.div`
-  margin: 1em;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 30rem;
+  margin: auto;
   padding: 1em;
   text-align: center;
   background-color: var(--color-white);
