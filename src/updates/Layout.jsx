@@ -10,9 +10,9 @@ export const Container = styled.div`
 export const DayDivider = styled.span`
   display: block;
   position: sticky;
-  top: 4px;
+  top: 1.5em;
   z-index: 1;
-  margin: 0;
+  margin: 1.5em 0;
   padding: 0;
   text-align: center;
 
