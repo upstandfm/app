@@ -1,7 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import mockData from './mock-data';
 import { PureStandupMembers } from './StandupMembers';
+
+const Container = styled.div`
+  background-color: var(--color-white);
+  padding: 1em;
+  border: 1px dashed var(--color-light-grey);
+  border-radius: var(--radius-size);
+`;
 
 export default {
   title: 'screens|Standup/Members',
@@ -12,7 +20,11 @@ export default {
 };
 
 export const DefaultStandupMembers = () => {
-  return <PureStandupMembers isLoading={false} members={mockData} />;
+  return (
+    <Container>
+      <PureStandupMembers isLoading={false} members={mockData} />
+    </Container>
+  );
 };
 
 DefaultStandupMembers.story = {
@@ -20,7 +32,11 @@ DefaultStandupMembers.story = {
 };
 
 export const LoadingStandupMembers = () => {
-  return <PureStandupMembers isLoading={true} />;
+  return (
+    <Container>
+      <PureStandupMembers isLoading={true} />
+    </Container>
+  );
 };
 
 LoadingStandupMembers.story = {
