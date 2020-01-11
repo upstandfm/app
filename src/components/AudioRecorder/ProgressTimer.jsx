@@ -38,7 +38,7 @@ const flash = keyframes`
 
 const Icon = styled.span`
   margin: 0 0.25em 0 0;
-  color: var(--color-dark-red);
+  color: var(--color-red);
   animation: ${flash} 1.5s ease-in-out infinite;
 `;
 

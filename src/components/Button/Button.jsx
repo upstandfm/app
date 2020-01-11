@@ -16,12 +16,10 @@ const RootButton = styled.button`
   border: 2px solid;
   border-radius: var(--radius-size);
   box-shadow: 0 4px 6px rgba(25, 18, 56, 0.14), 0 1px 3px rgba(0, 0, 0, 0.08);
-  color: var(--color-darkest-purple);
   transition: all 0.1s linear;
 
   :hover {
     cursor: pointer;
-    transform: perspective(1000px) translateZ(50px);
   }
 
   :disabled,
@@ -32,15 +30,19 @@ const RootButton = styled.button`
     border-color: var(--color-light-grey);
     box-shadow: none;
     text-decoration: line-through;
-    transform: none;
   }
 `;
 
 const PrimaryButton = styled(RootButton)`
-  background-color: var(--color-purple);
-  border-color: var(--color-purple);
+  background-color: var(--color-light-purple);
+  border-color: var(--color-light-purple);
   color: var(--color-white);
   text-shadow: 0 1px 3px rgba(25, 18, 56, 0.4);
+
+  :hover {
+    background-color: var(--color-purple);
+    border-color: var(--color-purple);
+  }
 
   :disabled,
   :disabled:hover {
@@ -49,6 +51,7 @@ const PrimaryButton = styled(RootButton)`
 `;
 
 const SecondaryButton = styled(RootButton)`
+  color: var(--color-darkest-purple);
   border-color: var(--color-darkest-purple);
   background-color: transparent;
   box-shadow: none;
@@ -67,6 +70,7 @@ const SecondaryButton = styled(RootButton)`
 `;
 
 const TertiaryButton = styled(RootButton)`
+  color: var(--color-darkest-purple);
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -74,7 +78,6 @@ const TertiaryButton = styled(RootButton)`
 
   :hover {
     color: var(--color-light-purple);
-    transform: none;
   }
 
   :disabled,
@@ -91,10 +94,15 @@ const RoundButton = styled(RootButton)`
   width: 56px;
   height: 56px;
   box-shadow: none;
-  border-color: transparent;
-  background-color: var(--color-purple);
+  border-color: var(--color-light-purple);
+  background-color: var(--color-light-purple);
   text-shadow: 0 1px 3px rgba(25, 18, 56, 0.4);
   color: var(--color-white);
+
+  :hover {
+    background-color: var(--color-purple);
+    border-color: var(--color-purple);
+  }
 
   :disabled,
   :disabled:hover {

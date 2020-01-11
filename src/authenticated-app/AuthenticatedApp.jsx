@@ -24,7 +24,8 @@ const ToggleButton = styled(Button)`
   position: absolute;
   top: 12px;
   left: 12px;
-  color: ${props => (props.active ? 'var(--color-light-purple)' : 'inherit')};
+  color: ${props =>
+    props.active ? 'var(--color-light-purple)' : 'var(--color-grey)'};
 `;
 
 function AuthenticatedApp() {
