@@ -20,26 +20,6 @@ import Updates from '../updates';
 import { AppContainer, Sidebar, Nav, Actions, Profile, Main } from './Layout';
 import { Menu, MenuLink } from './Menu';
 
-const NewStandupButton = styled(Link)`
-  display: inline-block;
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 8px 20px;
-  color: var(--color-lightest-purple) !important;
-  border: 2px solid var(--color-lightest-purple);
-  border-radius: var(--radius-size);
-  text-align: center;
-  letter-spacing: 1px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.1s linear;
-
-  :hover {
-    color: var(--color-darkest-purple) !important;
-    background-color: var(--color-lightest-purple);
-  }
-`;
-
 const ToggleButton = styled(Button)`
   position: absolute;
   top: 12px;
@@ -78,7 +58,6 @@ function AuthenticatedApp() {
               avatarUrl={avatarUrl}
               fullName={fullName}
               email={email}
-              isLight
             />
           </Profile>
 
@@ -93,7 +72,9 @@ function AuthenticatedApp() {
           <Standups />
 
           <Actions>
-            <NewStandupButton to="/new">New standup</NewStandupButton>
+            <Button secondary as={Link} to="new">
+              New standup
+            </Button>
           </Actions>
         </Sidebar>
 

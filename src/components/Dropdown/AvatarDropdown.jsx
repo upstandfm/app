@@ -52,7 +52,7 @@ const BlankButton = styled.button`
 
   :hover {
     cursor: pointer;
-    background-color: var(--color-lighter-grey);
+    background-color: var(--color-light-grey);
   }
 `;
 

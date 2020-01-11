@@ -15,7 +15,8 @@ export const Sidebar = styled.div`
   width: 260px;
   height: 100%;
   margin: ${props => (props.show ? 0 : '0 0 0 -260px')};
-  background-color: var(--color-darkest-purple);
+  background-color: var(--color-white);
+  border-right: 1px solid var(--color-light-grey);
   display: grid;
   grid-template-areas:
     'profile'

@@ -11,7 +11,7 @@ export const ListTitle = styled.p`
   padding: 0.1em 1em 0.5em 1em;
   font-weight: bold;
   letter-spacing: 1px;
-  color: var(--color-lightest-purple);
+  color: var(--color-grey);
 `;
 
 export const List = styled.div``;
@@ -34,8 +34,8 @@ const ListItem = styled.div`
   transition: all 0.1s linear;
 
   :hover {
-    background-color: var(--color-lightest-purple);
-    color: var(--color-darkest-purple) !important;
+    background-color: var(--color-light-grey);
+    color: var(--color-dark-grey) !important;
   }
 `;
 
@@ -46,13 +46,14 @@ export const ListItemLink = props => (
     getProps={({ isCurrent, isPartiallyCurrent }) => {
       const normalStyles = {
         textDecoration: 'none',
-        color: 'var(--color-white)'
+        color: 'var(--color-dark-grey)'
       };
 
       const activeStyles = {
         textDecoration: 'none',
-        color: 'var(--color-darkest-purple)',
-        backgroundColor: 'var(--color-lighter-purple)'
+        color: 'var(--color-darkest-grey)',
+        backgroundColor: 'var(--color-light-grey)',
+        fontWeight: 'bold'
       };
 
       const isActive = isCurrent || isPartiallyCurrent;

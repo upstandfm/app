@@ -32,7 +32,7 @@ describe('<AvatarDropdown />', () => {
         <button
           aria-expanded="false"
           aria-haspopup="true"
-          class="sc-bwzfXH jJYceq"
+          class="sc-bwzfXH dgVQAR"
         >
           <div
             class="sc-bZQynM gZakXn"
@@ -68,7 +68,7 @@ describe('<AvatarDropdown />', () => {
           </div>
         </button>
         <ul
-          class="sc-htpNat gVvUCW"
+          class="sc-htpNat lgWrBc"
           role="menu"
         >
           <li
@@ -88,7 +88,7 @@ describe('<AvatarDropdown />', () => {
             class="sc-bxivhb eqXfcB"
           >
             <button
-              class="sc-iwsKbI jFpRxK"
+              class="sc-iwsKbI dLvKoJ"
               role="menuitem"
               tabindex="-1"
             >

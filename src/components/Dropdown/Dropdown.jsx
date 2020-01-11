@@ -13,7 +13,6 @@ export const Trigger = styled.button`
   border: 0;
   border-radius: 4px;
   background: none;
-  color: ${props => (props.isLight ? 'var(--color-white)' : 'inherit')};
   font-size: 1em;
   line-height: 1;
   transition: all 0.2s ease;
@@ -22,10 +21,6 @@ export const Trigger = styled.button`
     cursor: pointer;
   }
 `;
-
-Trigger.propTypes = {
-  isLight: PropTypes.bool
-};
 
 /**
  * Show list:
@@ -53,8 +48,10 @@ export const List = styled.ul`
   margin: 0.25em 0;
   padding: 1em 0;
   min-width: 220px;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(25, 18, 56, 0.05) 0px 0px 0px 1px,
+    rgba(25, 18, 56, 0.1) 0px 3px 6px, rgba(25, 18, 56, 0.2) 0px 8px 24px;
   background-color: var(--color-white);
+  color: var(--color-dark-grey);
   border-radius: var(--radius-size);
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
   bottom: ${props => (props.dropDirection === 'up' ? '100%' : '')};

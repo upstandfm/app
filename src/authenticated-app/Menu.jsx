@@ -16,8 +16,8 @@ const StyledLink = styled(Link)`
   transition: all 0.1s linear;
 
   :hover {
-    background-color: var(--color-lightest-purple);
-    color: var(--color-darkest-purple) !important;
+    background-color: var(--color-light-grey);
+    color: var(--color-darker-grey) !important;
   }
 `;
 
@@ -26,12 +26,13 @@ export const MenuLink = props => (
     {...props}
     getProps={({ isCurrent }) => {
       const normalStyles = {
-        color: 'var(--color-white)'
+        color: 'var(--color-dark-grey)'
       };
 
       const activeStyles = {
-        color: 'var(--color-darkest-purple)',
-        backgroundColor: 'var(--color-lighter-purple)'
+        color: 'var(--color-darkest-grey)',
+        backgroundColor: 'var(--color-light-grey)',
+        fontWeight: 'bold'
       };
 
       return {

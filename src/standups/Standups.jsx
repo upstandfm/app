@@ -21,55 +21,27 @@ import {
 import { useStandups } from './StandupsContext';
 import useFetchStandups from './use-fetch-standups';
 
-const CustomListTitle = styled(ListTitle)`
-  color: var(--color-white);
-`;
-
 const MenuButton = styled(Button)`
   padding: 0.1em 0.2em;
-`;
-
-const LoadMoreButton = styled(Button)`
-  color: var(--color-lighter-purple);
-
-  :hover {
-    color: var(--color-lightest-purple);
-  }
-
-  :disabled {
-    color: var(--color-grey) !important;
-  }
 `;
 
 export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
     return (
       <ListContainer>
-        <CustomListTitle>Standups</CustomListTitle>
+        <ListTitle>Standups</ListTitle>
 
         <List>
           <LoadingListItem>
             <LoadingListItemText>Standup loading title</LoadingListItemText>
-
-            <MenuButton tertiary disabled title="not implemented yet">
-              <FontAwesomeIcon icon="ellipsis-h" />
-            </MenuButton>
           </LoadingListItem>
 
           <LoadingListItem>
             <LoadingListItemText>Standup loading title</LoadingListItemText>
-
-            <MenuButton tertiary disabled title="not implemented yet">
-              <FontAwesomeIcon icon="ellipsis-h" />
-            </MenuButton>
           </LoadingListItem>
 
           <LoadingListItem>
             <LoadingListItemText>Standup loading title</LoadingListItemText>
-
-            <MenuButton tertiary disabled title="not implemented yet">
-              <FontAwesomeIcon icon="ellipsis-h" />
-            </MenuButton>
           </LoadingListItem>
         </List>
       </ListContainer>
@@ -83,7 +55,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   return (
     <div>
       <ListContainer>
-        <CustomListTitle>Standups</CustomListTitle>
+        <ListTitle>Standups</ListTitle>
 
         <List>
           {standups.map(standup => {
@@ -103,17 +75,13 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
       {cursor && (
         <LoadMoreContainer>
-          <LoadMoreButton
-            tertiary
-            disabled={isLoading}
-            onClick={handleLoadMore}
-          >
+          <Button tertiary disabled={isLoading} onClick={handleLoadMore}>
             {isLoading ? (
               <FontAwesomeIcon icon="circle-notch" spin />
             ) : (
               'Load more'
             )}
-          </LoadMoreButton>
+          </Button>
         </LoadMoreContainer>
       )}
     </div>

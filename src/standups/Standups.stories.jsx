@@ -8,7 +8,8 @@ import { PureStandups } from './Standups';
 const fetchNextPage = action('fetchNextPage');
 
 const Container = styled.div`
-  background-color: var(--color-darkest-purple);
+  background-color: var(--color-white);
+  border: 1px dashed var(--color-light-grey);
   width: 260px;
   padding: 1em 0;
 `;
