@@ -69,10 +69,10 @@ function Recordings({
         show={showConfirm}
         handleCancel={handleCancel}
         handleConfirm={deleteUpdate}
-        title={
+        title="Are you sure?"
+        message={
           <>
-            Are you sure you want to <b>delete</b> this recording{' '}
-            <b>permanently</b>?
+            This will <b>permanently</b> delete this recording.
           </>
         }
       />
