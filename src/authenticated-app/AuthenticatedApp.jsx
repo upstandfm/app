@@ -73,7 +73,7 @@ function AuthenticatedApp() {
           <Standups />
 
           <Actions>
-            <Button secondary as={Link} to="new">
+            <Button secondary as={Link} to="new-standup">
               New standup
             </Button>
           </Actions>
@@ -91,7 +91,7 @@ function AuthenticatedApp() {
           </ToggleButton>
 
           <Router>
-            <NewStandup path="/new" />
+            <NewStandup path="/new-standup" />
 
             <Standup path="/standups/:standupId">
               <Updates path="/" />
