@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-import { Breadcrumbs, Breadcrumb } from './Breadcrumbs';
+import { Breadcrumbs, Breadcrumb, BreadcrumbLink } from './Breadcrumbs';
 import { LoadingBreadcrumb } from './Loading';
 
 export default {
@@ -84,7 +84,7 @@ export const LinkBreadcrumbs = () => {
       <Breadcrumb>Standups</Breadcrumb>
 
       <Breadcrumb>
-        <Link to="/">Upstand FM</Link>
+        <BreadcrumbLink to="/">Upstand FM</BreadcrumbLink>
       </Breadcrumb>
 
       <Breadcrumb>New Update</Breadcrumb>

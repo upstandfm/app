@@ -7,7 +7,11 @@ import AudioPlayer from '../components/AudioPlayer';
 import Button from '../components/Button';
 import { NotFound } from '../components/Errors';
 import { useSnackbar } from '../components/Snackbar';
-import { Breadcrumbs, Breadcrumb } from '../components/Breadcrumbs';
+import {
+  Breadcrumbs,
+  Breadcrumb,
+  BreadcrumbLink
+} from '../components/Breadcrumbs';
 
 import StandupMembers, { StandupMembersProvider } from '../standup-members';
 
@@ -69,7 +73,7 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
               return (
                 <Breadcrumb key={`breadcrumb-${fragment}`} title={displayName}>
                   {asLink ? (
-                    <Link to={linkTo}>{displayName}</Link>
+                    <BreadcrumbLink to={linkTo}>{displayName}</BreadcrumbLink>
                   ) : (
                     displayName
                   )}

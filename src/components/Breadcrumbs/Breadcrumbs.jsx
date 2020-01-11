@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from '@reach/router';
 
 const Container = styled.nav`
   width: 100%;
@@ -87,4 +88,13 @@ export const Breadcrumb = styled(ListItem)`
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--color-darkest-grey);
+`;
+
+export const BreadcrumbLink = styled(Link)`
+  color: var(--color-light-purple);
+
+  :active,
+  :visited {
+    color: var(--color-light-purple);
+  }
 `;
