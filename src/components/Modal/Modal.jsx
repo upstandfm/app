@@ -36,6 +36,8 @@ const Inner = styled.div`
 
   @media (max-width: 470px) {
     width: 75%;
+    top: auto;
+    bottom: -5%;
   }
 `;
 
