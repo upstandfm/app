@@ -64,7 +64,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
               <ListItemLink key={standupId} to={`standups/${standupId}`}>
                 <ListItemText>{standupName}</ListItemText>
 
-                <MenuButton tertiary disabled title="not implemented yet">
+                <MenuButton small tertiary disabled title="not implemented yet">
                   <FontAwesomeIcon icon="ellipsis-h" />
                 </MenuButton>
               </ListItemLink>
@@ -75,7 +75,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
       {cursor && (
         <LoadMoreContainer>
-          <Button tertiary disabled={isLoading} onClick={handleLoadMore}>
+          <Button small tertiary disabled={isLoading} onClick={handleLoadMore}>
             {isLoading ? (
               <FontAwesomeIcon icon="circle-notch" spin />
             ) : (

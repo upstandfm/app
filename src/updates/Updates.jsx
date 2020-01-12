@@ -69,7 +69,12 @@ export function PureUpdates({
       })}
 
       <LoadMoreContainer>
-        <Button tertiary disabled={isLoadingMore} onClick={handleLoadMore}>
+        <Button
+          small
+          tertiary
+          disabled={isLoadingMore}
+          onClick={handleLoadMore}
+        >
           {isLoadingMore ? (
             <FontAwesomeIcon icon="circle-notch" spin />
           ) : (

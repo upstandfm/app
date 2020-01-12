@@ -86,11 +86,11 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
         <StandupMembers standupId={standup.standupId} />
 
         <div>
-          <Button tertiary as={Link} to="new-update">
+          <Button small tertiary as={Link} to="new-update">
             New update
           </Button>
 
-          <Button tertiary disabled title="not implemented yet">
+          <Button small tertiary disabled title="not implemented yet">
             <FontAwesomeIcon icon="ellipsis-h" />
           </Button>
         </div>
