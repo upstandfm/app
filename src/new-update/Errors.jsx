@@ -8,7 +8,7 @@ import { useSnackbar } from '../components/Snackbar';
 const Container = styled.div`
   padding: 1em 2em;
   background-color: var(--color-white);
-  box-shadow: 0px 2px 4px rgba(25, 18, 56, 0.18);
+  box-shadow: 0px 1px 2px 0px rgba(25, 18, 56, 0.18);
   border-radius: var(--radius-size);
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ListContainer = styled.div`
   margin: 1em 0;
   border-radius: var(--radius-size);
-  box-shadow: 0px 2px 4px rgba(25, 18, 56, 0.14);
+  box-shadow: 0px 1px 2px 0px rgba(25, 18, 56, 0.14);
   background-color: var(--color-white);
 `;
 

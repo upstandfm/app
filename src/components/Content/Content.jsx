@@ -23,7 +23,7 @@ const Section = styled.section`
   padding: 1.5em;
   background-color: var(--color-white);
   border-radius: var(--radius-size);
-  box-shadow: 0px 2px 4px rgba(25, 18, 56, 0.18);
+  box-shadow: 0px 1px 2px 0px rgba(25, 18, 56, 0.18);
 `;
 
 /**
