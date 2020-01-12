@@ -16,6 +16,10 @@ import { Container, RecordingsList } from './Layout';
 import Empty from './Empty';
 import UpdateRecording from './UpdateRecording';
 
+const EmptyRecordings = styled(ListEmpty)`
+  text-align: left;
+`;
+
 const UserListItem = styled(ListItem)`
   :hover {
     background-color: inherit;
@@ -65,7 +69,7 @@ export function PureUpdateRecordings({
 
               <RecordingsList>
                 {userRecordings.length === 0 ? (
-                  <ListEmpty>No updates.</ListEmpty>
+                  <EmptyRecordings>No updates.</EmptyRecordings>
                 ) : (
                   userRecordings.map(recording => {
                     const { recordingId } = recording;

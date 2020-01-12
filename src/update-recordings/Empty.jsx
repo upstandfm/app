@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 const Title = styled.h4`
   margin: 0;
   font-weight: normal;
-  color: var(--color-dark-grey);
+  color: var(--color-grey);
 `;
 
 function Empty({ title }) {
