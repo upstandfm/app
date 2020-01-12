@@ -94,6 +94,18 @@ DisabledTertiaryButton.story = {
   name: 'disabled tertiary'
 };
 
+export const SmallTertiaryButton = () => {
+  return (
+    <Button small tertiary onClick={handleClick}>
+      Click Me
+    </Button>
+  );
+};
+
+SmallTertiaryButton.story = {
+  name: 'small tertiary'
+};
+
 export const RoundButton = () => {
   return (
     <Button round onClick={handleClick}>
