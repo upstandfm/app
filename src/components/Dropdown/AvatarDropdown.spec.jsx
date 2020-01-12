@@ -44,7 +44,7 @@ describe('<AvatarDropdown />', () => {
               src="https://media.upstand.fm/avatars/1w4fg6y9o.png"
             />
             <span
-              class="sc-htoDjs bUoPjD"
+              class="sc-htoDjs gNAgsF"
               title="Test User"
             >
               Test User

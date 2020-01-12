@@ -28,10 +28,10 @@ const Avatar = styled.img`
 `;
 
 const Name = styled.span`
-  font-size: 1.1em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--color-dark-grey);
 `;
 
 const Icon = styled(FontAwesomeIcon)`
