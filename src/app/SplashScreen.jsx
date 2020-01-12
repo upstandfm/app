@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Container = styled.div`
   display: grid;
   height: 100vh;
-  background-color: var(--color-darkest-purple);
-  color: var(--color-white);
 `;
 
 const Splash = styled.div`
