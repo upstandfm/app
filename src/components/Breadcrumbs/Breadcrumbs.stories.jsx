@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '@reach/router';
 
 import { Breadcrumbs, Breadcrumb, BreadcrumbLink } from './Breadcrumbs';
 import { LoadingBreadcrumb } from './Loading';
