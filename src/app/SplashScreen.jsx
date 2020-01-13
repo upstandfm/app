@@ -12,15 +12,17 @@ const Splash = styled.div`
   text-align: center;
 `;
 
-const Text = styled.h2``;
+const Text = styled.h3`
+  font-weight: normal;
+`;
 
 function SplashScreen() {
   return (
     <Container>
       <Splash>
-        <FontAwesomeIcon icon="circle-notch" size="3x" spin />
-
-        <Text data-cy="loading">Loading App..</Text>
+        <Text>
+          <FontAwesomeIcon icon="circle-notch" spin /> Loading app..
+        </Text>
       </Splash>
     </Container>
   );
