@@ -24,7 +24,7 @@ export const Subtitle = styled.h3`
   font-weight: normal;
 
   b {
-    color: var(--color-red);
+    color: var(--color-dark-red);
   }
 `;
 
