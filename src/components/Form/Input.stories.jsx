@@ -15,14 +15,15 @@ export default {
 
 const Container = styled.div`
   width: 320px;
-  border: 1px dashed lightgrey;
+  border: 1px dashed var(--color-light-grey);
+  background-color: var(--color-white);
   padding: 1em;
 `;
 
 export const DefaultInput = () => {
   return (
-    <Form>
-      <Container>
+    <Container>
+      <Form>
         <Section>
           <Label htmlFor="name">
             NAME
@@ -31,8 +32,8 @@ export const DefaultInput = () => {
 
           <Description>Your preferred name.</Description>
         </Section>
-      </Container>
-    </Form>
+      </Form>
+    </Container>
   );
 };
 
@@ -42,8 +43,8 @@ DefaultInput.story = {
 
 export const DefaultValueInput = () => {
   return (
-    <Form>
-      <Container>
+    <Container>
+      <Form>
         <Section>
           <Label htmlFor="name-1">
             NAME
@@ -52,8 +53,8 @@ export const DefaultValueInput = () => {
 
           <Description>Your preferred name.</Description>
         </Section>
-      </Container>
-    </Form>
+      </Form>
+    </Container>
   );
 };
 

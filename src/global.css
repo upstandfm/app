@@ -88,6 +88,10 @@ body {
   overflow: hidden;
 }
 
+p {
+  color: var(--color-dark-grey);
+}
+
 :focus {
   outline: 3px solid var(--color-light-mint);
 }

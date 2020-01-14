@@ -40,6 +40,7 @@ export const Input = styled.input`
   border: 2px solid var(--color-light-grey);
   border-radius: var(--radius-size);
   color: var(--color-darkest-grey);
+  width: 100%;
 
   ::placeholder {
     font-weight: normal;
@@ -47,8 +48,8 @@ export const Input = styled.input`
 
   :focus {
     outline: 0;
-    box-shadow: 0 0 1px 0 var(--color-light-purple);
-    border-color: var(--color-light-purple);
+    box-shadow: 0 0 1px 0 var(--color-lighter-purple);
+    border-color: var(--color-lighter-purple);
   }
 
   :disabled {
