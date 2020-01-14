@@ -14,6 +14,12 @@ import { Container, Controls, Main, Title } from './Layout';
 import { ProgressBar, Timing, PlayTime, TotalTime } from './Progress';
 
 const PlayPauseButton = styled(Button)`
+  :hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-darker-purple);
+  }
+
   :disabled,
   :disabled:hover {
     color: var(--color-light-grey);
