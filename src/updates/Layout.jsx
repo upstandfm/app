@@ -49,5 +49,6 @@ export const UpdatesContainer = styled.div``;
 export const LoadMoreContainer = styled.div`
   display: grid;
   align-items: center;
+  justify-items: center;
   margin: 0 0 2em 0;
 `;
