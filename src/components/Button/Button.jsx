@@ -34,19 +34,13 @@ const RootButton = styled.button`
 `;
 
 const PrimaryButton = styled(RootButton)`
-  background-color: var(--color-light-purple);
-  border-color: var(--color-light-purple);
+  background-color: var(--color-darkest-purple);
+  border-color: var(--color-darkest-purple);
   color: var(--color-white);
-  text-shadow: 0 1px 3px rgba(25, 18, 56, 0.4);
 
   :hover {
-    background-color: var(--color-purple);
-    border-color: var(--color-purple);
-  }
-
-  :disabled,
-  :disabled:hover {
-    text-shadow: none;
+    background-color: var(--color-darker-purple);
+    border-color: var(--color-darker-purple);
   }
 `;
 
@@ -57,15 +51,16 @@ const SecondaryButton = styled(RootButton)`
   box-shadow: none;
 
   :hover {
-    background-color: var(--color-darkest-purple);
+    background-color: var(--color-darker-purple);
+    border-color: var(--color-darker-purple);
     color: var(--color-white);
   }
 
   :disabled,
   :disabled:hover {
     border-color: var(--color-darkest-purple);
+    color: var(--color-darkest-purple);
     background-color: transparent;
-    box-shadow: none;
   }
 `;
 
@@ -77,7 +72,9 @@ const TertiaryButton = styled(RootButton)`
   padding: 4px 8px;
 
   :hover {
-    color: var(--color-light-purple);
+    background-color: var(--color-lightest-purple);
+    border-color: var(--color-lightest-purple);
+    color: var(--color-darkest-purple);
   }
 
   :disabled,
@@ -94,21 +91,13 @@ const RoundButton = styled(RootButton)`
   width: 56px;
   height: 56px;
   box-shadow: none;
-  border-color: var(--color-light-purple);
-  background-color: var(--color-light-purple);
-  text-shadow: 0 1px 3px rgba(25, 18, 56, 0.4);
+  border-color: var(--color-darkest-purple);
+  background-color: var(--color-darkest-purple);
   color: var(--color-white);
 
   :hover {
-    background-color: var(--color-purple);
-    border-color: var(--color-purple);
-  }
-
-  :disabled,
-  :disabled:hover {
-    border-color: transparent;
-    box-shadow: none;
-    text-shadow: none;
+    background-color: var(--color-darker-purple);
+    border-color: var(--color-darker-purple);
   }
 `;
 
