@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.aside`
+export const Aside = styled.aside`
   position: fixed;
   top: 0;
   left: 0;
@@ -15,13 +15,9 @@ export const Wrapper = styled.div`
   margin: auto;
   padding: 1em;
   box-sizing: border-box;
-  width: 60%;
+  width: 40rem;
 
-  @media (max-width: 780px) {
-    width: 70%;
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     width: 100%;
   }
 `;
@@ -38,5 +34,5 @@ export const ExitContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  margin: 0;
+  font-size: 2em;
 `;

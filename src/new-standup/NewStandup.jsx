@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FocusTrap from 'focus-trap-react';
-import styled from 'styled-components';
 
 import { ExitButton } from '../components/Button';
 import { Confirm } from '../components/Modal';
-import { Form, Section, Label, Input } from '../components/Form';
+import { Form, Section, Label, Input, Description } from '../components/Form';
 import { useSnackbar } from '../components/Snackbar';
 import Button from '../components/Button';
 
@@ -16,36 +15,10 @@ import { useStandups } from '../standups';
 
 import useCreateStandup from './use-create-standup';
 
-import { Container, Wrapper, ExitContainer, Title } from './Layout';
+import { Aside, Wrapper, ExitContainer, Title } from './Layout';
 
-const CustomSection = styled(Section)`
-  margin: 0 0 2em 0;
-`;
-
-const CustomInput = styled(Input)`
-  font-size: 2.6em;
-  border: none;
-  padding: 0.5em 0;
-  font-weight: bold;
-
-  :focus {
-    box-shadow: none;
-  }
-
-  @media (max-width: 1130px) {
-    font-size: 2em;
-  }
-
-  @media (max-width: 780px) {
-    font-size: 1.6em;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.2em;
-  }
-`;
-
-function PureNewStandup({
+export function PureNewStandup({
+  onExit,
   standupName,
   setStandupName,
   handleCreate,
@@ -57,45 +30,62 @@ function PureNewStandup({
     nameInput.current.focus();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleExit = () => {
+    onExit();
+  };
+
   const handleInput = e => {
     setStandupName(e.target.value);
   };
 
   return (
-    <Form>
-      <Title>Create a new standup</Title>
+    <>
+      <ExitContainer>
+        <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
+      </ExitContainer>
 
-      <CustomSection>
-        <Label htmlFor="name">
-          <CustomInput
-            type="text"
-            id="name"
-            placeholder="What name describes your team best?"
-            ref={nameInput}
-            value={standupName}
-            onChange={handleInput}
-            maxLength={70}
-          />
-        </Label>
-      </CustomSection>
+      <Wrapper>
+        <Form>
+          <Title>Create a new standup</Title>
 
-      <Button
-        onClick={handleCreate}
-        disabled={standupName.length === 0 || isCreating}
-      >
-        {isCreating ? (
-          <>
-            <FontAwesomeIcon icon="circle-notch" size="sm" spin /> Creating..
-          </>
-        ) : (
-          'Create'
-        )}
-      </Button>
-    </Form>
+          <Section>
+            <Label htmlFor="name">
+              NAME
+              <Input
+                type="text"
+                id="name"
+                placeholder="What will be shared?"
+                ref={nameInput}
+                value={standupName}
+                onChange={handleInput}
+                maxLength={70}
+              />
+            </Label>
+
+            <Description>Max. 70 characters</Description>
+          </Section>
+
+          <Button
+            onClick={handleCreate}
+            disabled={standupName.length === 0 || isCreating}
+          >
+            {isCreating ? (
+              <>
+                <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
+                Creating..
+              </>
+            ) : (
+              'Create'
+            )}
+          </Button>
+        </Form>
+      </Wrapper>
+    </>
   );
 }
 
 PureNewStandup.propTypes = {
+  onExit: PropTypes.func.isRequired,
   standupName: PropTypes.string,
   setStandupName: PropTypes.func.isRequired,
   handleCreate: PropTypes.func.isRequired,
@@ -150,7 +140,7 @@ function NewStandup() {
     navigate('/');
   };
 
-  const handleExit = () => {
+  const onExit = () => {
     const hasProgress = Boolean(standupName);
     if (hasProgress) {
       setShowConfirm(true);
@@ -188,20 +178,15 @@ function NewStandup() {
   return ReactDOM.createPortal(
     <>
       <FocusTrap>
-        <Container>
-          <ExitContainer>
-            <ExitButton aria-label="exit" title="exit" onClick={handleExit} />
-          </ExitContainer>
-
-          <Wrapper>
-            <PureNewStandup
-              standupName={standupName}
-              setStandupName={setStandupName}
-              handleCreate={handleCreate}
-              isCreating={isCreating}
-            />
-          </Wrapper>
-        </Container>
+        <Aside>
+          <PureNewStandup
+            onExit={onExit}
+            standupName={standupName}
+            setStandupName={setStandupName}
+            handleCreate={handleCreate}
+            isCreating={isCreating}
+          />
+        </Aside>
       </FocusTrap>
 
       <Confirm
