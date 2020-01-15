@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 export default {
-  title: 'screens|NewStandup',
+  title: 'modules/NewStandup',
   component: PureNewStandup,
   parameters: {
     componentSubtitle: 'New standup screen'

@@ -8,7 +8,7 @@ const playPauseAudio = action('playPauseAudio');
 const onHandleDelete = action('onHandleDelete');
 
 export default {
-  title: 'screens|NewUpdate/Recording',
+  title: 'modules/NewUpdate/Recording',
   component: Recording,
   parameters: {
     componentSubtitle: 'New update recording component'

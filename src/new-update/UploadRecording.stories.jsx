@@ -6,7 +6,7 @@ import { PureUploadRecording } from './UploadRecording';
 const handleRetry = action('handleRetry');
 
 export default {
-  title: 'screens|NewUpdate/UploadRecording',
+  title: 'modules/NewUpdate/UploadRecording',
   component: PureUploadRecording,
   parameters: {
     componentSubtitle: 'New update upload recording component'

@@ -4,7 +4,7 @@ import Button from '../Button';
 import Confirm from './Confirm';
 
 export default {
-  title: 'components|Modal/Confirm',
+  title: 'components/Modal/Confirm',
   component: Confirm,
   parameters: {
     componentSubtitle: 'For confirming a user action'

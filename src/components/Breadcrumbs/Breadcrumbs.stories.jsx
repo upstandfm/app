@@ -4,7 +4,7 @@ import { Breadcrumbs, Breadcrumb, BreadcrumbLink } from './Breadcrumbs';
 import { LoadingBreadcrumb } from './Loading';
 
 export default {
-  title: 'components|Breadcrumbs',
+  title: 'components/Breadcrumbs',
   component: Breadcrumbs,
   parameters: {
     componentSubtitle:

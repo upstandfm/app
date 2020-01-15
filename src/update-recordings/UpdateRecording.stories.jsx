@@ -7,7 +7,7 @@ const playPauseAudio = action('playPauseAudio');
 const downloadFile = action('downloadFile');
 
 export default {
-  title: 'screens|Standup/Updates/UpdateRecording',
+  title: 'modules/UpdateRecording',
   component: UpdateRecording,
   parameters: {
     componentSubtitle: 'Standup member update recording component'

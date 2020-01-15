@@ -6,7 +6,7 @@ import ExitButton from './ExitButton';
 const handleClick = action('onClick');
 
 export default {
-  title: 'components|Button/ExitButton',
+  title: 'components/Button/ExitButton',
   component: ExitButton,
   parameters: {
     componentSubtitle: 'Exit button'

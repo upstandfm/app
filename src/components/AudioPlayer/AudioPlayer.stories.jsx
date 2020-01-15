@@ -10,7 +10,7 @@ const pause = action('pause');
 const seek = action('seek');
 
 export default {
-  title: 'components|AudioPlayer',
+  title: 'components/AudioPlayer',
   component: PureAudioPlayer,
   parameters: {
     componentSubtitle: 'Custom audio player'

@@ -3,7 +3,7 @@ import React from 'react';
 import Content from './Content';
 
 export default {
-  title: 'components|Content',
+  title: 'components/Content',
   component: Content,
   parameters: {
     componentSubtitle: 'For primary page content'

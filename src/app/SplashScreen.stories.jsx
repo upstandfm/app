@@ -3,7 +3,7 @@ import React from 'react';
 import SplashScreen from './SplashScreen';
 
 export default {
-  title: 'screens|SplashScreen',
+  title: 'app/SplashScreen',
   component: SplashScreen,
   parameters: {
     componentSubtitle: 'App loading screen'

@@ -7,7 +7,7 @@ import { Form, Section, Label, InlineLabel, Input, Description } from './Input';
 const onChange = action('onChange');
 
 export default {
-  title: 'components|Form/Input',
+  title: 'components/Form/Input',
   parameters: {
     componentSubtitle: 'Form building blocks'
   }

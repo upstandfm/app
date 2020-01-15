@@ -8,7 +8,7 @@ const downloadFile = action('downloadFile');
 const playPauseAudio = action('playPauseAudio');
 
 export default {
-  title: 'screens|Standup/Updates/UpdateRecordings',
+  title: 'modules/UpdateRecordings',
   component: PureUpdateRecordings,
   parameters: {
     componentSubtitle:

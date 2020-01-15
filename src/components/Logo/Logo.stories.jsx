@@ -3,7 +3,7 @@ import React from 'react';
 import Logo from './Logo';
 
 export default {
-  title: 'components|Logo/Logo',
+  title: 'components/Logo/Logo',
   component: Logo,
   parameters: {
     componentSubtitle: 'For branding'

@@ -3,7 +3,7 @@ import React from 'react';
 import { PureStandup } from './Standup';
 
 export default {
-  title: 'screens|Standup',
+  title: 'modules/Standup',
   component: PureStandup,
   parameters: {
     componentSubtitle: 'Screen that shows a single standup'

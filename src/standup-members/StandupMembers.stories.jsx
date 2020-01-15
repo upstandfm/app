@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 export default {
-  title: 'screens|Standup/Members',
+  title: 'modules/StandupMembers',
   component: PureStandupMembers,
   parameters: {
     componentSubtitle: 'Screen that shows all standup members'

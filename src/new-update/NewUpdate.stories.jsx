@@ -14,7 +14,7 @@ const onUploadedFile = action('onUploadedFile');
 const playPauseAudio = action('playPauseAudio');
 
 export default {
-  title: 'screens|NewUpdate',
+  title: 'modules/NewUpdate',
   component: PureNewUpdate,
   parameters: {
     componentSubtitle: 'Screen to record and publish a new update'

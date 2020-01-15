@@ -6,7 +6,7 @@ import { PureUpdates } from './Updates';
 const fetchMoreUpdates = action('fetchMoreUpdates');
 
 export default {
-  title: 'screens|Standup/Updates',
+  title: 'modules/Updates',
   component: PureUpdates,
   parameters: {
     componentSubtitle: 'Screen that shows standup updates'

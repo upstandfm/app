@@ -33,7 +33,7 @@ const fullName = 'Daniël Illouz';
 const email = 'daniel@upstand.fm';
 
 export default {
-  title: 'components|Dropdown/AvatarDropdown',
+  title: 'components/Dropdown/AvatarDropdown',
   component: AvatarDropdown,
   parameters: {
     componentSubtitle: 'For user- actions and info (like profile and logout)'

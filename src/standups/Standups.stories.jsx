@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 export default {
-  title: 'screens|Standups',
+  title: 'modules/Standups',
   component: PureStandups,
   parameters: {
     componentSubtitle: 'Screen that shows all standups'

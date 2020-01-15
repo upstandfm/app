@@ -3,7 +3,7 @@ import React from 'react';
 import { PureMessage } from './Message';
 
 export default {
-  title: 'components|Snackbar/Message',
+  title: 'components/Snackbar/Message',
   component: PureMessage,
   parameters: {
     componentSubtitle: 'Snackbar message'
