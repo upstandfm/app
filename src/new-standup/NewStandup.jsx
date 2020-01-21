@@ -19,8 +19,8 @@ import { Aside, Wrapper, ExitContainer, Title } from './Layout';
 
 export function PureNewStandup({
   onExit,
-  standupName,
-  setStandupName,
+  name,
+  setName,
   handleCreate,
   isCreating
 }) {
@@ -35,7 +35,7 @@ export function PureNewStandup({
   };
 
   const handleInput = e => {
-    setStandupName(e.target.value);
+    setName(e.target.value);
   };
 
   return (
@@ -56,7 +56,7 @@ export function PureNewStandup({
                 id="name"
                 placeholder="What will be shared?"
                 ref={nameInput}
-                value={standupName}
+                value={name}
                 onChange={handleInput}
                 maxLength={70}
               />
@@ -65,10 +65,7 @@ export function PureNewStandup({
             <Description>Max. 70 characters</Description>
           </Section>
 
-          <Button
-            onClick={handleCreate}
-            disabled={standupName.length === 0 || isCreating}
-          >
+          <Button onClick={handleCreate} disabled={!name || isCreating}>
             {isCreating ? (
               <>
                 <FontAwesomeIcon icon="circle-notch" size="sm" spin />{' '}
@@ -86,8 +83,8 @@ export function PureNewStandup({
 
 PureNewStandup.propTypes = {
   onExit: PropTypes.func.isRequired,
-  standupName: PropTypes.string,
-  setStandupName: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  setName: PropTypes.func.isRequired,
   handleCreate: PropTypes.func.isRequired,
   isCreating: PropTypes.bool.isRequired
 };
@@ -104,7 +101,7 @@ function NewStandup() {
   const [, snackbarDispatch] = useSnackbar();
 
   const [showConfirm, setShowConfirm] = React.useState(false);
-  const [standupName, setStandupName] = React.useState('');
+  const [name, setName] = React.useState('');
 
   React.useEffect(() => {
     return () => {
@@ -141,7 +138,7 @@ function NewStandup() {
   };
 
   const onExit = () => {
-    const hasProgress = Boolean(standupName);
+    const hasProgress = Boolean(name);
     if (hasProgress) {
       setShowConfirm(true);
       return;
@@ -157,21 +154,17 @@ function NewStandup() {
   const handleCreate = async e => {
     e.preventDefault();
 
-    const data = {
-      standupName
-    };
-
-    const { standupId } = await createStandup(data);
-    if (standupId) {
+    const { id } = await createStandup({ name });
+    if (id) {
       standupsDispatch({
         type: 'CREATED_STANDUP',
         data: {
-          standupId,
-          standupName
+          id,
+          name
         }
       });
 
-      navigate(`/standups/${standupId}`);
+      navigate(`/standups/${id}`);
     }
   };
 
@@ -181,8 +174,8 @@ function NewStandup() {
         <Aside>
           <PureNewStandup
             onExit={onExit}
-            standupName={standupName}
-            setStandupName={setStandupName}
+            name={name}
+            setName={setName}
             handleCreate={handleCreate}
             isCreating={isCreating}
           />

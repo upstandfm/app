@@ -14,13 +14,13 @@ function useCreateStandup() {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-  const createStandup = async standupData => {
+  const createStandup = async data => {
     try {
       setIsCreating(true);
       setErr(null);
 
       const token = await getToken();
-      const res = await api.createStandup(token, source.token, standupData);
+      const res = await api.createStandup(token, source.token, data);
 
       setIsCreating(false);
 

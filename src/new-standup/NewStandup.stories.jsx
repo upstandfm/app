@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { PureNewStandup } from './NewStandup';
 
 const onExit = action('onExit');
-const setStandupName = action('setStandupName');
+const setName = action('setName');
 const handleCreate = action('handleCreate');
 
 const Container = styled.div`
@@ -26,8 +26,8 @@ export const DefaultNewStandup = () => {
     <Container>
       <PureNewStandup
         onExit={onExit}
-        standupName=""
-        setStandupName={setStandupName}
+        name=""
+        setName={setName}
         handleCreate={handleCreate}
         isCreating={false}
       />
@@ -44,8 +44,8 @@ export const NamedNewStandup = () => {
     <Container>
       <PureNewStandup
         onExit={onExit}
-        standupName="Upstand FM"
-        setStandupName={setStandupName}
+        name="Upstand FM"
+        setName={setName}
         handleCreate={handleCreate}
         isCreating={false}
       />
@@ -62,8 +62,8 @@ export const CreatingNewStandup = () => {
     <Container>
       <PureNewStandup
         onExit={onExit}
-        standupName="Upstand FM"
-        setStandupName={setStandupName}
+        name="Upstand FM"
+        setName={setName}
         handleCreate={handleCreate}
         isCreating={true}
       />
