@@ -8,9 +8,10 @@ export const ListContainer = styled.div``;
 
 export const ListTitle = styled.p`
   margin: 0;
-  padding: 0.1em 1em 0.5em 1em;
+  padding: 0.1rem 1rem 0.5rem 1rem;
+  font-size: 0.85rem;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   color: var(--color-grey);
 `;
 
@@ -27,7 +28,7 @@ const ListItem = styled.div`
   grid-template-columns: 1fr auto;
   grid-gap: 0.25em;
   align-items: center;
-  padding: 0.1em 1em;
+  padding: 0.1rem 1rem;
   font-weight: normal;
   min-height: 27px;
   font-weight: normal;

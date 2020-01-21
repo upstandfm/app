@@ -29,7 +29,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
     return (
       <ListContainer>
-        <ListTitle>Standups</ListTitle>
+        <ListTitle>PRIVATE</ListTitle>
 
         <List>
           <LoadingListItem>
@@ -55,7 +55,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   return (
     <div>
       <ListContainer>
-        <ListTitle>Standups</ListTitle>
+        <ListTitle>PRIVATE</ListTitle>
 
         <List>
           {standups.map(standup => {
