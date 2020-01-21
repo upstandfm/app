@@ -5,8 +5,8 @@ describe('standups reducer', () => {
     const state = [];
 
     const standups = [
-      { standupId: '1', standupName: 'One' },
-      { standupId: '2', standupName: 'Two' }
+      { id: '1', name: 'One' },
+      { id: '2', name: 'Two' }
     ];
 
     const action = {
@@ -19,8 +19,8 @@ describe('standups reducer', () => {
   });
 
   it('adds fetched standups', () => {
-    const state = [{ standupId: '1', standupName: 'One' }];
-    const standups = [{ standupId: '2', standupName: 'Two' }];
+    const state = [{ id: '1', name: 'One' }];
+    const standups = [{ id: '2', name: 'Two' }];
 
     const action = {
       type: 'FETCHED_STANDUPS_NEXT_PAGE',
@@ -35,8 +35,8 @@ describe('standups reducer', () => {
     const state = [];
 
     const createdStandup = {
-      standupId: '1',
-      standupName: 'My standup'
+      id: '1',
+      name: 'My standup'
     };
 
     const action = {
@@ -49,7 +49,7 @@ describe('standups reducer', () => {
   });
 
   it('returns default state', () => {
-    const state = [{ standupId: '1', standupName: 'One' }];
+    const state = [{ id: '1', name: 'One' }];
 
     const action = {
       type: 'DOES_NOT_EXIST',

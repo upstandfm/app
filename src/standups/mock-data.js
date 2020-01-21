@@ -3,39 +3,75 @@
  */
 export default [
   {
-    standupId: '1',
-    standupName: 'Team awesome'
+    id: '1',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '⏰ Daily updates'
   },
   {
-    standupId: '2',
-    standupName: 'Pizza destroyers'
+    id: '2',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '🐦 Weekly updates'
   },
   {
-    standupId: '3',
-    standupName: 'Team "ship it!"'
+    id: '3',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '🧐 Retrospectives'
   },
   {
-    standupId: '4',
-    standupName: 'Developers developers developers'
+    id: '4',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '💀 Post mortems'
   },
   {
-    standupId: '5',
-    standupName: 'Team kaputmachen'
+    id: '5',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '🌎 Company announcements'
   },
   {
-    standupId: '6',
-    standupName: 'Superduperlongname'
+    id: '6',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '📚 Book club'
   },
   {
-    standupId: '7',
-    standupName: 'AI & ML'
+    id: '7',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '🏕 Weekend fun'
   },
   {
-    standupId: '8',
-    standupName: 'Customer success'
+    id: '8',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '🍿 What to watch on Netflix?'
   },
   {
-    standupId: '9',
-    standupName: 'Finance'
+    id: '9',
+    createdBy: 'auth0|1234567890',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isPrivate: true,
+    name: '💙 How are you feeling?'
   }
 ];

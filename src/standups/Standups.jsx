@@ -59,10 +59,10 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
 
         <List>
           {standups.map(standup => {
-            const { standupId, standupName } = standup;
+            const { id } = standup;
             return (
-              <ListItemLink key={standupId} to={`standups/${standupId}`}>
-                <ListItemText>{standupName}</ListItemText>
+              <ListItemLink key={id} to={`standups/${id}`}>
+                <ListItemText>{standup.name}</ListItemText>
 
                 <MenuButton small tertiary disabled title="not implemented yet">
                   <FontAwesomeIcon icon="ellipsis-h" />
@@ -94,8 +94,12 @@ PureStandups.propTypes = {
   fetchNextPage: PropTypes.func.isRequired,
   standups: PropTypes.arrayOf(
     PropTypes.shape({
-      standupId: PropTypes.string.isRequired,
-      standupName: PropTypes.string.isRequired
+      id: PropTypes.string.isRequired,
+      createdBy: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isPrivate: PropTypes.bool.isRequired
     })
   )
 };
