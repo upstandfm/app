@@ -163,7 +163,8 @@ function NewUpdate({ standupId }) {
         data: {
           type: 'success',
           title: 'Published update',
-          text: 'Your recording(s) are being processed, and available shortly.'
+          text:
+            'Your recording(s) are being processed, and will be available shortly.'
         }
       });
     },
