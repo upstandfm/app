@@ -9,7 +9,10 @@ import { ListItem } from '../components/List';
 import { UploadRecordingName } from './Layout';
 import { ProgressBar, UploadStatus } from './Progress';
 
+import { useUser } from '../auth0';
+
 import useUploadFile from './use-upload-file';
+import { createDateKey } from './utils';
 
 const UploadListItem = styled(ListItem)`
   display: grid;
@@ -73,26 +76,32 @@ PureUploadRecording.propTypes = {
 };
 
 function UploadRecording({ standupId, recording, onUploadedFile }) {
-  const { id, blob, name } = recording;
-  const displayName = name.trim();
-
+  const { userId, workspaceId } = useUser();
   const [uploadFile, abortUploadFile, err, progress] = useUploadFile(
-    standupId,
-    id,
+    recording.id,
     onUploadedFile
   );
 
   const [, snackbarDispatch] = useSnackbar();
-
   const [retryId, setRetryId] = React.useState(0);
+  const displayName = recording.name.trim();
 
   React.useEffect(() => {
-    const file = new File([blob], `${id}.webm`, {
+    const file = new File([recording.blob], `${recording.id}.webm`, {
       type: 'audio/webm'
     });
+
+    // User defined metadata keys are lowercased by AWS, so for readability we
+    // "dasherize" them
     const metadata = {
+      'user-id': userId,
+      'workspace-id': workspaceId,
+      'standup-id': standupId,
+      'recording-id': recording.id,
+      date: createDateKey(),
       name: displayName
     };
+
     uploadFile(file, metadata);
 
     return () => {
