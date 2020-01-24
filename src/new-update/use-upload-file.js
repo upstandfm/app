@@ -8,13 +8,12 @@ import api from './api';
 /**
  * Custom hook to upload a file.
  *
- * @param {String} standupId
- * @param {String} updateId
+ * @param {String} recordingId
  * @param {Function} onUploadedFile - Callback that's called when a file has been uploaded
  *
  * @return {Array}
  */
-function useUploadFile(standupId, updateId, onUploadedFile) {
+function useUploadFile(recordingId, onUploadedFile) {
   const { getToken } = useAuth0();
 
   const [err, setErr] = React.useState(null);
@@ -38,7 +37,6 @@ function useUploadFile(standupId, updateId, onUploadedFile) {
       const res = await api.createPreSignedUploadUrl(
         token,
         source.token,
-        standupId,
         file,
         metadata
       );
@@ -53,7 +51,7 @@ function useUploadFile(standupId, updateId, onUploadedFile) {
       );
 
       if (onUploadedFile && typeof onUploadedFile === 'function') {
-        onUploadedFile(updateId);
+        onUploadedFile(recordingId);
       }
     } catch (err) {
       if (axios.isCancel(err)) {

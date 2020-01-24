@@ -8,7 +8,6 @@ const api = {
    *
    * @param {String} token - Access token
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
-   * @param {String} standupId
    * @param {Object} file - File
    * @param {String} metadata - File metadata
    *
@@ -16,17 +15,16 @@ const api = {
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  createPreSignedUploadUrl(token, cancelToken, standupId, file, metadata) {
+  createPreSignedUploadUrl(token, cancelToken, file, metadata) {
     return axios({
       cancelToken,
       method: 'post',
-      url: `${REACT_APP_API_DOMAIN}/files/standup-update/upload`,
+      url: `${REACT_APP_API_DOMAIN}/files/audio/upload`,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       data: {
-        standupId,
         mimeType: file.type,
         filename: file.name,
         metadata
