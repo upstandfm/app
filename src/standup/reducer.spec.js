@@ -5,8 +5,8 @@ describe('standup reducer', () => {
     const state = {};
 
     const standup = {
-      standupId: '1',
-      standupName: 'One'
+      id: '1',
+      name: 'One'
     };
 
     const action = {
@@ -19,7 +19,7 @@ describe('standup reducer', () => {
   });
 
   it('returns default state', () => {
-    const state = { standupId: '1', standupName: 'One' };
+    const state = { id: '1', name: 'One' };
 
     const action = {
       type: 'DOES_NOT_EXIST',

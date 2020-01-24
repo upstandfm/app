@@ -30,7 +30,7 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
     return (
       <NotFound
         title="Standup not found"
-        info="You might not be a member of this standup."
+        info="You might not be a member of this standup, or it doesn't exist."
       />
     );
   }
@@ -42,7 +42,7 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
       linkTo: undefined
     },
     [standupId]: {
-      displayName: standup.standupName,
+      displayName: standup.name,
       asLink: true,
 
       // Empty string links to the "parents root"
@@ -83,7 +83,7 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
           </Breadcrumbs>
         </NavContainer>
 
-        <StandupMembers standupId={standup.standupId} />
+        <StandupMembers standupId={standup.id} />
 
         <div>
           <Button small tertiary as={Link} to="new-update">
@@ -108,7 +108,14 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
 PureStandup.propTypes = {
   standupId: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
-  standup: PropTypes.object.isRequired
+  standup: PropTypes.shape({
+    id: PropTypes.string,
+    createdBy: PropTypes.string,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    name: PropTypes.string,
+    isPrivate: PropTypes.bool
+  })
 };
 
 function Standup({ standupId, children }) {
