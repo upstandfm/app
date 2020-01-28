@@ -13,9 +13,15 @@ import {
   BreadcrumbLink
 } from '../components/Breadcrumbs';
 
-import StandupMembers, { StandupMembersProvider } from '../standup-members';
+import {
+  Container,
+  Header,
+  NavContainer,
+  Actions,
+  Main,
+  Footer
+} from './Layout';
 
-import { Container, Header, NavContainer, Main, Footer } from './Layout';
 import Loading from './Loading';
 
 import standupReducer from './reducer';
@@ -83,9 +89,7 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
           </Breadcrumbs>
         </NavContainer>
 
-        <StandupMembers standupId={standup.id} />
-
-        <div>
+        <Actions>
           <Button small tertiary as={Link} to="new-update">
             New update
           </Button>
@@ -93,7 +97,7 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
           <Button small tertiary disabled title="not implemented yet">
             <FontAwesomeIcon icon="ellipsis-h" />
           </Button>
-        </div>
+        </Actions>
       </Header>
 
       <Main>{children}</Main>
@@ -152,15 +156,13 @@ function Standup({ standupId, children }) {
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <StandupMembersProvider>
-      <PureStandup
-        standupId={standupId}
-        isLoading={isFetching}
-        standup={standupState}
-      >
-        {children}
-      </PureStandup>
-    </StandupMembersProvider>
+    <PureStandup
+      standupId={standupId}
+      isLoading={isFetching}
+      standup={standupState}
+    >
+      {children}
+    </PureStandup>
   );
 }
 

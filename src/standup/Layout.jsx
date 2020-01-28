@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Header = styled.div`
   grid-area: standup-header;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto;
   grid-gap: 1em;
   align-items: center;
   padding: 0.5em 1em;
@@ -23,7 +23,6 @@ export const Header = styled.div`
 
   @media (max-width: 680px) {
     grid-template-columns: auto;
-    justify-items: center;
     grid-gap: 0.5em;
   }
 `;
@@ -33,6 +32,10 @@ export const NavContainer = styled.div`
   align-items: center;
   height: 40px;
   margin-left: 3em;
+`;
+
+export const Actions = styled.div`
+  justify-self: end;
 
   @media (max-width: 680px) {
     justify-self: left;

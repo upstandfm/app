@@ -6,9 +6,14 @@ import { LoadingAudioPlayer } from '../components/AudioPlayer';
 import Button from '../components/Button';
 import { Breadcrumbs, LoadingBreadcrumb } from '../components/Breadcrumbs';
 
-import { LoadingStandupMembers } from '../standup-members';
-
-import { Container, Header, NavContainer, Main, Footer } from './Layout';
+import {
+  Container,
+  Header,
+  NavContainer,
+  Actions,
+  Main,
+  Footer
+} from './Layout';
 
 function Loading({ children }) {
   return (
@@ -20,9 +25,7 @@ function Loading({ children }) {
           </Breadcrumbs>
         </NavContainer>
 
-        <LoadingStandupMembers />
-
-        <div>
+        <Actions>
           <Button small tertiary as={Link} to="new-update">
             New update
           </Button>
@@ -30,7 +33,7 @@ function Loading({ children }) {
           <Button small tertiary disabled title="not implemented yet">
             <FontAwesomeIcon icon="ellipsis-h" />
           </Button>
-        </div>
+        </Actions>
       </Header>
 
       <Main>{children}</Main>
