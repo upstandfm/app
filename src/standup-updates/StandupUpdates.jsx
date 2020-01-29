@@ -8,6 +8,13 @@ import Button from '../components/Button';
 import { LoadingRecordingsByMember, RecordingsByMember } from '../recordings';
 
 import {
+  createDateKey,
+  sortDateKeysDesc,
+  formatDate,
+  isDateToday
+} from '../utils';
+
+import {
   Container,
   DayDivider,
   LoadingDayDivider,
@@ -18,12 +25,6 @@ import {
 import updatesReducer, { defaultUpdatesState } from './reducer';
 import useFetchMembers from './use-fetch-members';
 import useFetchUpdates from './use-fetch-updates';
-import {
-  createDateKey,
-  sortDateKeysDescending,
-  formatDate,
-  isDateToday
-} from './utils';
 
 export function PureStandupUpdates({
   isLoading,
@@ -46,7 +47,7 @@ export function PureStandupUpdates({
   };
 
   const dateKeys = Object.keys(updatesByDate);
-  const sortedDateKeys = sortDateKeysDescending(dateKeys);
+  const sortedDateKeys = sortDateKeysDesc(dateKeys);
 
   return (
     <Container>
