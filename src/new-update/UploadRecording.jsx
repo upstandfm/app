@@ -12,7 +12,7 @@ import { ProgressBar, UploadStatus } from './Progress';
 import { useUser } from '../auth0';
 
 import useUploadFile from './use-upload-file';
-import { createDateKey } from './utils';
+import { createDateKey } from '../utils';
 
 const UploadListItem = styled(ListItem)`
   display: grid;
@@ -98,7 +98,7 @@ function UploadRecording({ standupId, recording, onUploadedFile }) {
       'workspace-id': workspaceId,
       'standup-id': standupId,
       'recording-id': recording.id,
-      date: createDateKey(),
+      date: createDateKey(new Date()),
       name: displayName
     };
 
