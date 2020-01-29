@@ -104,13 +104,7 @@ export function PureRecordingsByMember({
 }
 
 PureRecordingsByMember.propTypes = {
-  members: PropTypes.arrayOf(
-    PropTypes.shape({
-      userId: PropTypes.string.isRequired,
-      userFullName: PropTypes.string,
-      avatarUrl: PropTypes.string
-    })
-  ),
+  members: PropTypes.array.isRequired,
   recordings: PropTypes.array.isRequired,
   audioPlayerState: PropTypes.shape({
     playingFile: PropTypes.shape({
