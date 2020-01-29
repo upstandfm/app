@@ -15,7 +15,7 @@ import Standups from '../standups';
 import NewStandup from '../new-standup';
 import Standup from '../standup';
 import NewUpdate from '../new-update';
-import Updates from '../updates';
+import StandupUpdates from '../standup-updates';
 
 import { AppContainer, Sidebar, Nav, Actions, Profile, Main } from './Layout';
 import { Menu, MenuLink } from './Menu';
@@ -92,7 +92,7 @@ function AuthenticatedApp() {
             <NewStandup path="/new-standup" />
 
             <Standup path="/standups/:standupId">
-              <Updates path="/" />
+              <StandupUpdates path="/" />
               <NewUpdate path="/new-update" />
             </Standup>
 
