@@ -14,7 +14,7 @@ import downloadProgressReducer, {
 
 import { Container, RecordingsList } from './Layout';
 import Empty from './Empty';
-import UpdateRecording from './UpdateRecording';
+import Recording from './Recording';
 
 const EmptyRecordings = styled(ListEmpty)`
   text-align: left;
@@ -26,7 +26,7 @@ const UserListItem = styled(ListItem)`
   }
 `;
 
-export function PureUpdateRecordings({
+export function PureRecordingsByMember({
   members,
   recordings,
   audioPlayerState,
@@ -81,7 +81,7 @@ export function PureUpdateRecordings({
                     const progress = downloadProgressState[id];
 
                     return (
-                      <UpdateRecording
+                      <Recording
                         key={id}
                         recording={recording}
                         isSelected={isSelected}
@@ -103,7 +103,7 @@ export function PureUpdateRecordings({
   );
 }
 
-PureUpdateRecordings.propTypes = {
+PureRecordingsByMember.propTypes = {
   members: PropTypes.arrayOf(
     PropTypes.shape({
       userId: PropTypes.string.isRequired,
@@ -125,7 +125,7 @@ PureUpdateRecordings.propTypes = {
   playPauseAudio: PropTypes.func.isRequired
 };
 
-function UpdateRecordings({ members, recordings }) {
+function RecordingsByMember({ members, recordings }) {
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
 
   const [downloadProgressState, downloadProgressDispatch] = React.useReducer(
@@ -202,7 +202,7 @@ function UpdateRecordings({ members, recordings }) {
   };
 
   return (
-    <PureUpdateRecordings
+    <PureRecordingsByMember
       members={members}
       recordings={recordings}
       audioPlayerState={audioPlayerState}
@@ -213,9 +213,9 @@ function UpdateRecordings({ members, recordings }) {
   );
 }
 
-UpdateRecordings.propTypes = {
+RecordingsByMember.propTypes = {
   members: PropTypes.array.isRequired,
   recordings: PropTypes.array.isRequired
 };
 
-export default UpdateRecordings;
+export default RecordingsByMember;

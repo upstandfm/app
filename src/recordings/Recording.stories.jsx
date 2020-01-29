@@ -1,22 +1,22 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import UpdateRecording from './UpdateRecording';
+import Recording from './Recording';
 
 const playPauseAudio = action('playPauseAudio');
 const downloadFile = action('downloadFile');
 
 export default {
-  title: 'modules/UpdateRecording',
-  component: UpdateRecording,
+  title: 'modules/Recordings/Recording',
+  component: Recording,
   parameters: {
-    componentSubtitle: 'Standup member update recording component'
+    componentSubtitle: 'Recording component'
   }
 };
 
 export const DefaultUpdateRecording = () => {
   return (
-    <UpdateRecording
+    <Recording
       recording={{
         id: 'XQyaVFWe',
         createdBy: 'auth0|user1',
@@ -42,7 +42,7 @@ DefaultUpdateRecording.story = {
 
 export const TranscodingUpdateRecording = () => {
   return (
-    <UpdateRecording
+    <Recording
       recording={{
         id: 'XQyaVFWe',
         createdBy: 'auth0|user1',
@@ -68,7 +68,7 @@ TranscodingUpdateRecording.story = {
 
 export const ErrorUpdateRecording = () => {
   return (
-    <UpdateRecording
+    <Recording
       recording={{
         id: 'XQyaVFWe',
         createdBy: 'auth0|user1',
@@ -94,7 +94,7 @@ ErrorUpdateRecording.story = {
 
 export const UntitledUpdateRecording = () => {
   return (
-    <UpdateRecording
+    <Recording
       recording={{
         id: 'XQyaVFWe',
         createdBy: 'auth0|user1',
@@ -120,7 +120,7 @@ UntitledUpdateRecording.story = {
 
 export const DownloadingUpdateRecording = () => {
   return (
-    <UpdateRecording
+    <Recording
       recording={{
         id: 'XQyaVFWe',
         createdBy: 'auth0|user1',
@@ -146,7 +146,7 @@ DownloadingUpdateRecording.story = {
 
 export const PlayingUpdateRecording = () => {
   return (
-    <UpdateRecording
+    <Recording
       recording={{
         id: 'XQyaVFWe',
         createdBy: 'auth0|user1',
@@ -172,7 +172,7 @@ PlayingUpdateRecording.story = {
 
 export const PausedUpdateRecording = () => {
   return (
-    <UpdateRecording
+    <Recording
       recording={{
         id: 'XQyaVFWe',
         createdBy: 'auth0|user1',

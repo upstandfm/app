@@ -1,24 +1,23 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { PureUpdateRecordings } from './UpdateRecordings';
+import { PureRecordingsByMember } from './RecordingsByMember';
 import { membersMockData, recordingsMockData } from './mock-data';
 
 const downloadFile = action('downloadFile');
 const playPauseAudio = action('playPauseAudio');
 
 export default {
-  title: 'modules/UpdateRecordings',
-  component: PureUpdateRecordings,
+  title: 'modules/Recordings/RecordingsByMember',
+  component: PureRecordingsByMember,
   parameters: {
-    componentSubtitle:
-      'Component that shows all standup members update recordings'
+    componentSubtitle: 'Recordings grouped by member'
   }
 };
 
 export const DefaultUpdateRecordings = () => {
   return (
-    <PureUpdateRecordings
+    <PureRecordingsByMember
       members={membersMockData}
       recordings={recordingsMockData}
       audioPlayerState={{

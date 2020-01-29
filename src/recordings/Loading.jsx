@@ -11,7 +11,7 @@ const PlayPause = styled.div`
   height: 40px;
 `;
 
-export function LoadingUpdateRecordings() {
+export function LoadingRecordingsByMember() {
   return (
     <Container>
       <List as="div">

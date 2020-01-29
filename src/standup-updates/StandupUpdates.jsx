@@ -5,9 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSnackbar } from '../components/Snackbar';
 import Button from '../components/Button';
 
-import UpdateRecordings, {
-  LoadingUpdateRecordings
-} from '../update-recordings';
+import { LoadingRecordingsByMember, RecordingsByMember } from '../recordings';
 
 import {
   Container,
@@ -38,7 +36,7 @@ export function PureStandupUpdates({
     return (
       <Container>
         <LoadingDayDivider />
-        <LoadingUpdateRecordings />
+        <LoadingRecordingsByMember />
       </Container>
     );
   }
@@ -64,7 +62,7 @@ export function PureStandupUpdates({
               title={isToday ? formattedDate : ''}
             />
 
-            <UpdateRecordings
+            <RecordingsByMember
               members={members}
               recordings={updatesByDate[dateKey]}
             />

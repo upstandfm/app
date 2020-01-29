@@ -65,7 +65,7 @@ Badge.propTypes = {
   status: PropTypes.oneOf(['transcoding', 'error', 'completed'])
 };
 
-function UpdateRecording({
+function Recording({
   recording,
   isSelected,
   hasFile,
@@ -139,7 +139,7 @@ function UpdateRecording({
   );
 }
 
-UpdateRecording.propTypes = {
+Recording.propTypes = {
   recording: PropTypes.shape({
     id: PropTypes.string.isRequired,
     createdBy: PropTypes.string.isRequired,
@@ -157,4 +157,4 @@ UpdateRecording.propTypes = {
   isPlaying: PropTypes.bool.isRequired
 };
 
-export default UpdateRecording;
+export default Recording;

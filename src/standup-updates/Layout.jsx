@@ -43,8 +43,6 @@ export const LoadingDayDivider = styled(DayDivider)`
   }
 `;
 
-LoadingDayDivider.propTypes = {};
-
 export const UpdatesContainer = styled.div``;
 
 export const LoadMoreContainer = styled.div`
