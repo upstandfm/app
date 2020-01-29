@@ -18,14 +18,13 @@ export const DefaultUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
-        recordingId: 'rec1',
+        id: 'XQyaVFWe',
+        createdBy: 'auth0|user1',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         name: 'Yesterday',
-        standupId: 'standup1',
-        userId: 'auth0|user1',
-        status: 'completed',
-        createdAt: 1571999306858,
-        updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+        transcodingStatus: 'completed',
+        transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -45,14 +44,13 @@ export const TranscodingUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
-        recordingId: 'rec1',
+        id: 'XQyaVFWe',
+        createdBy: 'auth0|user1',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         name: 'Yesterday',
-        standupId: 'standup1',
-        userId: 'auth0|user1',
-        status: 'transcoding',
-        createdAt: 1571999306858,
-        updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+        transcodingStatus: 'transcoding',
+        transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -72,14 +70,13 @@ export const ErrorUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
-        recordingId: 'rec1',
+        id: 'XQyaVFWe',
+        createdBy: 'auth0|user1',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         name: 'Yesterday',
-        standupId: 'standup1',
-        userId: 'auth0|user1',
-        status: 'error',
-        createdAt: 1571999306858,
-        updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+        transcodingStatus: 'error',
+        transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -99,14 +96,13 @@ export const UntitledUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
-        recordingId: 'rec1',
+        id: 'XQyaVFWe',
+        createdBy: 'auth0|user1',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         name: undefined,
-        standupId: 'standup1',
-        userId: 'auth0|user1',
-        status: 'completed',
-        createdAt: 1571999306858,
-        updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+        transcodingStatus: 'completed',
+        transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -126,14 +122,13 @@ export const DownloadingUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
-        recordingId: 'rec1',
+        id: 'XQyaVFWe',
+        createdBy: 'auth0|user1',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         name: 'Yesterday',
-        standupId: 'standup1',
-        userId: 'auth0|user1',
-        status: 'completed',
-        createdAt: 1571999306858,
-        updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+        transcodingStatus: 'completed',
+        transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/XQyaVFWe.mp3`
       }}
       isSelected={false}
       hasFile={false}
@@ -153,14 +148,13 @@ export const PlayingUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
-        recordingId: 'rec1',
+        id: 'XQyaVFWe',
+        createdBy: 'auth0|user1',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         name: 'Yesterday',
-        standupId: 'standup1',
-        userId: 'auth0|user1',
-        status: 'completed',
-        createdAt: 1571999306858,
-        updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+        transcodingStatus: 'completed',
+        transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/XQyaVFWe.mp3`
       }}
       isSelected={true}
       hasFile={true}
@@ -180,14 +174,13 @@ export const PausedUpdateRecording = () => {
   return (
     <UpdateRecording
       recording={{
-        recordingId: 'rec1',
+        id: 'XQyaVFWe',
+        createdBy: 'auth0|user1',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         name: 'Yesterday',
-        standupId: 'standup1',
-        userId: 'auth0|user1',
-        status: 'completed',
-        createdAt: 1571999306858,
-        updatedAt: 1571999306858,
-        transcodedFileKey: `audio/standups/standup1/25-10-2019/auth0|user1/XQyaVFWe.mp3`
+        transcodingStatus: 'completed',
+        transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/XQyaVFWe.mp3`
       }}
       isSelected={true}
       hasFile={true}

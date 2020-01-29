@@ -4,94 +4,92 @@
 
 export const membersMockData = [
   {
-    userId: 'auth0|user1',
-    userFullName: 'Daniël Illouz',
+    id: 'auth0|user1',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    fullName: 'Daniël Illouz',
+    email: 'daniel@upstand.fm',
     avatarUrl: 'https://avatars1.githubusercontent.com/u/6201287'
   },
 
   {
-    userId: 'auth0|user2',
-    userFullName: 'Eva Green',
+    id: 'auth0|user2',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    fullName: 'Eva Green',
+    email: 'eva@green.com',
     avatarUrl: ''
   },
 
   {
-    userId: 'auth0|user3',
-    userFullName: 'Rick Sanchez',
+    id: 'auth0|user3',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    fullName: 'Rick Sanchez',
+    email: 'rick@gfy.com',
     avatarUrl: ''
   }
 ];
 
-const today = new Date();
-const todayMonth = today.getMonth() + 1;
-const todayYear = today.getFullYear();
-const todayDateKey = `${today.getDate()}-${todayMonth}-${todayYear}`;
-
 export const recordingsMockData = [
   {
-    recordingId: 'rec1',
+    id: 'rec1',
+    createdBy: 'auth0|user1',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     name:
       'This recording has a very very loooong name with exactly 70 characters',
-    standupId: 'standup1',
-    userId: 'auth0|user1',
-    status: 'transcoding',
-    createdAt: today.getTime(),
-    updatedAt: today.getTime(),
-    transcodedFileKey: `audio/standups/standup1/${todayDateKey}/auth0|user1/rec1.mp3`
+    transcodingStatus: 'transcoding',
+    transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec1.mp3`
   },
 
   {
-    recordingId: 'rec2',
+    id: 'rec2',
+    createdBy: 'auth0|user1',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     name: 'Today',
-    standupId: 'standup1',
-    userId: 'auth0|user1',
-    status: 'completed',
-    createdAt: today.getTime(),
-    updatedAt: today.getTime(),
-    transcodedFileKey: `audio/standups/standup1/${todayDateKey}/auth0|user1/rec2.mp3`
+    transcodingStatus: 'completed',
+    transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec2.mp3`
   },
 
   {
-    recordingId: 'rec3',
+    id: 'rec3',
+    createdBy: 'auth0|user1',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     name: 'Blockers',
-    standupId: 'standup1',
-    userId: 'auth0|user1',
-    status: 'error',
-    createdAt: today.getTime(),
-    updatedAt: today.getTime(),
-    transcodedFileKey: `audio/standups/standup1/${todayDateKey}/auth0|user1/rec3.mp3`
+    transcodingStatus: 'error',
+    transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec3.mp3`
   },
 
   {
-    recordingId: 'rec4',
+    id: 'rec4',
+    createdBy: 'auth0|user2',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     name: 'Yesterday',
-    standupId: 'standup1',
-    userId: 'auth0|user2',
-    status: 'transcoding',
-    createdAt: today.getTime(),
-    updatedAt: today.getTime(),
-    transcodedFileKey: `audio/standups/standup1/${todayDateKey}/auth0|user2/rec4.mp3`
+    transcodingStatus: 'transcoding',
+    transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec4.mp3`
   },
 
   {
-    recordingId: 'rec5',
+    id: 'rec5',
+    createdBy: 'auth0|user2',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     name: 'Today',
-    standupId: 'standup1',
-    userId: 'auth0|user2',
-    status: 'completed',
-    createdAt: today.getTime(),
-    updatedAt: today.getTime(),
-    transcodedFileKey: `audio/standups/standup1/${todayDateKey}/auth0|user2/rec5.mp3`
+    transcodingStatus: 'completed',
+    transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec5.mp3`
   },
 
   {
-    recordingId: 'rec6',
+    id: 'rec6',
+    createdBy: 'auth0|user2',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     name: undefined,
-    standupId: 'standup1',
-    userId: 'auth0|user2',
-    status: 'error',
-    createdAt: today.getTime(),
-    updatedAt: today.getTime(),
-    transcodedFileKey: `audio/standups/standup1/${todayDateKey}/auth0|user2/rec6.mp3`
+    transcodingStatus: 'error',
+    transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec6.mp3`
   }
 ];

@@ -39,11 +39,13 @@ export function PureUpdateRecordings({
   }
 
   const recordingsByUserId = recordings.reduce((mapping, recording) => {
-    if (!mapping[recording.userId]) {
-      mapping[recording.userId] = [];
+    const userId = recording.createdBy;
+
+    if (!mapping[userId]) {
+      mapping[userId] = [];
     }
 
-    mapping[recording.userId].push(recording);
+    mapping[userId].push(recording);
     return mapping;
   }, {});
 
@@ -51,20 +53,20 @@ export function PureUpdateRecordings({
     <Container>
       <List as="div">
         {members.map(member => {
-          const { userId, userFullName } = member;
-          const userRecordings = recordingsByUserId[userId] || [];
+          const { id, fullName } = member;
+          const userRecordings = recordingsByUserId[id] || [];
 
           return (
-            <div key={userId}>
+            <div key={id}>
               <UserListItem as="div">
                 <Avatar
-                  title={userFullName}
-                  fullName={userFullName}
+                  title={fullName}
+                  fullName={fullName}
                   avatarUrl={member.avatarUrl}
-                  altText={`avatar of ${userFullName}`}
+                  altText={`avatar of ${fullName}`}
                 />
 
-                {userFullName}
+                {fullName}
               </UserListItem>
 
               <RecordingsList>
@@ -72,18 +74,15 @@ export function PureUpdateRecordings({
                   <EmptyRecordings>No updates.</EmptyRecordings>
                 ) : (
                   userRecordings.map(recording => {
-                    const { recordingId } = recording;
-                    const hasFile = Boolean(
-                      audioPlayerState.files[recordingId]
-                    );
-                    const isSelected =
-                      recordingId === audioPlayerState.playingFile.id;
+                    const { id } = recording;
+                    const hasFile = Boolean(audioPlayerState.files[id]);
+                    const isSelected = id === audioPlayerState.playingFile.id;
                     const isPlaying = isSelected && audioPlayerState.isPlaying;
-                    const progress = downloadProgressState[recordingId];
+                    const progress = downloadProgressState[id];
 
                     return (
                       <UpdateRecording
-                        key={recordingId}
+                        key={id}
                         recording={recording}
                         isSelected={isSelected}
                         hasFile={hasFile}
@@ -138,7 +137,7 @@ function UpdateRecordings({ members, recordings }) {
     downloadProgressDispatch({
       type: 'DOWNLOAD_FILE_PROGRESS',
       data: {
-        fileId: recording.recordingId,
+        fileId: recording.id,
         progress
       }
     });
@@ -148,7 +147,7 @@ function UpdateRecordings({ members, recordings }) {
     audioPlayerDispatch({
       type: 'LOAD_AUDIO_FILE',
       data: {
-        id: recording.recordingId,
+        id: recording.id,
         url: fileUrl
       }
     });
@@ -156,7 +155,7 @@ function UpdateRecordings({ members, recordings }) {
     audioPlayerDispatch({
       type: 'PLAY_AUDIO',
       data: {
-        id: recording.recordingId,
+        id: recording.id,
         title: recording.name
       }
     });
@@ -196,7 +195,7 @@ function UpdateRecordings({ members, recordings }) {
     audioPlayerDispatch({
       type: isPlaying ? 'PAUSE_AUDIO' : 'PLAY_AUDIO',
       data: {
-        id: recording.recordingId,
+        id: recording.id,
         title: recording.name
       }
     });

@@ -86,8 +86,8 @@ function UpdateRecording({
 
   const displayName = recording.name || 'Untitled';
   const helpText = `${isPlaying ? 'pause' : 'play'} recording "${displayName}"`;
-  const { status } = recording;
-  const isReady = status === 'completed';
+  const { transcodingStatus } = recording;
+  const isReady = transcodingStatus === 'completed';
   const isDownloading = downloadProgress > 0 && downloadProgress < 100;
 
   const handlePlayPauseRecording = () => {
@@ -124,8 +124,10 @@ function UpdateRecording({
         <RecordingName>{displayName}</RecordingName>
 
         {!isReady && (
-          <Badge status={status}>
-            {status === 'transcoding' ? 'processing' : status}
+          <Badge status={transcodingStatus}>
+            {transcodingStatus === 'transcoding'
+              ? 'processing'
+              : transcodingStatus}
           </Badge>
         )}
       </Content>
@@ -139,13 +141,12 @@ function UpdateRecording({
 
 UpdateRecording.propTypes = {
   recording: PropTypes.shape({
-    recordingId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    createdBy: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
     name: PropTypes.string,
-    standupId: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
-    status: PropTypes.oneOf(['transcoding', 'error', 'completed']),
-    createdAt: PropTypes.number.isRequired,
-    updatedAt: PropTypes.number.isRequired,
+    transcodingStatus: PropTypes.oneOf(['transcoding', 'error', 'completed']),
     transcodedFileKey: PropTypes.string
   }),
   isSelected: PropTypes.bool.isRequired,
