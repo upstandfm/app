@@ -73,7 +73,7 @@ export function PureStandupUpdates({
 
       <LoadMoreContainer>
         <Button
-          small
+          size="small"
           tertiary
           disabled={isLoadingMore}
           onClick={handleLoadMore}

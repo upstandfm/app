@@ -90,11 +90,11 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
         </NavContainer>
 
         <Actions>
-          <Button small tertiary as={Link} to="new-update">
+          <Button size="small" tertiary as={Link} to="new-update">
             New update
           </Button>
 
-          <Button small tertiary disabled title="not implemented yet">
+          <Button size="small" tertiary disabled title="not implemented yet">
             <FontAwesomeIcon icon="ellipsis-h" />
           </Button>
         </Actions>

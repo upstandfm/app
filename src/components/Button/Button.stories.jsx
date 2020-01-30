@@ -96,7 +96,7 @@ DisabledTertiaryButton.story = {
 
 export const SmallTertiaryButton = () => {
   return (
-    <Button small tertiary onClick={handleClick}>
+    <Button size="small" tertiary onClick={handleClick}>
       Click Me
     </Button>
   );

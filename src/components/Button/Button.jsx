@@ -4,7 +4,17 @@ import styled from 'styled-components';
 
 const RootButton = styled.button`
   font-family: 'Fira Sans', sans-serif;
-  font-size: ${props => (props.small ? '13px' : '15px')};
+  font-size: ${props => {
+    switch (props.size) {
+      case 'small': {
+        return '13px';
+      }
+
+      default: {
+        return '15px';
+      }
+    }
+  }};
   font-weight: bold;
   text-decoration: none;
   text-transform: none;
@@ -152,6 +162,7 @@ const Button = React.forwardRef((props, ref) => {
 });
 
 Button.propTypes = {
+  size: PropTypes.oneOf(['small']),
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
   round: PropTypes.bool,
