@@ -11,6 +11,7 @@ import { NotFound } from '../components/Errors';
 import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
 
+import Settings from '../settings';
 import Standups from '../standups';
 import NewStandup from '../new-standup';
 import Standup from '../standup';
@@ -63,6 +64,10 @@ function AuthenticatedApp() {
               <MenuLink exact to="/">
                 <FontAwesomeIcon icon="inbox" /> Inbox
               </MenuLink>
+
+              <MenuLink to="/settings">
+                <FontAwesomeIcon icon="cog" /> Settings
+              </MenuLink>
             </Menu>
           </Nav>
 
@@ -87,6 +92,10 @@ function AuthenticatedApp() {
           </ToggleButton>
 
           <Switch>
+            <Route path="/settings">
+              <Settings />
+            </Route>
+
             <Route path="/new-standup">
               <NewStandup />
             </Route>
