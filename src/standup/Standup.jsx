@@ -47,7 +47,7 @@ export function PureStandup({
   children
 }) {
   if (isLoading) {
-    return <Loading>{children}</Loading>;
+    return <Loading />;
   }
 
   if (!standup) {

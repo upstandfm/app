@@ -27,6 +27,15 @@ import updatesReducer, { defaultUpdatesState } from './reducer';
 import useFetchMembers from './use-fetch-members';
 import useFetchUpdates from './use-fetch-updates';
 
+export function LoadingStandupUpdates() {
+  return (
+    <Container>
+      <LoadingDayDivider />
+      <LoadingRecordingsByMember />
+    </Container>
+  );
+}
+
 export function PureStandupUpdates({
   isLoading,
   isLoadingMore,
@@ -35,12 +44,7 @@ export function PureStandupUpdates({
   fetchMoreUpdates
 }) {
   if (isLoading && !isLoadingMore) {
-    return (
-      <Container>
-        <LoadingDayDivider />
-        <LoadingRecordingsByMember />
-      </Container>
-    );
+    return <LoadingStandupUpdates />;
   }
 
   const handleLoadMore = () => {

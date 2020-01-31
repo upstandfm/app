@@ -6,6 +6,8 @@ import { LoadingAudioPlayer } from '../components/AudioPlayer';
 import Button from '../components/Button';
 import { Breadcrumbs, LoadingBreadcrumb } from '../components/Breadcrumbs';
 
+import { LoadingStandupUpdates } from '../standup-updates';
+
 import {
   Container,
   Header,
@@ -38,7 +40,9 @@ function Loading({ children }) {
         </Actions>
       </Header>
 
-      <Main>{children}</Main>
+      <Main>
+        <LoadingStandupUpdates />
+      </Main>
 
       <Footer>
         <LoadingAudioPlayer />
