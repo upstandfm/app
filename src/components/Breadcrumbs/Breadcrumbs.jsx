@@ -42,6 +42,10 @@ const Separator = styled(ListItem)`
 export const Breadcrumbs = ({ children, separator }) => {
   const childCount = React.Children.count(children);
   const items = React.Children.map(children, (child, i) => {
+    if (!child) {
+      return;
+    }
+
     const isLast = i === childCount - 1;
     if (isLast) {
       return React.cloneElement(child, {

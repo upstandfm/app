@@ -5,7 +5,8 @@ import {
   Route,
   Link,
   useParams,
-  useRouteMatch
+  useRouteMatch,
+  useLocation
 } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -40,6 +41,7 @@ import useFetchStandup from './use-fetch-standup';
 export function PureStandup({
   standupId,
   urlRouteMatch,
+  locationPathname,
   isLoading,
   standup,
   children
@@ -75,7 +77,7 @@ export function PureStandup({
     }
   };
 
-  const pathFragments = window.location.pathname.split('/').filter(Boolean);
+  const pathFragments = locationPathname.split('/').filter(Boolean);
 
   return (
     <Container>
@@ -83,12 +85,13 @@ export function PureStandup({
         <NavContainer>
           <Breadcrumbs>
             {pathFragments.map(fragment => {
-              const {
-                displayName,
-                asLink,
-                linkTo
-              } = breadcrumbConfigByPathFragment[fragment];
+              const config = breadcrumbConfigByPathFragment[fragment];
 
+              if (!config) {
+                return null;
+              }
+
+              const { displayName, asLink, linkTo } = config;
               return (
                 <Breadcrumb key={`breadcrumb-${fragment}`} title={displayName}>
                   {asLink ? (
@@ -130,6 +133,7 @@ export function PureStandup({
 PureStandup.propTypes = {
   standupId: PropTypes.string,
   urlRouteMatch: PropTypes.string,
+  locationPathname: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   standup: PropTypes.shape({
     id: PropTypes.string,
@@ -144,6 +148,7 @@ PureStandup.propTypes = {
 function Standup() {
   const { standupId } = useParams();
   const { path, url } = useRouteMatch();
+  const location = useLocation();
   const [standupState, standupDispatch] = React.useReducer(standupReducer, {});
   const [fetchStandup, abortFetchStandup, isFetching, err] = useFetchStandup(
     standupDispatch
@@ -179,6 +184,7 @@ function Standup() {
     <PureStandup
       standupId={standupId}
       urlRouteMatch={url}
+      locationPathname={location.pathname}
       isLoading={isFetching}
       standup={standupState}
     >
