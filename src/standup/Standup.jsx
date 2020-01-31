@@ -50,7 +50,7 @@ export function PureStandup({
     return <Loading>{children}</Loading>;
   }
 
-  if (Object.keys(standup).length === 0) {
+  if (!standup) {
     return (
       <NotFound
         title="Standup not found"
@@ -149,7 +149,7 @@ function Standup() {
   const { standupId } = useParams();
   const { path, url } = useRouteMatch();
   const location = useLocation();
-  const [standupState, standupDispatch] = React.useReducer(standupReducer, {});
+  const [standupState, standupDispatch] = React.useReducer(standupReducer);
   const [fetchStandup, abortFetchStandup, isFetching, err] = useFetchStandup(
     standupDispatch
   );
