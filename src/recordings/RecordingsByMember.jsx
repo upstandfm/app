@@ -179,8 +179,8 @@ function RecordingsByMember({ members, recordings }) {
         type: 'error',
         title: 'Failed to download audio',
         text: downloadErr.details
-          ? `${downloadErr.message}: ${downloadErr.details}.`
-          : downloadErr.message + '.'
+          ? `${downloadErr.message}: ${downloadErr.details}`
+          : downloadErr.message
       }
     });
   }, [downloadErr]); // eslint-disable-line react-hooks/exhaustive-deps

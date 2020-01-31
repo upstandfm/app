@@ -117,10 +117,10 @@ function NewStandup() {
     let text;
     if (err.details) {
       text = Array.isArray(err.details)
-        ? `${err.message}: ${err.details.join(', ')}.`
-        : err.details + '.';
+        ? `${err.message}: ${err.details.join(', ')}`
+        : err.details;
     } else {
-      text = err.message + '.';
+      text = err.message;
     }
 
     snackbarDispatch({

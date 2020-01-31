@@ -134,8 +134,8 @@ function StandupUpdates() {
         type: 'error',
         title: 'Failed to fetch workspace members',
         text: membersErr.details
-          ? `${membersErr.message}: ${membersErr.details}.`
-          : membersErr.message + '.'
+          ? `${membersErr.message}: ${membersErr.details}`
+          : membersErr.message
       }
     });
   }, [membersErr]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -171,8 +171,8 @@ function StandupUpdates() {
         type: 'error',
         title: 'Failed to fetch standup updates',
         text: updatesErr.details
-          ? `${updatesErr.message}: ${updatesErr.details}.`
-          : updatesErr.message + '.'
+          ? `${updatesErr.message}: ${updatesErr.details}`
+          : updatesErr.message
       }
     });
   }, [updatesErr]); // eslint-disable-line react-hooks/exhaustive-deps

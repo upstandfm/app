@@ -173,9 +173,7 @@ function Standup() {
       data: {
         type: 'error',
         title: 'Failed to fetch standup',
-        text: err.details
-          ? `${err.message}: ${err.details}.`
-          : err.message + '.'
+        text: err.details ? `${err.message}: ${err.details}` : err.message
       }
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps

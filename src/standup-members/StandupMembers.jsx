@@ -82,9 +82,7 @@ function StandupMembers({ standupId }) {
       data: {
         type: 'error',
         title: 'Failed to fetch standup members',
-        text: err.details
-          ? `${err.message}: ${err.details}.`
-          : err.message + '.'
+        text: err.details ? `${err.message}: ${err.details}` : err.message
       }
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps

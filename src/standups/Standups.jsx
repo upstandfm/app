@@ -145,9 +145,7 @@ function Standups() {
       data: {
         type: 'error',
         title: 'Failed to fetch standups',
-        text: err.details
-          ? `${err.message}: ${err.details}.`
-          : err.message + '.'
+        text: err.details ? `${err.message}: ${err.details}` : err.message
       }
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
