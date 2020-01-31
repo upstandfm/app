@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { navigate } from '@reach/router';
+import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import shortid from 'shortid';
@@ -127,21 +127,20 @@ const Subtitle = styled.p`
   text-transform: uppercase;
 `;
 
-function NewUpdate({ standupId }) {
+function NewUpdate() {
+  const { standupId } = useParams();
+  const history = useHistory();
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
-
   const [recordingsState, recordingsDispatch] = React.useReducer(
     recordingsReducer,
     defaultRecordingsState
   );
-
   const [
     getUserMedia,
     isGettingPermission,
     permissionErr,
     userMediaStream
   ] = useGetUserMedia();
-
   const [, snackbarDispatch] = useSnackbar();
 
   const [isPublishing, setIsPublishing] = React.useState(false);
@@ -179,7 +178,7 @@ function NewUpdate({ standupId }) {
 
       // Give some time for the progress animation(s) to finish
       setTimeout(() => {
-        navigate(`/standups/${standupId}`);
+        history.push(`/standups/${standupId}`);
       }, 750);
     },
     [hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
@@ -314,9 +313,5 @@ function NewUpdate({ standupId }) {
     />
   );
 }
-
-NewUpdate.propTypes = {
-  standupId: PropTypes.string
-};
 
 export default NewUpdate;

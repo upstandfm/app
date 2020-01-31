@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { navigate } from '@reach/router';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FocusTrap from 'focus-trap-react';
 
@@ -90,6 +90,7 @@ PureNewStandup.propTypes = {
 };
 
 function NewStandup() {
+  const history = useHistory();
   const [, standupsDispatch] = useStandups();
   const [
     createStandup,
@@ -97,7 +98,6 @@ function NewStandup() {
     isCreating,
     err
   ] = useCreateStandup();
-
   const [, snackbarDispatch] = useSnackbar();
 
   const [showConfirm, setShowConfirm] = React.useState(false);
@@ -134,7 +134,7 @@ function NewStandup() {
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const navigateHome = () => {
-    navigate('/');
+    history.push('/');
   };
 
   const onExit = () => {
@@ -164,7 +164,7 @@ function NewStandup() {
         }
       });
 
-      navigate(`/standups/${id}`);
+      history.push(`/standups/${id}`);
     }
   };
 

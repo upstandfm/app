@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from '@reach/router';
+import { NavLink } from 'react-router-dom';
 
 export const Menu = styled.div``;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 0.75em;
@@ -12,6 +12,7 @@ const StyledLink = styled(Link)`
   margin: 0;
   padding: 0.1em 1em;
   text-decoration: none;
+  color: var(--color-dark-grey);
   min-height: 27px;
   transition: all 0.1s linear;
 
@@ -24,20 +25,10 @@ const StyledLink = styled(Link)`
 export const MenuLink = props => (
   <StyledLink
     {...props}
-    getProps={({ isCurrent }) => {
-      const normalStyles = {
-        color: 'var(--color-dark-grey)'
-      };
-
-      const activeStyles = {
-        color: 'var(--color-darkest-grey)',
-        backgroundColor: 'var(--color-light-grey)',
-        fontWeight: 'bold'
-      };
-
-      return {
-        style: isCurrent ? activeStyles : normalStyles
-      };
+    activeStyle={{
+      color: 'var(--color-darkest-grey)',
+      backgroundColor: 'var(--color-light-grey)',
+      fontWeight: 'bold'
     }}
   />
 );

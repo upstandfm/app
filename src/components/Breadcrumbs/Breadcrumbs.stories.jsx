@@ -13,7 +13,7 @@ export default {
 };
 
 export const DefaultBreadcrumbs = () => {
-  const names = ['Standups', 'Standup FM', 'New Update'];
+  const names = ['Standups', 'Daily updates', 'New update'];
 
   return (
     <Breadcrumbs>
@@ -33,7 +33,7 @@ DefaultBreadcrumbs.story = {
 };
 
 export const CustomSeparatorBreadcrumbs = () => {
-  const names = ['Standups', 'Standup FM', 'New Update'];
+  const names = ['Standups', 'Daily updates', 'New update'];
 
   return (
     <Breadcrumbs separator=">">
@@ -83,10 +83,10 @@ export const LinkBreadcrumbs = () => {
       <Breadcrumb>Standups</Breadcrumb>
 
       <Breadcrumb>
-        <BreadcrumbLink to="/">Upstand FM</BreadcrumbLink>
+        <BreadcrumbLink to="/">Daily updates</BreadcrumbLink>
       </Breadcrumb>
 
-      <Breadcrumb>New Update</Breadcrumb>
+      <Breadcrumb>New update</Breadcrumb>
     </Breadcrumbs>
   );
 };

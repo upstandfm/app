@@ -21,6 +21,8 @@ import {
 import { useStandups } from './StandupsContext';
 import useFetchStandups from './use-fetch-standups';
 
+const PAGE_LIMIT = 10;
+
 const MenuButton = styled(Button)`
   padding: 0.1em 0.2em;
 `;
@@ -61,7 +63,7 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
           {standups.map(standup => {
             const { id } = standup;
             return (
-              <ListItemLink key={id} to={`standups/${id}`}>
+              <ListItemLink key={id} to={`/standups/${id}`}>
                 <ListItemText>{standup.name}</ListItemText>
 
                 <MenuButton
@@ -114,11 +116,8 @@ PureStandups.propTypes = {
   )
 };
 
-const PAGE_LIMIT = 10;
-
 function Standups() {
   const [standupsState, standupsDispatch] = useStandups();
-
   const [
     fetchStandups,
     abortFetchStandups,
@@ -126,7 +125,6 @@ function Standups() {
     err,
     nextPageCursor
   ] = useFetchStandups(standupsDispatch);
-
   const [, snackbarDispatch] = useSnackbar();
 
   React.useEffect(() => {

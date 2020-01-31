@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Link } from '@reach/router';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
@@ -14,8 +14,6 @@ import Button from '../components/Button';
 import Standups from '../standups';
 import NewStandup from '../new-standup';
 import Standup from '../standup';
-import NewUpdate from '../new-update';
-import StandupUpdates from '../standup-updates';
 
 import { AppContainer, Sidebar, Nav, Actions, Profile, Main } from './Layout';
 import { Menu, MenuLink } from './Menu';
@@ -48,7 +46,7 @@ function AuthenticatedApp() {
   };
 
   return (
-    <>
+    <Router>
       <AppContainer>
         <Sidebar show={isOpen}>
           <Profile>
@@ -62,7 +60,7 @@ function AuthenticatedApp() {
 
           <Nav>
             <Menu>
-              <MenuLink to="/">
+              <MenuLink exact to="/">
                 <FontAwesomeIcon icon="inbox" /> Inbox
               </MenuLink>
             </Menu>
@@ -71,7 +69,7 @@ function AuthenticatedApp() {
           <Standups />
 
           <Actions>
-            <Button secondary as={Link} to="new-standup">
+            <Button secondary as={Link} to="/new-standup">
               New standup
             </Button>
           </Actions>
@@ -88,25 +86,28 @@ function AuthenticatedApp() {
             <FontAwesomeIcon icon="bars" size="lg" />
           </ToggleButton>
 
-          <Router>
-            <NewStandup path="/new-standup" />
+          <Switch>
+            <Route path="/new-standup">
+              <NewStandup />
+            </Route>
 
-            <Standup path="/standups/:standupId">
-              <StandupUpdates path="/" />
-              <NewUpdate path="/new-update" />
-            </Standup>
+            <Route path="/standups/:standupId">
+              <Standup />
+            </Route>
 
-            <NotFound
-              default
-              title="Page not found"
-              info="Sorry! This page doesn't exist."
-            />
-          </Router>
+            <Route path="*">
+              <NotFound
+                default
+                title="Page not found"
+                info="Sorry! This page doesn't exist."
+              />
+            </Route>
+          </Switch>
         </Main>
       </AppContainer>
 
       <Snackbar />
-    </>
+    </Router>
   );
 }
 

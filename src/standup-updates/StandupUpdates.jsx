@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useSnackbar } from '../components/Snackbar';
@@ -97,9 +98,9 @@ PureStandupUpdates.propTypes = {
   fetchMoreUpdates: PropTypes.func.isRequired
 };
 
-function StandupUpdates({ standupId }) {
+function StandupUpdates() {
+  const { standupId } = useParams();
   const [, snackbarDispatch] = useSnackbar();
-
   const [updatesState, updatesDispatch] = React.useReducer(
     updatesReducer,
     defaultUpdatesState
@@ -200,9 +201,5 @@ function StandupUpdates({ standupId }) {
     />
   );
 }
-
-StandupUpdates.propTypes = {
-  standupId: PropTypes.string
-};
 
 export default StandupUpdates;

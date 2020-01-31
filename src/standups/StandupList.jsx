@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from '@reach/router';
+import { NavLink } from 'react-router-dom';
 
 export { LoadingListItemText } from '../components/List';
 
@@ -29,9 +29,9 @@ const ListItem = styled.div`
   grid-gap: 0.25em;
   align-items: center;
   padding: 0.1rem 1rem;
-  font-weight: normal;
+  text-decoration: none;
+  color: var(--color-dark-grey);
   min-height: 27px;
-  font-weight: normal;
   transition: all 0.1s linear;
 
   :hover {
@@ -42,26 +42,12 @@ const ListItem = styled.div`
 
 export const ListItemLink = props => (
   <ListItem
-    as={Link}
+    as={NavLink}
     {...props}
-    getProps={({ isCurrent, isPartiallyCurrent }) => {
-      const normalStyles = {
-        textDecoration: 'none',
-        color: 'var(--color-dark-grey)'
-      };
-
-      const activeStyles = {
-        textDecoration: 'none',
-        color: 'var(--color-darkest-grey)',
-        backgroundColor: 'var(--color-light-grey)',
-        fontWeight: 'bold'
-      };
-
-      const isActive = isCurrent || isPartiallyCurrent;
-
-      return {
-        style: isActive ? activeStyles : normalStyles
-      };
+    activeStyle={{
+      color: 'var(--color-darkest-grey)',
+      backgroundColor: 'var(--color-light-grey)',
+      fontWeight: 'bold'
     }}
   />
 );

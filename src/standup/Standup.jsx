@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import {
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch
+} from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import NewUpdate from '../new-update';
+import StandupUpdates from '../standup-updates';
 
 import AudioPlayer from '../components/AudioPlayer';
 import Button from '../components/Button';
@@ -27,7 +37,13 @@ import Loading from './Loading';
 import standupReducer from './reducer';
 import useFetchStandup from './use-fetch-standup';
 
-export function PureStandup({ standupId, isLoading, standup, children }) {
+export function PureStandup({
+  standupId,
+  urlRouteMatch,
+  isLoading,
+  standup,
+  children
+}) {
   if (isLoading) {
     return <Loading>{children}</Loading>;
   }
@@ -50,13 +66,10 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
     [standupId]: {
       displayName: standup.name,
       asLink: true,
-
-      // Empty string links to the "parents root"
-      // In this case: "/standups/:standupId"
-      linkTo: ''
+      linkTo: urlRouteMatch
     },
     'new-update': {
-      displayName: 'New Update',
+      displayName: 'New update',
       asLink: false,
       linkTo: undefined
     }
@@ -90,7 +103,12 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
         </NavContainer>
 
         <Actions>
-          <Button size="small" tertiary as={Link} to="new-update">
+          <Button
+            size="small"
+            tertiary
+            as={Link}
+            to={`${urlRouteMatch}/new-update`}
+          >
             New update
           </Button>
 
@@ -111,6 +129,7 @@ export function PureStandup({ standupId, isLoading, standup, children }) {
 
 PureStandup.propTypes = {
   standupId: PropTypes.string,
+  urlRouteMatch: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   standup: PropTypes.shape({
     id: PropTypes.string,
@@ -122,12 +141,13 @@ PureStandup.propTypes = {
   })
 };
 
-function Standup({ standupId, children }) {
+function Standup() {
+  const { standupId } = useParams();
+  const { path, url } = useRouteMatch();
   const [standupState, standupDispatch] = React.useReducer(standupReducer, {});
   const [fetchStandup, abortFetchStandup, isFetching, err] = useFetchStandup(
     standupDispatch
   );
-
   const [, snackbarDispatch] = useSnackbar();
 
   React.useEffect(() => {
@@ -158,16 +178,21 @@ function Standup({ standupId, children }) {
   return (
     <PureStandup
       standupId={standupId}
+      urlRouteMatch={url}
       isLoading={isFetching}
       standup={standupState}
     >
-      {children}
+      <Switch>
+        <Route exact path={path}>
+          <StandupUpdates />
+        </Route>
+
+        <Route exact path={`${path}/new-update`}>
+          <NewUpdate />
+        </Route>
+      </Switch>
     </PureStandup>
   );
 }
-
-Standup.propTypes = {
-  standupId: PropTypes.string
-};
 
 export default Standup;

@@ -10,10 +10,17 @@ export default {
   }
 };
 
-export const LoadingStandups = () => {
-  return <PureStandup isLoading={true} standup={{}} />;
+export const LoadingStandup = () => {
+  return (
+    <PureStandup
+      standupId="Zxz0y6f"
+      urlRouteMatch=""
+      isLoading={true}
+      standup={{}}
+    />
+  );
 };
 
-LoadingStandups.story = {
+LoadingStandup.story = {
   name: 'loading'
 };

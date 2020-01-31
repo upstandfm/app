@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { addDecorator, addParameters } from '@storybook/react';
 import styled from 'styled-components';
 import { withA11y } from '@storybook/addon-a11y';
@@ -12,7 +13,11 @@ const Container = styled.div`
 `;
 
 addDecorator(storyFn => {
-  return <Container>{storyFn()}</Container>;
+  return (
+    <Router>
+      <Container>{storyFn()}</Container>
+    </Router>
+  );
 });
 
 addDecorator(withA11y);

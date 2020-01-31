@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { LoadingAudioPlayer } from '../components/AudioPlayer';
@@ -16,6 +16,8 @@ import {
 } from './Layout';
 
 function Loading({ children }) {
+  const { url } = useRouteMatch();
+
   return (
     <Container>
       <Header>
@@ -26,7 +28,7 @@ function Loading({ children }) {
         </NavContainer>
 
         <Actions>
-          <Button size="small" tertiary as={Link} to="new-update">
+          <Button size="small" tertiary as={Link} to={`${url}/new-update`}>
             New update
           </Button>
 

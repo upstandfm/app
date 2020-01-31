@@ -118,7 +118,7 @@ const RoundButton = styled(RootButton)`
  * "as" prop. For example, to render a button as a router link, you can do:
  *
  * ```js
- * import { Link } from '@reach/router';
+ * import { Link } from 'react-router-dom';
  *
  * <Button secondary as={Link} to="/">New Standup</Button>
  * ```
