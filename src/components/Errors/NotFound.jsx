@@ -8,7 +8,7 @@ import Button from '../Button';
 
 const Container = styled.div`
   display: grid;
-  height: 100vh;
+  height: 100%;
   padding: 0 1em;
 `;
 

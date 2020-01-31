@@ -196,6 +196,13 @@ function Standup() {
         <Route exact path={`${path}/new-update`}>
           <NewUpdate />
         </Route>
+
+        <Route path="*">
+          <NotFound
+            title="Page not found"
+            info="Sorry! This page doesn't exist."
+          />
+        </Route>
       </Switch>
     </PureStandup>
   );

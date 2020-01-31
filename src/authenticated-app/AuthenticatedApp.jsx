@@ -97,7 +97,6 @@ function AuthenticatedApp() {
 
             <Route path="*">
               <NotFound
-                default
                 title="Page not found"
                 info="Sorry! This page doesn't exist."
               />
