@@ -5,3 +5,7 @@ import { AvatarContainer } from './Avatar';
 export const LoadingAvatar = styled(AvatarContainer)`
   background-color: var(--color-light-grey);
 `;
+
+LoadingAvatar.defaultProps = {
+  size: '32px'
+};
