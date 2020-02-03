@@ -19,7 +19,7 @@ export const Sidebar = styled.div`
   border-right: 1px solid var(--color-light-grey);
   display: grid;
   grid-template-areas:
-    'profile'
+    'header'
     'nav'
     'standups'
     'actions';
@@ -40,8 +40,8 @@ Sidebar.propTypes = {
   show: PropTypes.bool.isRequired
 };
 
-export const Profile = styled.div`
-  grid-area: profile;
+export const Header = styled.div`
+  grid-area: header;
   margin: 1em 0;
   padding: 0 1em;
 `;
