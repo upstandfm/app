@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 import { useAuth0, useUser } from '../auth0';
+import { useWorkspace } from '../workspace';
 import useMatchMediaQuery from '../hooks/use-match-media-query';
 
-import { AvatarDropdown } from '../components/Dropdown';
+import WorkspaceDropdown from '../components/WorkspaceDropdown';
 import { NotFound } from '../components/Errors';
 import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
@@ -16,7 +17,7 @@ import Standups from '../standups';
 import NewStandup from '../new-standup';
 import Standup from '../standup';
 
-import { AppContainer, Sidebar, Nav, Actions, Profile, Main } from './Layout';
+import { AppContainer, Sidebar, Header, Nav, Actions, Main } from './Layout';
 import { Menu, MenuLink } from './Menu';
 
 const ToggleButton = styled(Button)`
@@ -27,7 +28,8 @@ const ToggleButton = styled(Button)`
 
 function AuthenticatedApp() {
   const { logout } = useAuth0();
-  const { avatarUrl, fullName, email } = useUser();
+  const user = useUser();
+  const [workspace] = useWorkspace();
   const [isMobile] = useMatchMediaQuery('max-width: 980px');
 
   const [isOpen, setIsOpen] = React.useState(true);
@@ -50,14 +52,13 @@ function AuthenticatedApp() {
     <Router>
       <AppContainer>
         <Sidebar show={isOpen}>
-          <Profile>
-            <AvatarDropdown
+          <Header>
+            <WorkspaceDropdown
+              user={user}
+              workspace={workspace}
               logout={logout}
-              avatarUrl={avatarUrl}
-              fullName={fullName}
-              email={email}
             />
-          </Profile>
+          </Header>
 
           <Nav>
             <Menu>
