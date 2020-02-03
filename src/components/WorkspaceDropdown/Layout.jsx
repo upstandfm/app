@@ -29,12 +29,6 @@ export const User = styled.div`
   padding: 8px 14px;
 `;
 
-export const Avatar = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-`;
-
 export const UserInfo = styled.div`
   width: 150px;
 `;

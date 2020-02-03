@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useSnackbar } from '../Snackbar';
 import Dropdown, { DropdownSection, DropdownItem } from '../Dropdown';
+import Avatar from '../Avatar';
 
 import LoadingWorkspace from './Loading';
 
@@ -11,7 +12,6 @@ import {
   WorkspaceName,
   Icon,
   User,
-  Avatar,
   UserInfo,
   FullName,
   Email,
@@ -44,7 +44,12 @@ export function PureWorkspaceDropdown({
     >
       <DropdownSection>
         <User>
-          <Avatar data-testid="avatar" src={userAvatarUrl} alt="user avatar" />
+          <Avatar
+            size="40px"
+            title={userFullName}
+            fullName={userFullName}
+            avatarUrl={userAvatarUrl}
+          />
 
           <UserInfo>
             <FullName title={userFullName}>{userFullName}</FullName>
@@ -66,8 +71,8 @@ export function PureWorkspaceDropdown({
 
 PureWorkspaceDropdown.defaultProps = {
   workspaceName: 'Workspace',
-  userFullName: 'No user info',
-  userEmail: 'No email'
+  userFullName: 'User',
+  userEmail: 'email'
 };
 
 PureWorkspaceDropdown.propTypes = {
