@@ -9,8 +9,8 @@ export const AvatarContainer = styled.div`
   display: grid;
   align-items: center;
   justify-items: center;
-  width: 32px;
-  height: 32px;
+  width: ${props => props.size};
+  height: ${props => props.size};
   border-radius: 50%;
   background-color: var(--color-lightest-purple);
   color: var(--color-dark-purple);
@@ -26,12 +26,13 @@ const Image = styled.img`
   top: 0;
   left: 0;
   border: 0;
-  width: 32px;
-  height: 32px;
+  width: ${props => props.size};
+  height: ${props => props.size};
   border-radius: 50%;
 `;
 
 export default function Avatar({
+  size,
   title,
   fullName,
   avatarUrl,
@@ -42,14 +43,15 @@ export default function Avatar({
   const initials = getFullNameInitials(fullName || '');
 
   return (
-    <AvatarContainer title={title} {...props}>
+    <AvatarContainer size={size} title={title} {...props}>
       {initials}
-      <Image src={avatarUrl} alt={altText} />
+      <Image size={size} src={avatarUrl} alt={altText} />
     </AvatarContainer>
   );
 }
 
 Avatar.propTypes = {
+  size: PropTypes.string,
   title: PropTypes.string,
   fullName: PropTypes.string,
   avatarUrl: PropTypes.string,
@@ -57,5 +59,6 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
+  size: '32px',
   altText: 'user avatar image'
 };
