@@ -1,1 +1,2 @@
-export { default as AvatarDropdown } from './AvatarDropdown';
+export { default } from './Dropdown';
+export * from './Dropdown';
