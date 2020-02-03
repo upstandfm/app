@@ -82,5 +82,5 @@ export const NoInfoWorkspaceNameDropdown = () => {
 };
 
 NoInfoWorkspaceNameDropdown.story = {
-  name: 'no info'
+  name: 'no data'
 };
