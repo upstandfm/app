@@ -8,8 +8,28 @@
  */
 export default function workspaceReducer(state, action) {
   switch (action.type) {
+    case 'FETCHING_WORKSPACE': {
+      return {
+        ...state,
+        isFetching: true,
+        fetchErr: null
+      };
+    }
+
     case 'FETCHED_WORKSPACE': {
-      return action.data;
+      return {
+        ...state,
+        isFetching: false,
+        ...action.data
+      };
+    }
+
+    case 'FETCH_WORKSPACE_ERROR': {
+      return {
+        ...state,
+        isFetching: false,
+        fetchErr: action.data
+      };
     }
 
     default: {
@@ -19,6 +39,8 @@ export default function workspaceReducer(state, action) {
 }
 
 export const defaultWorkspaceState = {
+  isFetching: true,
+  fetchErr: null,
   id: undefined,
   createdBy: undefined,
   createdAt: undefined,

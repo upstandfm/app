@@ -16,12 +16,7 @@ export function WorkspaceProvider(props) {
     defaultWorkspaceState
   );
 
-  const [
-    fetchWorkspace,
-    abortFetchWorkspace,
-    isFetching,
-    err
-  ] = useFetchWorkspace(dispatch);
+  const [fetchWorkspace, abortFetchWorkspace] = useFetchWorkspace(dispatch);
 
   React.useEffect(() => {
     if (!workspaceId) {
@@ -35,14 +30,8 @@ export function WorkspaceProvider(props) {
     };
   }, [workspaceId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const data = {
-    ...state,
-    isFetching,
-    fetchErr: err
-  };
-
   return (
-    <StateContext.Provider value={data}>
+    <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         {props.children}
       </DispatchContext.Provider>
