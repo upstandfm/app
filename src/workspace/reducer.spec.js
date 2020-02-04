@@ -24,7 +24,15 @@ describe('workspace reducer', () => {
   });
 
   it('returns default state', () => {
-    const state = { id: '1', name: 'Workspace' };
+    const now = new Date().toISOString();
+    const state = {
+      id: 'xs0Yt56',
+      createdBy: 'user|564738575e89e38f47',
+      createdAt: now,
+      updatedAt: now,
+      name: 'My workspace',
+      slug: 'my-workspace'
+    };
 
     const action = {
       type: 'DOES_NOT_EXIST',

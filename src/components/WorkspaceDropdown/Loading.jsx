@@ -36,7 +36,7 @@ export default function LoadingWorkspace() {
   return (
     <Container>
       <Trigger>
-        <Loading>A loading tite</Loading>
+        <Loading>A loading title</Loading>
       </Trigger>
     </Container>
   );
