@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Form = styled.form``;
 
 export const Section = styled.div`
-  margin: 2em 0;
+  margin: 1.5em 0;
 `;
 
 export const Label = styled.label`
@@ -13,10 +13,9 @@ export const Label = styled.label`
   align-items: center;
   text-transform: none;
   font-weight: bold;
-  font-size: 13px;
   letter-spacing: 0.035rem;
   line-height: 1.5;
-  color: var(--color-grey);
+  color: var(--color-dark-grey);
 
   :hover {
     cursor: pointer;
@@ -44,6 +43,7 @@ export const Input = styled.input`
 
   ::placeholder {
     font-weight: normal;
+    color: var(--color-grey);
   }
 
   :focus {
@@ -54,7 +54,7 @@ export const Input = styled.input`
 
   :disabled {
     cursor: not-allowed;
-    background-color: var(--color-white);
+    background-color: var(--color-lighter-grey);
     text-decoration: line-through;
   }
 
@@ -65,9 +65,8 @@ export const Input = styled.input`
 `;
 
 export const Description = styled.p`
+  display: inline-block;
   margin: 0.5rem 0 0 0;
-  font-size: 13px;
-  font-style: italic;
   line-height: 1.5;
   color: ${props =>
     props.error ? 'var(--color-dark-red)' : 'var(--color-grey)'};
