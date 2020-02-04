@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 export const Menu = styled.ul`
   display: block;
+  position: sticky;
+  top: 0;
   list-style: none;
   background-color: var(--color-white);
   border: 1px solid var(--color-light-grey);

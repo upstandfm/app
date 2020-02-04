@@ -78,7 +78,6 @@ PureWorkspaceDropdown.defaultProps = {
 
 PureWorkspaceDropdown.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  refs: PropTypes.array.isRequired,
   workspaceName: PropTypes.string,
   userAvatarUrl: PropTypes.string,
   userFullName: PropTypes.string,
