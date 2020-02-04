@@ -9,7 +9,8 @@ export default {
   title: 'components/WorkspaceDropdown',
   component: PureWorkspaceDropdown,
   parameters: {
-    componentSubtitle: 'Workspace dropdown component'
+    componentSubtitle:
+      'Workspace dropdown shows workspace- and user context information. And allows the user to perform actions like logout.'
   }
 };
 
@@ -17,7 +18,6 @@ export const LoadingWorkspaceDropdown = () => {
   return (
     <PureWorkspaceDropdown
       isLoading={true}
-      refs={[]}
       workspaceName={undefined}
       userAvatarUrl={undefined}
       userFullName={undefined}
@@ -35,11 +35,10 @@ export const DefaultWorkspaceDropdown = () => {
   return (
     <PureWorkspaceDropdown
       isLoading={false}
-      refs={[]}
-      workspaceName={'Upstand FM'}
-      userAvatarUrl={'https://avatars1.githubusercontent.com/u/6201287'}
-      userFullName={'Daniël Illouz'}
-      userEmail={'daniel@upstand.fm'}
+      workspaceName="Upstand FM"
+      userAvatarUrl="https://avatars1.githubusercontent.com/u/6201287"
+      userFullName="Daniël Illouz"
+      userEmail="daniel@upstand.fm"
       logout={logout}
     />
   );
@@ -53,11 +52,10 @@ export const LongTextWorkspaceDropdown = () => {
   return (
     <PureWorkspaceDropdown
       isLoading={false}
-      refs={[]}
-      workspaceName={'My awesome workspace with a very long name'}
-      userAvatarUrl={'https://avatars1.githubusercontent.com/u/6201287'}
-      userFullName={'Daniël Dandi Dan Illouz'}
-      userEmail={'daniel.dandi.dan.illouz@upstand.fm'}
+      workspaceName="My awesome workspace with a very long name"
+      userAvatarUrl="https://avatars1.githubusercontent.com/u/6201287"
+      userFullName="Daniël Dandi Dan Illouz"
+      userEmail="daniel.dandi.dan.illouz@upstand.fm"
       logout={logout}
     />
   );
@@ -71,7 +69,6 @@ export const NoInfoWorkspaceNameDropdown = () => {
   return (
     <PureWorkspaceDropdown
       isLoading={false}
-      refs={[]}
       workspaceName={undefined}
       userAvatarUrl={undefined}
       userFullName={undefined}

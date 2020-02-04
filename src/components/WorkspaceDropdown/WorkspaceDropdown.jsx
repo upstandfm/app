@@ -20,7 +20,6 @@ import {
 
 export function PureWorkspaceDropdown({
   isLoading,
-  refs,
   workspaceName,
   userAvatarUrl,
   userFullName,
@@ -31,10 +30,12 @@ export function PureWorkspaceDropdown({
     return <LoadingWorkspace />;
   }
 
+  const buttonRefs = [React.createRef()];
+
   return (
     <Dropdown
       width="220px"
-      refs={refs}
+      refs={buttonRefs}
       triggerEl={
         <Trigger>
           <WorkspaceName title={workspaceName}>{workspaceName}</WorkspaceName>
@@ -60,7 +61,7 @@ export function PureWorkspaceDropdown({
 
       <DropdownSection>
         <DropdownItem>
-          <BlankButton ref={refs[0]} role="menuitem" onClick={logout}>
+          <BlankButton ref={buttonRefs[0]} role="menuitem" onClick={logout}>
             Logout
           </BlankButton>
         </DropdownItem>
@@ -106,12 +107,9 @@ function WorkspaceDropdown({ user, workspace, logout }) {
     });
   }, [fetchErr]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const dropdownRefs = [React.createRef()];
-
   return (
     <PureWorkspaceDropdown
       isLoading={workspace.isFetching}
-      refs={dropdownRefs}
       workspaceName={workspace.name}
       userAvatarUrl={user.avatarUrl}
       userFullName={user.fullName}
@@ -123,7 +121,7 @@ function WorkspaceDropdown({ user, workspace, logout }) {
 
 WorkspaceDropdown.propTypes = {
   user: PropTypes.shape({
-    workspaceId: PropTypes.string,
+    workspaceId: PropTypes.string.isRequired,
     userId: PropTypes.string,
     email: PropTypes.string,
     emailIsVerified: PropTypes.bool,
@@ -133,7 +131,7 @@ WorkspaceDropdown.propTypes = {
     updatedAt: PropTypes.string
   }),
   workspace: PropTypes.shape({
-    isFetching: PropTypes.bool,
+    isFetching: PropTypes.bool.isRequired,
     fetchErr: PropTypes.object,
     id: PropTypes.string,
     createdBy: PropTypes.string,
