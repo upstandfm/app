@@ -9,6 +9,7 @@ import {
   Container,
   Header,
   NavContainer,
+  Wrapper,
   Main,
   SideNav,
   Content
@@ -27,25 +28,27 @@ export function PureSettings({ urlRouteMatch, children }) {
         </NavContainer>
       </Header>
 
-      <Main>
-        <SideNav>
-          <Menu>
-            <MenuLink exact to={urlRouteMatch}>
-              Workspace
-            </MenuLink>
+      <Wrapper>
+        <Main>
+          <SideNav>
+            <Menu>
+              <MenuLink exact to={urlRouteMatch}>
+                Workspace
+              </MenuLink>
 
-            <MenuLink exact to={`${urlRouteMatch}/members`}>
-              Members
-            </MenuLink>
+              <MenuLink exact to={`${urlRouteMatch}/members`}>
+                Members
+              </MenuLink>
 
-            <MenuLink exact to={`${urlRouteMatch}/account`}>
-              Account
-            </MenuLink>
-          </Menu>
-        </SideNav>
+              <MenuLink exact to={`${urlRouteMatch}/account`}>
+                Account
+              </MenuLink>
+            </Menu>
+          </SideNav>
 
-        <Content>{children}</Content>
-      </Main>
+          <Content>{children}</Content>
+        </Main>
+      </Wrapper>
     </Container>
   );
 }
