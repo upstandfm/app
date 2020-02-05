@@ -98,10 +98,6 @@ PureWorkspaceSettings.propTypes = {
   slug: PropTypes.string
 };
 
-PureWorkspaceSettings.defaultProps = {
-  isFetching: true
-};
-
 function WorkspaceSettings() {
   const [workspace] = useWorkspace();
 
