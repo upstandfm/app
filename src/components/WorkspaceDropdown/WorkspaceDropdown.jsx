@@ -5,7 +5,7 @@ import { useSnackbar } from '../Snackbar';
 import Dropdown, { DropdownSection, DropdownItem } from '../Dropdown';
 import Avatar from '../Avatar';
 
-import LoadingWorkspace from './Loading';
+import Loading from './Loading';
 
 import {
   Trigger,
@@ -27,7 +27,7 @@ export function PureWorkspaceDropdown({
   logout
 }) {
   if (isLoading) {
-    return <LoadingWorkspace />;
+    return <Loading />;
   }
 
   const buttonRefs = [React.createRef()];
