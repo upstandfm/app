@@ -2,7 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
 
-import { Form, Section, Label, InlineLabel, Input, Description } from './Input';
+import {
+  Form,
+  Section,
+  Label,
+  InlineLabel,
+  Input,
+  Description,
+  LoadingInput,
+  LoadingLabel
+} from './Input';
 
 const onChange = action('onChange');
 
@@ -67,7 +76,7 @@ export const DisabledInput = () => {
     <Form>
       <Container>
         <Section>
-          <Label htmlFor="name">
+          <Label htmlFor="name" disabled>
             NAME
             <Input type="text" id="name" placeholder="Placeholder" disabled />
           </Label>
@@ -88,9 +97,9 @@ export const DisabledValueInput = () => {
     <Form>
       <Container>
         <Section>
-          <Label htmlFor="name">
+          <Label htmlFor="name" disabled>
             NAME
-            <Input disabled type="text" id="name" value="Daniël" />
+            <Input type="text" id="name" value="Daniël" disabled />
           </Label>
 
           <Description>Your preferred name.</Description>
@@ -142,4 +151,25 @@ export const InlineInput = () => {
 
 InlineInput.story = {
   name: 'inline'
+};
+
+export const LoadingInputValue = () => {
+  return (
+    <Form>
+      <Container>
+        <Section>
+          <LoadingLabel>
+            NAME
+            <LoadingInput disabled />
+          </LoadingLabel>
+
+          <Description />
+        </Section>
+      </Container>
+    </Form>
+  );
+};
+
+LoadingInputValue.story = {
+  name: 'loading'
 };
