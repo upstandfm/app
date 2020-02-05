@@ -17,7 +17,7 @@ const Container = styled.div`
   line-height: 1;
 `;
 
-const Loading = styled(WorkspaceName)`
+const LoadingWorkspaceName = styled(WorkspaceName)`
   color: transparent;
   background-color: var(--color-light-grey);
   border-radius: var(--radius-size);
@@ -30,13 +30,17 @@ const Loading = styled(WorkspaceName)`
   );
   background-size: 100% 100%;
   animation: ${glimmer} 1s ease-in-out infinite;
+
+  :hover {
+    cursor: wait;
+  }
 `;
 
-export default function LoadingWorkspace() {
+export default function Loading() {
   return (
     <Container>
       <Trigger>
-        <Loading>A loading title</Loading>
+        <LoadingWorkspaceName>A loading name</LoadingWorkspaceName>
       </Trigger>
     </Container>
   );
