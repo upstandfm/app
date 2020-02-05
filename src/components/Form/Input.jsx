@@ -18,7 +18,7 @@ export const Label = styled.label`
   color: var(--color-dark-grey);
 
   :hover {
-    cursor: pointer;
+    cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   }
 `;
 
@@ -64,15 +64,26 @@ export const Input = styled.input`
   }
 `;
 
-export const Description = styled.p`
-  display: inline-block;
+export const Description = styled.div`
   margin: 0.5rem 0 0 0;
   line-height: 1.5;
   color: ${props =>
     props.error ? 'var(--color-dark-red)' : 'var(--color-grey)'};
-  height: 20px;
+  min-height: 22.5px;
 `;
 
 Description.propTypes = {
   error: PropTypes.bool
 };
+
+export const LoadingInput = styled(Input)`
+  :hover {
+    cursor: wait;
+  }
+`;
+
+export const LoadingLabel = styled(Label)`
+  :hover {
+    cursor: wait;
+  }
+`;
