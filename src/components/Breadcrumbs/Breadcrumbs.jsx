@@ -96,6 +96,7 @@ export const Breadcrumb = styled(ListItem)`
 
 export const BreadcrumbLink = styled(Link)`
   color: var(--color-light-purple);
+  text-decoration: none;
 
   :active,
   :visited {
