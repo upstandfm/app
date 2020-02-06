@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Breadcrumbs, Breadcrumb, BreadcrumbLink } from './Breadcrumbs';
-import { LoadingBreadcrumb } from './Loading';
+import { Skeleton } from '../Loading';
 
 export default {
   title: 'components/Breadcrumbs',
@@ -100,7 +100,7 @@ export const LoadingBreadcrumbs = () => {
     <Breadcrumbs>
       <Breadcrumb>Standups</Breadcrumb>
 
-      <LoadingBreadcrumb />
+      <Skeleton as={Breadcrumb}>Loading standup</Skeleton>
     </Breadcrumbs>
   );
 };
