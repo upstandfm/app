@@ -18,10 +18,13 @@ export const Subtitle = styled.h3`
 
 export const Section = styled.section`
   margin: 1em 0 1.5em 0;
-  padding: 1em;
   background-color: var(--color-white);
   border-radius: var(--radius-size);
   box-shadow: 0px 1px 2px 0px rgba(25, 18, 56, 0.18);
+`;
+
+export const SectionWrapper = styled.div`
+  padding: 1em;
 `;
 
 export const SectionTitle = styled.h3`
