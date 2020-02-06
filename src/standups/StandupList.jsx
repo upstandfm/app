@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export { LoadingListItemText } from '../components/List';
-
 export const ListContainer = styled.div``;
 
 export const ListTitle = styled.p`

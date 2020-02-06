@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Skeleton } from '../components/Loading';
 import { LoadingAvatar } from '../components/Avatar';
-import { List, LoadingListItem, LoadingListItemText } from '../components/List';
+import { List, LoadingListItem } from '../components/List';
 
 import { Container, RecordingsList } from './Layout';
 
@@ -20,7 +21,7 @@ export function LoadingRecordingsByMember() {
             <LoadingAvatar />
 
             <div>
-              <LoadingListItemText>Loading user name</LoadingListItemText>
+              <Skeleton as="span">Loading user name</Skeleton>
             </div>
           </LoadingListItem>
 
@@ -29,7 +30,7 @@ export function LoadingRecordingsByMember() {
               <PlayPause />
 
               <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
+                <Skeleton as="span">Loading recording</Skeleton>
               </div>
             </LoadingListItem>
 
@@ -37,7 +38,7 @@ export function LoadingRecordingsByMember() {
               <PlayPause />
 
               <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
+                <Skeleton as="span">Loading recording</Skeleton>
               </div>
             </LoadingListItem>
           </RecordingsList>
@@ -48,7 +49,7 @@ export function LoadingRecordingsByMember() {
             <LoadingAvatar />
 
             <div>
-              <LoadingListItemText>Loading user name</LoadingListItemText>
+              <Skeleton as="span">Loading user name</Skeleton>
             </div>
           </LoadingListItem>
 
@@ -57,7 +58,7 @@ export function LoadingRecordingsByMember() {
               <PlayPause />
 
               <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
+                <Skeleton as="span">Loading recording</Skeleton>
               </div>
             </LoadingListItem>
 
@@ -65,7 +66,7 @@ export function LoadingRecordingsByMember() {
               <PlayPause />
 
               <div>
-                <LoadingListItemText>Loading recording</LoadingListItemText>
+                <Skeleton as="span">Loading recording</Skeleton>
               </div>
             </LoadingListItem>
           </RecordingsList>

@@ -7,14 +7,12 @@ import Button from '../components/Button';
 import { useSnackbar } from '../components/Snackbar';
 
 import { LoadMoreContainer } from './Layout';
-
+import Loading from './Loading';
 import {
   ListContainer,
   ListTitle,
   List,
-  LoadingListItem,
   ListItemLink,
-  LoadingListItemText,
   ListItemText
 } from './StandupList';
 
@@ -29,25 +27,7 @@ const MenuButton = styled(Button)`
 
 export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   if (isLoading && !cursor) {
-    return (
-      <ListContainer>
-        <ListTitle>PRIVATE</ListTitle>
-
-        <List>
-          <LoadingListItem>
-            <LoadingListItemText>Standup loading title</LoadingListItemText>
-          </LoadingListItem>
-
-          <LoadingListItem>
-            <LoadingListItemText>Standup loading title</LoadingListItemText>
-          </LoadingListItem>
-
-          <LoadingListItem>
-            <LoadingListItemText>Standup loading title</LoadingListItemText>
-          </LoadingListItem>
-        </List>
-      </ListContainer>
-    );
+    return <Loading />;
   }
 
   const handleLoadMore = () => {

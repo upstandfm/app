@@ -2,9 +2,10 @@ import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { Skeleton } from '../components/Loading';
 import { LoadingAudioPlayer } from '../components/AudioPlayer';
 import Button from '../components/Button';
-import { Breadcrumbs, LoadingBreadcrumb } from '../components/Breadcrumbs';
+import { Breadcrumbs, Breadcrumb } from '../components/Breadcrumbs';
 
 import { LoadingStandupUpdates } from '../standup-updates';
 
@@ -17,7 +18,7 @@ import {
   Footer
 } from './Layout';
 
-function Loading({ children }) {
+function Loading() {
   const { url } = useRouteMatch();
 
   return (
@@ -25,7 +26,7 @@ function Loading({ children }) {
       <Header>
         <NavContainer>
           <Breadcrumbs>
-            <LoadingBreadcrumb />
+            <Skeleton as={Breadcrumb}>Loading standup</Skeleton>
           </Breadcrumbs>
         </NavContainer>
 

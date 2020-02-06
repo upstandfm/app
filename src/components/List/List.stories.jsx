@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Skeleton } from '../Loading';
+
 import {
   ListContainer,
   ListTitle,
@@ -9,7 +11,7 @@ import {
   ListItemText
 } from './List';
 
-import { LoadingListItem, LoadingListItemText } from './Loading';
+import { LoadingListItem } from './Loading';
 
 export default {
   title: 'components/List',
@@ -79,15 +81,15 @@ export const LoadingList = () => {
 
       <List>
         <LoadingListItem>
-          <LoadingListItemText>Loading something important</LoadingListItemText>
+          <Skeleton>Loading something important</Skeleton>
         </LoadingListItem>
 
         <LoadingListItem>
-          <LoadingListItemText>Loading something important</LoadingListItemText>
+          <Skeleton>Loading something important</Skeleton>
         </LoadingListItem>
 
         <LoadingListItem>
-          <LoadingListItemText>Loading something important</LoadingListItemText>
+          <Skeleton>Loading something important</Skeleton>
         </LoadingListItem>
       </List>
     </ListContainer>

@@ -12,7 +12,6 @@ export default {
 };
 
 const Container = styled.div`
-  background-color: var(--color-white);
   border: 1px dashed var(--color-light-grey);
 `;
 
