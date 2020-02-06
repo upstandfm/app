@@ -4,6 +4,7 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import WorkspaceSettings from '../workspace-settings';
 import WorkspaceMembers from '../workspace-members';
+import AccountSettings from '../account-settings';
 
 import { NotFound } from '../components/Errors';
 import { Breadcrumbs, Breadcrumb } from '../components/Breadcrumbs';
@@ -44,7 +45,7 @@ export function PureSettings({ urlRouteMatch, children }) {
               </MenuLink>
 
               <MenuLink exact to={`${urlRouteMatch}/account`}>
-                Account
+                My account
               </MenuLink>
             </Menu>
           </SideNav>
@@ -75,7 +76,7 @@ function Settings() {
         </Route>
 
         <Route exact path={`${path}/account`}>
-          Account
+          <AccountSettings />
         </Route>
 
         <Route path="*">

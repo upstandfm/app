@@ -21,8 +21,7 @@ function UserProvider(props) {
           emailIsVerified: auth0User.email_verified,
           username: auth0User.nickname,
           fullName: auth0User.name,
-          avatarUrl: auth0User.picture,
-          updatedAt: auth0User.updated_at
+          avatarUrl: auth0User.picture
         };
 
         setUser(userData);
