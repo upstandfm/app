@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import WorkspaceSettings from '../workspace-settings';
+import WorkspaceMembers from '../workspace-members';
 
 import { NotFound } from '../components/Errors';
 import { Breadcrumbs, Breadcrumb } from '../components/Breadcrumbs';
@@ -70,7 +71,7 @@ function Settings() {
         </Route>
 
         <Route exact path={`${path}/members`}>
-          Members
+          <WorkspaceMembers />
         </Route>
 
         <Route exact path={`${path}/account`}>
