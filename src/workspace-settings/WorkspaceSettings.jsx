@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 import { useWorkspace } from '../workspace';
 
-import Content, { Title, Subtitle, Section } from '../components/Content';
+import Content, {
+  Title,
+  Subtitle,
+  Section,
+  SectionWrapper
+} from '../components/Content';
 
 import {
   Form,
@@ -42,46 +47,49 @@ export function PureWorkspaceSettings({
       <Subtitle>Your workspace information and settings.</Subtitle>
 
       <Section>
-        <Info>Created on {formatDate(createdEpoch)}</Info>
+        <SectionWrapper>
+          <Info>Created on {formatDate(createdEpoch)}</Info>
 
-        <FormWrapper>
-          <Form>
-            <FormSection>
-              <Label htmlFor="name" disabled>
-                NAME
-                <Input
-                  type="text"
-                  id="name"
-                  placeholder="e.g. Team Awesome"
-                  value={name}
-                  disabled
-                />
-              </Label>
+          <FormWrapper>
+            <Form>
+              <FormSection>
+                <Label htmlFor="name" disabled>
+                  NAME
+                  <Input
+                    type="text"
+                    id="name"
+                    placeholder="e.g. Team Awesome"
+                    value={name}
+                    disabled
+                  />
+                </Label>
 
-              <Description>
-                Use something simple. Like the name of your organization or
-                team.
-              </Description>
-            </FormSection>
+                <Description>
+                  Use something simple. Like the name of your organization or
+                  team.
+                </Description>
+              </FormSection>
 
-            <FormSection>
-              <Label htmlFor="slug" disabled>
-                SLUG
-                <Input
-                  type="text"
-                  id="slug"
-                  placeholder="e.g. team-awesome"
-                  value={slug}
-                  disabled
-                />
-              </Label>
+              <FormSection>
+                <Label htmlFor="slug" disabled>
+                  SLUG
+                  <Input
+                    type="text"
+                    id="slug"
+                    placeholder="e.g. team-awesome"
+                    value={slug}
+                    disabled
+                  />
+                </Label>
 
-              <Description>
-                A unique identifier that should be easy to read. Keep it short.
-              </Description>
-            </FormSection>
-          </Form>
-        </FormWrapper>
+                <Description>
+                  A unique identifier that should be easy to read. Keep it
+                  short.
+                </Description>
+              </FormSection>
+            </Form>
+          </FormWrapper>
+        </SectionWrapper>
       </Section>
     </Content>
   );

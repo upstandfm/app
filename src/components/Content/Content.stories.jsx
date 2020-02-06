@@ -1,6 +1,12 @@
 import React from 'react';
 
-import Content, { Title, Subtitle, Section, SectionTitle } from './Content';
+import Content, {
+  Title,
+  Subtitle,
+  Section,
+  SectionWrapper,
+  SectionTitle
+} from './Content';
 
 export default {
   title: 'components/Content',
@@ -17,14 +23,16 @@ export const DefaultContent = () => {
       <Subtitle>And this is a subtitle</Subtitle>
 
       <Section>
-        <p>Pass the main content as child components.</p>
+        <SectionWrapper>
+          <p>Pass the main content as child components.</p>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
+            harum magnam nesciunt, architecto facere nulla sit similique
+            explicabo ducimus eveniet iusto alias! Fugiat provident eveniet
+            maiores odit architecto reprehenderit!
+          </p>
+        </SectionWrapper>
       </Section>
     </Content>
   );
@@ -41,38 +49,33 @@ export const ContentSections = () => {
       <Subtitle>And this is a subtitle</Subtitle>
 
       <Section>
-        <p>You can add multiple sections for more semantic grouping.</p>
+        <SectionWrapper>
+          <p>You can add multiple sections for more semantic grouping.</p>
+        </SectionWrapper>
+      </Section>
+
+      <Section>
+        <SectionWrapper>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
+            harum magnam nesciunt, architecto facere nulla sit similique
+            explicabo ducimus eveniet iusto alias! Fugiat provident eveniet
+            maiores odit architecto reprehenderit!
+          </p>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
+            harum magnam nesciunt, architecto facere nulla sit similique
+            explicabo ducimus eveniet iusto alias! Fugiat provident eveniet
+            maiores odit architecto reprehenderit!
+          </p>
+        </SectionWrapper>
       </Section>
 
       <Section>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
-      </Section>
-
-      <Section>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
+          You can leave out the "Section Wrapper" for more style/spacing
+          control.
         </p>
       </Section>
     </Content>
@@ -90,43 +93,49 @@ export const ContentSectionSubtitles = () => {
       <Subtitle>And this is a subtitle</Subtitle>
 
       <Section>
-        <p>Sections can have subtitles.</p>
+        <SectionWrapper>
+          <p>Sections can have subtitles.</p>
+        </SectionWrapper>
       </Section>
 
       <Section>
-        <SectionTitle>Subtitle One</SectionTitle>
+        <SectionWrapper>
+          <SectionTitle>Subtitle One</SectionTitle>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
+            harum magnam nesciunt, architecto facere nulla sit similique
+            explicabo ducimus eveniet iusto alias! Fugiat provident eveniet
+            maiores odit architecto reprehenderit!
+          </p>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
+            harum magnam nesciunt, architecto facere nulla sit similique
+            explicabo ducimus eveniet iusto alias! Fugiat provident eveniet
+            maiores odit architecto reprehenderit!
+          </p>
+        </SectionWrapper>
       </Section>
 
       <Section>
-        <SectionTitle>Subtitle Two</SectionTitle>
+        <SectionWrapper>
+          <SectionTitle>Subtitle Two</SectionTitle>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
+            harum magnam nesciunt, architecto facere nulla sit similique
+            explicabo ducimus eveniet iusto alias! Fugiat provident eveniet
+            maiores odit architecto reprehenderit!
+          </p>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
-          harum magnam nesciunt, architecto facere nulla sit similique explicabo
-          ducimus eveniet iusto alias! Fugiat provident eveniet maiores odit
-          architecto reprehenderit!
-        </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nobis,
+            harum magnam nesciunt, architecto facere nulla sit similique
+            explicabo ducimus eveniet iusto alias! Fugiat provident eveniet
+            maiores odit architecto reprehenderit!
+          </p>
+        </SectionWrapper>
       </Section>
     </Content>
   );

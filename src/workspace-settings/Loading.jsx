@@ -1,7 +1,12 @@
 import React from 'react';
 
 import { Skeleton } from '../components/Loading';
-import Content, { Title, Subtitle, Section } from '../components/Content';
+import Content, {
+  Title,
+  Subtitle,
+  Section,
+  SectionWrapper
+} from '../components/Content';
 
 import {
   Form,
@@ -20,29 +25,31 @@ function Loading() {
       <Subtitle>Your workspace information and settings.</Subtitle>
 
       <Section>
-        <Skeleton as={Info}>Loading information text</Skeleton>
+        <SectionWrapper>
+          <Skeleton as={Info}>Loading information text</Skeleton>
 
-        <FormWrapper>
-          <Form>
-            <FormSection>
-              <LoadingLabel>
-                NAME
-                <LoadingInput disabled />
-              </LoadingLabel>
+          <FormWrapper>
+            <Form>
+              <FormSection>
+                <LoadingLabel>
+                  NAME
+                  <LoadingInput disabled />
+                </LoadingLabel>
 
-              <Description />
-            </FormSection>
+                <Description />
+              </FormSection>
 
-            <FormSection>
-              <LoadingLabel>
-                SLUG
-                <LoadingInput disabled />
-              </LoadingLabel>
+              <FormSection>
+                <LoadingLabel>
+                  SLUG
+                  <LoadingInput disabled />
+                </LoadingLabel>
 
-              <Description />
-            </FormSection>
-          </Form>
-        </FormWrapper>
+                <Description />
+              </FormSection>
+            </Form>
+          </FormWrapper>
+        </SectionWrapper>
       </Section>
     </Content>
   );

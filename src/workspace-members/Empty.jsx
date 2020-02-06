@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Content, { Title, Subtitle, Section } from '../components/Content';
 
 const Message = styled.p`
+  margin: 0;
+  padding: 1em;
   color: var(--color-grey);
 `;
 
