@@ -1,7 +1,7 @@
 {
   "name": "Upstand FM",
   "short_name": "Upstand FM",
-  "description": "Async standups for remote teams.",
+  "description": "Async standups & updates for (remote) teams.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#5e3da8",
-  "background_color": "#4a308d"
+  "theme_color": "#191238",
+  "background_color": "#fbf8ff"
 }
