@@ -11,8 +11,9 @@ const glimmer = keyframes`
 
 const Skeleton = styled.div`
   color: transparent !important;
-  background-color: var(--color-light-grey);
+  background-color: var(--color-light-grey) !important;
   border-radius: var(--radius-size);
+  border-color: transparent !important;
   background-repeat: no-repeat;
   background-image: linear-gradient(
     90deg,
