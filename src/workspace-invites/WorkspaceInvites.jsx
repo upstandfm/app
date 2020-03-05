@@ -12,22 +12,27 @@ import Content, {
   SectionTitle
 } from '../components/Content';
 
-import {
-  Form,
-  Section as FormSection,
-  Input,
-  Description
-} from '../components/Form';
-
 import Button from '../components/Button';
 import { formatDate } from '../utils';
+import { useUser } from '../auth0';
 
 import Loading from './Loading';
-import { Info, InvitesWrapper, CustomFormLabel, EmptyMessage } from './Layout';
+import { Info, InvitesWrapper, EmptyMessage } from './Layout';
 import { InviteList, InviteListItem, Email, Meta } from './InviteList';
 import Status from './Status';
 
-export function PureWorkspaceInvites({ isLoading, invites }) {
+import inviteReducer, { defaultInviteState } from './reducer';
+import useFetchInvites from './use-fetch-invites';
+import useCreateInvite from './use-create-invite';
+import NewInvite from './NewInvite';
+
+export function PureWorkspaceInvites({
+  isLoading,
+  invites,
+  inviterFullName,
+  createInvite,
+  isCreating
+}) {
   if (isLoading) {
     return <Loading />;
   }
@@ -44,19 +49,11 @@ export function PureWorkspaceInvites({ isLoading, invites }) {
             receive an email with a link to accept the invite.
           </Info>
 
-          <Form>
-            <FormSection>
-              <CustomFormLabel htmlFor="email">
-                <Input type="email" id="email" placeholder="user@domain.com" />
-
-                <Button tertiary disabled>
-                  Send invite
-                </Button>
-              </CustomFormLabel>
-
-              <Description></Description>
-            </FormSection>
-          </Form>
+          <NewInvite
+            inviterFullName={inviterFullName}
+            createInvite={createInvite}
+            isCreating={isCreating}
+          />
         </InvitesWrapper>
       </Section>
 
@@ -76,8 +73,10 @@ export function PureWorkspaceInvites({ isLoading, invites }) {
                   inviterFullName,
                   createdAt
                 } = invite;
+
                 const createdEpoch = new Date(createdAt).getTime();
                 const invitedAt = formatDate(createdEpoch);
+
                 return (
                   <InviteListItem key={id}>
                     <Email title={email}>{email}</Email>
@@ -125,44 +124,80 @@ PureWorkspaceInvites.propTypes = {
       inviterFullName: PropTypes.string.isRequired,
       status: PropTypes.oneOf(['pending', 'accepted', 'error'])
     })
-  )
+  ),
+  inviterFullName: PropTypes.string.isRequired,
+  createInvite: PropTypes.func.isRequired,
+  isCreating: PropTypes.bool.isRequired
 };
 
 function WorkspaceInvites() {
+  const user = useUser();
   const [, snackbarDispatch] = useSnackbar();
-  // const [invitesState, invitesDispatch] = React.useReducer(
-  //   invitesReducer,
-  //   defaultInvitesState
-  // );
+  const [inviteState, inviteDispatch] = React.useReducer(
+    inviteReducer,
+    defaultInviteState
+  );
 
-  // const [fetchInvites, abortFetchInvites, isFetching, err] = useFetchInvites(
-  //   invitesDispatch
-  // );
+  const [
+    fetchInvites,
+    abortFetchInvites,
+    isFetching,
+    fetchErr
+  ] = useFetchInvites(inviteDispatch);
+
+  const [
+    createInvite,
+    abortCreateInvite,
+    isCreating,
+    createErr
+  ] = useCreateInvite(inviteDispatch);
 
   React.useEffect(() => {
-    // fetchInvites();
+    fetchInvites();
 
     return () => {
-      // abortFetchInvites();
+      abortFetchInvites();
+      abortCreateInvite();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // React.useEffect(() => {
-  //   if (!err) {
-  //     return;
-  //   }
+  React.useEffect(() => {
+    if (fetchErr) {
+      snackbarDispatch({
+        type: 'ENQUEUE_SNACKBAR_MSG',
+        data: {
+          type: 'error',
+          title: 'Failed to fetch workspace invites',
+          text: fetchErr.details
+            ? `${fetchErr.message}: ${fetchErr.details}`
+            : fetchErr.message
+        }
+      });
+    }
 
-  //   snackbarDispatch({
-  //     type: 'ENQUEUE_SNACKBAR_MSG',
-  //     data: {
-  //       type: 'error',
-  //       title: 'Failed to fetch workspace invites',
-  //       text: err.details ? `${err.message}: ${err.details}` : err.message
-  //     }
-  //   });
-  // }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (createErr) {
+      snackbarDispatch({
+        type: 'ENQUEUE_SNACKBAR_MSG',
+        data: {
+          type: 'error',
+          title: 'Failed to send workspace invite',
+          text: createErr.details
+            ? `${createErr.message}: ${createErr.details}`
+            : createErr.message
+        }
+      });
+    }
+  }, [fetchErr, createErr]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <PureWorkspaceInvites isLoading={false} members={[]} />;
+  return (
+    <PureWorkspaceInvites
+      isLoading={isFetching}
+      invites={inviteState}
+      inviterFullName={user.fullName}
+      createInvite={createInvite}
+      isCreating={isCreating}
+    />
+  );
 }
 
 export default WorkspaceInvites;

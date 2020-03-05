@@ -9,17 +9,11 @@ import Content, {
   SectionTitle
 } from '../components/Content';
 
-import {
-  Form,
-  Section as FormSection,
-  Input,
-  Description
-} from '../components/Form';
-
 import { Skeleton } from '../components/Loading';
 import Button from '../components/Button';
 
-import { Info, InvitesWrapper, CustomFormLabel } from './Layout';
+import { LoadingNewInvite } from './NewInvite';
+import { Info, InvitesWrapper } from './Layout';
 import { InviteList, LoadingInviteListItem, Email, Meta } from './InviteList';
 import Status from './Status';
 
@@ -36,24 +30,7 @@ function Loading() {
             receive an email with a link to accept the invite.
           </Info>
 
-          <Form>
-            <FormSection>
-              <CustomFormLabel htmlFor="email">
-                <Input
-                  type="email"
-                  id="email"
-                  placeholder="user@domain.com"
-                  disabled
-                />
-
-                <Button tertiary disabled>
-                  Send invite
-                </Button>
-              </CustomFormLabel>
-
-              <Description></Description>
-            </FormSection>
-          </Form>
+          <LoadingNewInvite />
         </InvitesWrapper>
       </Section>
 

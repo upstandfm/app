@@ -4,6 +4,7 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import WorkspaceSettings from '../workspace-settings';
 import WorkspaceMembers from '../workspace-members';
+import WorkspaceInvites from '../workspace-invites';
 import AccountSettings from '../account-settings';
 
 import { NotFound } from '../components/Errors';
@@ -73,6 +74,7 @@ function Settings() {
 
         <Route exact path={`${path}/members`}>
           <WorkspaceMembers />
+          <WorkspaceInvites />
         </Route>
 
         <Route exact path={`${path}/account`}>
