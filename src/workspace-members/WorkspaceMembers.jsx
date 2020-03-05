@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { formatDate } from '../utils';
+
 import { useSnackbar } from '../components/Snackbar';
 import Content, { Title, Subtitle, Section } from '../components/Content';
 import Avatar from '../components/Avatar';
 import Button from '../components/Button';
 
-import { UserList, UserListItem, UserInfo, FullName, Email } from './UserList';
+import {
+  UserList,
+  UserListItem,
+  UserInfo,
+  FullName,
+  Email,
+  Meta
+} from './UserList';
+
 import Loading from './Loading';
 import Empty from './Empty';
 
@@ -31,7 +41,10 @@ export function PureWorkspaceMembers({ isLoading, members }) {
       <Section>
         <UserList>
           {members.map(member => {
-            const { fullName, email } = member;
+            const { fullName, email, createdAt } = member;
+            const createdEpoch = new Date(createdAt).getTime();
+            const joinedAt = formatDate(createdEpoch);
+
             return (
               <UserListItem key={member.id}>
                 <Avatar size="40px" fullName={fullName} />
@@ -40,6 +53,10 @@ export function PureWorkspaceMembers({ isLoading, members }) {
                   <FullName title={fullName}>{fullName}</FullName>
                   <Email title={email}>{email}</Email>
                 </UserInfo>
+
+                <Meta title={`Joined on ${createdAt}`}>
+                  Joined on {joinedAt}
+                </Meta>
 
                 <div>
                   <Button

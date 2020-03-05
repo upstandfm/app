@@ -6,13 +6,7 @@ import { LoadingAvatar } from '../components/Avatar';
 import { Skeleton } from '../components/Loading';
 import Button from '../components/Button';
 
-import {
-  UserList,
-  LoadingUserListItem,
-  UserInfo,
-  FullName,
-  Email
-} from './UserList';
+import { UserList, LoadingUserListItem, UserInfo, Meta } from './UserList';
 
 function Loading() {
   return (
@@ -25,10 +19,13 @@ function Loading() {
           <LoadingUserListItem>
             <LoadingAvatar size="40px" />
 
-            <UserInfo>
-              <Skeleton as={FullName}>Loading user name</Skeleton>
-              <Skeleton as={Email}>Loading email</Skeleton>
-            </UserInfo>
+            <Skeleton as={UserInfo}>
+              Loading user name
+              <br />
+              Loading email
+            </Skeleton>
+
+            <Skeleton as={Meta}>loading join date</Skeleton>
 
             <div>
               <Button size="small" tertiary disabled>
@@ -40,10 +37,13 @@ function Loading() {
           <LoadingUserListItem>
             <LoadingAvatar size="40px" />
 
-            <UserInfo>
-              <Skeleton as={FullName}>Loading user name</Skeleton>
-              <Skeleton as={Email}>Loading email</Skeleton>
-            </UserInfo>
+            <Skeleton as={UserInfo}>
+              Loading user name
+              <br />
+              Loading email
+            </Skeleton>
+
+            <Skeleton as={Meta}>loading join date</Skeleton>
 
             <div>
               <Button size="small" tertiary disabled>
@@ -55,10 +55,13 @@ function Loading() {
           <LoadingUserListItem>
             <LoadingAvatar size="40px" />
 
-            <UserInfo>
-              <Skeleton as={FullName}>Loading user name</Skeleton>
-              <Skeleton as={Email}>Loading email</Skeleton>
-            </UserInfo>
+            <Skeleton as={UserInfo}>
+              Loading user name
+              <br />
+              Loading email
+            </Skeleton>
+
+            <Skeleton as={Meta}>loading join date</Skeleton>
 
             <div>
               <Button size="small" tertiary disabled>

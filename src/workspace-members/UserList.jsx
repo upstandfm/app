@@ -8,7 +8,7 @@ export const UserList = styled.ul`
 
 export const UserListItem = styled.li`
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr 1fr auto;
   grid-gap: 1em;
   align-items: center;
   padding: 0.5rem 1rem;
@@ -36,6 +36,7 @@ export const LoadingUserListItem = styled(UserListItem)`
 
 export const UserInfo = styled.div`
   overflow: hidden;
+  max-width: 240px;
 `;
 
 const Text = styled.p`
@@ -43,13 +44,15 @@ const Text = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 240px;
 `;
 
-export const FullName = styled(Text)`
-  margin-bottom: 2px;
-`;
+export const FullName = styled(Text)``;
 
 export const Email = styled(Text)`
   color: var(--color-grey);
+`;
+
+export const Meta = styled(Text)`
+  color: var(--color-grey);
+  max-width: 240px;
 `;
