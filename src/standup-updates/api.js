@@ -31,20 +31,29 @@ const api = {
    * @param {String} token - Access token
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
    * @param {String} standupId
-   * @param {String} dateKey - Date key of format "YYYY-MM-DD"
+   * @param {Number} limit - Amount of items to fetch
+   * @param {String} cursor - Cursor to fetch the "next page"
    *
    * @return {Promise} Axios res with updates list
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  getStandupUpdates(token, cancelToken, standupId, dateKey) {
+  getStandupUpdates(token, cancelToken, standupId, limit, cursor) {
+    let params = {};
+
+    if (limit) {
+      params.limit = limit;
+    }
+
+    if (cursor) {
+      params.cursor = cursor;
+    }
+
     return axios({
       method: 'get',
       url: `${REACT_APP_API_DOMAIN}/standups/${standupId}/updates`,
       cancelToken,
-      params: {
-        date: dateKey
-      },
+      params,
       headers: {
         Authorization: `Bearer ${token}`
       }

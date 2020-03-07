@@ -45,6 +45,7 @@ export const Actions = styled.div`
 export const Main = styled.div`
   grid-area: standup-main;
   overflow: auto;
+  padding: 1.5em 1em;
 `;
 
 export const Footer = styled.div`

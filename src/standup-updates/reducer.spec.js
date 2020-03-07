@@ -1,10 +1,11 @@
-import reducer, { defaultUpdatesState } from './reducer';
+import reducer, { defaultUpdateState } from './reducer';
 
 describe('updates reducer', () => {
   it('fetches members', () => {
-    const state = defaultUpdatesState;
+    const state = defaultUpdateState;
 
-    const members = [{ id: '1' }];
+    const id = '1';
+    const members = [{ id }];
 
     const action = {
       type: 'FETCHED_MEMBERS',
@@ -12,36 +13,32 @@ describe('updates reducer', () => {
     };
 
     const newState = reducer(state, action);
-    expect(newState.members).toEqual(members);
+    expect(newState.membersById[id]).toEqual(members[0]);
   });
 
   it('fetches updates', () => {
-    const state = defaultUpdatesState;
+    const state = defaultUpdateState;
 
-    const date = '2020-01-29';
-    const updates = [
+    const recordings = [
       { id: '1', name: 'yesterday' },
       { id: '2', name: 'today' }
     ];
 
     const action = {
       type: 'FETCHED_UPDATES',
-      data: {
-        date,
-        items: updates
-      }
+      data: recordings
     };
 
     const newState = reducer(state, action);
-    expect(newState.updatesByDate[date]).toEqual(updates);
+    expect(newState.recordings).toEqual(recordings);
   });
 
   it('returns default state', () => {
     const state = {
-      members: [{ id: '1' }],
-      updatesByDate: {
-        '2020-01-29': [{ id: '1', name: 'today' }]
-      }
+      membersById: {
+        '1': { id: '1' }
+      },
+      recordings: [{ id: '1', name: 'today' }]
     };
 
     const action = {

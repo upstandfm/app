@@ -8,21 +8,22 @@ import api from './api';
 /**
  * Custom hook to fetch standup updates.
  *
+ * @param {String} standupId
  * @param {Function} dispatch - Reducer dispatch function
  *
  * @return {Array}
  */
-function useFetchUpdates(dispatch) {
+function useFetchUpdates(standupId, dispatch) {
   const { getToken } = useAuth0();
 
   const [isFetching, setIsFetching] = React.useState(true);
   const [err, setErr] = React.useState(null);
-  const [dayOffset, setDayOffset] = React.useState(0);
+  const [nextPageCursor, setNextPageCursor] = React.useState(null);
 
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-  const fetchUpdates = async (standupId, dateKey) => {
+  const fetchUpdates = async (limit, cursor) => {
     try {
       setIsFetching(true);
       setErr(null);
@@ -32,18 +33,18 @@ function useFetchUpdates(dispatch) {
         token,
         source.token,
         standupId,
-        dateKey
+        limit,
+        cursor
       );
 
       setIsFetching(false);
-      setDayOffset(s => s + 1);
+      setNextPageCursor(res.data.cursor.next);
 
+      // If we fetch updates with "cursor", it means we are fetching the
+      // "next page" of updates, otherwise we fetched the "first page"
       dispatch({
-        type: 'FETCHED_UPDATES',
-        data: {
-          date: res.data.date,
-          items: res.data.items
-        }
+        type: cursor ? 'FETCHED_UPDATES_NEXT_PAGE' : 'FETCHED_UPDATES',
+        data: res.data.items
       });
     } catch (err) {
       if (axios.isCancel(err)) {
@@ -57,7 +58,7 @@ function useFetchUpdates(dispatch) {
     }
   };
 
-  return [fetchUpdates, source.cancel, isFetching, err, dayOffset];
+  return [fetchUpdates, source.cancel, isFetching, err, nextPageCursor];
 }
 
 export default useFetchUpdates;

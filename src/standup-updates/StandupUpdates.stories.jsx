@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 
 import { PureStandupUpdates } from './StandupUpdates';
 
-const fetchMoreUpdates = action('fetchMoreUpdates');
+const fetchNextPage = action('fetchNextPage');
 
 export default {
   title: 'modules/StandupUpdates',
@@ -16,11 +16,12 @@ export default {
 export const LoadingStandupUpdates = () => {
   return (
     <PureStandupUpdates
-      isLoading={true}
-      isLoadingMore={false}
-      members={[]}
-      updatesByDate={{}}
-      fetchMoreUpdates={fetchMoreUpdates}
+      isFetchingMembers={true}
+      isFetchingUpdates={true}
+      cursor={null}
+      fetchNextPage={fetchNextPage}
+      membersById={{}}
+      updatesByDate={[]}
     />
   );
 };
