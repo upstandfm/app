@@ -5,109 +5,73 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useSnackbar } from '../components/Snackbar';
 import Button from '../components/Button';
+import Recordings from '../recordings';
 
-import { LoadingRecordingsByMember, RecordingsByMember } from '../recordings';
+import Loading from './Loading';
+import { Container, LoadMoreContainer } from './Layout';
 
-import {
-  createDateKey,
-  sortDateKeysDesc,
-  formatDate,
-  isDateToday
-} from '../utils';
-
-import {
-  Container,
-  DayDivider,
-  LoadingDayDivider,
-  UpdatesContainer,
-  LoadMoreContainer
-} from './Layout';
-
-import updatesReducer, { defaultUpdatesState } from './reducer';
+import updateReducer, { defaultUpdateState } from './reducer';
 import useFetchMembers from './use-fetch-members';
 import useFetchUpdates from './use-fetch-updates';
 
-export function LoadingStandupUpdates() {
-  return (
-    <Container>
-      <LoadingDayDivider />
-      <LoadingRecordingsByMember />
-    </Container>
-  );
-}
+const PAGE_LIMIT = 20;
 
 export function PureStandupUpdates({
-  isLoading,
-  isLoadingMore,
-  members,
-  updatesByDate,
-  fetchMoreUpdates
+  isFetchingMembers,
+  isFetchingUpdates,
+  cursor,
+  fetchNextPage,
+  membersById,
+  recordings
 }) {
-  if (isLoading && !isLoadingMore) {
-    return <LoadingStandupUpdates />;
-  }
-
   const handleLoadMore = () => {
-    fetchMoreUpdates();
+    fetchNextPage(cursor);
   };
 
-  const dateKeys = Object.keys(updatesByDate);
-  const sortedDateKeys = sortDateKeysDesc(dateKeys);
+  const isLoading = isFetchingMembers || isFetchingUpdates;
+  if (isLoading && !cursor) {
+    return <Loading />;
+  }
 
   return (
     <Container>
-      {sortedDateKeys.map(({ epoch, dateKey }) => {
-        const formattedDate = formatDate(epoch);
-        const isToday = isDateToday(epoch);
+      <Recordings membersById={membersById} recordings={recordings} />
 
-        return (
-          <UpdatesContainer key={epoch}>
-            <DayDivider
-              formattedDate={isToday ? 'Today' : formattedDate}
-              showHelp={isToday}
-              title={isToday ? formattedDate : ''}
-            />
-
-            <RecordingsByMember
-              members={members}
-              recordings={updatesByDate[dateKey]}
-            />
-          </UpdatesContainer>
-        );
-      })}
-
-      <LoadMoreContainer>
-        <Button
-          size="small"
-          tertiary
-          disabled={isLoadingMore}
-          onClick={handleLoadMore}
-        >
-          {isLoadingMore ? (
-            <FontAwesomeIcon icon="circle-notch" spin />
-          ) : (
-            'Load older'
-          )}
-        </Button>
-      </LoadMoreContainer>
+      {cursor && (
+        <LoadMoreContainer>
+          <Button
+            size="small"
+            tertiary
+            disabled={isFetchingUpdates}
+            onClick={handleLoadMore}
+          >
+            {isFetchingUpdates ? (
+              <FontAwesomeIcon icon="circle-notch" spin />
+            ) : (
+              'Load older'
+            )}
+          </Button>
+        </LoadMoreContainer>
+      )}
     </Container>
   );
 }
 
 PureStandupUpdates.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isLoadingMore: PropTypes.bool.isRequired,
-  members: PropTypes.array.isRequired,
-  updatesByDate: PropTypes.object.isRequired,
-  fetchMoreUpdates: PropTypes.func.isRequired
+  isFetchingMembers: PropTypes.bool.isRequired,
+  isFetchingUpdates: PropTypes.bool.isRequired,
+  cursor: PropTypes.string,
+  fetchNextPage: PropTypes.func.isRequired,
+  membersById: PropTypes.object.isRequired,
+  recordings: PropTypes.array.isRequired
 };
 
 function StandupUpdates() {
   const { standupId } = useParams();
   const [, snackbarDispatch] = useSnackbar();
-  const [updatesState, updatesDispatch] = React.useReducer(
-    updatesReducer,
-    defaultUpdatesState
+  const [updateState, updateDispatch] = React.useReducer(
+    updateReducer,
+    defaultUpdateState
   );
 
   // Workspace members
@@ -117,7 +81,7 @@ function StandupUpdates() {
     abortFetchMembers,
     isFetchingMembers,
     membersErr
-  ] = useFetchMembers(updatesDispatch);
+  ] = useFetchMembers(updateDispatch);
 
   React.useEffect(() => {
     fetchMembers();
@@ -151,13 +115,11 @@ function StandupUpdates() {
     abortFetchUpdates,
     isFetchingUpdates,
     updatesErr,
-    dayOffset
-  ] = useFetchUpdates(updatesDispatch);
+    nextPageCursor
+  ] = useFetchUpdates(standupId, updateDispatch);
 
   React.useEffect(() => {
-    const today = new Date();
-    const dateKey = createDateKey(today);
-    fetchUpdates(standupId, dateKey);
+    fetchUpdates(PAGE_LIMIT);
 
     return () => {
       abortFetchUpdates();
@@ -183,25 +145,18 @@ function StandupUpdates() {
 
   // Helpers
 
-  const fetchMoreUpdates = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const monthIndex = today.getMonth();
-    const day = today.getDate();
-    const pastDate = new Date(year, monthIndex, day - dayOffset);
-    const dateKey = createDateKey(pastDate);
-    fetchUpdates(standupId, dateKey);
+  const fetchNextPage = cursor => {
+    fetchUpdates(PAGE_LIMIT, cursor);
   };
-
-  const isLoading = isFetchingMembers || isFetchingUpdates;
 
   return (
     <PureStandupUpdates
-      isLoading={isLoading}
-      isLoadingMore={isFetchingUpdates && dayOffset > 0}
-      members={updatesState.members}
-      updatesByDate={updatesState.updatesByDate}
-      fetchMoreUpdates={fetchMoreUpdates}
+      isFetchingMembers={isFetchingMembers}
+      isFetchingUpdates={isFetchingUpdates}
+      cursor={nextPageCursor}
+      fetchNextPage={fetchNextPage}
+      membersById={updateState.membersById}
+      recordings={updateState.recordings}
     />
   );
 }

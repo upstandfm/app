@@ -1,20 +1,26 @@
-export const defaultUpdatesState = {
-  members: [],
-  updatesByDate: {}
+export const defaultUpdateState = {
+  membersById: {},
+  recordings: []
 };
 
 /**
- * Members reducer.
+ * Members by ID reducer.
  *
- * @param {Array} state - Workspace members
+ * @param {Object} state - Workspace members by ID
  * @param {Object} action - Reducer action with "type" and "data" props
  *
- * @returns {Array} Members state
+ * @returns {Object} Members state
  */
-function membersReducer(state, action) {
+function membersByIdReducer(state, action) {
   switch (action.type) {
     case 'FETCHED_MEMBERS': {
-      return action.data;
+      const membersById = action.data.reduce((mapping, member) => {
+        mapping[member.id] = member;
+
+        return mapping;
+      }, {});
+
+      return membersById;
     }
 
     default: {
@@ -24,20 +30,17 @@ function membersReducer(state, action) {
 }
 
 /**
- * Updates by date reducer.
+ * Recordings reducer.
  *
- * @param {Object} state - Updates by date
+ * @param {Array} state - Update recordings
  * @param {Object} action - Reducer action with "type" and "data" props
  *
- * @returns {Object} Updates by date state
+ * @returns {Array} Updates recordings state
  */
-function updatesByDateReducer(state, action) {
+function recordingsReducer(state, action) {
   switch (action.type) {
     case 'FETCHED_UPDATES': {
-      return {
-        ...state,
-        [action.data.date]: action.data.items
-      };
+      return action.data;
     }
 
     default: {
@@ -54,11 +57,11 @@ function updatesByDateReducer(state, action) {
  *
  * @returns {Object} Updates root state
  */
-function updatesReducer(state, action) {
+function updateReducer(state, action) {
   return {
-    members: membersReducer(state.members, action),
-    updatesByDate: updatesByDateReducer(state.updatesByDate, action)
+    membersById: membersByIdReducer(state.membersById, action),
+    recordings: recordingsReducer(state.recordings, action)
   };
 }
 
-export default updatesReducer;
+export default updateReducer;

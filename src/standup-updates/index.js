@@ -1,2 +1,2 @@
 export { default } from './StandupUpdates';
-export * from './StandupUpdates';
+export { default as LoadingStandupUpdates } from './Loading';
