@@ -1,2 +1,2 @@
-export { default as RecordingsByMember } from './RecordingsByMember';
+export { default } from './Recordings';
 export * from './Loading';

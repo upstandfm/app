@@ -2,41 +2,43 @@
  * Standup update recordings mock data
  */
 
-export const membersMockData = [
-  {
-    id: 'auth0|user1',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+const nowIso = new Date().toISOString();
+
+export const membersByIdMockData = {
+  'auth|user1': {
+    id: 'auth|user1',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     fullName: 'Daniël Illouz',
     email: 'daniel@upstand.fm',
     avatarUrl: 'https://avatars1.githubusercontent.com/u/6201287'
   },
 
-  {
-    id: 'auth0|user2',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+  'auth|user2': {
+    id: 'auth|user2',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     fullName: 'Eva Green',
     email: 'eva@green.com',
     avatarUrl: ''
   },
 
-  {
-    id: 'auth0|user3',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+  'auth|user3': {
+    id: 'auth|user3',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     fullName: 'Rick Sanchez',
     email: 'rick@gfy.com',
     avatarUrl: ''
   }
-];
+};
 
 export const recordingsMockData = [
   {
     id: 'rec1',
-    createdBy: 'auth0|user1',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    createdBy: 'auth|user1',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     name:
       'This recording has a very very loooong name with exactly 70 characters',
     transcodingStatus: 'transcoding',
@@ -45,9 +47,9 @@ export const recordingsMockData = [
 
   {
     id: 'rec2',
-    createdBy: 'auth0|user1',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    createdBy: 'auth|user1',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     name: 'Today',
     transcodingStatus: 'completed',
     transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec2.mp3`
@@ -55,9 +57,9 @@ export const recordingsMockData = [
 
   {
     id: 'rec3',
-    createdBy: 'auth0|user1',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    createdBy: 'auth|user1',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     name: 'Blockers',
     transcodingStatus: 'error',
     transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec3.mp3`
@@ -65,9 +67,9 @@ export const recordingsMockData = [
 
   {
     id: 'rec4',
-    createdBy: 'auth0|user2',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    createdBy: 'auth|user2',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     name: 'Yesterday',
     transcodingStatus: 'transcoding',
     transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec4.mp3`
@@ -75,9 +77,9 @@ export const recordingsMockData = [
 
   {
     id: 'rec5',
-    createdBy: 'auth0|user2',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    createdBy: 'auth|user2',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     name: 'Today',
     transcodingStatus: 'completed',
     transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec5.mp3`
@@ -85,9 +87,9 @@ export const recordingsMockData = [
 
   {
     id: 'rec6',
-    createdBy: 'auth0|user2',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    createdBy: 'auth|user2',
+    createdAt: nowIso,
+    updatedAt: nowIso,
     name: undefined,
     transcodingStatus: 'error',
     transcodedFileKey: `audio/P0Xz6ty/ZXor4g6/rec6.mp3`

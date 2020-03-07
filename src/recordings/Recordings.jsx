@@ -1,33 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import { useAudioPlayer } from '../components/AudioPlayer';
 import { useSnackbar } from '../components/Snackbar';
-import Avatar from '../components/Avatar';
-import { List, ListItem, ListEmpty } from '../components/List';
 
 import useDownloadFile from './use-download-file';
 import downloadProgressReducer, {
   defaultDownloadProgressState
 } from './reducer';
 
-import { Container, RecordingsList } from './Layout';
 import Empty from './Empty';
+import { RecordingList } from './RecordingList';
 import Recording from './Recording';
 
-const EmptyRecordings = styled(ListEmpty)`
-  text-align: left;
-`;
-
-const UserListItem = styled(ListItem)`
-  :hover {
-    background-color: inherit;
-  }
-`;
-
-export function PureRecordingsByMember({
-  members,
+export function PureRecordings({
+  membersById,
   recordings,
   audioPlayerState,
   downloadProgressState,
@@ -38,73 +25,36 @@ export function PureRecordingsByMember({
     return <Empty title="No updates from your team." />;
   }
 
-  const recordingsByUserId = recordings.reduce((mapping, recording) => {
-    const userId = recording.createdBy;
-
-    if (!mapping[userId]) {
-      mapping[userId] = [];
-    }
-
-    mapping[userId].push(recording);
-    return mapping;
-  }, {});
-
   return (
-    <Container>
-      <List as="div">
-        {members.map(member => {
-          const { id, fullName } = member;
-          const userRecordings = recordingsByUserId[id] || [];
+    <RecordingList>
+      {recordings.map(recording => {
+        const { id } = recording;
+        const member = membersById[recording.createdBy] || {};
+        const hasFile = Boolean(audioPlayerState.files[id]);
+        const isSelected = id === audioPlayerState.playingFile.id;
+        const isPlaying = isSelected && audioPlayerState.isPlaying;
+        const progress = downloadProgressState[id];
 
-          return (
-            <div key={id}>
-              <UserListItem as="div">
-                <Avatar
-                  title={fullName}
-                  fullName={fullName}
-                  avatarUrl={member.avatarUrl}
-                  altText={`avatar of ${fullName}`}
-                />
-
-                {fullName}
-              </UserListItem>
-
-              <RecordingsList>
-                {userRecordings.length === 0 ? (
-                  <EmptyRecordings>No updates.</EmptyRecordings>
-                ) : (
-                  userRecordings.map(recording => {
-                    const { id } = recording;
-                    const hasFile = Boolean(audioPlayerState.files[id]);
-                    const isSelected = id === audioPlayerState.playingFile.id;
-                    const isPlaying = isSelected && audioPlayerState.isPlaying;
-                    const progress = downloadProgressState[id];
-
-                    return (
-                      <Recording
-                        key={id}
-                        recording={recording}
-                        isSelected={isSelected}
-                        hasFile={hasFile}
-                        downloadFile={downloadFile}
-                        downloadProgress={progress}
-                        playPauseAudio={playPauseAudio}
-                        isPlaying={isPlaying}
-                      />
-                    );
-                  })
-                )}
-              </RecordingsList>
-            </div>
-          );
-        })}
-      </List>
-    </Container>
+        return (
+          <Recording
+            key={id}
+            recording={recording}
+            member={member}
+            isSelected={isSelected}
+            hasFile={hasFile}
+            downloadFile={downloadFile}
+            downloadProgress={progress}
+            playPauseAudio={playPauseAudio}
+            isPlaying={isPlaying}
+          />
+        );
+      })}
+    </RecordingList>
   );
 }
 
-PureRecordingsByMember.propTypes = {
-  members: PropTypes.array.isRequired,
+PureRecordings.propTypes = {
+  membersById: PropTypes.object.isRequired,
   recordings: PropTypes.array.isRequired,
   audioPlayerState: PropTypes.shape({
     playingFile: PropTypes.shape({
@@ -119,7 +69,7 @@ PureRecordingsByMember.propTypes = {
   playPauseAudio: PropTypes.func.isRequired
 };
 
-function RecordingsByMember({ members, recordings }) {
+function Recordings({ membersById, recordings }) {
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
 
   const [downloadProgressState, downloadProgressDispatch] = React.useReducer(
@@ -196,8 +146,8 @@ function RecordingsByMember({ members, recordings }) {
   };
 
   return (
-    <PureRecordingsByMember
-      members={members}
+    <PureRecordings
+      membersById={membersById}
       recordings={recordings}
       audioPlayerState={audioPlayerState}
       downloadProgressState={downloadProgressState}
@@ -207,9 +157,9 @@ function RecordingsByMember({ members, recordings }) {
   );
 }
 
-RecordingsByMember.propTypes = {
-  members: PropTypes.array.isRequired,
+Recordings.propTypes = {
+  membersById: PropTypes.object.isRequired,
   recordings: PropTypes.array.isRequired
 };
 
-export default RecordingsByMember;
+export default Recordings;
