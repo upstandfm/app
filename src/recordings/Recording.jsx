@@ -3,70 +3,38 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { ListItem } from '../components/List';
+import { formatDate } from '../utils';
+
+import Avatar from '../components/Avatar';
 import Button from '../components/Button';
+
+import { RecordingListItem, Name, Meta } from './RecordingList';
+import Status from './Status';
 
 const PlayPauseButton = styled(Button)`
   width: 40px;
   height: 40px;
   padding: 0;
   color: ${props =>
-    props.isSelected ? 'var(--color-light-purple)' : 'var(--color-grey)'};
+    props.isSelected ? 'var(--color-light-purple)' : 'inherit'};
 
   :disabled {
     visibility: hidden;
+  }
+
+  :hover {
+    cursor: ${props => (props.isLoading ? 'wait' : 'pointer')};
   }
 `;
 
 PlayPauseButton.propTypes = {
-  isSelected: PropTypes.bool
-};
-
-const DeleteButton = styled(Button)`
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  color: var(--color-grey);
-
-  :disabled {
-    visibility: hidden;
-  }
-`;
-
-const Content = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: 1em;
-  align-items: center;
-`;
-
-const RecordingName = styled.h4`
-  margin: 0;
-  font-weight: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const Badge = styled.span`
-  padding: 0.25em 0.5em;
-  background-color: ${props =>
-    props.status === 'error'
-      ? 'var(--color-lightest-red)'
-      : 'var(--color-lightest-purple)'};
-  color: ${props =>
-    props.status === 'error'
-      ? 'var(--color-dark-red)'
-      : 'var(--color-dark-purple)'};
-  border-radius: var(--radius-size);
-`;
-
-Badge.propTypes = {
-  status: PropTypes.oneOf(['transcoding', 'error', 'completed'])
+  isSelected: PropTypes.bool,
+  isLoading: PropTypes.bool
 };
 
 function Recording({
   recording,
+  member,
   isSelected,
   hasFile,
   downloadFile,
@@ -85,10 +53,12 @@ function Recording({
   }, [triggerDownload]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const displayName = recording.name || 'Untitled';
-  const helpText = `${isPlaying ? 'pause' : 'play'} recording "${displayName}"`;
+  const helpText = `${isPlaying ? 'Pause' : 'Play'} recording "${displayName}"`;
   const { transcodingStatus } = recording;
   const isReady = transcodingStatus === 'completed';
   const isDownloading = downloadProgress > 0 && downloadProgress < 100;
+  const createdEpoch = new Date(recording.createdAt).getTime();
+  const recordedAt = formatDate(createdEpoch);
 
   const handlePlayPauseRecording = () => {
     if (!isReady || isDownloading) {
@@ -104,7 +74,7 @@ function Recording({
   };
 
   return (
-    <ListItem title={displayName}>
+    <RecordingListItem title={displayName}>
       <PlayPauseButton
         tertiary
         aria-label={isReady && !isDownloading ? helpText : ''}
@@ -112,6 +82,7 @@ function Recording({
         isSelected={isSelected}
         onClick={handlePlayPauseRecording}
         disabled={!isReady}
+        isLoading={isDownloading}
       >
         {isDownloading ? (
           <FontAwesomeIcon icon="circle-notch" size="lg" spin />
@@ -120,22 +91,29 @@ function Recording({
         )}
       </PlayPauseButton>
 
-      <Content>
-        <RecordingName>{displayName}</RecordingName>
+      <Name>{displayName}</Name>
 
-        {!isReady && (
-          <Badge status={transcodingStatus}>
-            {transcodingStatus === 'transcoding'
-              ? 'processing'
-              : transcodingStatus}
-          </Badge>
-        )}
-      </Content>
+      {!isReady ? (
+        <Status status={transcodingStatus}>{transcodingStatus}</Status>
+      ) : (
+        <span />
+      )}
 
-      <DeleteButton tertiary title="not implemented yet" disabled>
-        <FontAwesomeIcon icon="trash" />
-      </DeleteButton>
-    </ListItem>
+      <Meta title={recording.createdAt}>{recordedAt}</Meta>
+
+      <Avatar
+        title={member.fullName}
+        fullName={member.fullName}
+        avatarUrl={member.avatarUrl}
+        altText=""
+      />
+
+      <div>
+        <Button size="small" tertiary disabled title="Not implemented yet">
+          <FontAwesomeIcon icon="trash" />
+        </Button>
+      </div>
+    </RecordingListItem>
   );
 }
 
@@ -148,6 +126,15 @@ Recording.propTypes = {
     name: PropTypes.string,
     transcodingStatus: PropTypes.oneOf(['transcoding', 'error', 'completed']),
     transcodedFileKey: PropTypes.string
+  }),
+  member: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    createdBy: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    fullName: PropTypes.string,
+    avatarUrl: PropTypes.string
   }),
   isSelected: PropTypes.bool.isRequired,
   hasFile: PropTypes.bool.isRequired,
