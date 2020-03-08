@@ -50,7 +50,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
     "focus-trap-react": "^6.0.0",
     "react": "^16.13.0",
@@ -70,17 +70,17 @@
     "@storybook/addon-links": "^5.3.14",
     "@storybook/addon-viewport": "^5.3.14",
     "@storybook/addons": "^5.3.14",
-    "@storybook/preset-create-react-app": "^1.5.2",
+    "@storybook/preset-create-react-app": "^2.0.0",
     "@storybook/react": "^5.3.14",
     "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.4.1",
+    "@testing-library/react": "^9.5.0",
     "cypress": "^4.1.0",
-    "cypress-watch-and-reload": "^1.2.13",
+    "cypress-watch-and-reload": "^1.2.14",
     "eslint-plugin-cypress": "^2.10.3",
     "husky": "^4.2.3",
     "jest-junit": "^10.0.0",
     "lint-staged": "^10.0.8",
-    "netlify-cli": "^2.36.0",
+    "netlify-cli": "^2.37.0",
     "prettier": "^1.19.1"
   }
 }
