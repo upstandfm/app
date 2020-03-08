@@ -8,7 +8,7 @@ import Button from '../components/Button';
 import Recordings from '../recordings';
 
 import Loading from './Loading';
-import { Container, LoadMoreContainer } from './Layout';
+import { Wrapper, Container, LoadMoreContainer } from './Layout';
 
 import updateReducer, { defaultUpdateState } from './reducer';
 import useFetchMembers from './use-fetch-members';
@@ -34,26 +34,28 @@ export function PureStandupUpdates({
   }
 
   return (
-    <Container>
-      <Recordings membersById={membersById} recordings={recordings} />
+    <Wrapper>
+      <Container>
+        <Recordings membersById={membersById} recordings={recordings} />
 
-      {cursor && (
-        <LoadMoreContainer>
-          <Button
-            size="small"
-            tertiary
-            disabled={isFetchingUpdates}
-            onClick={handleLoadMore}
-          >
-            {isFetchingUpdates ? (
-              <FontAwesomeIcon icon="circle-notch" spin />
-            ) : (
-              'Load older'
-            )}
-          </Button>
-        </LoadMoreContainer>
-      )}
-    </Container>
+        {cursor && (
+          <LoadMoreContainer>
+            <Button
+              size="small"
+              tertiary
+              disabled={isFetchingUpdates}
+              onClick={handleLoadMore}
+            >
+              {isFetchingUpdates ? (
+                <FontAwesomeIcon icon="circle-notch" spin />
+              ) : (
+                'Load older'
+              )}
+            </Button>
+          </LoadMoreContainer>
+        )}
+      </Container>
+    </Wrapper>
   );
 }
 
@@ -74,41 +76,12 @@ function StandupUpdates() {
     defaultUpdateState
   );
 
-  // Workspace members
-
   const [
     fetchMembers,
     abortFetchMembers,
     isFetchingMembers,
     membersErr
   ] = useFetchMembers(updateDispatch);
-
-  React.useEffect(() => {
-    fetchMembers();
-
-    return () => {
-      abortFetchMembers();
-    };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  React.useEffect(() => {
-    if (!membersErr) {
-      return;
-    }
-
-    snackbarDispatch({
-      type: 'ENQUEUE_SNACKBAR_MSG',
-      data: {
-        type: 'error',
-        title: 'Failed to fetch workspace members',
-        text: membersErr.details
-          ? `${membersErr.message}: ${membersErr.details}`
-          : membersErr.message
-      }
-    });
-  }, [membersErr]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Updates
 
   const [
     fetchUpdates,
@@ -119,31 +92,42 @@ function StandupUpdates() {
   ] = useFetchUpdates(standupId, updateDispatch);
 
   React.useEffect(() => {
+    fetchMembers();
     fetchUpdates(PAGE_LIMIT);
 
     return () => {
+      abortFetchMembers();
       abortFetchUpdates();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
-    if (!updatesErr) {
-      return;
+    if (membersErr) {
+      snackbarDispatch({
+        type: 'ENQUEUE_SNACKBAR_MSG',
+        data: {
+          type: 'error',
+          title: 'Failed to fetch workspace members',
+          text: membersErr.details
+            ? `${membersErr.message}: ${membersErr.details}`
+            : membersErr.message
+        }
+      });
     }
 
-    snackbarDispatch({
-      type: 'ENQUEUE_SNACKBAR_MSG',
-      data: {
-        type: 'error',
-        title: 'Failed to fetch standup updates',
-        text: updatesErr.details
-          ? `${updatesErr.message}: ${updatesErr.details}`
-          : updatesErr.message
-      }
-    });
-  }, [updatesErr]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Helpers
+    if (updatesErr) {
+      snackbarDispatch({
+        type: 'ENQUEUE_SNACKBAR_MSG',
+        data: {
+          type: 'error',
+          title: 'Failed to fetch standup updates',
+          text: updatesErr.details
+            ? `${updatesErr.message}: ${updatesErr.details}`
+            : updatesErr.message
+        }
+      });
+    }
+  }, [membersErr, updatesErr]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchNextPage = cursor => {
     fetchUpdates(PAGE_LIMIT, cursor);

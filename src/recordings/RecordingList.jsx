@@ -8,8 +8,8 @@ export const RecordingList = styled.ul`
 
 export const RecordingListItem = styled.li`
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto auto;
-  grid-gap: 1.5em;
+  grid-template-columns: auto 4fr 1fr auto auto auto;
+  grid-gap: 1em;
   align-items: center;
   padding: 0.5rem 1rem;
   transition: all 0.1s linear;

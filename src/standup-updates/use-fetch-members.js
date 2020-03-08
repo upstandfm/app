@@ -34,12 +34,12 @@ function useFetchMembers(dispatch) {
         workspaceId
       );
 
-      setIsFetching(false);
-
       dispatch({
         type: 'FETCHED_MEMBERS',
         data: res.data.items
       });
+
+      setIsFetching(false);
     } catch (err) {
       if (axios.isCancel(err)) {
         return;
