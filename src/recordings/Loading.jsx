@@ -20,12 +20,16 @@ const PlayPause = styled.div`
   height: 40px;
 `;
 
+const CustomSkeleton = styled(Skeleton)`
+  max-width: 230px;
+`;
+
 export function LoadingRecordings() {
   return (
     <RecordingList>
       <LoadingRecordingListItem>
         <PlayPause />
-        <Skeleton as={Name}>Loading recording name</Skeleton>
+        <CustomSkeleton as={Name}>Loading recording name</CustomSkeleton>
         <Skeleton as={Status}>Loading sts</Skeleton>
         <Skeleton as={Meta}>Loading created date</Skeleton>
         <LoadingAvatar />
@@ -39,7 +43,7 @@ export function LoadingRecordings() {
 
       <LoadingRecordingListItem>
         <PlayPause />
-        <Skeleton as={Name}>Loading recording name</Skeleton>
+        <CustomSkeleton as={Name}>Loading recording name</CustomSkeleton>
         <Skeleton as={Status}>Loading sts</Skeleton>
         <Skeleton as={Meta}>Loading created date</Skeleton>
         <LoadingAvatar />
@@ -53,7 +57,7 @@ export function LoadingRecordings() {
 
       <LoadingRecordingListItem>
         <PlayPause />
-        <Skeleton as={Name}>Loading recording name</Skeleton>
+        <CustomSkeleton as={Name}>Loading recording name</CustomSkeleton>
         <Skeleton as={Status}>Loading sts</Skeleton>
         <Skeleton as={Meta}>Loading created date</Skeleton>
         <LoadingAvatar />
