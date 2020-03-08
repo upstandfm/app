@@ -43,6 +43,10 @@ function recordingsReducer(state, action) {
       return action.data;
     }
 
+    case 'FETCHED_UPDATES_NEXT_PAGE': {
+      return [...state, ...action.data];
+    }
+
     default: {
       return state;
     }

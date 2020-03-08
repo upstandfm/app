@@ -128,11 +128,11 @@ Recording.propTypes = {
     transcodedFileKey: PropTypes.string
   }),
   member: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    createdBy: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    createdBy: PropTypes.string,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    email: PropTypes.string,
     fullName: PropTypes.string,
     avatarUrl: PropTypes.string
   }),

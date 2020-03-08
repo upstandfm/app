@@ -37,15 +37,15 @@ function useFetchUpdates(standupId, dispatch) {
         cursor
       );
 
-      setIsFetching(false);
-      setNextPageCursor(res.data.cursor.next);
-
       // If we fetch updates with "cursor", it means we are fetching the
       // "next page" of updates, otherwise we fetched the "first page"
       dispatch({
         type: cursor ? 'FETCHED_UPDATES_NEXT_PAGE' : 'FETCHED_UPDATES',
         data: res.data.items
       });
+
+      setNextPageCursor(res.data.cursor.next);
+      setIsFetching(false);
     } catch (err) {
       if (axios.isCancel(err)) {
         return;

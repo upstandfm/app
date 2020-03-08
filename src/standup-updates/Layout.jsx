@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  padding: 1.5em 1em;
+`;
+
 export const Container = styled.div`
-  max-width: 50rem;
+  max-width: 70rem;
   margin: 0 auto;
   box-shadow: 0px 1px 2px 0px rgba(25, 18, 56, 0.14);
   background-color: var(--color-white);
@@ -12,5 +16,5 @@ export const LoadMoreContainer = styled.div`
   display: grid;
   align-items: center;
   justify-items: center;
-  margin: 0 0 2em 0;
+  padding: 0 0 1em 0;
 `;

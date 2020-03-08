@@ -33,6 +33,23 @@ describe('updates reducer', () => {
     expect(newState.recordings).toEqual(recordings);
   });
 
+  it('fetches more updates', () => {
+    const state = {
+      ...defaultUpdateState,
+      recordings: [{ id: '1', name: 'yesterday' }]
+    };
+
+    const recordings = [{ id: '2', name: 'today' }];
+
+    const action = {
+      type: 'FETCHED_UPDATES_NEXT_PAGE',
+      data: recordings
+    };
+
+    const newState = reducer(state, action);
+    expect(newState.recordings).toContain(recordings[0]);
+  });
+
   it('returns default state', () => {
     const state = {
       membersById: {
