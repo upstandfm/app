@@ -56,7 +56,6 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0",
     "react-transition-group": "^4.3.0",
     "shortid": "^2.2.15",
     "styled-components": "^5.0.1"
@@ -81,6 +80,7 @@
     "jest-junit": "^10.0.0",
     "lint-staged": "^10.0.8",
     "netlify-cli": "^2.37.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-scripts": "3.4.0"
   }
 }
