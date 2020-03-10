@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
 
 import mockData from './mock-data';
-import { PureStandups } from './Standups';
+import { PureChannels } from './Channels';
 
 const fetchNextPage = action('fetchNextPage');
 
@@ -15,87 +15,87 @@ const Container = styled.div`
 `;
 
 export default {
-  title: 'modules/Standups',
-  component: PureStandups,
+  title: 'modules/Channels',
+  component: PureChannels,
   parameters: {
-    componentSubtitle: 'Screen that shows all standups'
+    componentSubtitle: 'Screen that shows all channels'
   }
 };
 
-export const DefaultStandups = () => {
+export const DefaultChannels = () => {
   return (
     <Container>
-      <PureStandups
+      <PureChannels
         isLoading={false}
-        standups={mockData}
+        channels={mockData}
         fetchNextPage={fetchNextPage}
       />
     </Container>
   );
 };
 
-DefaultStandups.story = {
+DefaultChannels.story = {
   name: 'default'
 };
 
-export const LoadingStandups = () => {
+export const LoadingChannels = () => {
   return (
     <Container>
-      <PureStandups isLoading={true} fetchNextPage={fetchNextPage} />
+      <PureChannels isLoading={true} fetchNextPage={fetchNextPage} />
     </Container>
   );
 };
 
-LoadingStandups.story = {
+LoadingChannels.story = {
   name: 'loading'
 };
 
-export const LoadMoreStandups = () => {
+export const LoadMoreChannels = () => {
   return (
     <Container>
-      <PureStandups
+      <PureChannels
         isLoading={false}
         cursor="1q2w3e4r5t6y="
-        standups={mockData}
+        channels={mockData}
         fetchNextPage={fetchNextPage}
       />
     </Container>
   );
 };
 
-LoadMoreStandups.story = {
+LoadMoreChannels.story = {
   name: 'load more'
 };
 
-export const FetchingMoreStandups = () => {
+export const FetchingMoreChannels = () => {
   return (
     <Container>
-      <PureStandups
+      <PureChannels
         isLoading={true}
         cursor="1q2w3e4r5t6y="
-        standups={mockData}
+        channels={mockData}
         fetchNextPage={fetchNextPage}
       />
     </Container>
   );
 };
 
-FetchingMoreStandups.story = {
+FetchingMoreChannels.story = {
   name: 'loading more'
 };
 
-export const EmptyStandups = () => {
+export const EmptyChannels = () => {
   return (
     <Container>
-      <PureStandups
+      <PureChannels
         isLoading={false}
-        standups={[]}
+        channels={[]}
         fetchNextPage={fetchNextPage}
       />
     </Container>
   );
 };
 
-EmptyStandups.story = {
+EmptyChannels.story = {
   name: 'empty'
 };

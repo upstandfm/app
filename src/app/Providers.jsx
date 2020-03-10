@@ -3,7 +3,7 @@ import React from 'react';
 import { Auth0Provider, UserProvider } from '../auth0';
 import { SnackbarProvider } from '../components/Snackbar';
 import { WorkspaceProvider } from '../workspace';
-import { StandupsProvider } from '../standups';
+import { ChannelsProvider } from '../channels';
 import { AudioPlayerProvider } from '../components/AudioPlayer';
 
 function Providers({ children }) {
@@ -12,9 +12,9 @@ function Providers({ children }) {
       <UserProvider>
         <SnackbarProvider>
           <WorkspaceProvider>
-            <StandupsProvider>
+            <ChannelsProvider>
               <AudioPlayerProvider>{children}</AudioPlayerProvider>
-            </StandupsProvider>
+            </ChannelsProvider>
           </WorkspaceProvider>
         </SnackbarProvider>
       </UserProvider>

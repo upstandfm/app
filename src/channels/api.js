@@ -4,18 +4,18 @@ const { REACT_APP_API_DOMAIN } = process.env;
 
 const api = {
   /**
-   * Get all standups.
+   * Get all channels.
    *
    * @param {String} token - Access token
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
    * @param {Number} limit - Amount of items to fetch
    * @param {String} cursor - Cursor to fetch the "next page"
    *
-   * @return {Promise} Axios res with standups list and page cursor data
+   * @return {Promise} Axios res with channel list and page cursor data
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  getStandups(token, cancelToken, limit, cursor) {
+  getChannels(token, cancelToken, limit, cursor) {
     let params = {};
 
     if (limit) {
@@ -28,7 +28,7 @@ const api = {
 
     return axios({
       method: 'get',
-      url: `${REACT_APP_API_DOMAIN}/standups`,
+      url: `${REACT_APP_API_DOMAIN}/channels`,
       cancelToken,
       params,
       headers: {

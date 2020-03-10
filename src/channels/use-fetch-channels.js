@@ -6,13 +6,13 @@ import { useAuth0 } from '../auth0';
 import api from './api';
 
 /**
- * Custom hook to fetch standups.
+ * Custom hook to fetch channels.
  *
  * @param {Function} dispatch - Reducer dispatch function
  *
  * @return {Array}
  */
-function useFetchFiles(dispatch) {
+function useFetchChannels(dispatch) {
   const { getToken } = useAuth0();
 
   const [isFetching, setIsFetching] = React.useState(true);
@@ -22,21 +22,21 @@ function useFetchFiles(dispatch) {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-  const fetchStandups = async (limit, cursor) => {
+  const fetchChannels = async (limit, cursor) => {
     try {
       setIsFetching(true);
       setErr(null);
 
       const token = await getToken();
-      const res = await api.getStandups(token, source.token, limit, cursor);
+      const res = await api.getChannels(token, source.token, limit, cursor);
 
       setIsFetching(false);
       setNextPageCursor(res.data.cursor.next);
 
-      // If we fetch standups with "cursor", it means we are fetching the
-      // "next page" of standups, otherwise we fetched the "first page"
+      // If we fetch channels with "cursor", it means we are fetching the
+      // "next page" of channels, otherwise we fetched the "first page"
       dispatch({
-        type: cursor ? 'FETCHED_STANDUPS_NEXT_PAGE' : 'FETCHED_STANDUPS',
+        type: cursor ? 'FETCHED_CHANNELS_NEXT_PAGE' : 'FETCHED_CHANNELS',
         data: res.data.items
       });
     } catch (err) {
@@ -51,7 +51,7 @@ function useFetchFiles(dispatch) {
     }
   };
 
-  return [fetchStandups, source.cancel, isFetching, err, nextPageCursor];
+  return [fetchChannels, source.cancel, isFetching, err, nextPageCursor];
 }
 
-export default useFetchFiles;
+export default useFetchChannels;

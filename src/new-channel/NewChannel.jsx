@@ -11,7 +11,7 @@ import { Form, Section, Label, Input, Description } from '../components/Form';
 import { useSnackbar } from '../components/Snackbar';
 import Button from '../components/Button';
 
-import { useStandups } from '../standups';
+import { useChannels } from '../channels';
 
 import useCreateChannel from './use-create-channel';
 
@@ -91,7 +91,7 @@ PureNewChannel.propTypes = {
 
 function NewChannel() {
   const history = useHistory();
-  const [, standupsDispatch] = useStandups();
+  const [, channelDispatch] = useChannels();
   const [
     createChannel,
     abortCreateChannel,
@@ -156,11 +156,15 @@ function NewChannel() {
 
     const { id } = await createChannel({ name });
     if (id) {
-      standupsDispatch({
-        type: 'CREATED_STANDUP',
+      channelDispatch({
+        type: 'CREATED_CHANNEL',
         data: {
           id,
-          name
+          name,
+          createdBy: 'system',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          isPrivate: false
         }
       });
 

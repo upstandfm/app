@@ -1,14 +1,14 @@
 import React from 'react';
 
-import standupsReducer, { defaultStandupsState } from './reducer';
+import channelReducer, { defaultChannelState } from './reducer';
 
 const StateContext = React.createContext();
 const DispatchContext = React.createContext();
 
-export function StandupsProvider(props) {
+export function ChannelsProvider(props) {
   const [state, dispatch] = React.useReducer(
-    standupsReducer,
-    defaultStandupsState
+    channelReducer,
+    defaultChannelState
   );
 
   return (
@@ -20,30 +20,30 @@ export function StandupsProvider(props) {
   );
 }
 
-function useStandupsState() {
+function useChannelState() {
   const ctx = React.useContext(StateContext);
 
   if (!ctx) {
     throw new Error(
-      '"useStandupsState" hook must be used in "StandupsProvider"'
+      '"useChannelState" hook must be used in "ChannelsProvider"'
     );
   }
 
   return ctx;
 }
 
-function useStandupsDispatch() {
+function useChannelDispatch() {
   const ctx = React.useContext(DispatchContext);
 
   if (!ctx) {
     throw new Error(
-      '"useStandupsDispatch" hook must be used in "StandupsProvider"'
+      '"useChannelDispatch" hook must be used in "ChannelsProvider"'
     );
   }
 
   return ctx;
 }
 
-export function useStandups() {
-  return [useStandupsState(), useStandupsDispatch()];
+export function useChannels() {
+  return [useChannelState(), useChannelDispatch()];
 }

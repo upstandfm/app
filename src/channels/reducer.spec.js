@@ -1,51 +1,51 @@
 import reducer from './reducer';
 
-describe('standups reducer', () => {
-  it('returns fetched standups', () => {
+describe('channels reducer', () => {
+  it('returns fetched channels', () => {
     const state = [];
 
-    const standups = [
+    const channels = [
       { id: '1', name: 'One' },
       { id: '2', name: 'Two' }
     ];
 
     const action = {
-      type: 'FETCHED_STANDUPS',
-      data: standups
+      type: 'FETCHED_CHANNELS',
+      data: channels
     };
 
     const newState = reducer(state, action);
-    expect(newState).toEqual(standups);
+    expect(newState).toEqual(channels);
   });
 
-  it('adds fetched standups', () => {
+  it('adds fetched channels', () => {
     const state = [{ id: '1', name: 'One' }];
-    const standups = [{ id: '2', name: 'Two' }];
+    const channels = [{ id: '2', name: 'Two' }];
 
     const action = {
-      type: 'FETCHED_STANDUPS_NEXT_PAGE',
-      data: standups
+      type: 'FETCHED_CHANNELS_NEXT_PAGE',
+      data: channels
     };
 
     const newState = reducer(state, action);
-    expect(newState).toContain(standups[0]);
+    expect(newState).toContain(channels[0]);
   });
 
-  it('adds a created standup', () => {
+  it('adds a created channel', () => {
     const state = [];
 
-    const createdStandup = {
+    const createdChannel = {
       id: '1',
-      name: 'My standup'
+      name: 'My channel'
     };
 
     const action = {
-      type: 'CREATED_STANDUP',
-      data: createdStandup
+      type: 'CREATED_CHANNEL',
+      data: createdChannel
     };
 
     const newState = reducer(state, action);
-    expect(newState).toContain(createdStandup);
+    expect(newState).toContain(createdChannel);
   });
 
   it('returns default state', () => {

@@ -14,10 +14,10 @@ import {
   List,
   ListItemLink,
   ListItemText
-} from './StandupList';
+} from './ChannelList';
 
-import { useStandups } from './StandupsContext';
-import useFetchStandups from './use-fetch-standups';
+import { useChannels } from './ChannelsContext';
+import useFetchChannels from './use-fetch-channels';
 
 const PAGE_LIMIT = 10;
 
@@ -25,7 +25,7 @@ const MenuButton = styled(Button)`
   padding: 0.1em 0.2em;
 `;
 
-export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
+export function PureChannels({ isLoading, cursor, fetchNextPage, channels }) {
   if (isLoading && !cursor) {
     return <Loading />;
   }
@@ -37,14 +37,14 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   return (
     <div>
       <ListContainer>
-        <ListTitle>PRIVATE</ListTitle>
+        <ListTitle>CHANNELS</ListTitle>
 
         <List>
-          {standups.map(standup => {
-            const { id } = standup;
+          {channels.map(channel => {
+            const { id } = channel;
             return (
-              <ListItemLink key={id} to={`/standups/${id}`}>
-                <ListItemText>{standup.name}</ListItemText>
+              <ListItemLink key={id} to={`/channels/${id}`}>
+                <ListItemText>{channel.name}</ListItemText>
 
                 <MenuButton
                   size="small"
@@ -80,11 +80,11 @@ export function PureStandups({ isLoading, cursor, fetchNextPage, standups }) {
   );
 }
 
-PureStandups.propTypes = {
+PureChannels.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   cursor: PropTypes.string,
   fetchNextPage: PropTypes.func.isRequired,
-  standups: PropTypes.arrayOf(
+  channels: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       createdBy: PropTypes.string.isRequired,
@@ -96,22 +96,22 @@ PureStandups.propTypes = {
   )
 };
 
-function Standups() {
-  const [standupsState, standupsDispatch] = useStandups();
+function Channels() {
+  const [channelState, channelDispatch] = useChannels();
   const [
-    fetchStandups,
-    abortFetchStandups,
+    fetchChannels,
+    abortFetchChannels,
     isFetching,
     err,
     nextPageCursor
-  ] = useFetchStandups(standupsDispatch);
+  ] = useFetchChannels(channelDispatch);
   const [, snackbarDispatch] = useSnackbar();
 
   React.useEffect(() => {
-    fetchStandups(PAGE_LIMIT);
+    fetchChannels(PAGE_LIMIT);
 
     return () => {
-      abortFetchStandups();
+      abortFetchChannels();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -124,24 +124,24 @@ function Standups() {
       type: 'ENQUEUE_SNACKBAR_MSG',
       data: {
         type: 'error',
-        title: 'Failed to fetch standups',
+        title: 'Failed to fetch channels',
         text: err.details ? `${err.message}: ${err.details}` : err.message
       }
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchNextPage = cursor => {
-    fetchStandups(PAGE_LIMIT, cursor);
+    fetchChannels(PAGE_LIMIT, cursor);
   };
 
   return (
-    <PureStandups
+    <PureChannels
       isLoading={isFetching}
       cursor={nextPageCursor}
       fetchNextPage={fetchNextPage}
-      standups={standupsState}
+      channels={channelState}
     />
   );
 }
 
-export default Standups;
+export default Channels;

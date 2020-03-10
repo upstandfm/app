@@ -13,7 +13,7 @@ import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
 
 import Settings from '../settings';
-import Standups from '../standups';
+import Channels from '../channels';
 import NewChannel from '../new-channel';
 import Standup from '../standup';
 
@@ -72,7 +72,7 @@ function AuthenticatedApp() {
             </Menu>
           </Nav>
 
-          <Standups />
+          <Channels />
 
           <Actions>
             <Button secondary as={Link} to="/new-channel">

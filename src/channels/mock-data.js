@@ -1,10 +1,10 @@
 /**
- * Standups mock data
+ * Channels mock data
  */
 export default [
   {
     id: '1',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -12,7 +12,7 @@ export default [
   },
   {
     id: '2',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -20,7 +20,7 @@ export default [
   },
   {
     id: '3',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -28,7 +28,7 @@ export default [
   },
   {
     id: '4',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -36,7 +36,7 @@ export default [
   },
   {
     id: '5',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -44,7 +44,7 @@ export default [
   },
   {
     id: '6',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -52,7 +52,7 @@ export default [
   },
   {
     id: '7',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -60,7 +60,7 @@ export default [
   },
   {
     id: '8',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
@@ -68,7 +68,7 @@ export default [
   },
   {
     id: '9',
-    createdBy: 'auth0|1234567890',
+    createdBy: 'user|56ef64fe64ea53f7d6475efae',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     isPrivate: true,
