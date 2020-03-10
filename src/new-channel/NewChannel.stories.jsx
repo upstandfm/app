@@ -2,7 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
 
-import { PureNewStandup } from './NewStandup';
+import { PureNewChannel } from './NewChannel';
 
 const onExit = action('onExit');
 const setName = action('setName');
@@ -14,17 +14,17 @@ const Container = styled.div`
 `;
 
 export default {
-  title: 'modules/NewStandup',
-  component: PureNewStandup,
+  title: 'modules/NewChannel',
+  component: PureNewChannel,
   parameters: {
-    componentSubtitle: 'New standup screen'
+    componentSubtitle: 'New channel screen'
   }
 };
 
-export const DefaultNewStandup = () => {
+export const DefaultNewChannel = () => {
   return (
     <Container>
-      <PureNewStandup
+      <PureNewChannel
         onExit={onExit}
         name=""
         setName={setName}
@@ -35,14 +35,14 @@ export const DefaultNewStandup = () => {
   );
 };
 
-DefaultNewStandup.story = {
+DefaultNewChannel.story = {
   name: 'default'
 };
 
-export const NamedNewStandup = () => {
+export const NamedNewChannel = () => {
   return (
     <Container>
-      <PureNewStandup
+      <PureNewChannel
         onExit={onExit}
         name="Upstand FM"
         setName={setName}
@@ -53,14 +53,14 @@ export const NamedNewStandup = () => {
   );
 };
 
-NamedNewStandup.story = {
+NamedNewChannel.story = {
   name: 'named'
 };
 
-export const CreatingNewStandup = () => {
+export const CreatingNewChannel = () => {
   return (
     <Container>
-      <PureNewStandup
+      <PureNewChannel
         onExit={onExit}
         name="Upstand FM"
         setName={setName}
@@ -71,6 +71,6 @@ export const CreatingNewStandup = () => {
   );
 };
 
-CreatingNewStandup.story = {
+CreatingNewChannel.story = {
   name: 'creating'
 };

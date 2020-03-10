@@ -4,20 +4,20 @@ const { REACT_APP_API_DOMAIN } = process.env;
 
 const api = {
   /**
-   * Create a new standup.
+   * Create a new channel.
    *
    * @param {String} token - Access token
    * @param {String} cancelToken - Cancellation token to abort the HTTP request
-   * @param {Object} data - Standup data
+   * @param {Object} data - Channel data
    *
-   * @return {Promise} Axios res with created standup
+   * @return {Promise} Axios res with created channel
    *
    * For Axios res envelope see: https://github.com/axios/axios#response-schema
    */
-  createStandup(token, cancelToken, data) {
+  createChannel(token, cancelToken, data) {
     return axios({
       method: 'post',
-      url: `${REACT_APP_API_DOMAIN}/standups`,
+      url: `${REACT_APP_API_DOMAIN}/channels`,
       cancelToken,
       headers: {
         Authorization: `Bearer ${token}`,

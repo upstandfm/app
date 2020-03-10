@@ -14,7 +14,7 @@ import Button from '../components/Button';
 
 import Settings from '../settings';
 import Standups from '../standups';
-import NewStandup from '../new-standup';
+import NewChannel from '../new-channel';
 import Standup from '../standup';
 
 import { AppContainer, Sidebar, Header, Nav, Actions, Main } from './Layout';
@@ -75,8 +75,8 @@ function AuthenticatedApp() {
           <Standups />
 
           <Actions>
-            <Button secondary as={Link} to="/new-standup">
-              New standup
+            <Button secondary as={Link} to="/new-channel">
+              New channel
             </Button>
           </Actions>
         </Sidebar>
@@ -97,8 +97,8 @@ function AuthenticatedApp() {
               <Settings />
             </Route>
 
-            <Route path="/new-standup">
-              <NewStandup />
+            <Route path="/new-channel">
+              <NewChannel />
             </Route>
 
             <Route path="/standups/:standupId">

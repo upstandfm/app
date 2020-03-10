@@ -5,7 +5,7 @@ import { useAuth0 } from '../auth0';
 
 import api from './api';
 
-function useCreateStandup() {
+function useCreateChannel() {
   const { getToken } = useAuth0();
 
   const [isCreating, setIsCreating] = React.useState(false);
@@ -14,13 +14,13 @@ function useCreateStandup() {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-  const createStandup = async data => {
+  const createChannel = async data => {
     try {
       setIsCreating(true);
       setErr(null);
 
       const token = await getToken();
-      const res = await api.createStandup(token, source.token, data);
+      const res = await api.createChannel(token, source.token, data);
 
       setIsCreating(false);
 
@@ -37,7 +37,7 @@ function useCreateStandup() {
     }
   };
 
-  return [createStandup, source.cancel, isCreating, err];
+  return [createChannel, source.cancel, isCreating, err];
 }
 
-export default useCreateStandup;
+export default useCreateChannel;

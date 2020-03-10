@@ -13,11 +13,11 @@ import Button from '../components/Button';
 
 import { useStandups } from '../standups';
 
-import useCreateStandup from './use-create-standup';
+import useCreateChannel from './use-create-channel';
 
 import { Aside, Wrapper, ExitContainer, Title } from './Layout';
 
-export function PureNewStandup({
+export function PureNewChannel({
   onExit,
   name,
   setName,
@@ -46,7 +46,7 @@ export function PureNewStandup({
 
       <Wrapper>
         <Form>
-          <Title>Create a new standup</Title>
+          <Title>Create a new channel</Title>
 
           <Section>
             <Label htmlFor="name">
@@ -54,7 +54,7 @@ export function PureNewStandup({
               <Input
                 type="text"
                 id="name"
-                placeholder="What will be shared?"
+                placeholder="Daily standup"
                 ref={nameInput}
                 value={name}
                 onChange={handleInput}
@@ -81,7 +81,7 @@ export function PureNewStandup({
   );
 }
 
-PureNewStandup.propTypes = {
+PureNewChannel.propTypes = {
   onExit: PropTypes.func.isRequired,
   name: PropTypes.string,
   setName: PropTypes.func.isRequired,
@@ -89,15 +89,15 @@ PureNewStandup.propTypes = {
   isCreating: PropTypes.bool.isRequired
 };
 
-function NewStandup() {
+function NewChannel() {
   const history = useHistory();
   const [, standupsDispatch] = useStandups();
   const [
-    createStandup,
-    abortCreateStandup,
+    createChannel,
+    abortCreateChannel,
     isCreating,
     err
-  ] = useCreateStandup();
+  ] = useCreateChannel();
   const [, snackbarDispatch] = useSnackbar();
 
   const [showConfirm, setShowConfirm] = React.useState(false);
@@ -105,7 +105,7 @@ function NewStandup() {
 
   React.useEffect(() => {
     return () => {
-      abortCreateStandup();
+      abortCreateChannel();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -127,7 +127,7 @@ function NewStandup() {
       type: 'ENQUEUE_SNACKBAR_MSG',
       data: {
         type: 'error',
-        title: 'Failed to create standup',
+        title: 'Failed to create channel',
         text
       }
     });
@@ -154,7 +154,7 @@ function NewStandup() {
   const handleCreate = async e => {
     e.preventDefault();
 
-    const { id } = await createStandup({ name });
+    const { id } = await createChannel({ name });
     if (id) {
       standupsDispatch({
         type: 'CREATED_STANDUP',
@@ -164,7 +164,7 @@ function NewStandup() {
         }
       });
 
-      history.push(`/standups/${id}`);
+      history.push(`/channels/${id}`);
     }
   };
 
@@ -172,7 +172,7 @@ function NewStandup() {
     <>
       <FocusTrap>
         <Aside>
-          <PureNewStandup
+          <PureNewChannel
             onExit={onExit}
             name={name}
             setName={setName}
@@ -198,4 +198,4 @@ function NewStandup() {
   );
 }
 
-export default NewStandup;
+export default NewChannel;
