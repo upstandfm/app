@@ -75,7 +75,7 @@ PureUploadRecording.propTypes = {
   handleRetry: PropTypes.func.isRequired
 };
 
-function UploadRecording({ standupId, recording, onUploadedFile }) {
+function UploadRecording({ channelId, recording, onUploadedFile }) {
   const { userId, workspaceId } = useUser();
   const [uploadFile, abortUploadFile, err, progress] = useUploadFile(
     recording.id,
@@ -96,7 +96,7 @@ function UploadRecording({ standupId, recording, onUploadedFile }) {
     const metadata = {
       'user-id': userId,
       'workspace-id': workspaceId,
-      'standup-id': standupId,
+      'channel-id': channelId,
       'recording-id': recording.id,
       date: createDateKey(new Date()),
       name: displayName
@@ -148,7 +148,7 @@ function UploadRecording({ standupId, recording, onUploadedFile }) {
 }
 
 UploadRecording.propTypes = {
-  standupId: PropTypes.string.isRequired,
+  channelId: PropTypes.string.isRequired,
   recording: PropTypes.shape({
     id: PropTypes.string.isRequired,
     blob: PropTypes.object,

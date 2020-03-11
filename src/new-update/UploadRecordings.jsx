@@ -6,7 +6,7 @@ import { ListContainer } from '../components/List';
 import { RecordingsList, RecordingListTitle } from './Layout';
 import UploadRecording from './UploadRecording';
 
-function UploadRecordings({ standupId, recordingsState, onUploadedFile }) {
+function UploadRecordings({ channelId, recordingsState, onUploadedFile }) {
   const recordingIds = Object.keys(recordingsState);
 
   return (
@@ -18,7 +18,7 @@ function UploadRecordings({ standupId, recordingsState, onUploadedFile }) {
           return (
             <UploadRecording
               key={id}
-              standupId={standupId}
+              channelId={channelId}
               recording={recordingsState[id]}
               onUploadedFile={onUploadedFile}
             />
@@ -30,7 +30,7 @@ function UploadRecordings({ standupId, recordingsState, onUploadedFile }) {
 }
 
 UploadRecordings.propTypes = {
-  standupId: PropTypes.string.isRequired,
+  channelId: PropTypes.string.isRequired,
   recordingsState: PropTypes.object.isRequired,
   onUploadedFile: PropTypes.func.isRequired
 };

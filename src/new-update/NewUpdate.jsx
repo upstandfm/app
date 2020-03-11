@@ -23,7 +23,7 @@ export function PureNewUpdate({
   isGettingPermission,
   permissionErr,
   handleGetPermission,
-  standupId,
+  channelId,
   recordingsState,
   audioPlayerState,
   playPauseAudio,
@@ -68,7 +68,7 @@ export function PureNewUpdate({
 
           {isPublishing ? (
             <UploadRecordings
-              standupId={standupId}
+              channelId={channelId}
               recordingsState={recordingsState}
               onUploadedFile={onUploadedFile}
             />
@@ -108,7 +108,7 @@ PureNewUpdate.propTypes = {
   isGettingPermission: PropTypes.bool.isRequired,
   permissionErr: PropTypes.object,
   handleGetPermission: PropTypes.func.isRequired,
-  standupId: PropTypes.string.isRequired,
+  channelId: PropTypes.string.isRequired,
   recordingsState: PropTypes.object.isRequired,
   audioPlayerState: PropTypes.object.isRequired,
   playPauseAudio: PropTypes.func.isRequired,
@@ -128,7 +128,7 @@ const Subtitle = styled.p`
 `;
 
 function NewUpdate() {
-  const { standupId } = useParams();
+  const { channelId } = useParams();
   const history = useHistory();
   const [audioPlayerState, audioPlayerDispatch] = useAudioPlayer();
   const [recordingsState, recordingsDispatch] = React.useReducer(
@@ -178,7 +178,7 @@ function NewUpdate() {
 
       // Give some time for the progress animation(s) to finish
       setTimeout(() => {
-        history.push(`/standups/${standupId}`);
+        history.push(`/channels/${channelId}`);
       }, 750);
     },
     [hasUploadedAllFiles] // eslint-disable-line react-hooks/exhaustive-deps
@@ -300,7 +300,7 @@ function NewUpdate() {
       isGettingPermission={isGettingPermission}
       permissionErr={permissionErr}
       handleGetPermission={handleGetPermission}
-      standupId={standupId}
+      channelId={channelId}
       recordingsState={recordingsState}
       audioPlayerState={audioPlayerState}
       playPauseAudio={playPauseAudio}
