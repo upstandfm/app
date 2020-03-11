@@ -26,7 +26,7 @@ function Loading() {
       <Header>
         <NavContainer>
           <Breadcrumbs>
-            <Skeleton as={Breadcrumb}>Loading standup</Skeleton>
+            <Skeleton as={Breadcrumb}>Loading channel</Skeleton>
           </Breadcrumbs>
         </NavContainer>
 

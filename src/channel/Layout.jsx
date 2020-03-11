@@ -6,13 +6,13 @@ export const Container = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    'standup-header'
-    'standup-main'
-    'standup-footer';
+    'channel-header'
+    'channel-main'
+    'channel-footer';
 `;
 
 export const Header = styled.div`
-  grid-area: standup-header;
+  grid-area: channel-header;
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 1em;
@@ -43,12 +43,12 @@ export const Actions = styled.div`
 `;
 
 export const Main = styled.div`
-  grid-area: standup-main;
+  grid-area: channel-main;
   overflow: auto;
 `;
 
 export const Footer = styled.div`
-  grid-area: standup-footer;
+  grid-area: channel-footer;
   border-top: 1px solid var(--color-light-grey);
   background-color: var(--color-white);
   margin: 0;

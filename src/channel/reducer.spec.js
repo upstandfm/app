@@ -1,21 +1,21 @@
 import reducer from './reducer';
 
-describe('standup reducer', () => {
-  it('returns fetched standup', () => {
+describe('channel reducer', () => {
+  it('returns fetched channel', () => {
     const state = {};
 
-    const standup = {
+    const channel = {
       id: '1',
       name: 'One'
     };
 
     const action = {
-      type: 'FETCHED_STANDUP',
-      data: standup
+      type: 'FETCHED_CHANNEL',
+      data: channel
     };
 
     const newState = reducer(state, action);
-    expect(newState).toEqual(standup);
+    expect(newState).toEqual(channel);
   });
 
   it('returns default state', () => {

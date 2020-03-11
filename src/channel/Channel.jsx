@@ -35,38 +35,38 @@ import {
 
 import Loading from './Loading';
 
-import standupReducer from './reducer';
-import useFetchStandup from './use-fetch-standup';
+import channelReducer from './reducer';
+import useFetchChannel from './use-fetch-channel';
 
-export function PureStandup({
-  standupId,
+export function PureChannel({
+  channelId,
   urlRouteMatch,
   locationPathname,
   isLoading,
-  standup,
+  channel,
   children
 }) {
   if (isLoading) {
     return <Loading />;
   }
 
-  if (!standup) {
+  if (!channel) {
     return (
       <NotFound
-        title="Standup not found"
-        info="You might not be a member of this standup, or it doesn't exist."
+        title="Channel not found"
+        info="You might not be a member of this channel, or it doesn't exist."
       />
     );
   }
 
   const breadcrumbConfigByPathFragment = {
-    standups: {
-      displayName: 'Standups',
+    channels: {
+      displayName: 'Channels',
       asLink: false,
       linkTo: undefined
     },
-    [standupId]: {
-      displayName: standup.name,
+    [channelId]: {
+      displayName: channel.name,
       asLink: true,
       linkTo: urlRouteMatch
     },
@@ -130,12 +130,12 @@ export function PureStandup({
   );
 }
 
-PureStandup.propTypes = {
-  standupId: PropTypes.string,
+PureChannel.propTypes = {
+  channelId: PropTypes.string,
   urlRouteMatch: PropTypes.string,
   locationPathname: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
-  standup: PropTypes.shape({
+  channel: PropTypes.shape({
     id: PropTypes.string,
     createdBy: PropTypes.string,
     createdAt: PropTypes.string,
@@ -145,23 +145,23 @@ PureStandup.propTypes = {
   })
 };
 
-function Standup() {
-  const { standupId } = useParams();
+function Channel() {
+  const { channelId } = useParams();
   const { path, url } = useRouteMatch();
   const location = useLocation();
-  const [standupState, standupDispatch] = React.useReducer(standupReducer);
-  const [fetchStandup, abortFetchStandup, isFetching, err] = useFetchStandup(
-    standupDispatch
+  const [channelState, channelDispatch] = React.useReducer(channelReducer);
+  const [fetchChannel, abortFetchChannel, isFetching, err] = useFetchChannel(
+    channelDispatch
   );
   const [, snackbarDispatch] = useSnackbar();
 
   React.useEffect(() => {
-    fetchStandup(standupId);
+    fetchChannel(channelId);
 
     return () => {
-      abortFetchStandup();
+      abortFetchChannel();
     };
-  }, [standupId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [channelId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     if (!err) {
@@ -172,19 +172,19 @@ function Standup() {
       type: 'ENQUEUE_SNACKBAR_MSG',
       data: {
         type: 'error',
-        title: 'Failed to fetch standup',
+        title: 'Failed to fetch channel',
         text: err.details ? `${err.message}: ${err.details}` : err.message
       }
     });
   }, [err]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <PureStandup
-      standupId={standupId}
+    <PureChannel
+      channelId={channelId}
       urlRouteMatch={url}
       locationPathname={location.pathname}
       isLoading={isFetching}
-      standup={standupState}
+      channel={channelState}
     >
       <Switch>
         <Route exact path={path}>
@@ -202,8 +202,8 @@ function Standup() {
           />
         </Route>
       </Switch>
-    </PureStandup>
+    </PureChannel>
   );
 }
 
-export default Standup;
+export default Channel;

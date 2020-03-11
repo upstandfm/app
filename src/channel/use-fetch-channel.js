@@ -6,13 +6,13 @@ import { useAuth0 } from '../auth0';
 import api from './api';
 
 /**
- * Custom hook to fetch a single standup.
+ * Custom hook to fetch a single channel.
  *
  * @param {Function} dispatch - Reducer dispatch function
  *
  * @return {Array}
  */
-function useFetchFile(dispatch) {
+function useFetchChannel(dispatch) {
   const { getToken } = useAuth0();
 
   const [isFetching, setIsFetching] = React.useState(true);
@@ -21,18 +21,18 @@ function useFetchFile(dispatch) {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-  const fetchStandup = async standupId => {
+  const fetchChannel = async standupId => {
     try {
       setIsFetching(true);
       setErr(null);
 
       const token = await getToken();
-      const res = await api.getStandup(token, source.token, standupId);
+      const res = await api.getChannel(token, source.token, standupId);
 
       setIsFetching(false);
 
       dispatch({
-        type: 'FETCHED_STANDUP',
+        type: 'FETCHED_CHANNEL',
         data: res.data
       });
     } catch (err) {
@@ -47,7 +47,7 @@ function useFetchFile(dispatch) {
     }
   };
 
-  return [fetchStandup, source.cancel, isFetching, err];
+  return [fetchChannel, source.cancel, isFetching, err];
 }
 
-export default useFetchFile;
+export default useFetchChannel;

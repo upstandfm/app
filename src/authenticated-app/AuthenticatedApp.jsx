@@ -15,7 +15,7 @@ import Button from '../components/Button';
 import Settings from '../settings';
 import Channels from '../channels';
 import NewChannel from '../new-channel';
-import Standup from '../standup';
+import Channel from '../channel';
 
 import { AppContainer, Sidebar, Header, Nav, Actions, Main } from './Layout';
 import { Menu, MenuLink } from './Menu';
@@ -101,8 +101,8 @@ function AuthenticatedApp() {
               <NewChannel />
             </Route>
 
-            <Route path="/standups/:standupId">
-              <Standup />
+            <Route path="/channels/:channelId">
+              <Channel />
             </Route>
 
             <Route path="*">

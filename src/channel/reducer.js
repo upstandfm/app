@@ -1,14 +1,14 @@
 /**
- * Standup reducer.
+ * Channel reducer.
  *
- * @param {Object} state - Standup
+ * @param {Object} state - Channel
  * @param {Object} action - Reducer action with "type" and "data" props
  *
- * @returns {Object} Standup state
+ * @returns {Object} Channel state
  */
-function standupReducer(state, action) {
+function channelReducer(state, action) {
   switch (action.type) {
-    case 'FETCHED_STANDUP': {
+    case 'FETCHED_CHANNEL': {
       return action.data;
     }
 
@@ -18,4 +18,4 @@ function standupReducer(state, action) {
   }
 }
 
-export default standupReducer;
+export default channelReducer;

@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { PureStandup } from './Standup';
+import { PureChannel } from './Channel';
 
 export default {
-  title: 'modules/Standup',
-  component: PureStandup,
+  title: 'modules/Channel',
+  component: PureChannel,
   parameters: {
-    componentSubtitle: 'Screen that shows a single standup'
+    componentSubtitle: 'Screen that shows a single channel'
   }
 };
 
@@ -15,19 +15,19 @@ const Container = styled.div`
   border: 1px dashed var(--color-light-grey);
 `;
 
-export const LoadingStandup = () => {
+export const LoadingChannel = () => {
   return (
     <Container>
-      <PureStandup
-        standupId="Zxz0y6f"
+      <PureChannel
+        channelId="Zxz0y6f"
         urlRouteMatch=""
         isLoading={true}
-        standup={{}}
+        channel={{}}
       />
     </Container>
   );
 };
 
-LoadingStandup.story = {
+LoadingChannel.story = {
   name: 'loading'
 };
