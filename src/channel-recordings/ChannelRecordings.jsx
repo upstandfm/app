@@ -10,15 +10,15 @@ import Recordings from '../recordings';
 import Loading from './Loading';
 import { Wrapper, Container, LoadMoreContainer } from './Layout';
 
-import updateReducer, { defaultUpdateState } from './reducer';
+import recordingReducer, { defaultRecordingState } from './reducer';
 import useFetchMembers from './use-fetch-members';
-import useFetchUpdates from './use-fetch-updates';
+import useFetchRecordings from './use-fetch-recordings';
 
 const PAGE_LIMIT = 20;
 
-export function PureStandupUpdates({
+export function PureChannelRecordings({
   isFetchingMembers,
-  isFetchingUpdates,
+  isFetchingRecordings,
   cursor,
   fetchNextPage,
   membersById,
@@ -28,7 +28,7 @@ export function PureStandupUpdates({
     fetchNextPage(cursor);
   };
 
-  const isLoading = isFetchingMembers || isFetchingUpdates;
+  const isLoading = isFetchingMembers || isFetchingRecordings;
   if (isLoading && !cursor) {
     return <Loading />;
   }
@@ -43,10 +43,10 @@ export function PureStandupUpdates({
             <Button
               size="small"
               tertiary
-              disabled={isFetchingUpdates}
+              disabled={isFetchingRecordings}
               onClick={handleLoadMore}
             >
-              {isFetchingUpdates ? (
+              {isFetchingRecordings ? (
                 <FontAwesomeIcon icon="circle-notch" spin />
               ) : (
                 'Load older'
@@ -59,21 +59,21 @@ export function PureStandupUpdates({
   );
 }
 
-PureStandupUpdates.propTypes = {
+PureChannelRecordings.propTypes = {
   isFetchingMembers: PropTypes.bool.isRequired,
-  isFetchingUpdates: PropTypes.bool.isRequired,
+  isFetchingRecordings: PropTypes.bool.isRequired,
   cursor: PropTypes.string,
   fetchNextPage: PropTypes.func.isRequired,
   membersById: PropTypes.object.isRequired,
   recordings: PropTypes.array.isRequired
 };
 
-function StandupUpdates() {
-  const { standupId } = useParams();
+function ChannelRecordings() {
+  const { channelId } = useParams();
   const [, snackbarDispatch] = useSnackbar();
-  const [updateState, updateDispatch] = React.useReducer(
-    updateReducer,
-    defaultUpdateState
+  const [recordingState, recordingDispatch] = React.useReducer(
+    recordingReducer,
+    defaultRecordingState
   );
 
   const [
@@ -81,23 +81,23 @@ function StandupUpdates() {
     abortFetchMembers,
     isFetchingMembers,
     membersErr
-  ] = useFetchMembers(updateDispatch);
+  ] = useFetchMembers(recordingDispatch);
 
   const [
-    fetchUpdates,
-    abortFetchUpdates,
-    isFetchingUpdates,
+    fetchRecordings,
+    abortFetchRecordings,
+    isFetchingRecordings,
     updatesErr,
     nextPageCursor
-  ] = useFetchUpdates(standupId, updateDispatch);
+  ] = useFetchRecordings(channelId, recordingDispatch);
 
   React.useEffect(() => {
     fetchMembers();
-    fetchUpdates(PAGE_LIMIT);
+    fetchRecordings(PAGE_LIMIT);
 
     return () => {
       abortFetchMembers();
-      abortFetchUpdates();
+      abortFetchRecordings();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -120,7 +120,7 @@ function StandupUpdates() {
         type: 'ENQUEUE_SNACKBAR_MSG',
         data: {
           type: 'error',
-          title: 'Failed to fetch standup updates',
+          title: 'Failed to fetch channel recordings',
           text: updatesErr.details
             ? `${updatesErr.message}: ${updatesErr.details}`
             : updatesErr.message
@@ -130,19 +130,19 @@ function StandupUpdates() {
   }, [membersErr, updatesErr]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchNextPage = cursor => {
-    fetchUpdates(PAGE_LIMIT, cursor);
+    fetchRecordings(PAGE_LIMIT, cursor);
   };
 
   return (
-    <PureStandupUpdates
+    <PureChannelRecordings
       isFetchingMembers={isFetchingMembers}
-      isFetchingUpdates={isFetchingUpdates}
+      isFetchingRecordings={isFetchingRecordings}
       cursor={nextPageCursor}
       fetchNextPage={fetchNextPage}
-      membersById={updateState.membersById}
-      recordings={updateState.recordings}
+      membersById={recordingState.membersById}
+      recordings={recordingState.recordings}
     />
   );
 }
 
-export default StandupUpdates;
+export default ChannelRecordings;

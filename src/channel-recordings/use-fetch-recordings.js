@@ -6,14 +6,14 @@ import { useAuth0 } from '../auth0';
 import api from './api';
 
 /**
- * Custom hook to fetch standup updates.
+ * Custom hook to fetch channel recordings.
  *
- * @param {String} standupId
+ * @param {String} channelId
  * @param {Function} dispatch - Reducer dispatch function
  *
  * @return {Array}
  */
-function useFetchUpdates(standupId, dispatch) {
+function useFetchRecordings(channelId, dispatch) {
   const { getToken } = useAuth0();
 
   const [isFetching, setIsFetching] = React.useState(true);
@@ -23,24 +23,24 @@ function useFetchUpdates(standupId, dispatch) {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-  const fetchUpdates = async (limit, cursor) => {
+  const fetchRecordings = async (limit, cursor) => {
     try {
       setIsFetching(true);
       setErr(null);
 
       const token = await getToken();
-      const res = await api.getStandupUpdates(
+      const res = await api.getChannelRecordings(
         token,
         source.token,
-        standupId,
+        channelId,
         limit,
         cursor
       );
 
-      // If we fetch updates with "cursor", it means we are fetching the
-      // "next page" of updates, otherwise we fetched the "first page"
+      // If we fetch recordings with "cursor", it means we are fetching the
+      // "next page" of recordings, otherwise we fetched the "first page"
       dispatch({
-        type: cursor ? 'FETCHED_UPDATES_NEXT_PAGE' : 'FETCHED_UPDATES',
+        type: cursor ? 'FETCHED_RECORDINGS_NEXT_PAGE' : 'FETCHED_RECORDINGS',
         data: res.data.items
       });
 
@@ -58,7 +58,7 @@ function useFetchUpdates(standupId, dispatch) {
     }
   };
 
-  return [fetchUpdates, source.cancel, isFetching, err, nextPageCursor];
+  return [fetchRecordings, source.cancel, isFetching, err, nextPageCursor];
 }
 
-export default useFetchUpdates;
+export default useFetchRecordings;

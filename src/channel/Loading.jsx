@@ -7,7 +7,7 @@ import { LoadingAudioPlayer } from '../components/AudioPlayer';
 import Button from '../components/Button';
 import { Breadcrumbs, Breadcrumb } from '../components/Breadcrumbs';
 
-import { LoadingStandupUpdates } from '../standup-updates';
+import { LoadingChannelRecordings } from '../channel-recordings';
 
 import {
   Container,
@@ -42,7 +42,7 @@ function Loading() {
       </Header>
 
       <Main>
-        <LoadingStandupUpdates />
+        <LoadingChannelRecordings />
       </Main>
 
       <Footer>

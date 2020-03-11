@@ -1,4 +1,4 @@
-export const defaultUpdateState = {
+export const defaultRecordingState = {
   membersById: {},
   recordings: []
 };
@@ -39,11 +39,11 @@ function membersByIdReducer(state, action) {
  */
 function recordingsReducer(state, action) {
   switch (action.type) {
-    case 'FETCHED_UPDATES': {
+    case 'FETCHED_RECORDINGS': {
       return action.data;
     }
 
-    case 'FETCHED_UPDATES_NEXT_PAGE': {
+    case 'FETCHED_RECORDINGS_NEXT_PAGE': {
       return [...state, ...action.data];
     }
 
@@ -54,18 +54,18 @@ function recordingsReducer(state, action) {
 }
 
 /**
- * Updates root reducer.
+ * Channel recordings root reducer.
  *
- * @param {Object} state - Updates root state
+ * @param {Object} state - Channel recordings root state
  * @param {Object} action - Reducer action with "type" and "data" props
  *
- * @returns {Object} Updates root state
+ * @returns {Object} Channel recordings root state
  */
-function updateReducer(state, action) {
+function recordingReducer(state, action) {
   return {
     membersById: membersByIdReducer(state.membersById, action),
     recordings: recordingsReducer(state.recordings, action)
   };
 }
 
-export default updateReducer;
+export default recordingReducer;

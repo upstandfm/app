@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import NewUpdate from '../new-update';
-import StandupUpdates from '../standup-updates';
+import ChannelRecordings from '../channel-recordings';
 
 import AudioPlayer from '../components/AudioPlayer';
 import Button from '../components/Button';
@@ -188,7 +188,7 @@ function Channel() {
     >
       <Switch>
         <Route exact path={path}>
-          <StandupUpdates />
+          <ChannelRecordings />
         </Route>
 
         <Route exact path={`${path}/new-update`}>

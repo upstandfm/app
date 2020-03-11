@@ -1,8 +1,8 @@
-import reducer, { defaultUpdateState } from './reducer';
+import reducer, { defaultRecordingState } from './reducer';
 
-describe('updates reducer', () => {
+describe('recording reducer', () => {
   it('fetches members', () => {
-    const state = defaultUpdateState;
+    const state = defaultRecordingState;
 
     const id = '1';
     const members = [{ id }];
@@ -16,8 +16,8 @@ describe('updates reducer', () => {
     expect(newState.membersById[id]).toEqual(members[0]);
   });
 
-  it('fetches updates', () => {
-    const state = defaultUpdateState;
+  it('fetches recordings', () => {
+    const state = defaultRecordingState;
 
     const recordings = [
       { id: '1', name: 'yesterday' },
@@ -25,7 +25,7 @@ describe('updates reducer', () => {
     ];
 
     const action = {
-      type: 'FETCHED_UPDATES',
+      type: 'FETCHED_RECORDINGS',
       data: recordings
     };
 
@@ -33,16 +33,16 @@ describe('updates reducer', () => {
     expect(newState.recordings).toEqual(recordings);
   });
 
-  it('fetches more updates', () => {
+  it('fetches more recordings', () => {
     const state = {
-      ...defaultUpdateState,
+      ...defaultRecordingState,
       recordings: [{ id: '1', name: 'yesterday' }]
     };
 
     const recordings = [{ id: '2', name: 'today' }];
 
     const action = {
-      type: 'FETCHED_UPDATES_NEXT_PAGE',
+      type: 'FETCHED_RECORDINGS_NEXT_PAGE',
       data: recordings
     };
 
