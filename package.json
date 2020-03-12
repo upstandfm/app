@@ -79,7 +79,7 @@
     "husky": "^4.2.3",
     "jest-junit": "^10.0.0",
     "lint-staged": "^10.0.8",
-    "netlify-cli": "^2.37.0",
+    "netlify-cli": "^2.38.0",
     "prettier": "^1.19.1",
     "react-scripts": "3.4.0"
   }
