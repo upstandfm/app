@@ -4,7 +4,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/621e0425-89e1-4168-9168-0341e0f4da45/deploy-status)](https://app.netlify.com/sites/upstand-fm-app/deploys)
 
-[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://storybook.upstand.fm)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://upstand-fm-storybook.netlify.app)
 
 [![Percy](https://percy.io/static/images/percy-badge.svg)](https://percy.io/upstand-fm/app)
 
@@ -108,7 +108,7 @@ Code is automatically formatted on commit with Prettier.
 
 Storybook files are colocated with the implementation files. For example, the component `Button.jsx` will have a Storybook file named `Button.stories.jsx` in the same dir.
 
-A live Storybook can be found at [storybook.upstand.fm](https://storybook.upstand.fm).
+A live Storybook can be found at [upstand-fm-storybook.netlify.app](https://upstand-fm-storybook.netlify.app).
 
 ## Tests
 
@@ -173,10 +173,10 @@ The token is configured in CircleCI as an environment variable named `NETLIFY_AC
 
 There are 2 site IDs (Storybook + app) and their values are configured as env vars:
 
-| Type      | Description                                                                    | Env var name         | Netlify UI link                                                                                      |
-| --------- | ------------------------------------------------------------------------------ | -------------------- | ---------------------------------------------------------------------------------------------------- |
-| Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `NETLIFY_SB_SITE_ID` | [upstand-fm-storybook/settings](https://app.netlify.com/sites/upstand-fm-storybook/settings/general) |
-| App       | The web app, at [app.upstand.fm](https://app.upstand.fm).                      | `NETLIFY_SITE_ID`    | [upstand-fm-app/settings](https://app.netlify.com/sites/upstand-fm-app/settings/general)             |
+| Type      | Description                                                                                            | Env var name         | Netlify UI link                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------------ | -------------------- | ---------------------------------------------------------------------------------------------------- |
+| Storybook | The component website at [upstand-fm-storybook.netlify.app](https://upstand-fm-storybook.netlify.app). | `NETLIFY_SB_SITE_ID` | [upstand-fm-storybook/settings](https://app.netlify.com/sites/upstand-fm-storybook/settings/general) |
+| App       | The web app, at [upstand-fm-app.netlify.app](https://upstand-fm-app.netlify.app).                      | `NETLIFY_SITE_ID`    | [upstand-fm-app/settings](https://app.netlify.com/sites/upstand-fm-app/settings/general)             |
 
 Note that the Netlify site ID is named "API ID" in the Netlify web app. And can be found under `Settings > General > Site Details > Site Information`.
 
@@ -184,10 +184,10 @@ Note that the Netlify site ID is named "API ID" in the Netlify web app. And can 
 
 There are 2 publish directories (Storybook + app) and their values are configured as env vars:
 
-| Type      | Description                                                                    | Build command      | Publish directory | Env var name          |
-| --------- | ------------------------------------------------------------------------------ | ------------------ | ----------------- | --------------------- |
-| Storybook | The component website at [storybook.upstand.fm](https://storybook.upstand.fm). | `npm run sb:build` | `build-storybook` | `STORYBOOK_BUILD_DIR` |
-| App       | The web app, at [app.upstand.fm](https://app.upstand.fm).                      | `npm run build`    | `build`           | `NETLIFY_PUBLISH_DIR` |
+| Type      | Description                                                                                            | Build command      | Publish directory | Env var name          |
+| --------- | ------------------------------------------------------------------------------------------------------ | ------------------ | ----------------- | --------------------- |
+| Storybook | The component website at [upstand-fm-storybook.netlify.app](https://upstand-fm-storybook.netlify.app). | `npm run sb:build` | `build-storybook` | `STORYBOOK_BUILD_DIR` |
+| App       | The web app, at [upstand-fm-app.netlify.app](https://upstand-fm-app.netlify.app).                      | `npm run build`    | `build`           | `NETLIFY_PUBLISH_DIR` |
 
 Note that the publish directory is the "output" of running one of the build commands. A publish directory contains the files that Netlify must deploy.
 
@@ -206,7 +206,7 @@ Both files must contain the following environment variables:
 | ---------------------------- | -------- | ------------------------------------------------------------------------------------------------------- |
 | REACT_APP_AUTH0_DOMAIN       | Yes      | The Auth0 tenant domain name.                                                                           |
 | REACT_APP_AUTH0_CLIENT_ID    | Yes      | The application client ID as configured in Auth0.                                                       |
-| REACT_APP_AUTH0_REDIRECT_URI | Yes      | Set to `http://localhost:3000` for dev. And `https://app.upstand.fm` for prod.                          |
+| REACT_APP_AUTH0_REDIRECT_URI | Yes      | Set to `http://localhost:3000` for dev. And `https://upstand-fm-app.netlify.app` for prod.              |
 | REACT_APP_AUTH0_LOGOUT_URL   | Yes      | Should match the `REACT_APP_AUTH0_REDIRECT_URI` value.                                                  |
 | REACT_APP_AUTH0_AUDIENCE     | Yes      | The audience for which the issued token is intended. Set this to `https://api.upstand.fm`.              |
 | REACT_APP_AUTH0_SCOPE        | Yes      | The OAuth scopes that are requested on behalf of the user. And which are "evaluated" by the "audience". |
