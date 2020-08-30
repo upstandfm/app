@@ -6,6 +6,8 @@
 docker_image: &docker_image
   docker:
     - image: circleci/node:12.9.0
+      environment:
+        SKIP_PREFLIGHT_CHECK: true
 
 docker_cy_image: &docker_cy_image
   docker:
